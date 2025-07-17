@@ -143,38 +143,139 @@
 
                 <!-- Key Performance Indicators -->
                 <div class="stats-grid" style="margin-bottom: 30px;">
-                    <div class="stat-card" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
-                        <div class="stat-value">2.8B</div>
-                        <div class="stat-label">Doanh thu (VNĐ)</div>
-                        <div style="font-size: 14px; opacity: 0.9; margin-top: 5px;">📈 +15% vs tháng trước</div>
+                    <div class="stat-card" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 30px; border-radius: 15px; color: white; text-align: center;">
+                        <div class="stat-value" style="font-size: 42px; font-weight: bold; margin-bottom: 15px;">2.8B</div>
+                        <div class="stat-label" style="font-size: 18px; opacity: 0.9;">Doanh thu (VNĐ)</div>
+                        <div style="font-size: 16px; opacity: 0.9; margin-top: 8px;">📈 +15% vs tháng trước</div>
                     </div>
-                    <div class="stat-card" style="background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);">
-                        <div class="stat-value">1,234</div>
-                        <div class="stat-label">Đơn hàng</div>
-                        <div style="font-size: 14px; opacity: 0.9; margin-top: 5px;">📈 +8% vs tháng trước</div>
+                    <div class="stat-card" style="background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%); padding: 30px; border-radius: 15px; color: white; text-align: center;">
+                        <div class="stat-value" style="font-size: 42px; font-weight: bold; margin-bottom: 15px;">1,234</div>
+                        <div class="stat-label" style="font-size: 18px; opacity: 0.9;">Đơn hàng</div>
+                        <div style="font-size: 16px; opacity: 0.9; margin-top: 8px;">📈 +8% vs tháng trước</div>
                     </div>
-                    <div class="stat-card" style="background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);">
-                        <div class="stat-value">2.27M</div>
-                        <div class="stat-label">Giá trị TB/đơn</div>
-                        <div style="font-size: 14px; opacity: 0.9; margin-top: 5px;">📈 +6% vs tháng trước</div>
+                    <div class="stat-card" style="background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%); padding: 30px; border-radius: 15px; color: white; text-align: center;">
+                        <div class="stat-value" style="font-size: 42px; font-weight: bold; margin-bottom: 15px;">2.27M</div>
+                        <div class="stat-label" style="font-size: 18px; opacity: 0.9;">Giá trị TB/đơn</div>
+                        <div style="font-size: 16px; opacity: 0.9; margin-top: 8px;">📈 +6% vs tháng trước</div>
                     </div>
-                    <div class="stat-card" style="background: linear-gradient(135deg, #9b59b6 0%, #8e44ad 100%);">
-                        <div class="stat-value">456</div>
-                        <div class="stat-label">Khách mới</div>
-                        <div style="font-size: 14px; opacity: 0.9; margin-top: 5px;">📈 +12% vs tháng trước</div>
+                    <div class="stat-card" style="background: linear-gradient(135deg, #9b59b6 0%, #8e44ad 100%); padding: 30px; border-radius: 15px; color: white; text-align: center;">
+                        <div class="stat-value" style="font-size: 42px; font-weight: bold; margin-bottom: 15px;">456</div>
+                        <div class="stat-label" style="font-size: 18px; opacity: 0.9;">Khách mới</div>
+                        <div style="font-size: 16px; opacity: 0.9; margin-top: 8px;">📈 +12% vs tháng trước</div>
                     </div>
                 </div>
 
                 <!-- Charts Section -->
-                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; margin-bottom: 30px;">
-                    <!-- Revenue Chart -->
-                    <div style="background: white; padding: 25px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1);">
-                        <h3 style="margin: 0 0 20px 0; color: #333;">
-                            <i class="fas fa-chart-line"></i> Doanh thu theo thời gian
-                        </h3>
-                        <canvas id="revenueChart" width="400" height="200"></canvas>
+                <div style="display: grid; grid-template-columns: 1fr; gap: 30px; margin-bottom: 30px;">
+                    <!-- Enhanced Revenue Chart -->
+                    <div style="background: white; padding: 30px; border-radius: 18px; box-shadow: 0 8px 30px rgba(0,0,0,0.08); border: 1px solid #f1f3f4;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; padding-bottom: 16px; border-bottom: 2px solid #f8f9fa;">
+                            <h3 style="margin: 0; color: #333; font-size: 20px; font-weight: 700;">
+                                <i class="fas fa-chart-line" style="color: #667eea; margin-right: 10px;"></i> Doanh thu theo thời gian
+                            </h3>
+                            <div style="display: flex; gap: 12px; align-items: center;">
+                                <!-- Time Period Buttons -->
+                                <div style="display: flex; background: #f8f9fa; border-radius: 12px; padding: 4px; border: 1px solid #e9ecef;">
+                                    <button class="time-btn active" data-period="7days" onclick="switchTimePeriod('7days')" style="padding: 8px 14px; border: none; background: #667eea; color: white; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.2s;">7 ngày</button>
+                                    <button class="time-btn" data-period="30days" onclick="switchTimePeriod('30days')" style="padding: 8px 14px; border: none; background: transparent; color: #6c757d; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.2s;">30 ngày</button>
+                                    <button class="time-btn" data-period="90days" onclick="switchTimePeriod('90days')" style="padding: 8px 14px; border: none; background: transparent; color: #6c757d; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.2s;">3 tháng</button>
+                                    <button class="time-btn" data-period="year" onclick="switchTimePeriod('year')" style="padding: 8px 14px; border: none; background: transparent; color: #6c757d; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.2s;">1 năm</button>
+                                </div>
+                                <!-- Chart Type Toggle -->
+                                <div style="display: flex; background: #f8f9fa; border-radius: 12px; padding: 4px; border: 1px solid #e9ecef;">
+                                    <button class="chart-type-btn active" data-type="line" onclick="switchChartType('line')" style="padding: 8px 12px; border: none; background: #27ae60; color: white; border-radius: 8px; font-size: 12px; cursor: pointer; transition: all 0.2s;" title="Biểu đồ đường">
+                                        <i class="fas fa-chart-line"></i>
+                                    </button>
+                                    <button class="chart-type-btn" data-type="bar" onclick="switchChartType('bar')" style="padding: 8px 12px; border: none; background: transparent; color: #6c757d; border-radius: 8px; font-size: 12px; cursor: pointer; transition: all 0.2s;" title="Biểu đồ cột">
+                                        <i class="fas fa-chart-bar"></i>
+                                    </button>
+                                </div>
+                                <!-- Export Button -->
+                                <button onclick="exportRevenueChart()" style="padding: 8px 12px; border: none; background: #17a2b8; color: white; border-radius: 8px; font-size: 12px; cursor: pointer; transition: all 0.2s;" title="Xuất biểu đồ">
+                                    <i class="fas fa-download"></i>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- Revenue Summary Cards -->
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 25px;">
+                            <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; border-radius: 12px; text-align: center;">
+                                <div style="font-size: 14px; opacity: 0.9; margin-bottom: 5px;">Tổng doanh thu</div>
+                                <div id="totalRevenue" style="font-size: 24px; font-weight: bold;">18.2 tỷ VNĐ</div>
+                                <div style="font-size: 12px; opacity: 0.8; margin-top: 5px;">
+                                    <i class="fas fa-arrow-up"></i> +15.3% vs kỳ trước
+                                </div>
+                            </div>
+                            <div style="background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%); color: white; padding: 20px; border-radius: 12px; text-align: center;">
+                                <div style="font-size: 14px; opacity: 0.9; margin-bottom: 5px;">Doanh thu TB/ngày</div>
+                                <div id="avgDailyRevenue" style="font-size: 24px; font-weight: bold;">612 triệu VNĐ</div>
+                                <div style="font-size: 12px; opacity: 0.8; margin-top: 5px;">
+                                    <i class="fas fa-arrow-up"></i> +8.7% vs kỳ trước
+                                </div>
+                            </div>
+                            <div style="background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%); color: white; padding: 20px; border-radius: 12px; text-align: center;">
+                                <div style="font-size: 14px; opacity: 0.9; margin-bottom: 5px;">Cao nhất</div>
+                                <div id="maxRevenue" style="font-size: 24px; font-weight: bold;">892 triệu VNĐ</div>
+                                <div style="font-size: 12px; opacity: 0.8; margin-top: 5px;">Ngày 15/07/2025</div>
+                            </div>
+                            <div style="background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%); color: white; padding: 20px; border-radius: 12px; text-align: center;">
+                                <div style="font-size: 14px; opacity: 0.9; margin-bottom: 5px;">Tăng trưởng</div>
+                                <div id="growthRate" style="font-size: 24px; font-weight: bold;">+15.3%</div>
+                                <div style="font-size: 12px; opacity: 0.8; margin-top: 5px;">So với tháng trước</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Chart Container -->
+                        <div style="position: relative; height: 400px; background: #fafafa; border-radius: 12px; padding: 20px;">
+                            <canvas id="revenueChart"></canvas>
+                        </div>
+                        
+                        <!-- Revenue Breakdown -->
+                        <div style="margin-top: 25px; padding-top: 20px; border-top: 2px solid #f8f9fa;">
+                            <h4 style="margin: 0 0 15px 0; color: #333; font-size: 16px; font-weight: 600;">
+                                <i class="fas fa-pie-chart" style="color: #f39c12; margin-right: 8px;"></i> Phân tích doanh thu
+                            </h4>
+                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
+                                <div style="background: #f8f9fa; padding: 18px; border-radius: 12px; border: 1px solid #e9ecef;">
+                                    <h5 style="margin: 0 0 12px 0; color: #495057; font-size: 14px; font-weight: 600;">Theo loại tour</h5>
+                                    <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                                        <span style="color: #666; font-size: 13px;">Tour trong nước</span>
+                                        <span style="color: #333; font-weight: 600; font-size: 13px;">65% (11.8 tỷ VNĐ)</span>
+                                    </div>
+                                    <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                                        <span style="color: #666; font-size: 13px;">Tour nước ngoài</span>
+                                        <span style="color: #333; font-weight: 600; font-size: 13px;">30% (5.5 tỷ VNĐ)</span>
+                                    </div>
+                                    <div style="display: flex; justify-content: space-between;">
+                                        <span style="color: #666; font-size: 13px;">Tour combo</span>
+                                        <span style="color: #333; font-weight: 600; font-size: 13px;">5% (0.9 tỷ VNĐ)</span>
+                                    </div>
+                                </div>
+                                <div style="background: #f8f9fa; padding: 18px; border-radius: 12px; border: 1px solid #e9ecef;">
+                                    <h5 style="margin: 0 0 12px 0; color: #495057; font-size: 14px; font-weight: 600;">Theo khu vực</h5>
+                                    <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                                        <span style="color: #666; font-size: 13px;">Miền Bắc</span>
+                                        <span style="color: #333; font-weight: 600; font-size: 13px;">40% (7.3 tỷ VNĐ)</span>
+                                    </div>
+                                    <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                                        <span style="color: #666; font-size: 13px;">Miền Trung</span>
+                                        <span style="color: #333; font-weight: 600; font-size: 13px;">35% (6.4 tỷ VNĐ)</span>
+                                    </div>
+                                    <div style="display: flex; justify-content: space-between;">
+                                        <span style="color: #666; font-size: 13px;">Miền Nam</span>
+                                        <span style="color: #333; font-weight: 600; font-size: 13px;">25% (4.5 tỷ VNĐ)</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+                </div>
 
+                <!-- Secondary Charts -->
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; margin-bottom: 30px;">
+
+                <!-- Secondary Charts -->
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; margin-bottom: 30px;">
                     <!-- Orders Chart -->
                     <div style="background: white; padding: 25px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1);">
                         <h3 style="margin: 0 0 20px 0; color: #333;">
@@ -182,7 +283,6 @@
                         </h3>
                         <canvas id="ordersChart" width="400" height="200"></canvas>
                     </div>
-                </div>
 
                 <!-- Tour Performance & Customer Satisfaction -->
                 <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; margin-bottom: 30px;">
@@ -210,76 +310,76 @@
                     </h2>
 
                     <!-- Performance Metrics Table -->
-                    <div style="margin-bottom: 30px;">
-                        <h4 style="margin-bottom: 15px; color: #333;">📊 Chỉ số hiệu suất tour</h4>
+                    <div style="margin-bottom: 35px;">
+                        <h4 style="margin-bottom: 20px; color: #333; font-size: 18px;">📊 Chỉ số hiệu suất tour</h4>
                         <div class="table-container">
                             <table style="width: 100%; border-collapse: collapse;">
                                 <thead>
                                     <tr style="background: #f8f9fa;">
-                                        <th style="padding: 12px; text-align: left; border-bottom: 2px solid #dee2e6;">Tour</th>
-                                        <th style="padding: 12px; text-align: center; border-bottom: 2px solid #dee2e6;">Đã bán</th>
-                                        <th style="padding: 12px; text-align: center; border-bottom: 2px solid #dee2e6;">Doanh thu</th>
-                                        <th style="padding: 12px; text-align: center; border-bottom: 2px solid #dee2e6;">Đánh giá</th>
-                                        <th style="padding: 12px; text-align: center; border-bottom: 2px solid #dee2e6;">Tỷ lệ chuyển đổi</th>
-                                        <th style="padding: 12px; text-align: center; border-bottom: 2px solid #dee2e6;">Xu hướng</th>
+                                        <th style="padding: 18px; text-align: left; border-bottom: 2px solid #dee2e6; font-size: 16px; font-weight: 600;">Tour</th>
+                                        <th style="padding: 18px; text-align: center; border-bottom: 2px solid #dee2e6; font-size: 16px; font-weight: 600;">Đã bán</th>
+                                        <th style="padding: 18px; text-align: center; border-bottom: 2px solid #dee2e6; font-size: 16px; font-weight: 600;">Doanh thu</th>
+                                        <th style="padding: 18px; text-align: center; border-bottom: 2px solid #dee2e6; font-size: 16px; font-weight: 600;">Đánh giá</th>
+                                        <th style="padding: 18px; text-align: center; border-bottom: 2px solid #dee2e6; font-size: 16px; font-weight: 600;">Tỷ lệ chuyển đổi</th>
+                                        <th style="padding: 18px; text-align: center; border-bottom: 2px solid #dee2e6; font-size: 16px; font-weight: 600;">Xu hướng</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td style="padding: 12px; border-bottom: 1px solid #dee2e6;">
-                                            <div style="font-weight: bold;">Tour Hạ Long Premium</div>
-                                            <div style="color: #666; font-size: 14px;">3N2Đ</div>
+                                        <td style="padding: 18px; border-bottom: 1px solid #dee2e6;">
+                                            <div style="font-weight: bold; font-size: 16px;">Tour Hạ Long Premium</div>
+                                            <div style="color: #666; font-size: 15px;">3N2Đ</div>
                                         </td>
-                                        <td style="padding: 12px; border-bottom: 1px solid #dee2e6; text-align: center;">234</td>
-                                        <td style="padding: 12px; border-bottom: 1px solid #dee2e6; text-align: center;">
-                                            <div style="font-weight: bold; color: #27ae60;">982M VNĐ</div>
+                                        <td style="padding: 18px; border-bottom: 1px solid #dee2e6; text-align: center; font-size: 16px;">234</td>
+                                        <td style="padding: 18px; border-bottom: 1px solid #dee2e6; text-align: center;">
+                                            <div style="font-weight: bold; color: #27ae60; font-size: 16px;">982M VNĐ</div>
                                         </td>
-                                        <td style="padding: 12px; border-bottom: 1px solid #dee2e6; text-align: center;">
-                                            <div style="color: #f39c12;">⭐ 4.8</div>
+                                        <td style="padding: 18px; border-bottom: 1px solid #dee2e6; text-align: center;">
+                                            <div style="color: #f39c12; font-size: 16px;">⭐ 4.8</div>
                                         </td>
-                                        <td style="padding: 12px; border-bottom: 1px solid #dee2e6; text-align: center;">
-                                            <div style="color: #27ae60; font-weight: bold;">12.3%</div>
+                                        <td style="padding: 18px; border-bottom: 1px solid #dee2e6; text-align: center;">
+                                            <div style="color: #27ae60; font-weight: bold; font-size: 16px;">12.3%</div>
                                         </td>
-                                        <td style="padding: 12px; border-bottom: 1px solid #dee2e6; text-align: center;">
-                                            <div style="color: #27ae60;">📈 +8%</div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="padding: 12px; border-bottom: 1px solid #dee2e6;">
-                                            <div style="font-weight: bold;">Tour Sapa Cổ Tích</div>
-                                            <div style="color: #666; font-size: 14px;">2N1Đ</div>
-                                        </td>
-                                        <td style="padding: 12px; border-bottom: 1px solid #dee2e6; text-align: center;">156</td>
-                                        <td style="padding: 12px; border-bottom: 1px solid #dee2e6; text-align: center;">
-                                            <div style="font-weight: bold; color: #27ae60;">437M VNĐ</div>
-                                        </td>
-                                        <td style="padding: 12px; border-bottom: 1px solid #dee2e6; text-align: center;">
-                                            <div style="color: #f39c12;">⭐ 4.6</div>
-                                        </td>
-                                        <td style="padding: 12px; border-bottom: 1px solid #dee2e6; text-align: center;">
-                                            <div style="color: #27ae60; font-weight: bold;">9.8%</div>
-                                        </td>
-                                        <td style="padding: 12px; border-bottom: 1px solid #dee2e6; text-align: center;">
-                                            <div style="color: #27ae60;">📈 +15%</div>
+                                        <td style="padding: 18px; border-bottom: 1px solid #dee2e6; text-align: center;">
+                                            <div style="color: #27ae60; font-size: 16px;">📈 +8%</div>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td style="padding: 12px; border-bottom: 1px solid #dee2e6;">
-                                            <div style="font-weight: bold;">Tour Đà Nẵng Resort</div>
-                                            <div style="color: #666; font-size: 14px;">4N3Đ</div>
+                                        <td style="padding: 18px; border-bottom: 1px solid #dee2e6;">
+                                            <div style="font-weight: bold; font-size: 16px;">Tour Sapa Cổ Tích</div>
+                                            <div style="color: #666; font-size: 15px;">2N1Đ</div>
                                         </td>
-                                        <td style="padding: 12px; border-bottom: 1px solid #dee2e6; text-align: center;">98</td>
-                                        <td style="padding: 12px; border-bottom: 1px solid #dee2e6; text-align: center;">
-                                            <div style="font-weight: bold; color: #27ae60;">637M VNĐ</div>
+                                        <td style="padding: 18px; border-bottom: 1px solid #dee2e6; text-align: center; font-size: 16px;">156</td>
+                                        <td style="padding: 18px; border-bottom: 1px solid #dee2e6; text-align: center;">
+                                            <div style="font-weight: bold; color: #27ae60; font-size: 16px;">437M VNĐ</div>
                                         </td>
-                                        <td style="padding: 12px; border-bottom: 1px solid #dee2e6; text-align: center;">
-                                            <div style="color: #f39c12;">⭐ 4.9</div>
+                                        <td style="padding: 18px; border-bottom: 1px solid #dee2e6; text-align: center;">
+                                            <div style="color: #f39c12; font-size: 16px;">⭐ 4.6</div>
                                         </td>
-                                        <td style="padding: 12px; border-bottom: 1px solid #dee2e6; text-align: center;">
-                                            <div style="color: #f39c12; font-weight: bold;">7.2%</div>
+                                        <td style="padding: 18px; border-bottom: 1px solid #dee2e6; text-align: center;">
+                                            <div style="color: #27ae60; font-weight: bold; font-size: 16px;">9.8%</div>
                                         </td>
-                                        <td style="padding: 12px; border-bottom: 1px solid #dee2e6; text-align: center;">
-                                            <div style="color: #e74c3c;">📉 -3%</div>
+                                        <td style="padding: 18px; border-bottom: 1px solid #dee2e6; text-align: center;">
+                                            <div style="color: #27ae60; font-size: 16px;">📈 +15%</div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 18px; border-bottom: 1px solid #dee2e6;">
+                                            <div style="font-weight: bold; font-size: 16px;">Tour Đà Nẵng Resort</div>
+                                            <div style="color: #666; font-size: 15px;">4N3Đ</div>
+                                        </td>
+                                        <td style="padding: 18px; border-bottom: 1px solid #dee2e6; text-align: center; font-size: 16px;">98</td>
+                                        <td style="padding: 18px; border-bottom: 1px solid #dee2e6; text-align: center;">
+                                            <div style="font-weight: bold; color: #27ae60; font-size: 16px;">637M VNĐ</div>
+                                        </td>
+                                        <td style="padding: 18px; border-bottom: 1px solid #dee2e6; text-align: center;">
+                                            <div style="color: #f39c12; font-size: 16px;">⭐ 4.9</div>
+                                        </td>
+                                        <td style="padding: 18px; border-bottom: 1px solid #dee2e6; text-align: center;">
+                                            <div style="color: #f39c12; font-weight: bold; font-size: 16px;">7.2%</div>
+                                        </td>
+                                        <td style="padding: 18px; border-bottom: 1px solid #dee2e6; text-align: center;">
+                                            <div style="color: #e74c3c; font-size: 16px;">📉 -3%</div>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -288,30 +388,30 @@
                     </div>
 
                     <!-- Customer Insights -->
-                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
-                        <div style="background: #f8f9fa; padding: 20px; border-radius: 10px;">
-                            <h5 style="margin: 0 0 15px 0; color: #333;">
+                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px;">
+                        <div style="background: #f8f9fa; padding: 25px; border-radius: 15px;">
+                            <h5 style="margin: 0 0 20px 0; color: #333; font-size: 18px;">
                                 <i class="fas fa-heart"></i> Khách hàng trung thành
                             </h5>
-                            <div style="font-size: 24px; font-weight: bold; color: #e74c3c; margin-bottom: 5px;">65%</div>
-                            <div style="color: #666; font-size: 14px;">Tỷ lệ khách quay lại</div>
-                            <div style="color: #27ae60; font-size: 14px; margin-top: 5px;">📈 +5% vs tháng trước</div>
+                            <div style="font-size: 32px; font-weight: bold; color: #e74c3c; margin-bottom: 8px;">65%</div>
+                            <div style="color: #666; font-size: 16px;">Tỷ lệ khách quay lại</div>
+                            <div style="color: #27ae60; font-size: 16px; margin-top: 8px;">📈 +5% vs tháng trước</div>
                         </div>
-                        <div style="background: #f8f9fa; padding: 20px; border-radius: 10px;">
-                            <h5 style="margin: 0 0 15px 0; color: #333;">
+                        <div style="background: #f8f9fa; padding: 25px; border-radius: 15px;">
+                            <h5 style="margin: 0 0 20px 0; color: #333; font-size: 18px;">
                                 <i class="fas fa-clock"></i> Thời gian đặt TB
                             </h5>
-                            <div style="font-size: 24px; font-weight: bold; color: #667eea; margin-bottom: 5px;">18 ngày</div>
-                            <div style="color: #666; font-size: 14px;">Trước khởi hành</div>
-                            <div style="color: #27ae60; font-size: 14px; margin-top: 5px;">📈 +2 ngày vs tháng trước</div>
+                            <div style="font-size: 32px; font-weight: bold; color: #667eea; margin-bottom: 8px;">18 ngày</div>
+                            <div style="color: #666; font-size: 16px;">Trước khởi hành</div>
+                            <div style="color: #27ae60; font-size: 16px; margin-top: 8px;">📈 +2 ngày vs tháng trước</div>
                         </div>
-                        <div style="background: #f8f9fa; padding: 20px; border-radius: 10px;">
-                            <h5 style="margin: 0 0 15px 0; color: #333;">
+                        <div style="background: #f8f9fa; padding: 25px; border-radius: 15px;">
+                            <h5 style="margin: 0 0 20px 0; color: #333; font-size: 18px;">
                                 <i class="fas fa-star"></i> Điểm đánh giá TB
                             </h5>
-                            <div style="font-size: 24px; font-weight: bold; color: #f39c12; margin-bottom: 5px;">4.7/5</div>
-                            <div style="color: #666; font-size: 14px;">Từ 1,547 đánh giá</div>
-                            <div style="color: #27ae60; font-size: 14px; margin-top: 5px;">📈 +0.2 vs tháng trước</div>
+                            <div style="font-size: 32px; font-weight: bold; color: #f39c12; margin-bottom: 8px;">4.7/5</div>
+                            <div style="color: #666; font-size: 16px;">Từ 1,547 đánh giá</div>
+                            <div style="color: #27ae60; font-size: 16px; margin-top: 8px;">📈 +0.2 vs tháng trước</div>
                         </div>
                     </div>
                 </div>
@@ -324,56 +424,56 @@
                     <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px;">
                         <!-- Current vs Previous Month -->
                         <div>
-                            <h4 style="margin-bottom: 15px; color: #333;">Tháng 7/2025 vs Tháng 6/2025</h4>
-                            <div style="display: grid; gap: 15px;">
-                                <div style="display: flex; justify-content: space-between; align-items: center; padding: 15px; background: #f8f9fa; border-radius: 8px;">
+                            <h4 style="margin-bottom: 20px; color: #333; font-size: 18px;">Tháng 7/2025 vs Tháng 6/2025</h4>
+                            <div style="display: grid; gap: 18px;">
+                                <div style="display: flex; justify-content: space-between; align-items: center; padding: 20px; background: #f8f9fa; border-radius: 12px;">
                                     <div>
-                                        <div style="font-weight: bold; color: #333;">Doanh thu</div>
-                                        <div style="color: #666; font-size: 14px;">2.8B vs 2.4B VNĐ</div>
+                                        <div style="font-weight: bold; color: #333; font-size: 16px;">Doanh thu</div>
+                                        <div style="color: #666; font-size: 15px;">2.8B vs 2.4B VNĐ</div>
                                     </div>
-                                    <div style="color: #27ae60; font-weight: bold;">+15%</div>
+                                    <div style="color: #27ae60; font-weight: bold; font-size: 16px;">+15%</div>
                                 </div>
-                                <div style="display: flex; justify-content: space-between; align-items: center; padding: 15px; background: #f8f9fa; border-radius: 8px;">
+                                <div style="display: flex; justify-content: space-between; align-items: center; padding: 20px; background: #f8f9fa; border-radius: 12px;">
                                     <div>
-                                        <div style="font-weight: bold; color: #333;">Đơn hàng</div>
-                                        <div style="color: #666; font-size: 14px;">1,234 vs 1,142 đơn</div>
+                                        <div style="font-weight: bold; color: #333; font-size: 16px;">Đơn hàng</div>
+                                        <div style="color: #666; font-size: 15px;">1,234 vs 1,142 đơn</div>
                                     </div>
-                                    <div style="color: #27ae60; font-weight: bold;">+8%</div>
+                                    <div style="color: #27ae60; font-weight: bold; font-size: 16px;">+8%</div>
                                 </div>
-                                <div style="display: flex; justify-content: space-between; align-items: center; padding: 15px; background: #f8f9fa; border-radius: 8px;">
+                                <div style="display: flex; justify-content: space-between; align-items: center; padding: 20px; background: #f8f9fa; border-radius: 12px;">
                                     <div>
-                                        <div style="font-weight: bold; color: #333;">Khách mới</div>
-                                        <div style="color: #666; font-size: 14px;">456 vs 407 khách</div>
+                                        <div style="font-weight: bold; color: #333; font-size: 16px;">Khách mới</div>
+                                        <div style="color: #666; font-size: 15px;">456 vs 407 khách</div>
                                     </div>
-                                    <div style="color: #27ae60; font-weight: bold;">+12%</div>
+                                    <div style="color: #27ae60; font-weight: bold; font-size: 16px;">+12%</div>
                                 </div>
                             </div>
                         </div>
 
                         <!-- Year over Year -->
                         <div>
-                            <h4 style="margin-bottom: 15px; color: #333;">Tháng 7/2025 vs Tháng 7/2024</h4>
-                            <div style="display: grid; gap: 15px;">
-                                <div style="display: flex; justify-content: space-between; align-items: center; padding: 15px; background: #f8f9fa; border-radius: 8px;">
+                            <h4 style="margin-bottom: 20px; color: #333; font-size: 18px;">Tháng 7/2025 vs Tháng 7/2024</h4>
+                            <div style="display: grid; gap: 18px;">
+                                <div style="display: flex; justify-content: space-between; align-items: center; padding: 20px; background: #f8f9fa; border-radius: 12px;">
                                     <div>
-                                        <div style="font-weight: bold; color: #333;">Doanh thu</div>
-                                        <div style="color: #666; font-size: 14px;">2.8B vs 1.9B VNĐ</div>
+                                        <div style="font-weight: bold; color: #333; font-size: 16px;">Doanh thu</div>
+                                        <div style="color: #666; font-size: 15px;">2.8B vs 1.9B VNĐ</div>
                                     </div>
-                                    <div style="color: #27ae60; font-weight: bold;">+47%</div>
+                                    <div style="color: #27ae60; font-weight: bold; font-size: 16px;">+47%</div>
                                 </div>
-                                <div style="display: flex; justify-content: space-between; align-items: center; padding: 15px; background: #f8f9fa; border-radius: 8px;">
+                                <div style="display: flex; justify-content: space-between; align-items: center; padding: 20px; background: #f8f9fa; border-radius: 12px;">
                                     <div>
-                                        <div style="font-weight: bold; color: #333;">Đơn hàng</div>
-                                        <div style="color: #666; font-size: 14px;">1,234 vs 867 đơn</div>
+                                        <div style="font-weight: bold; color: #333; font-size: 16px;">Đơn hàng</div>
+                                        <div style="color: #666; font-size: 15px;">1,234 vs 867 đơn</div>
                                     </div>
-                                    <div style="color: #27ae60; font-weight: bold;">+42%</div>
+                                    <div style="color: #27ae60; font-weight: bold; font-size: 16px;">+42%</div>
                                 </div>
-                                <div style="display: flex; justify-content: space-between; align-items: center; padding: 15px; background: #f8f9fa; border-radius: 8px;">
+                                <div style="display: flex; justify-content: space-between; align-items: center; padding: 20px; background: #f8f9fa; border-radius: 12px;">
                                     <div>
-                                        <div style="font-weight: bold; color: #333;">Đánh giá TB</div>
-                                        <div style="color: #666; font-size: 14px;">4.7 vs 4.3</div>
+                                        <div style="font-weight: bold; color: #333; font-size: 16px;">Đánh giá TB</div>
+                                        <div style="color: #666; font-size: 15px;">4.7 vs 4.3</div>
                                     </div>
-                                    <div style="color: #27ae60; font-weight: bold;">+9%</div>
+                                    <div style="color: #27ae60; font-weight: bold; font-size: 16px;">+9%</div>
                                 </div>
                             </div>
                         </div>
@@ -415,8 +515,10 @@
 
         <div style="margin-bottom: 15px;">
             <h4 style="margin: 0 0 8px 0; color: #4CAF50; font-size: 13px; font-weight: bold;">🛠️ Admin Panel</h4>
-            <div style="display: grid; grid-template-columns: 1fr; gap: 5px; margin-bottom: 10px;">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 5px; margin-bottom: 10px;">
                 <a href="13-admin-dashboard.html" style="text-decoration: none; color: #4CAF50; font-size: 11px; padding: 4px 8px; border: 1px solid #4CAF50; border-radius: 4px; text-align: center; transition: all 0.2s;">13-Dashboard</a>
+                <a href="20-admin-tour-approval.html" style="text-decoration: none; color: #4CAF50; font-size: 11px; padding: 4px 8px; border: 1px solid #4CAF50; border-radius: 4px; text-align: center; transition: all 0.2s;">20-Approval</a>
+                <a href="21-admin-flash-sale.html" style="text-decoration: none; color: #4CAF50; font-size: 11px; padding: 4px 8px; border: 1px solid #4CAF50; border-radius: 4px; text-align: center; transition: all 0.2s;">21-FlashSale</a>
             </div>
         </div>
 
@@ -462,21 +564,76 @@
             initializeCharts();
         });
 
+        let revenueChart;
+        let currentTimePeriod = '7days';
+        let currentChartType = 'line';
+
+        // Sample data for different time periods
+        const revenueData = {
+            '7days': {
+                labels: ['17/07', '18/07', '19/07', '20/07', '21/07', '22/07', '23/07'],
+                data: [580, 720, 650, 890, 750, 820, 920],
+                total: '5.33 tỷ VNĐ',
+                avgDaily: '761 triệu VNĐ',
+                max: '920 triệu VNĐ',
+                growth: '+12.5%'
+            },
+            '30days': {
+                labels: ['T1', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7', 'T8', 'T9', 'T10', 'T11', 'T12', 'T13', 'T14', 'T15', 'T16', 'T17', 'T18', 'T19', 'T20', 'T21', 'T22', 'T23', 'T24', 'T25', 'T26', 'T27', 'T28', 'T29', 'T30'],
+                data: [1800, 2100, 1950, 2300, 2600, 2400, 2800, 2200, 2500, 2700, 2300, 2600, 2800, 2400, 2900, 2600, 2750, 2850, 2650, 2950, 2800, 2700, 2600, 2750, 2900, 2650, 2800, 2950, 2700, 2850],
+                total: '78.2 tỷ VNĐ',
+                avgDaily: '2.61 tỷ VNĐ',
+                max: '2.95 tỷ VNĐ',
+                growth: '+15.3%'
+            },
+            '90days': {
+                labels: ['Tuần 1', 'Tuần 2', 'Tuần 3', 'Tuần 4', 'Tuần 5', 'Tuần 6', 'Tuần 7', 'Tuần 8', 'Tuần 9', 'Tuần 10', 'Tuần 11', 'Tuần 12'],
+                data: [15.2, 16.8, 14.5, 18.3, 19.2, 17.8, 20.1, 18.9, 19.8, 21.5, 20.3, 22.1],
+                total: '214.5 tỷ VNĐ',
+                avgDaily: '2.38 tỷ VNĐ',
+                max: '22.1 tỷ VNĐ',
+                growth: '+18.7%'
+            },
+            'year': {
+                labels: ['T1', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7', 'T8', 'T9', 'T10', 'T11', 'T12'],
+                data: [65.2, 68.5, 72.3, 75.8, 78.9, 82.1, 85.6, 83.2, 86.7, 89.3, 92.1, 95.8],
+                total: '975.5 tỷ VNĐ',
+                avgDaily: '2.67 tỷ VNĐ',
+                max: '95.8 tỷ VNĐ',
+                growth: '+22.3%'
+            }
+        };
+
         function initializeCharts() {
-            // Revenue Chart
-            const revenueCtx = document.getElementById('revenueChart').getContext('2d');
-            new Chart(revenueCtx, {
-                type: 'line',
+            initializeRevenueChart();
+            initializeOtherCharts();
+        }
+
+        function initializeRevenueChart() {
+            const ctx = document.getElementById('revenueChart').getContext('2d');
+            const data = revenueData[currentTimePeriod];
+            
+            if (revenueChart) {
+                revenueChart.destroy();
+            }
+
+            const chartConfig = {
+                type: currentChartType,
                 data: {
-                    labels: ['T1', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7'],
+                    labels: data.labels,
                     datasets: [{
                         label: 'Doanh thu (triệu VNĐ)',
-                        data: [1800, 2100, 1950, 2300, 2600, 2400, 2800],
+                        data: data.data,
                         borderColor: '#667eea',
-                        backgroundColor: 'rgba(102, 126, 234, 0.1)',
+                        backgroundColor: currentChartType === 'line' ? 'rgba(102, 126, 234, 0.1)' : 'rgba(102, 126, 234, 0.8)',
                         borderWidth: 3,
-                        fill: true,
-                        tension: 0.4
+                        fill: currentChartType === 'line',
+                        tension: currentChartType === 'line' ? 0.4 : 0,
+                        pointBackgroundColor: '#667eea',
+                        pointBorderColor: '#ffffff',
+                        pointBorderWidth: 2,
+                        pointRadius: 6,
+                        pointHoverRadius: 8
                     }]
                 },
                 options: {
@@ -485,21 +642,138 @@
                     plugins: {
                         legend: {
                             display: false
-                        }
-                    },
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            ticks: {
-                                callback: function(value) {
-                                    return value + 'M';
+                        },
+                        tooltip: {
+                            backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                            titleColor: '#ffffff',
+                            bodyColor: '#ffffff',
+                            borderColor: '#667eea',
+                            borderWidth: 1,
+                            cornerRadius: 8,
+                            displayColors: false,
+                            callbacks: {
+                                label: function(context) {
+                                    return 'Doanh thu: ' + context.parsed.y.toLocaleString() + ' triệu VNĐ';
                                 }
                             }
                         }
+                    },
+                    scales: {
+                        x: {
+                            grid: {
+                                color: 'rgba(0, 0, 0, 0.05)',
+                                borderColor: 'rgba(0, 0, 0, 0.1)'
+                            },
+                            ticks: {
+                                color: '#6c757d',
+                                font: {
+                                    size: 12
+                                }
+                            }
+                        },
+                        y: {
+                            beginAtZero: true,
+                            grid: {
+                                color: 'rgba(0, 0, 0, 0.05)',
+                                borderColor: 'rgba(0, 0, 0, 0.1)'
+                            },
+                            ticks: {
+                                color: '#6c757d',
+                                font: {
+                                    size: 12
+                                },
+                                callback: function(value) {
+                                    return value.toLocaleString() + 'M';
+                                }
+                            }
+                        }
+                    },
+                    animation: {
+                        duration: 1000,
+                        easing: 'easeInOutQuart'
+                    },
+                    interaction: {
+                        intersect: false,
+                        mode: 'index'
                     }
                 }
-            });
+            };
 
+            revenueChart = new Chart(ctx, chartConfig);
+            updateRevenueStats();
+        }
+
+        function switchTimePeriod(period) {
+            currentTimePeriod = period;
+            
+            // Update button states
+            document.querySelectorAll('.time-btn').forEach(btn => {
+                btn.style.background = 'transparent';
+                btn.style.color = '#6c757d';
+            });
+            document.querySelector(`[data-period="${period}"]`).style.background = '#667eea';
+            document.querySelector(`[data-period="${period}"]`).style.color = 'white';
+            
+            initializeRevenueChart();
+        }
+
+        function switchChartType(type) {
+            currentChartType = type;
+            
+            // Update button states
+            document.querySelectorAll('.chart-type-btn').forEach(btn => {
+                btn.style.background = 'transparent';
+                btn.style.color = '#6c757d';
+            });
+            document.querySelector(`[data-type="${type}"]`).style.background = '#27ae60';
+            document.querySelector(`[data-type="${type}"]`).style.color = 'white';
+            
+            initializeRevenueChart();
+        }
+
+        function updateRevenueStats() {
+            const data = revenueData[currentTimePeriod];
+            document.getElementById('totalRevenue').textContent = data.total;
+            document.getElementById('avgDailyRevenue').textContent = data.avgDaily;
+            document.getElementById('maxRevenue').textContent = data.max;
+            document.getElementById('growthRate').textContent = data.growth;
+        }
+
+        function exportRevenueChart() {
+            const link = document.createElement('a');
+            link.download = `doanh-thu-${currentTimePeriod}-${new Date().toISOString().split('T')[0]}.png`;
+            link.href = revenueChart.toBase64Image();
+            link.click();
+            
+            // Show success message
+            showNotification('📊 Đã xuất biểu đồ doanh thu thành công!', 'success');
+        }
+
+        function showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: ${type === 'success' ? '#28a745' : '#17a2b8'};
+                color: white;
+                padding: 12px 20px;
+                border-radius: 8px;
+                font-size: 14px;
+                font-weight: 600;
+                z-index: 10000;
+                box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+                animation: slideIn 0.3s ease;
+            `;
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
+        }
+
+        function initializeOtherCharts() {
             // Orders Chart
             const ordersCtx = document.getElementById('ordersChart').getContext('2d');
             new Chart(ordersCtx, {
@@ -511,7 +785,8 @@
                         data: [45, 78, 65, 89, 72, 95, 68],
                         backgroundColor: 'rgba(39, 174, 96, 0.8)',
                         borderColor: '#27ae60',
-                        borderWidth: 1
+                        borderWidth: 1,
+                        borderRadius: 4
                     }]
                 },
                 options: {
@@ -523,8 +798,16 @@
                         }
                     },
                     scales: {
+                        x: {
+                            grid: {
+                                display: false
+                            }
+                        },
                         y: {
-                            beginAtZero: true
+                            beginAtZero: true,
+                            grid: {
+                                color: 'rgba(0, 0, 0, 0.05)'
+                            }
                         }
                     }
                 }
@@ -544,7 +827,8 @@
                             '#f39c12',
                             '#e74c3c',
                             '#9b59b6'
-                        ]
+                        ],
+                        borderWidth: 0
                     }]
                 },
                 options: {
@@ -552,7 +836,11 @@
                     maintainAspectRatio: false,
                     plugins: {
                         legend: {
-                            position: 'bottom'
+                            position: 'bottom',
+                            labels: {
+                                padding: 20,
+                                usePointStyle: true
+                            }
                         }
                     }
                 }
@@ -572,7 +860,8 @@
                             '#f39c12',
                             '#e74c3c',
                             '#9b59b6'
-                        ]
+                        ],
+                        borderWidth: 0
                     }]
                 },
                 options: {
@@ -580,7 +869,11 @@
                     maintainAspectRatio: false,
                     plugins: {
                         legend: {
-                            position: 'bottom'
+                            position: 'bottom',
+                            labels: {
+                                padding: 20,
+                                usePointStyle: true
+                            }
                         }
                     }
                 }
@@ -589,10 +882,7 @@
 
         function updateCharts() {
             const period = document.getElementById('timePeriod').value;
-            console.log('Updating charts for period:', period);
-            // In real app, would fetch new data and update charts
-            alert('📊 Đang cập nhật biểu đồ cho khoảng thời gian: ' + 
-                  document.getElementById('timePeriod').selectedOptions[0].text);
+            switchTimePeriod(period);
         }
 
         function exportReport(format) {

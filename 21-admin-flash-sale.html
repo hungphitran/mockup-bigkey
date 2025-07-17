@@ -1,0 +1,1038 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flash Sale & Hoa Hồng - BigKey Admin</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .flash-sale-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .flash-sale-header {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .section-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+        }
+
+        .active-campaigns {
+            grid-column: 1 / -1;
+            margin-bottom: 30px;
+        }
+
+        .campaign-item {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border: 2px solid #e1e5e9;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .campaign-active {
+            border-color: #28a745;
+            background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+        }
+
+        .campaign-warning {
+            border-color: #ffc107;
+            background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
+        }
+
+        .campaign-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+
+        .campaign-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin: 0;
+        }
+
+        .countdown-timer {
+            background: #e74c3c;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .campaign-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 15px;
+            margin: 15px 0;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 10px;
+            background: rgba(255,255,255,0.7);
+            border-radius: 8px;
+        }
+
+        .stat-value {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        .campaign-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .form-grid {
+            display: grid;
+            gap: 20px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #555;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            padding: 12px;
+            border: 2px solid #e1e5e9;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .checkbox-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .checkbox-item:hover {
+            background: #e9ecef;
+        }
+
+        .checkbox-item input[type="checkbox"]:checked + span {
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 20px;
+            margin-top: 10px;
+        }
+
+        .radio-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+        }
+
+        .impact-preview {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .impact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .impact-item {
+            text-align: center;
+            padding: 15px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 8px;
+        }
+
+        .impact-value {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .impact-label {
+            font-size: 12px;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .commission-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .commission-table th,
+        .commission-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #e1e5e9;
+        }
+
+        .commission-table th {
+            background: #f8f9fa;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .commission-input {
+            width: 80px;
+            padding: 8px;
+            border: 1px solid #e1e5e9;
+            border-radius: 4px;
+            text-align: center;
+        }
+
+        .performance-tier {
+            background: #f8f9fa;
+            border: 1px solid #e1e5e9;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .tier-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .tier-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .tier-bronze { background: #cd7f32; }
+        .tier-silver { background: #c0c0c0; }
+        .tier-gold { background: #ffd700; }
+        .tier-elite { background: #8e44ad; }
+
+        .tier-bonus {
+            font-size: 18px;
+            font-weight: bold;
+            color: #28a745;
+        }
+
+        .btn-create-sale {
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-create-sale:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(231, 76, 60, 0.4);
+        }
+
+        .btn-update {
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-analytics {
+            background: linear-gradient(135deg, #9b59b6 0%, #8e44ad 100%);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 6px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-extend {
+            background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 6px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-stop {
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 6px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .preview-alert {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+            color: #856404;
+        }
+
+        .export-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .export-btn {
+            background: #6c757d;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 6px;
+            font-size: 12px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <i class="fas fa-bolt"></i> BigKey Admin - Flash Sale & Hoa Hồng
+            </div>
+            <nav class="nav-menu">
+                <a href="13-admin-dashboard.html">Dashboard</a>
+                <a href="20-admin-tour-approval.html">Kiểm duyệt Tour</a>
+                <a href="21-admin-flash-sale.html" style="background-color: rgba(255,255,255,0.2);">Flash Sale</a>
+                <a href="11-partner-management.html">Đối tác</a>
+            </nav>
+            <div class="auth-section">
+                <div style="display: flex; align-items: center; gap: 15px;">
+                    <span style="color: white;">Admin: Nguyễn ABC</span>
+                    <button class="btn btn-secondary">Đăng xuất</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="flash-sale-container">
+        <!-- Header với thống kê -->
+        <div class="flash-sale-header">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                <h1><i class="fas fa-fire"></i> Flash Sale & Promotion Manager</h1>
+                <div style="display: flex; gap: 15px;">
+                    <div style="text-align: center; padding: 15px; background: #d4edda; border-radius: 10px; min-width: 120px;">
+                        <div style="font-size: 24px; font-weight: bold; color: #155724;">2</div>
+                        <div style="font-size: 12px; color: #155724;">Active Campaigns</div>
+                    </div>
+                    <div style="text-align: center; padding: 15px; background: #d1ecf1; border-radius: 10px; min-width: 120px;">
+                        <div style="font-size: 24px; font-weight: bold; color: #0c5460;">123</div>
+                        <div style="font-size: 12px; color: #0c5460;">Total Sales Today</div>
+                    </div>
+                    <div style="text-align: center; padding: 15px; background: #fff3cd; border-radius: 10px; min-width: 120px;">
+                        <div style="font-size: 24px; font-weight: bold; color: #856404;">401M</div>
+                        <div style="font-size: 12px; color: #856404;">Revenue VNĐ</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Active Campaigns -->
+        <div class="section-card active-campaigns">
+            <h2 style="margin-bottom: 25px;">
+                <i class="fas fa-fire"></i> Flash Sales hiện tại
+            </h2>
+
+            <!-- Campaign 1 -->
+            <div class="campaign-item campaign-active">
+                <div class="campaign-header">
+                    <div>
+                        <h3 class="campaign-title">🏖️ Summer Beach Tours Sale</h3>
+                        <p style="margin: 5px 0 0 0; color: #666;">Discount: 25% | Applied to: 15 tours</p>
+                    </div>
+                    <div class="countdown-timer">
+                        <i class="fas fa-clock"></i>
+                        Còn 2 ngày 14:32:45
+                    </div>
+                </div>
+                
+                <div class="campaign-stats">
+                    <div class="stat-item">
+                        <div class="stat-value">89</div>
+                        <div class="stat-label">Bookings</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">245M</div>
+                        <div class="stat-label">Revenue</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">67%</div>
+                        <div class="stat-label">Target</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">4.2</div>
+                        <div class="stat-label">Avg Rating</div>
+                    </div>
+                </div>
+                
+                <div class="campaign-actions">
+                    <button class="btn-analytics">
+                        <i class="fas fa-chart-line"></i> View Analytics
+                    </button>
+                    <button class="btn-extend">
+                        <i class="fas fa-plus-circle"></i> Extend
+                    </button>
+                    <button class="btn-stop">
+                        <i class="fas fa-stop"></i> Stop
+                    </button>
+                    <button class="btn btn-secondary">
+                        <i class="fas fa-edit"></i> Edit
+                    </button>
+                </div>
+            </div>
+
+            <!-- Campaign 2 -->
+            <div class="campaign-item campaign-warning">
+                <div class="campaign-header">
+                    <div>
+                        <h3 class="campaign-title">🎪 Weekend Special Combo</h3>
+                        <p style="margin: 5px 0 0 0; color: #666;">Discount: 15% | Applied to: Combos only</p>
+                    </div>
+                    <div class="countdown-timer" style="background: #f39c12;">
+                        <i class="fas fa-clock"></i>
+                        Còn 18:45:12
+                    </div>
+                </div>
+                
+                <div class="campaign-stats">
+                    <div class="stat-item">
+                        <div class="stat-value">34</div>
+                        <div class="stat-label">Bookings</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">156M</div>
+                        <div class="stat-label">Revenue</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">45%</div>
+                        <div class="stat-label">Target</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">4.5</div>
+                        <div class="stat-label">Avg Rating</div>
+                    </div>
+                </div>
+                
+                <div class="campaign-actions">
+                    <button class="btn-analytics">
+                        <i class="fas fa-chart-line"></i> View Analytics
+                    </button>
+                    <button class="btn-extend">
+                        <i class="fas fa-plus-circle"></i> Extend
+                    </button>
+                    <button class="btn-stop">
+                        <i class="fas fa-stop"></i> Stop
+                    </button>
+                    <button class="btn btn-secondary">
+                        <i class="fas fa-edit"></i> Edit
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content Grid -->
+        <div class="main-content">
+            <!-- Flash Sale Setup -->
+            <div class="section-card">
+                <h2 style="margin-bottom: 25px;">
+                    <i class="fas fa-plus-circle"></i> Tạo Flash Sale mới
+                </h2>
+                
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="campaign-name">
+                            <i class="fas fa-tag"></i> Campaign Name
+                        </label>
+                        <input type="text" id="campaign-name" placeholder="VD: Summer Finale Sale" value="Summer Finale Sale">
+                    </div>
+
+                    <div class="form-group">
+                        <label>
+                            <i class="fas fa-bullseye"></i> Target Services
+                        </label>
+                        <div class="checkbox-group">
+                            <label class="checkbox-item">
+                                <input type="checkbox" value="tours" checked>
+                                <span>Tours</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" value="flights">
+                                <span>Flights</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" value="hotels">
+                                <span>Hotels</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" value="combos">
+                                <span>Combos</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>
+                                <i class="fas fa-percentage"></i> Discount Type
+                            </label>
+                            <div class="radio-group">
+                                <label class="radio-item">
+                                    <input type="radio" name="discount_type" value="percentage" checked>
+                                    <span>Percentage</span>
+                                </label>
+                                <label class="radio-item">
+                                    <input type="radio" name="discount_type" value="fixed">
+                                    <span>Fixed Amount</span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="discount-value">
+                                <i class="fas fa-percent"></i> Discount Value
+                            </label>
+                            <input type="number" id="discount-value" placeholder="20" value="20">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="max-discount">
+                            <i class="fas fa-money-bill"></i> Max Discount (VNĐ)
+                        </label>
+                        <input type="number" id="max-discount" placeholder="2000000" value="2000000">
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="start-date">
+                                <i class="fas fa-calendar-plus"></i> Start Date & Time
+                            </label>
+                            <input type="datetime-local" id="start-date" value="2025-07-20T00:00">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="end-date">
+                                <i class="fas fa-calendar-minus"></i> End Date & Time
+                            </label>
+                            <input type="datetime-local" id="end-date" value="2025-07-25T23:59">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>
+                                <i class="fas fa-chart-line"></i> Usage Limit
+                            </label>
+                            <div class="radio-group">
+                                <label class="radio-item">
+                                    <input type="radio" name="usage_limit" value="unlimited" checked>
+                                    <span>Unlimited</span>
+                                </label>
+                                <label class="radio-item">
+                                    <input type="radio" name="usage_limit" value="limited">
+                                    <span>Limited to</span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="usage-count">
+                                <i class="fas fa-hashtag"></i> Max Bookings
+                            </label>
+                            <input type="number" id="usage-count" placeholder="1000" value="1000">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>
+                            <i class="fas fa-users"></i> Customer Filter
+                        </label>
+                        <div class="radio-group">
+                            <label class="radio-item">
+                                <input type="radio" name="customer_filter" value="all" checked>
+                                <span>All Customers</span>
+                            </label>
+                            <label class="radio-item">
+                                <input type="radio" name="customer_filter" value="new">
+                                <span>New Customers Only</span>
+                            </label>
+                            <label class="radio-item">
+                                <input type="radio" name="customer_filter" value="vip">
+                                <span>VIP Members Only</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Preview Impact -->
+                    <div class="impact-preview">
+                        <h3 style="margin-bottom: 15px;">
+                            <i class="fas fa-chart-bar"></i> Preview Impact
+                        </h3>
+                        <div class="impact-grid">
+                            <div class="impact-item">
+                                <div class="impact-value">45</div>
+                                <div class="impact-label">Tours Affected</div>
+                            </div>
+                            <div class="impact-item">
+                                <div class="impact-value">-15.6M</div>
+                                <div class="impact-label">Revenue Loss</div>
+                            </div>
+                            <div class="impact-item">
+                                <div class="impact-value">+35%</div>
+                                <div class="impact-label">Booking Increase</div>
+                            </div>
+                            <div class="impact-item">
+                                <div class="impact-value">+8.9M</div>
+                                <div class="impact-label">Net Gain</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="preview-alert">
+                        <strong><i class="fas fa-exclamation-triangle"></i> Impact Warning:</strong>
+                        This flash sale will affect 45 tours with an estimated revenue loss of 15.6M VNĐ, but expected to generate +8.9M VNĐ net gain from increased bookings.
+                    </div>
+
+                    <div style="display: flex; gap: 15px; margin-top: 25px;">
+                        <button class="btn-create-sale">
+                            <i class="fas fa-fire"></i> Create Flash Sale
+                        </button>
+                        <button class="btn btn-secondary">
+                            <i class="fas fa-save"></i> Save as Draft
+                        </button>
+                        <button class="btn btn-secondary">
+                            <i class="fas fa-eye"></i> Preview
+                        </button>
+                        <button class="btn btn-secondary">
+                            <i class="fas fa-envelope"></i> Notify Partners
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Commission Management -->
+            <div class="section-card">
+                <h2 style="margin-bottom: 25px;">
+                    <i class="fas fa-percentage"></i> Commission Management
+                </h2>
+
+                <!-- Commission Rates -->
+                <div style="margin-bottom: 30px;">
+                    <h3 style="margin-bottom: 20px;">
+                        <i class="fas fa-money-bill-wave"></i> Commission Rates by Category
+                    </h3>
+                    
+                    <table class="commission-table">
+                        <thead>
+                            <tr>
+                                <th>Tour Category</th>
+                                <th>Commission Rate</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><i class="fas fa-map-marker-alt"></i> Domestic Tours</td>
+                                <td>
+                                    <input type="number" class="commission-input" value="12" min="0" max="50"> %
+                                </td>
+                                <td>
+                                    <button class="btn-update">Update</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><i class="fas fa-globe"></i> International Tours</td>
+                                <td>
+                                    <input type="number" class="commission-input" value="15" min="0" max="50"> %
+                                </td>
+                                <td>
+                                    <button class="btn-update">Update</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><i class="fas fa-crown"></i> Luxury Tours</td>
+                                <td>
+                                    <input type="number" class="commission-input" value="18" min="0" max="50"> %
+                                </td>
+                                <td>
+                                    <button class="btn-update">Update</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><i class="fas fa-coins"></i> Budget Tours</td>
+                                <td>
+                                    <input type="number" class="commission-input" value="8" min="0" max="50"> %
+                                </td>
+                                <td>
+                                    <button class="btn-update">Update</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><i class="fas fa-boxes"></i> Combo Packages</td>
+                                <td>
+                                    <input type="number" class="commission-input" value="10" min="0" max="50"> %
+                                </td>
+                                <td>
+                                    <button class="btn-update">Update</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><i class="fas fa-plus"></i> Add-on Services</td>
+                                <td>
+                                    <input type="number" class="commission-input" value="5" min="0" max="50"> %
+                                </td>
+                                <td>
+                                    <button class="btn-update">Update</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Performance Bonuses -->
+                <div style="margin-bottom: 30px;">
+                    <h3 style="margin-bottom: 20px;">
+                        <i class="fas fa-trophy"></i> Performance Bonuses
+                    </h3>
+                    
+                    <div class="performance-tier">
+                        <div class="tier-info">
+                            <div class="tier-icon tier-bronze">B</div>
+                            <div>
+                                <strong>Bronze Partners</strong>
+                                <div style="font-size: 14px; color: #666;">0-50 bookings/month</div>
+                            </div>
+                        </div>
+                        <div class="tier-bonus">Base rate</div>
+                    </div>
+
+                    <div class="performance-tier">
+                        <div class="tier-info">
+                            <div class="tier-icon tier-silver">S</div>
+                            <div>
+                                <strong>Silver Partners</strong>
+                                <div style="font-size: 14px; color: #666;">51-100 bookings/month</div>
+                            </div>
+                        </div>
+                        <div class="tier-bonus">+2% bonus</div>
+                    </div>
+
+                    <div class="performance-tier">
+                        <div class="tier-info">
+                            <div class="tier-icon tier-gold">G</div>
+                            <div>
+                                <strong>Gold Partners</strong>
+                                <div style="font-size: 14px; color: #666;">101+ bookings/month</div>
+                            </div>
+                        </div>
+                        <div class="tier-bonus">+5% bonus</div>
+                    </div>
+
+                    <div class="performance-tier">
+                        <div class="tier-info">
+                            <div class="tier-icon tier-elite">E</div>
+                            <div>
+                                <strong>Elite Partners</strong>
+                                <div style="font-size: 14px; color: #666;">Verified premium partners</div>
+                            </div>
+                        </div>
+                        <div class="tier-bonus">+3% bonus</div>
+                    </div>
+                </div>
+
+                <!-- Commission Actions -->
+                <div class="export-actions">
+                    <button class="btn-update" style="padding: 12px 25px;">
+                        <i class="fas fa-save"></i> Update All Rates
+                    </button>
+                    <button class="btn-analytics" style="padding: 12px 25px;">
+                        <i class="fas fa-chart-line"></i> View Impact
+                    </button>
+                    <button class="export-btn">
+                        <i class="fas fa-envelope"></i> Notify Partners
+                    </button>
+                    <button class="export-btn">
+                        <i class="fas fa-file-excel"></i> Export Report
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Menu -->
+    <div id="wireframeMenu" style="position: fixed; bottom: 20px; right: 20px; background: white; padding: 20px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.2); max-height: 80vh; overflow-y: auto; z-index: 1000; transition: all 0.3s ease;">
+        <button onclick="toggleMenu()" style="position: absolute; top: 10px; right: 10px; background: #ff6b6b; color: white; border: none; border-radius: 50%; width: 25px; height: 25px; cursor: pointer; font-size: 14px;">×</button>
+        
+        <h3 style="margin: 0 0 15px 0; color: #333; font-size: 16px; border-bottom: 2px solid #eee; padding-bottom: 8px;">🗺️ Wireframe Menu</h3>
+        
+        <div style="margin-bottom: 15px;">
+            <h4 style="margin: 0 0 8px 0; color: #2196F3; font-size: 13px; font-weight: bold;">📱 User Interface</h4>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 5px; margin-bottom: 10px;">
+                <a href="01-search-integrated.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">01-Search</a>
+                <a href="02-filter-advanced.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">02-Filter</a>
+                <a href="03-tour-details.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">03-Tour</a>
+                <a href="04-booking-payment.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">04-Booking</a>
+                <a href="05-combo-details.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">05-Combo</a>
+                <a href="06-flight-details.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">06-Flight</a>
+                <a href="07-hotel-details.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">07-Hotel</a>
+                <a href="08-booking-success.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">08-Success</a>
+                <a href="09-user-orders.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">09-Orders</a>
+                <a href="10-order-details.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">10-Details</a>
+            </div>
+        </div>
+
+        <div style="margin-bottom: 15px;">
+            <h4 style="margin: 0 0 8px 0; color: #f44336; font-size: 13px; font-weight: bold;">🤝 Partner Panel</h4>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 5px; margin-bottom: 10px;">
+                <a href="11-partner-management.html" style="text-decoration: none; color: #f44336; font-size: 11px; padding: 4px 8px; border: 1px solid #f44336; border-radius: 4px; text-align: center; transition: all 0.2s;">11-Mgmt</a>
+                <a href="12-partner-analytics.html" style="text-decoration: none; color: #f44336; font-size: 11px; padding: 4px 8px; border: 1px solid #f44336; border-radius: 4px; text-align: center; transition: all 0.2s;">12-Analytics</a>
+            </div>
+        </div>
+
+        <div style="margin-bottom: 15px;">
+            <h4 style="margin: 0 0 8px 0; color: #4CAF50; font-size: 13px; font-weight: bold;">🛠️ Admin Panel</h4>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 5px; margin-bottom: 10px;">
+                <a href="13-admin-dashboard.html" style="text-decoration: none; color: #4CAF50; font-size: 11px; padding: 4px 8px; border: 1px solid #4CAF50; border-radius: 4px; text-align: center; transition: all 0.2s;">13-Dashboard</a>
+                <a href="20-admin-tour-approval.html" style="text-decoration: none; color: #4CAF50; font-size: 11px; padding: 4px 8px; border: 1px solid #4CAF50; border-radius: 4px; text-align: center; transition: all 0.2s;">20-Approval</a>
+                <a href="21-admin-flash-sale.html" style="text-decoration: none; color: #4CAF50; font-size: 11px; padding: 4px 8px; border: 1px solid #4CAF50; border-radius: 4px; text-align: center; transition: all 0.2s; background: #4CAF50; color: white;">21-FlashSale</a>
+            </div>
+        </div>
+
+        <div>
+            <h4 style="margin: 0 0 8px 0; color: #9C27B0; font-size: 13px; font-weight: bold;">⚙️ System Features</h4>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 5px;">
+                <a href="14-notification-center.html" style="text-decoration: none; color: #9C27B0; font-size: 11px; padding: 4px 8px; border: 1px solid #9C27B0; border-radius: 4px; text-align: center; transition: all 0.2s;">14-Notify</a>
+                <a href="15-help-support.html" style="text-decoration: none; color: #9C27B0; font-size: 11px; padding: 4px 8px; border: 1px solid #9C27B0; border-radius: 4px; text-align: center; transition: all 0.2s;">15-Support</a>
+                <a href="16-user-profile.html" style="text-decoration: none; color: #9C27B0; font-size: 11px; padding: 4px 8px; border: 1px solid #9C27B0; border-radius: 4px; text-align: center; transition: all 0.2s;">16-Profile</a>
+                <a href="17-reviews-ratings.html" style="text-decoration: none; color: #9C27B0; font-size: 11px; padding: 4px 8px; border: 1px solid #9C27B0; border-radius: 4px; text-align: center; transition: all 0.2s;">17-Reviews</a>
+                <a href="18-error-pages.html" style="text-decoration: none; color: #9C27B0; font-size: 11px; padding: 4px 8px; border: 1px solid #9C27B0; border-radius: 4px; text-align: center; transition: all 0.2s;">18-Errors</a>
+                <a href="19-mobile-responsive.html" style="text-decoration: none; color: #9C27B0; font-size: 11px; padding: 4px 8px; border: 1px solid #9C27B0; border-radius: 4px; text-align: center; transition: all 0.2s;">19-Mobile</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('wireframeMenu');
+            menu.style.display = menu.style.display === 'none' ? 'block' : 'none';
+        }
+
+        // Add hover effects
+        document.querySelectorAll('#wireframeMenu a').forEach(link => {
+            link.addEventListener('mouseenter', function() {
+                if (this.style.background !== 'rgb(33, 150, 243)' && this.style.background !== 'rgb(244, 67, 54)' && this.style.background !== 'rgb(76, 175, 80)' && this.style.background !== 'rgb(156, 39, 176)') {
+                    this.style.background = this.style.borderColor;
+                    this.style.color = 'white';
+                }
+            });
+            link.addEventListener('mouseleave', function() {
+                if (this.style.background !== 'rgb(33, 150, 243)' && this.style.background !== 'rgb(244, 67, 54)' && this.style.background !== 'rgb(76, 175, 80)' && this.style.background !== 'rgb(156, 39, 176)') {
+                    this.style.background = 'transparent';
+                    this.style.color = this.style.borderColor;
+                }
+            });
+        });
+
+        // Flash Sale creation
+        document.querySelector('.btn-create-sale').addEventListener('click', function() {
+            const campaignName = document.getElementById('campaign-name').value;
+            const discountValue = document.getElementById('discount-value').value;
+            
+            if (!campaignName || !discountValue) {
+                alert('Vui lòng điền đầy đủ thông tin campaign!');
+                return;
+            }
+            
+            if (confirm(`Bạn có chắc muốn tạo flash sale "${campaignName}" với giảm giá ${discountValue}%?`)) {
+                alert('Flash sale đã được tạo thành công!');
+                // Handle flash sale creation logic here
+            }
+        });
+
+        // Commission rate updates
+        document.querySelectorAll('.btn-update').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const row = this.closest('tr');
+                const category = row.querySelector('td').textContent.trim();
+                const rate = row.querySelector('.commission-input').value;
+                
+                if (confirm(`Cập nhật hoa hồng cho "${category}" thành ${rate}%?`)) {
+                    alert('Hoa hồng đã được cập nhật!');
+                    // Handle commission update logic here
+                }
+            });
+        });
+
+        // Campaign actions
+        document.querySelectorAll('.btn-stop').forEach(btn => {
+            btn.addEventListener('click', function() {
+                if (confirm('Bạn có chắc muốn dừng campaign này?')) {
+                    alert('Campaign đã được dừng!');
+                    // Handle stop campaign logic here
+                }
+            });
+        });
+
+        document.querySelectorAll('.btn-extend').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const extension = prompt('Gia hạn thêm bao nhiêu ngày?', '7');
+                if (extension) {
+                    alert(`Campaign đã được gia hạn thêm ${extension} ngày!`);
+                    // Handle extend campaign logic here
+                }
+            });
+        });
+
+        // Real-time impact calculation
+        function updateImpactPreview() {
+            const discountValue = document.getElementById('discount-value').value || 0;
+            const maxDiscount = document.getElementById('max-discount').value || 0;
+            
+            // Simulate impact calculation
+            const toursAffected = Math.floor(45 * (discountValue / 20));
+            const revenueLoss = (maxDiscount * toursAffected) / 1000000;
+            const bookingIncrease = Math.floor(35 * (discountValue / 20));
+            const netGain = (revenueLoss * 0.57); // Simplified calculation
+            
+            document.querySelector('.impact-grid').innerHTML = `
+                <div class="impact-item">
+                    <div class="impact-value">${toursAffected}</div>
+                    <div class="impact-label">Tours Affected</div>
+                </div>
+                <div class="impact-item">
+                    <div class="impact-value">-${revenueLoss.toFixed(1)}M</div>
+                    <div class="impact-label">Revenue Loss</div>
+                </div>
+                <div class="impact-item">
+                    <div class="impact-value">+${bookingIncrease}%</div>
+                    <div class="impact-label">Booking Increase</div>
+                </div>
+                <div class="impact-item">
+                    <div class="impact-value">+${netGain.toFixed(1)}M</div>
+                    <div class="impact-label">Net Gain</div>
+                </div>
+            `;
+        }
+
+        // Update impact preview on input change
+        document.getElementById('discount-value').addEventListener('input', updateImpactPreview);
+        document.getElementById('max-discount').addEventListener('input', updateImpactPreview);
+
+        // Initialize countdown timers
+        function updateCountdowns() {
+            document.querySelectorAll('.countdown-timer').forEach(timer => {
+                // Simulate countdown update
+                const currentText = timer.textContent;
+                // In real implementation, calculate actual time difference
+            });
+        }
+
+        // Update countdowns every second
+        setInterval(updateCountdowns, 1000);
+    </script>
+</body>
+</html>

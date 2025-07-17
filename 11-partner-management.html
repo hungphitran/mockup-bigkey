@@ -64,9 +64,9 @@
         
         .form-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            margin-bottom: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-bottom: 25px;
         }
         
         .form-group-full {
@@ -84,10 +84,10 @@
         .form-group select,
         .form-group textarea {
             width: 100%;
-            padding: 12px 15px;
+            padding: 15px 18px;
             border: 2px solid #e0e0e0;
-            border-radius: 8px;
-            font-size: 14px;
+            border-radius: 10px;
+            font-size: 16px;
             transition: border-color 0.3s ease;
             box-sizing: border-box;
         }
@@ -158,6 +158,100 @@
             box-shadow: 0 3px 15px rgba(0,0,0,0.08);
         }
         
+        /* Improved stats cards hover effects */
+        .stat-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.15) !important;
+        }
+        
+        /* Enhanced button hover effects */
+        .btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        
+        /* Table row hover effects */
+        .tour-row:hover {
+            background-color: #f8f9fa !important;
+            transform: scale(1.01);
+        }
+        
+        /* Order card hover effects */
+        #recentOrders > div:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1) !important;
+        }
+        
+        /* Form element focus states */
+        select:focus, input:focus {
+            border-color: #667eea !important;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.15) !important;
+        }
+        
+        /* Sidebar enhancement */
+        .sidebar {
+            max-height: calc(100vh - 120px);
+            overflow-y: auto;
+            scrollbar-width: thin;
+        }
+        
+        .sidebar::-webkit-scrollbar {
+            width: 6px;
+        }
+        
+        .sidebar::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 3px;
+        }
+        
+        .sidebar::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 3px;
+        }
+        
+        .sidebar::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+        
+        /* Responsive improvements */
+        @media (max-width: 1200px) {
+            .dashboard {
+                grid-template-columns: 280px 1fr;
+                gap: 20px;
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .dashboard {
+                grid-template-columns: 1fr;
+            }
+            
+            .sidebar {
+                order: 2;
+                max-height: none;
+            }
+            
+            .main-content {
+                order: 1;
+            }
+        }
+        
+        /* Enhanced animations */
+        @keyframes slideInUp {
+            from {
+                transform: translateY(30px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        .fade-in {
+            animation: slideInUp 0.6s ease-out forwards;
+        }
+        
         .tours-table th {
             background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
             font-weight: 600;
@@ -207,74 +301,74 @@
             <!-- Sidebar -->
             <div class="sidebar fade-in">
                 <!-- Partner Profile -->
-                <div style="text-align: center; margin-bottom: 30px;">
-                    <div style="width: 80px; height: 80px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 15px; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px auto; color: white; font-size: 24px;">
+                <div style="text-align: center; margin-bottom: 32px;">
+                    <div style="width: 85px; height: 85px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 18px; display: flex; align-items: center; justify-content: center; margin: 0 auto 18px auto; color: white; font-size: 26px; box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);">
                         <i class="fas fa-building"></i>
                     </div>
-                    <h3 style="margin: 0 0 5px 0; color: #333;">VietTravel Co.</h3>
-                    <p style="color: #666; font-size: 14px; margin: 0;">Đối tác từ 2020</p>
-                    <div style="margin-top: 10px;">
-                        <span style="background: #f39c12; color: white; padding: 4px 12px; border-radius: 15px; font-size: 12px;">
+                    <h3 style="margin: 0 0 8px 0; color: #333; font-size: 18px; font-weight: 700;">VietTravel Co.</h3>
+                    <p style="color: #666; font-size: 14px; margin: 0 0 12px 0;">Đối tác từ 2020</p>
+                    <div style="margin-top: 12px;">
+                        <span style="background: #f39c12; color: white; padding: 6px 14px; border-radius: 18px; font-size: 13px; font-weight: 600; box-shadow: 0 2px 8px rgba(243, 156, 18, 0.3);">
                             🏆 Partner Gold
                         </span>
                     </div>
                 </div>
 
                 <!-- Quick Stats -->
-                <div style="margin-bottom: 30px;">
-                    <h4 style="margin-bottom: 15px; color: #333;">
-                        <i class="fas fa-chart-line"></i> Thống kê nhanh
+                <div style="margin-bottom: 32px;">
+                    <h4 style="margin-bottom: 18px; color: #333; font-size: 16px; font-weight: 600;">
+                        <i class="fas fa-chart-line" style="margin-right: 8px; color: #667eea;"></i> Thống kê nhanh
                     </h4>
-                    <div style="display: grid; gap: 10px;">
-                        <div style="background: #f8f9fa; padding: 15px; border-radius: 10px;">
-                            <div style="font-size: 18px; font-weight: bold; color: #667eea;">142</div>
-                            <div style="font-size: 14px; color: #666;">Tours đang bán</div>
+                    <div style="display: grid; gap: 12px;">
+                        <div style="background: #f8f9fa; padding: 18px; border-radius: 12px; border: 1px solid #e9ecef; transition: all 0.2s ease;">
+                            <div style="font-size: 20px; font-weight: bold; color: #667eea; margin-bottom: 4px;">142</div>
+                            <div style="font-size: 14px; color: #666; line-height: 1.3;">Tours đang bán</div>
                         </div>
-                        <div style="background: #f8f9fa; padding: 15px; border-radius: 10px;">
-                            <div style="font-size: 18px; font-weight: bold; color: #27ae60;">1,234</div>
-                            <div style="font-size: 14px; color: #666;">Đơn tháng này</div>
+                        <div style="background: #f8f9fa; padding: 18px; border-radius: 12px; border: 1px solid #e9ecef; transition: all 0.2s ease;">
+                            <div style="font-size: 20px; font-weight: bold; color: #27ae60; margin-bottom: 4px;">1,234</div>
+                            <div style="font-size: 14px; color: #666; line-height: 1.3;">Đơn tháng này</div>
                         </div>
-                        <div style="background: #f8f9fa; padding: 15px; border-radius: 10px;">
-                            <div style="font-size: 18px; font-weight: bold; color: #e74c3c;">89.5%</div>
-                            <div style="font-size: 14px; color: #666;">Tỷ lệ hài lòng</div>
+                        <div style="background: #f8f9fa; padding: 18px; border-radius: 12px; border: 1px solid #e9ecef; transition: all 0.2s ease;">
+                            <div style="font-size: 20px; font-weight: bold; color: #e74c3c; margin-bottom: 4px;">89.5%</div>
+                            <div style="font-size: 14px; color: #666; line-height: 1.3;">Tỷ lệ hài lòng</div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Quick Actions -->
-                <div style="margin-bottom: 30px;">
-                    <h4 style="margin-bottom: 15px; color: #333;">
-                        <i class="fas fa-bolt"></i> Thao tác nhanh
+                <div style="margin-bottom: 32px;">
+                    <h4 style="margin-bottom: 18px; color: #333; font-size: 16px; font-weight: 600;">
+                        <i class="fas fa-bolt" style="margin-right: 8px; color: #f39c12;"></i> Thao tác nhanh
                     </h4>
-                    <div style="display: grid; gap: 10px;">
-                        <button class="btn btn-primary" style="width: 100%; justify-content: flex-start;" onclick="addNewTour()">
-                            <i class="fas fa-plus"></i> Thêm tour mới
+                    <div style="display: grid; gap: 12px;">
+                        <button class="btn btn-primary" style="width: 100%; justify-content: flex-start; padding: 14px 16px; font-size: 14px; font-weight: 500;" onclick="addNewTour()">
+                            <i class="fas fa-plus" style="margin-right: 10px;"></i> Thêm tour mới
                         </button>
-                        <button class="btn btn-secondary" style="width: 100%; justify-content: flex-start;" onclick="viewOrders()">
-                            <i class="fas fa-list"></i> Xem đơn hàng
+                        <button class="btn btn-secondary" style="width: 100%; justify-content: flex-start; padding: 14px 16px; font-size: 14px; font-weight: 500;" onclick="viewOrders()">
+                            <i class="fas fa-list" style="margin-right: 10px;"></i> Xem đơn hàng
                         </button>
-                        <button class="btn btn-secondary" style="width: 100%; justify-content: flex-start;" onclick="manageInventory()">
-                            <i class="fas fa-warehouse"></i> Quản lý kho
+                        <button class="btn btn-secondary" style="width: 100%; justify-content: flex-start; padding: 14px 16px; font-size: 14px; font-weight: 500;" onclick="manageInventory()">
+                            <i class="fas fa-warehouse" style="margin-right: 10px;"></i> Quản lý kho
                         </button>
-                        <button class="btn btn-secondary" style="width: 100%; justify-content: flex-start;" onclick="customerSupport()">
-                            <i class="fas fa-headset"></i> Hỗ trợ khách hàng
+                        <button class="btn btn-secondary" style="width: 100%; justify-content: flex-start; padding: 14px 16px; font-size: 14px; font-weight: 500;" onclick="customerSupport()">
+                            <i class="fas fa-headset" style="margin-right: 10px;"></i> Hỗ trợ khách hàng
                         </button>
                     </div>
                 </div>
 
                 <!-- Notifications -->
                 <div>
-                    <h4 style="margin-bottom: 15px; color: #333;">
-                        <i class="fas fa-bell"></i> Thông báo mới
+                    <h4 style="margin-bottom: 18px; color: #333; font-size: 16px; font-weight: 600;">
+                        <i class="fas fa-bell" style="margin-right: 8px; color: #e74c3c;"></i> Thông báo mới
                     </h4>
-                    <div style="display: grid; gap: 10px;">
-                        <div style="padding: 10px; background: #fff3cd; border: 1px solid #ffeaa7; border-radius: 8px; font-size: 14px;">
-                            <div style="font-weight: bold; color: #856404;">Đơn hàng mới</div>
-                            <div style="color: #856404;">5 đơn hàng chờ xác nhận</div>
+                    <div style="display: grid; gap: 12px;">
+                        <div style="padding: 14px; background: #fff3cd; border: 1px solid #ffeaa7; border-radius: 10px; font-size: 14px; transition: all 0.2s ease;">
+                            <div style="font-weight: bold; color: #856404; margin-bottom: 4px;">Đơn hàng mới</div>
+                            <div style="color: #856404; line-height: 1.3;">5 đơn hàng chờ xác nhận</div>
                         </div>
-                        <div style="padding: 10px; background: #d1ecf1; border: 1px solid #bee5eb; border-radius: 8px; font-size: 14px;">
-                            <div style="font-weight: bold; color: #0c5460;">Cập nhật hệ thống</div>
-                            <div style="color: #0c5460;">Phiên bản 2.4.1 có sẵn</div>
+                        <div style="padding: 14px; background: #d1ecf1; border: 1px solid #bee5eb; border-radius: 10px; font-size: 14px; transition: all 0.2s ease;">
+                            <div style="font-weight: bold; color: #0c5460; margin-bottom: 4px;">Cập nhật hệ thống</div>
+                            <div style="color: #0c5460; line-height: 1.3;">Phiên bản 2.4.1 có sẵn</div>
                         </div>
                     </div>
                 </div>
@@ -283,88 +377,88 @@
             <!-- Main Content -->
             <div class="main-content fade-in">
                 <!-- Header -->
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 35px; padding-bottom: 20px; border-bottom: 2px solid #f1f3f4;">
                     <div>
-                        <h1 style="color: #333; margin: 0;">
-                            <i class="fas fa-handshake"></i> Quản lý đối tác
+                        <h1 style="color: #333; margin: 0 0 8px 0; font-size: 28px; font-weight: 700;">
+                            <i class="fas fa-handshake" style="margin-right: 12px; color: #667eea;"></i> Quản lý đối tác
                         </h1>
-                        <p style="color: #666; margin: 5px 0 0 0;">Quản lý tours, đơn hàng và quan hệ khách hàng</p>
+                        <p style="color: #666; margin: 0; font-size: 16px;">Quản lý tours, đơn hàng và quan hệ khách hàng</p>
                     </div>
                     <div style="text-align: right;">
-                        <div style="font-size: 18px; font-weight: bold; color: #667eea;">📊 Dashboard</div>
+                        <div style="font-size: 20px; font-weight: bold; color: #667eea; margin-bottom: 4px;">📊 Dashboard</div>
                         <div style="font-size: 14px; color: #666;">Cập nhật: 17/07/2025</div>
                     </div>
                 </div>
 
                 <!-- Main Stats -->
-                <div class="stats-grid" style="margin-bottom: 30px;">
-                    <div class="stat-card" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
-                        <div class="stat-value">142</div>
-                        <div class="stat-label">Tours đang bán</div>
+                <div class="stats-grid" style="margin-bottom: 35px; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
+                    <div class="stat-card" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 32px 28px; border-radius: 16px; text-align: center; box-shadow: 0 8px 25px rgba(102, 126, 234, 0.25); transition: transform 0.2s ease;">
+                        <div class="stat-value" style="font-size: 38px; font-weight: bold; margin-bottom: 12px;">142</div>
+                        <div class="stat-label" style="font-size: 16px; opacity: 0.9; font-weight: 500;">Tours đang bán</div>
                     </div>
-                    <div class="stat-card" style="background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);">
-                        <div class="stat-value">1,234</div>
-                        <div class="stat-label">Đơn tháng này</div>
+                    <div class="stat-card" style="background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%); color: white; padding: 32px 28px; border-radius: 16px; text-align: center; box-shadow: 0 8px 25px rgba(39, 174, 96, 0.25); transition: transform 0.2s ease;">
+                        <div class="stat-value" style="font-size: 38px; font-weight: bold; margin-bottom: 12px;">1,234</div>
+                        <div class="stat-label" style="font-size: 16px; opacity: 0.9; font-weight: 500;">Đơn tháng này</div>
                     </div>
-                    <div class="stat-card" style="background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);">
-                        <div class="stat-value">45</div>
-                        <div class="stat-label">Chờ xác nhận</div>
+                    <div class="stat-card" style="background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%); color: white; padding: 32px 28px; border-radius: 16px; text-align: center; box-shadow: 0 8px 25px rgba(243, 156, 18, 0.25); transition: transform 0.2s ease;">
+                        <div class="stat-value" style="font-size: 38px; font-weight: bold; margin-bottom: 12px;">45</div>
+                        <div class="stat-label" style="font-size: 16px; opacity: 0.9; font-weight: 500;">Chờ xác nhận</div>
                     </div>
-                    <div class="stat-card" style="background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);">
-                        <div class="stat-value">89.5%</div>
-                        <div class="stat-label">Tỷ lệ hài lòng</div>
+                    <div class="stat-card" style="background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%); color: white; padding: 32px 28px; border-radius: 16px; text-align: center; box-shadow: 0 8px 25px rgba(231, 76, 60, 0.25); transition: transform 0.2s ease;">
+                        <div class="stat-value" style="font-size: 38px; font-weight: bold; margin-bottom: 12px;">89.5%</div>
+                        <div class="stat-label" style="font-size: 16px; opacity: 0.9; font-weight: 500;">Tỷ lệ hài lòng</div>
                     </div>
                 </div>
 
                 <!-- Revenue Overview -->
-                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 30px;">
-                    <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; border-radius: 10px;">
-                        <h3 style="margin: 0 0 10px 0;"><i class="fas fa-money-bill-wave"></i> Doanh thu tháng</h3>
-                        <div style="font-size: 24px; font-weight: bold;">2.8 tỷ VNĐ</div>
-                        <div style="font-size: 14px; opacity: 0.9;">+15% so với tháng trước</div>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 22px; margin-bottom: 35px;">
+                    <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 28px 24px; border-radius: 16px; box-shadow: 0 8px 25px rgba(102, 126, 234, 0.25); transition: transform 0.2s ease;">
+                        <h3 style="margin: 0 0 16px 0; font-size: 18px; font-weight: 600;"><i class="fas fa-money-bill-wave" style="margin-right: 10px;"></i> Doanh thu tháng</h3>
+                        <div style="font-size: 30px; font-weight: bold; margin-bottom: 8px;">2.8 tỷ VNĐ</div>
+                        <div style="font-size: 15px; opacity: 0.9;">+15% so với tháng trước</div>
                     </div>
-                    <div style="background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%); color: white; padding: 20px; border-radius: 10px;">
-                        <h3 style="margin: 0 0 10px 0;"><i class="fas fa-chart-line"></i> Hoa hồng</h3>
-                        <div style="font-size: 24px; font-weight: bold;">280 triệu VNĐ</div>
-                        <div style="font-size: 14px; opacity: 0.9;">10% doanh thu</div>
+                    <div style="background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%); color: white; padding: 28px 24px; border-radius: 16px; box-shadow: 0 8px 25px rgba(39, 174, 96, 0.25); transition: transform 0.2s ease;">
+                        <h3 style="margin: 0 0 16px 0; font-size: 18px; font-weight: 600;"><i class="fas fa-chart-line" style="margin-right: 10px;"></i> Hoa hồng</h3>
+                        <div style="font-size: 30px; font-weight: bold; margin-bottom: 8px;">280 triệu VNĐ</div>
+                        <div style="font-size: 15px; opacity: 0.9;">10% doanh thu</div>
                     </div>
-                    <div style="background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%); color: white; padding: 20px; border-radius: 10px;">
-                        <h3 style="margin: 0 0 10px 0;"><i class="fas fa-users"></i> Khách hàng mới</h3>
-                        <div style="font-size: 24px; font-weight: bold;">456</div>
-                        <div style="font-size: 14px; opacity: 0.9;">Tháng 7/2025</div>
+                    <div style="background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%); color: white; padding: 28px 24px; border-radius: 16px; box-shadow: 0 8px 25px rgba(243, 156, 18, 0.25); transition: transform 0.2s ease;">
+                        <h3 style="margin: 0 0 16px 0; font-size: 18px; font-weight: 600;"><i class="fas fa-users" style="margin-right: 10px;"></i> Khách hàng mới</h3>
+                        <div style="font-size: 30px; font-weight: bold; margin-bottom: 8px;">456</div>
+                        <div style="font-size: 15px; opacity: 0.9;">Tháng 7/2025</div>
                     </div>
                 </div>
 
                 
                 </div>
                 <!-- Tour Management -->
-                <div style="background: white; padding: 25px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); margin-bottom: 30px;">
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-                        <h2 style="margin: 0; color: #333; font-size: 20px;">
-                            <i class="fas fa-route"></i> QUẢN LÝ TOURS
+                <div style="background: white; padding: 30px; border-radius: 18px; box-shadow: 0 8px 30px rgba(0,0,0,0.08); margin-bottom: 35px; border: 1px solid #f1f3f4;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 2px solid #f8f9fa;">
+                        <h2 style="margin: 0; color: #333; font-size: 22px; font-weight: 700;">
+                            <i class="fas fa-route" style="margin-right: 12px; color: #667eea;"></i> QUẢN LÝ TOURS
                         </h2>
-                        <button class="btn btn-primary" onclick="addNewTour()" style="padding: 8px 16px; font-size: 13px;">
-                            <i class="fas fa-plus"></i> Thêm tour mới
+                        <button class="btn btn-primary" onclick="addNewTour()" style="padding: 12px 20px; font-size: 14px; font-weight: 600; border-radius: 10px;">
+                            <i class="fas fa-plus" style="margin-right: 8px;"></i> Thêm tour mới
                         </button>
                     </div>
 
                     <!-- Enhanced Filter -->
-                    <div style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); padding: 25px; border-radius: 15px; margin-bottom: 25px; border: 1px solid #dee2e6;">
-                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-                            <h3 style="margin: 0; color: #495057; display: flex; align-items: center; gap: 10px;">
-                                <i class="fas fa-filter"></i> BỘ LỌC & TÌM KIẾM
+                    <div style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); padding: 28px; border-radius: 16px; margin-bottom: 28px; border: 1px solid #dee2e6; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 22px;">
+                            <h3 style="margin: 0; color: #495057; display: flex; align-items: center; gap: 12px; font-size: 18px; font-weight: 600;">
+                                <i class="fas fa-filter" style="color: #667eea;"></i> BỘ LỌC & TÌM KIẾM
                             </h3>
-                            <button class="btn btn-secondary" onclick="resetFilters()" style="background: #6c757d;">
-                                <i class="fas fa-redo"></i> Đặt lại
+                            <button class="btn btn-secondary" onclick="resetFilters()" style="background: #6c757d; padding: 10px 16px; font-size: 14px; border-radius: 8px;">
+                                <i class="fas fa-redo" style="margin-right: 6px;"></i> Đặt lại
                             </button>
                         </div>
                         
-                        <div class="form-row" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                        <div class="form-row" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
                             <div class="form-group">
-                                <label style="font-weight: 600; color: #495057; margin-bottom: 8px; display: block;">
-                                    <i class="fas fa-toggle-on"></i> Trạng thái:
+                                <label style="font-weight: 600; color: #495057; margin-bottom: 10px; display: block; font-size: 15px;">
+                                    <i class="fas fa-toggle-on" style="margin-right: 8px; color: #28a745;"></i> Trạng thái:
                                 </label>
-                                <select id="tourStatusFilter" onchange="filterTours()" style="width: 100%; padding: 12px; border: 2px solid #e0e0e0; border-radius: 8px; background: white;">
+                                <select id="tourStatusFilter" onchange="filterTours()" style="width: 100%; padding: 14px; border: 2px solid #e0e0e0; border-radius: 10px; background: white; font-size: 15px;">
                                     <option value="all">📊 Tất cả trạng thái</option>
                                     <option value="active">✅ Đang bán</option>
                                     <option value="inactive">⏸️ Tạm dừng</option>
@@ -372,10 +466,10 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label style="font-weight: 600; color: #495057; margin-bottom: 8px; display: block;">
-                                    <i class="fas fa-map"></i> Loại tour:
+                                <label style="font-weight: 600; color: #495057; margin-bottom: 10px; display: block; font-size: 15px;">
+                                    <i class="fas fa-map" style="margin-right: 8px; color: #17a2b8;"></i> Loại tour:
                                 </label>
-                                <select id="tourTypeFilter" onchange="filterTours()" style="width: 100%; padding: 12px; border: 2px solid #e0e0e0; border-radius: 8px; background: white;">
+                                <select id="tourTypeFilter" onchange="filterTours()" style="width: 100%; padding: 14px; border: 2px solid #e0e0e0; border-radius: 10px; background: white; font-size: 15px;">
                                     <option value="all">🌍 Tất cả loại</option>
                                     <option value="domestic">🇻🇳 Tour trong nước</option>
                                     <option value="international">✈️ Tour nước ngoài</option>
@@ -384,19 +478,19 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label style="font-weight: 600; color: #495057; margin-bottom: 8px; display: block;">
-                                    <i class="fas fa-search"></i> Tìm kiếm:
+                                <label style="font-weight: 600; color: #495057; margin-bottom: 10px; display: block; font-size: 15px;">
+                                    <i class="fas fa-search" style="margin-right: 8px; color: #fd7e14;"></i> Tìm kiếm:
                                 </label>
                                 <div style="position: relative;">
-                                    <input type="text" placeholder="Tên tour, mã tour, điểm đến..." id="tourSearchInput" onkeyup="filterTours()" style="width: 100%; padding: 12px 40px 12px 12px; border: 2px solid #e0e0e0; border-radius: 8px; background: white;">
-                                    <i class="fas fa-search" style="position: absolute; right: 15px; top: 50%; transform: translateY(-50%); color: #adb5bd;"></i>
+                                    <input type="text" placeholder="Tên tour, mã tour, điểm đến..." id="tourSearchInput" onkeyup="filterTours()" style="width: 100%; padding: 14px 45px 14px 14px; border: 2px solid #e0e0e0; border-radius: 10px; background: white; font-size: 15px;">
+                                    <i class="fas fa-search" style="position: absolute; right: 16px; top: 50%; transform: translateY(-50%); color: #adb5bd; font-size: 16px;"></i>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label style="font-weight: 600; color: #495057; margin-bottom: 8px; display: block;">
-                                    <i class="fas fa-sort"></i> Sắp xếp:
+                                <label style="font-weight: 600; color: #495057; margin-bottom: 10px; display: block; font-size: 15px;">
+                                    <i class="fas fa-sort" style="margin-right: 8px; color: #6f42c1;"></i> Sắp xếp:
                                 </label>
-                                <select id="sortBy" onchange="sortTours()" style="width: 100%; padding: 12px; border: 2px solid #e0e0e0; border-radius: 8px; background: white;">
+                                <select id="sortBy" onchange="sortTours()" style="width: 100%; padding: 14px; border: 2px solid #e0e0e0; border-radius: 10px; background: white; font-size: 15px;">
                                     <option value="name">📝 Tên A-Z</option>
                                     <option value="price-high">💰 Giá cao → thấp</option>
                                     <option value="price-low">💰 Giá thấp → cao</option>
@@ -408,108 +502,108 @@
                         </div>
                         
                         <!-- Quick Stats -->
-                        <div style="display: flex; gap: 15px; margin-top: 20px; flex-wrap: wrap;">
-                            <div style="background: white; padding: 12px 20px; border-radius: 25px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); border: 1px solid #e3f2fd;">
-                                <span style="color: #1976d2; font-weight: 600;">📊 Tổng: </span>
-                                <span id="totalTours" style="font-weight: bold; color: #333;">5 tours</span>
+                        <div style="display: flex; gap: 16px; margin-top: 24px; flex-wrap: wrap;">
+                            <div style="background: white; padding: 16px 22px; border-radius: 25px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); border: 1px solid #e3f2fd;">
+                                <span style="color: #1976d2; font-weight: 600; font-size: 15px;">📊 Tổng: </span>
+                                <span id="totalTours" style="font-weight: bold; color: #333; font-size: 15px;">5 tours</span>
                             </div>
-                            <div style="background: white; padding: 12px 20px; border-radius: 25px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); border: 1px solid #e8f5e8;">
-                                <span style="color: #388e3c; font-weight: 600;">✅ Đang bán: </span>
-                                <span id="activeTours" style="font-weight: bold; color: #333;">3 tours</span>
+                            <div style="background: white; padding: 16px 22px; border-radius: 25px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); border: 1px solid #e8f5e8;">
+                                <span style="color: #388e3c; font-weight: 600; font-size: 15px;">✅ Đang bán: </span>
+                                <span id="activeTours" style="font-weight: bold; color: #333; font-size: 15px;">3 tours</span>
                             </div>
-                            <div style="background: white; padding: 12px 20px; border-radius: 25px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); border: 1px solid #fff3e0;">
-                                <span style="color: #f57c00; font-weight: 600;">⏸️ Tạm dừng: </span>
-                                <span id="inactiveTours" style="font-weight: bold; color: #333;">1 tours</span>
+                            <div style="background: white; padding: 16px 22px; border-radius: 25px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); border: 1px solid #fff3e0;">
+                                <span style="color: #f57c00; font-weight: 600; font-size: 15px;">⏸️ Tạm dừng: </span>
+                                <span id="inactiveTours" style="font-weight: bold; color: #333; font-size: 15px;">1 tours</span>
                             </div>
-                            <div style="background: white; padding: 12px 20px; border-radius: 25px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); border: 1px solid #f3e5f5;">
-                                <span style="color: #7b1fa2; font-weight: 600;">📝 Nháp: </span>
-                                <span id="draftTours" style="font-weight: bold; color: #333;">1 tours</span>
+                            <div style="background: white; padding: 16px 22px; border-radius: 25px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); border: 1px solid #f3e5f5;">
+                                <span style="color: #7b1fa2; font-weight: 600; font-size: 15px;">📝 Nháp: </span>
+                                <span id="draftTours" style="font-weight: bold; color: #333; font-size: 15px;">1 tours</span>
                             </div>
                         </div>
                     </div>
 
                     <!-- Tours Table -->
                     <div class="tours-table">
-                        <table style="width: 100%; border-collapse: collapse; table-layout: fixed;">
+                        <table style="width: 100%; border-collapse: collapse; table-layout: fixed; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
                             <thead>
-                                <tr>
-                                    <th style="padding: 18px 12px; text-align: left; border-bottom: 2px solid #dee2e6; width: 35%;">
-                                        <i class="fas fa-image"></i> Tour
+                                <tr style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);">
+                                    <th style="padding: 18px 16px; text-align: left; border-bottom: 2px solid #dee2e6; width: 35%; font-size: 14px; font-weight: 700; color: #495057;">
+                                        <i class="fas fa-image" style="margin-right: 8px; color: #667eea;"></i> Tour
                                     </th>
-                                    <th style="padding: 18px 12px; text-align: center; border-bottom: 2px solid #dee2e6; width: 15%;">
-                                        <i class="fas fa-money-bill-wave"></i> Giá
+                                    <th style="padding: 18px 16px; text-align: center; border-bottom: 2px solid #dee2e6; width: 15%; font-size: 14px; font-weight: 700; color: #495057;">
+                                        <i class="fas fa-money-bill-wave" style="margin-right: 6px; color: #e74c3c;"></i> Giá
                                     </th>
-                                    <th style="padding: 18px 12px; text-align: center; border-bottom: 2px solid #dee2e6; width: 12%;">
-                                        <i class="fas fa-users"></i> Đã bán
+                                    <th style="padding: 18px 16px; text-align: center; border-bottom: 2px solid #dee2e6; width: 12%; font-size: 14px; font-weight: 700; color: #495057;">
+                                        <i class="fas fa-users" style="margin-right: 6px; color: #28a745;"></i> Đã bán
                                     </th>
-                                    <th style="padding: 18px 12px; text-align: center; border-bottom: 2px solid #dee2e6; width: 13%;">
-                                        <i class="fas fa-star"></i> Đánh giá
+                                    <th style="padding: 18px 16px; text-align: center; border-bottom: 2px solid #dee2e6; width: 13%; font-size: 14px; font-weight: 700; color: #495057;">
+                                        <i class="fas fa-star" style="margin-right: 6px; color: #ffc107;"></i> Đánh giá
                                     </th>
-                                    <th style="padding: 18px 12px; text-align: center; border-bottom: 2px solid #dee2e6; width: 12%;">
-                                        <i class="fas fa-toggle-on"></i> Trạng thái
+                                    <th style="padding: 18px 16px; text-align: center; border-bottom: 2px solid #dee2e6; width: 12%; font-size: 14px; font-weight: 700; color: #495057;">
+                                        <i class="fas fa-toggle-on" style="margin-right: 6px; color: #17a2b8;"></i> Trạng thái
                                     </th>
-                                    <th style="padding: 18px 12px; text-align: center; border-bottom: 2px solid #dee2e6; width: 13%;">
-                                        <i class="fas fa-cogs"></i> Thao tác
+                                    <th style="padding: 18px 16px; text-align: center; border-bottom: 2px solid #dee2e6; width: 13%; font-size: 14px; font-weight: 700; color: #495057;">
+                                        <i class="fas fa-cogs" style="margin-right: 6px; color: #6c757d;"></i> Thao tác
                                     </th>
                                 </tr>
                             </thead>
                             <tbody id="toursTableBody">
-                                <tr class="tour-row" data-status="active" data-search="tour hạ long premium">
-                                    <td style="padding: 16px 12px; border-bottom: 1px solid #f0f0f0;">
-                                        <div style="display: flex; align-items: center; gap: 12px;">
+                                <tr class="tour-row" data-status="active" data-search="tour hạ long premium" style="transition: all 0.2s ease;">
+                                    <td style="padding: 18px 16px; border-bottom: 1px solid #f0f0f0;">
+                                        <div style="display: flex; align-items: center; gap: 14px;">
                                             <div style="position: relative; flex-shrink: 0;">
-                                                <img src="https://picsum.photos/60/60?random=1" alt="Tour" style="width: 60px; height: 60px; object-fit: cover; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.12);">
-                                                <div style="position: absolute; top: -4px; right: -4px; background: #27ae60; color: white; border-radius: 50%; width: 18px; height: 18px; display: flex; align-items: center; justify-content: center; font-size: 9px;">
+                                                <img src="https://picsum.photos/65/65?random=1" alt="Tour" style="width: 65px; height: 65px; object-fit: cover; border-radius: 12px; box-shadow: 0 3px 12px rgba(0,0,0,0.15);">
+                                                <div style="position: absolute; top: -6px; right: -6px; background: #27ae60; color: white; border-radius: 50%; width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 600;">
                                                     <i class="fas fa-check"></i>
                                                 </div>
                                             </div>
                                             <div style="flex: 1; min-width: 0;">
-                                                <div style="font-weight: 600; color: #333; font-size: 15px; margin-bottom: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Tour Hạ Long Premium</div>
-                                                <div style="color: #666; font-size: 13px; margin-bottom: 3px;">
-                                                    <i class="fas fa-calendar-alt"></i> 3N2Đ | 
-                                                    <i class="fas fa-hotel"></i> KS 5*
+                                                <div style="font-weight: 600; color: #333; font-size: 16px; margin-bottom: 6px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Tour Hạ Long Premium</div>
+                                                <div style="color: #666; font-size: 14px; margin-bottom: 5px;">
+                                                    <i class="fas fa-calendar-alt" style="margin-right: 5px; color: #fd7e14;"></i> 3N2Đ | 
+                                                    <i class="fas fa-hotel" style="margin-left: 8px; margin-right: 5px; color: #17a2b8;"></i> KS 5*
                                                 </div>
-                                                <div style="color: #667eea; font-size: 11px; background: rgba(102, 126, 234, 0.1); padding: 1px 6px; border-radius: 10px; display: inline-block;">
+                                                <div style="color: #667eea; font-size: 12px; background: rgba(102, 126, 234, 0.1); padding: 4px 10px; border-radius: 12px; display: inline-block; font-weight: 500;">
                                                     THL001
                                                 </div>
                                             </div>
                                         </div>
                                     </td>
-                                    <td style="padding: 16px 8px; border-bottom: 1px solid #f0f0f0; text-align: center;">
-                                        <div style="font-weight: 600; color: #e74c3c; font-size: 15px;">4.2M VNĐ</div>
-                                        <div style="color: #666; font-size: 12px;">/ người</div>
-                                        <div style="color: #27ae60; font-size: 11px; margin-top: 2px;">
-                                            <i class="fas fa-arrow-up"></i> +5%
+                                    <td style="padding: 18px 12px; border-bottom: 1px solid #f0f0f0; text-align: center;">
+                                        <div style="font-weight: 600; color: #e74c3c; font-size: 16px; margin-bottom: 3px;">4.2M VNĐ</div>
+                                        <div style="color: #666; font-size: 13px; margin-bottom: 4px;">/ người</div>
+                                        <div style="color: #27ae60; font-size: 12px; font-weight: 500;">
+                                            <i class="fas fa-arrow-up" style="margin-right: 3px;"></i> +5%
                                         </div>
                                     </td>
-                                    <td style="padding: 16px 8px; border-bottom: 1px solid #f0f0f0; text-align: center;">
-                                        <div style="font-weight: 600; color: #333; font-size: 16px;">234</div>
-                                        <div style="color: #666; font-size: 12px;">khách</div>
-                                        <div style="background: #f39c12; color: white; border-radius: 8px; padding: 1px 5px; font-size: 9px; margin-top: 3px; display: inline-block;">
+                                    <td style="padding: 18px 12px; border-bottom: 1px solid #f0f0f0; text-align: center;">
+                                        <div style="font-weight: 600; color: #333; font-size: 17px; margin-bottom: 3px;">234</div>
+                                        <div style="color: #666; font-size: 13px; margin-bottom: 5px;">khách</div>
+                                        <div style="background: #f39c12; color: white; border-radius: 8px; padding: 3px 8px; font-size: 10px; margin-top: 4px; display: inline-block; font-weight: 600;">
                                             HOT
                                         </div>
                                     </td>
-                                    <td style="padding: 16px 8px; border-bottom: 1px solid #f0f0f0; text-align: center;">
-                                        <div style="color: #f39c12; font-size: 15px; margin-bottom: 2px;">⭐ 4.8</div>
-                                        <div style="color: #666; font-size: 11px;">(89 review)</div>
-                                        <div style="background: #27ae60; color: white; border-radius: 8px; padding: 1px 5px; font-size: 9px; margin-top: 2px; display: inline-block;">
+                                    <td style="padding: 18px 12px; border-bottom: 1px solid #f0f0f0; text-align: center;">
+                                        <div style="color: #f39c12; font-size: 16px; margin-bottom: 3px; font-weight: 600;">⭐ 4.8</div>
+                                        <div style="color: #666; font-size: 12px; margin-bottom: 4px;">(89 review)</div>
+                                        <div style="background: #27ae60; color: white; border-radius: 8px; padding: 3px 8px; font-size: 10px; margin-top: 3px; display: inline-block; font-weight: 600;">
                                             XUẤT SẮC
                                         </div>
                                     </td>
-                                    <td style="padding: 16px 8px; border-bottom: 1px solid #f0f0f0; text-align: center;">
-                                        <span style="background: #27ae60; color: white; padding: 6px 12px; border-radius: 15px; font-size: 11px; font-weight: 600; white-space: nowrap;">
-                                            <i class="fas fa-check-circle"></i> Đang bán
+                                    <td style="padding: 18px 12px; border-bottom: 1px solid #f0f0f0; text-align: center;">
+                                        <span style="background: #27ae60; color: white; padding: 8px 14px; border-radius: 16px; font-size: 12px; font-weight: 600; white-space: nowrap;">
+                                            <i class="fas fa-check-circle" style="margin-right: 5px;"></i> Đang bán
                                         </span>
                                     </td>
-                                    <td style="padding: 16px 8px; border-bottom: 1px solid #f0f0f0; text-align: center;">
-                                        <div style="display: flex; gap: 4px; justify-content: center; flex-wrap: wrap;">
-                                            <button class="btn btn-sm" style="background: #667eea; color: white; border: none; padding: 6px 8px; border-radius: 6px; font-size: 11px;" onclick="editTour('THL001')" title="Chỉnh sửa">
+                                    <td style="padding: 18px 12px; border-bottom: 1px solid #f0f0f0; text-align: center;">
+                                        <div style="display: flex; gap: 6px; justify-content: center; flex-wrap: wrap;">
+                                            <button class="btn btn-sm" style="background: #667eea; color: white; border: none; padding: 8px 10px; border-radius: 8px; font-size: 12px; transition: all 0.2s;" onclick="editTour('THL001')" title="Chỉnh sửa">
                                                 <i class="fas fa-edit"></i>
                                             </button>
-                                            <button class="btn btn-sm" style="background: #f39c12; color: white; border: none; padding: 6px 8px; border-radius: 6px; font-size: 11px;" onclick="viewTourStats('THL001')" title="Thống kê">
+                                            <button class="btn btn-sm" style="background: #f39c12; color: white; border: none; padding: 8px 10px; border-radius: 8px; font-size: 12px; transition: all 0.2s;" onclick="viewTourStats('THL001')" title="Thống kê">
                                                 <i class="fas fa-chart-bar"></i>
                                             </button>
-                                            <button class="btn btn-sm" style="background: #e74c3c; color: white; border: none; padding: 6px 8px; border-radius: 6px; font-size: 11px;" onclick="pauseTour('THL001')" title="Tạm dừng">
+                                            <button class="btn btn-sm" style="background: #e74c3c; color: white; border: none; padding: 8px 10px; border-radius: 8px; font-size: 12px; transition: all 0.2s;" onclick="pauseTour('THL001')" title="Tạm dừng">
                                                 <i class="fas fa-pause"></i>
                                             </button>
                                         </div>
@@ -520,98 +614,100 @@
                     </div>
                 </div>
 
-                <!-- Recent Orders -->
-                <div style="background: white; padding: 25px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1);">
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-                        <h2 style="margin: 0; color: #333; font-size: 20px;">
-                            <i class="fas fa-shopping-cart"></i> ĐƠN HÀNG GẦN ĐÂY
+                
+            </div>
+
+            <!-- Recent Orders -->
+                <div style="background: white; padding: 30px; border-radius: 18px; box-shadow: 0 8px 30px rgba(0,0,0,0.08); border: 1px solid #f1f3f4;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 2px solid #f8f9fa;">
+                        <h2 style="margin: 0; color: #333; font-size: 22px; font-weight: 700;">
+                            <i class="fas fa-shopping-cart" style="margin-right: 12px; color: #667eea;"></i> ĐƠN HÀNG GẦN ĐÂY
                         </h2>
-                        <button class="btn btn-secondary" onclick="viewAllOrders()" style="padding: 8px 16px; font-size: 13px;">
-                            <i class="fas fa-list"></i> Xem tất cả
+                        <button class="btn btn-secondary" onclick="viewAllOrders()" style="padding: 12px 20px; font-size: 14px; font-weight: 600; border-radius: 10px;">
+                            <i class="fas fa-list" style="margin-right: 8px;"></i> Xem tất cả
                         </button>
                     </div>
 
                     <div id="recentOrders">
-                        <div style="border: 1px solid #e9ecef; border-radius: 12px; margin-bottom: 16px; overflow: hidden; transition: all 0.2s ease; background: #fafafa;">
-                            <div style="padding: 18px 20px;">
-                                <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px;">
+                        <div style="border: 1px solid #e9ecef; border-radius: 14px; margin-bottom: 18px; overflow: hidden; transition: all 0.2s ease; background: #fafafa; box-shadow: 0 3px 12px rgba(0,0,0,0.05);">
+                            <div style="padding: 20px 22px;">
+                                <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 14px;">
                                     <div style="flex: 1;">
-                                        <h3 style="margin: 0 0 6px 0; font-size: 16px; color: #333;">
-                                            <i class="fas fa-box" style="color: #667eea; margin-right: 8px;"></i> #BK2025080045 - Tour Hạ Long Premium
+                                        <h3 style="margin: 0 0 8px 0; font-size: 16px; color: #333; font-weight: 600;">
+                                            <i class="fas fa-box" style="color: #667eea; margin-right: 10px;"></i> #BK2025080045 - Tour Hạ Long Premium
                                         </h3>
-                                        <div style="color: #666; font-size: 14px; line-height: 1.4;">
-                                            <span style="margin-right: 15px;"><i class="fas fa-user" style="color: #28a745; margin-right: 5px;"></i> Trần Thị Lan</span>
-                                            <span style="margin-right: 15px;"><i class="fas fa-phone" style="color: #17a2b8; margin-right: 5px;"></i> 0912.345.678</span>
-                                            <span><i class="fas fa-calendar-check" style="color: #fd7e14; margin-right: 5px;"></i> 25/08/2025</span>
+                                        <div style="color: #666; font-size: 14px; line-height: 1.5;">
+                                            <span style="margin-right: 18px;"><i class="fas fa-user" style="color: #28a745; margin-right: 6px;"></i> Trần Thị Lan</span>
+                                            <span style="margin-right: 18px;"><i class="fas fa-phone" style="color: #17a2b8; margin-right: 6px;"></i> 0912.345.678</span>
+                                            <span><i class="fas fa-calendar-check" style="color: #fd7e14; margin-right: 6px;"></i> 25/08/2025</span>
                                         </div>
                                     </div>
-                                    <span style="background: #ffc107; color: #856404; padding: 6px 12px; border-radius: 12px; font-size: 12px; font-weight: 600; white-space: nowrap; margin-left: 15px;">
+                                    <span style="background: #ffc107; color: #856404; padding: 8px 14px; border-radius: 14px; font-size: 12px; font-weight: 600; white-space: nowrap; margin-left: 18px; box-shadow: 0 2px 8px rgba(255, 193, 7, 0.3);">
                                         🟡 Chờ xác nhận
                                     </span>
                                 </div>
                                 <div style="display: flex; justify-content: space-between; align-items: center;">
                                     <div>
-                                        <div style="font-size: 17px; font-weight: 600; color: #e74c3c; margin-bottom: 4px;">
+                                        <div style="font-size: 17px; font-weight: 600; color: #e74c3c; margin-bottom: 6px;">
                                             💰 8.400.000 VNĐ <span style="color: #6c757d; font-weight: 400; font-size: 14px;">| 2 người</span>
                                         </div>
                                         <div style="color: #6c757d; font-size: 13px;">
-                                            <i class="fas fa-clock" style="margin-right: 5px;"></i> Đặt lúc: 17/07/2025 09:15
+                                            <i class="fas fa-clock" style="margin-right: 6px; color: #fd7e14;"></i> Đặt lúc: 17/07/2025 09:15
                                         </div>
                                     </div>
                                     <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-                                        <button style="background: #28a745; color: white; border: none; padding: 8px 12px; border-radius: 8px; font-size: 12px; font-weight: 600; cursor: pointer; transition: all 0.2s;" onclick="confirmOrder('BK2025080045')" onmouseover="this.style.background='#1e7e34'" onmouseout="this.style.background='#28a745'">
-                                            <i class="fas fa-check"></i> Xác nhận
+                                        <button style="background: #28a745; color: white; border: none; padding: 10px 14px; border-radius: 10px; font-size: 12px; font-weight: 600; cursor: pointer; transition: all 0.2s;" onclick="confirmOrder('BK2025080045')" onmouseover="this.style.background='#1e7e34'" onmouseout="this.style.background='#28a745'">
+                                            <i class="fas fa-check" style="margin-right: 5px;"></i> Xác nhận
                                         </button>
-                                        <button style="background: #6c757d; color: white; border: none; padding: 8px 12px; border-radius: 8px; font-size: 12px; font-weight: 600; cursor: pointer; transition: all 0.2s;" onclick="contactCustomer('0912345678')" onmouseover="this.style.background='#545b62'" onmouseout="this.style.background='#6c757d'">
-                                            <i class="fas fa-phone"></i> Liên hệ
+                                        <button style="background: #6c757d; color: white; border: none; padding: 10px 14px; border-radius: 10px; font-size: 12px; font-weight: 600; cursor: pointer; transition: all 0.2s;" onclick="contactCustomer('0912345678')" onmouseover="this.style.background='#545b62'" onmouseout="this.style.background='#6c757d'">
+                                            <i class="fas fa-phone" style="margin-right: 5px;"></i> Liên hệ
                                         </button>
-                                        <button style="background: #dc3545; color: white; border: none; padding: 8px 12px; border-radius: 8px; font-size: 12px; font-weight: 600; cursor: pointer; transition: all 0.2s;" onclick="rejectOrder('BK2025080045')" onmouseover="this.style.background='#c82333'" onmouseout="this.style.background='#dc3545'">
-                                            <i class="fas fa-times"></i> Từ chối
+                                        <button style="background: #dc3545; color: white; border: none; padding: 10px 14px; border-radius: 10px; font-size: 12px; font-weight: 600; cursor: pointer; transition: all 0.2s;" onclick="rejectOrder('BK2025080045')" onmouseover="this.style.background='#c82333'" onmouseout="this.style.background='#dc3545'">
+                                            <i class="fas fa-times" style="margin-right: 5px;"></i> Từ chối
                                         </button>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <div style="border: 1px solid #e9ecef; border-radius: 12px; margin-bottom: 16px; overflow: hidden; transition: all 0.2s ease; background: #fafafa;">
-                            <div style="padding: 18px 20px;">
-                                <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px;">
+                        <div style="border: 1px solid #e9ecef; border-radius: 14px; margin-bottom: 18px; overflow: hidden; transition: all 0.2s ease; background: #fafafa; box-shadow: 0 3px 12px rgba(0,0,0,0.05);">
+                            <div style="padding: 20px 22px;">
+                                <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 14px;">
                                     <div style="flex: 1;">
-                                        <h3 style="margin: 0 0 6px 0; font-size: 16px; color: #333;">
-                                            <i class="fas fa-box" style="color: #667eea; margin-right: 8px;"></i> #BK2025080044 - Tour Sapa Cổ Tích
+                                        <h3 style="margin: 0 0 8px 0; font-size: 16px; color: #333; font-weight: 600;">
+                                            <i class="fas fa-box" style="color: #667eea; margin-right: 10px;"></i> #BK2025080044 - Tour Sapa Cổ Tích
                                         </h3>
-                                        <div style="color: #666; font-size: 14px; line-height: 1.4;">
-                                            <span style="margin-right: 15px;"><i class="fas fa-user" style="color: #28a745; margin-right: 5px;"></i> Nguyễn Minh Đức</span>
-                                            <span style="margin-right: 15px;"><i class="fas fa-phone" style="color: #17a2b8; margin-right: 5px;"></i> 0987.654.321</span>
-                                            <span><i class="fas fa-calendar-check" style="color: #fd7e14; margin-right: 5px;"></i> 30/08/2025</span>
+                                        <div style="color: #666; font-size: 14px; line-height: 1.5;">
+                                            <span style="margin-right: 18px;"><i class="fas fa-user" style="color: #28a745; margin-right: 6px;"></i> Nguyễn Minh Đức</span>
+                                            <span style="margin-right: 18px;"><i class="fas fa-phone" style="color: #17a2b8; margin-right: 6px;"></i> 0987.654.321</span>
+                                            <span><i class="fas fa-calendar-check" style="color: #fd7e14; margin-right: 6px;"></i> 30/08/2025</span>
                                         </div>
                                     </div>
-                                    <span style="background: #28a745; color: white; padding: 6px 12px; border-radius: 12px; font-size: 12px; font-weight: 600; white-space: nowrap; margin-left: 15px;">
+                                    <span style="background: #28a745; color: white; padding: 8px 14px; border-radius: 14px; font-size: 12px; font-weight: 600; white-space: nowrap; margin-left: 18px; box-shadow: 0 2px 8px rgba(40, 167, 69, 0.3);">
                                         🟢 Đã xác nhận
                                     </span>
                                 </div>
                                 <div style="display: flex; justify-content: space-between; align-items: center;">
                                     <div>
-                                        <div style="font-size: 17px; font-weight: 600; color: #e74c3c; margin-bottom: 4px;">
+                                        <div style="font-size: 17px; font-weight: 600; color: #e74c3c; margin-bottom: 6px;">
                                             💰 5.600.000 VNĐ <span style="color: #6c757d; font-weight: 400; font-size: 14px;">| 2 người</span>
                                         </div>
                                         <div style="color: #6c757d; font-size: 13px;">
-                                            <i class="fas fa-check-circle" style="margin-right: 5px; color: #28a745;"></i> Xác nhận lúc: 16/07/2025 16:20
+                                            <i class="fas fa-check-circle" style="margin-right: 6px; color: #28a745;"></i> Xác nhận lúc: 16/07/2025 16:20
                                         </div>
                                     </div>
                                     <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-                                        <button style="background: #667eea; color: white; border: none; padding: 8px 12px; border-radius: 8px; font-size: 12px; font-weight: 600; cursor: pointer; transition: all 0.2s;" onclick="viewOrderDetails('BK2025080044')" onmouseover="this.style.background='#5a67d8'" onmouseout="this.style.background='#667eea'">
-                                            <i class="fas fa-eye"></i> Chi tiết
+                                        <button style="background: #667eea; color: white; border: none; padding: 10px 14px; border-radius: 10px; font-size: 12px; font-weight: 600; cursor: pointer; transition: all 0.2s;" onclick="viewOrderDetails('BK2025080044')" onmouseover="this.style.background='#5a67d8'" onmouseout="this.style.background='#667eea'">
+                                            <i class="fas fa-eye" style="margin-right: 5px;"></i> Chi tiết
                                         </button>
-                                        <button style="background: #6c757d; color: white; border: none; padding: 8px 12px; border-radius: 8px; font-size: 12px; font-weight: 600; cursor: pointer; transition: all 0.2s;" onclick="contactCustomer('0987654321')" onmouseover="this.style.background='#545b62'" onmouseout="this.style.background='#6c757d'">
-                                            <i class="fas fa-phone"></i> Liên hệ
+                                        <button style="background: #6c757d; color: white; border: none; padding: 10px 14px; border-radius: 10px; font-size: 12px; font-weight: 600; cursor: pointer; transition: all 0.2s;" onclick="contactCustomer('0987654321')" onmouseover="this.style.background='#545b62'" onmouseout="this.style.background='#6c757d'">
+                                            <i class="fas fa-phone" style="margin-right: 5px;"></i> Liên hệ
                                         </button>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-            </div>
         </div>
     </div>
 
@@ -800,8 +896,10 @@
 
         <div style="margin-bottom: 15px;">
             <h4 style="margin: 0 0 8px 0; color: #4CAF50; font-size: 13px; font-weight: bold;">🛠️ Admin Panel</h4>
-            <div style="display: grid; grid-template-columns: 1fr; gap: 5px; margin-bottom: 10px;">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 5px; margin-bottom: 10px;">
                 <a href="13-admin-dashboard.html" style="text-decoration: none; color: #4CAF50; font-size: 11px; padding: 4px 8px; border: 1px solid #4CAF50; border-radius: 4px; text-align: center; transition: all 0.2s;">13-Dashboard</a>
+                <a href="20-admin-tour-approval.html" style="text-decoration: none; color: #4CAF50; font-size: 11px; padding: 4px 8px; border: 1px solid #4CAF50; border-radius: 4px; text-align: center; transition: all 0.2s;">20-Approval</a>
+                <a href="21-admin-flash-sale.html" style="text-decoration: none; color: #4CAF50; font-size: 11px; padding: 4px 8px; border: 1px solid #4CAF50; border-radius: 4px; text-align: center; transition: all 0.2s;">21-FlashSale</a>
             </div>
         </div>
 

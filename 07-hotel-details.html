@@ -545,6 +545,7 @@
             <h4 style="margin: 0 0 8px 0; color: #2196F3; font-size: 13px; font-weight: bold;">📱 User Interface</h4>
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 5px; margin-bottom: 10px;">
                 <a href="01-search-integrated.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">01-Search</a>
+                <a href="02-filter-advanced.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">02-Filter</a>
                 <a href="03-tour-details.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">03-Tour</a>
                 <a href="04-booking-payment.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">04-Booking</a>
                 <a href="05-combo-details.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">05-Combo</a>
@@ -566,8 +567,10 @@
 
         <div style="margin-bottom: 15px;">
             <h4 style="margin: 0 0 8px 0; color: #4CAF50; font-size: 13px; font-weight: bold;">🛠️ Admin Panel</h4>
-            <div style="display: grid; grid-template-columns: 1fr; gap: 5px; margin-bottom: 10px;">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 5px; margin-bottom: 10px;">
                 <a href="13-admin-dashboard.html" style="text-decoration: none; color: #4CAF50; font-size: 11px; padding: 4px 8px; border: 1px solid #4CAF50; border-radius: 4px; text-align: center; transition: all 0.2s;">13-Dashboard</a>
+                <a href="20-admin-tour-approval.html" style="text-decoration: none; color: #4CAF50; font-size: 11px; padding: 4px 8px; border: 1px solid #4CAF50; border-radius: 4px; text-align: center; transition: all 0.2s;">20-Approval</a>
+                <a href="21-admin-flash-sale.html" style="text-decoration: none; color: #4CAF50; font-size: 11px; padding: 4px 8px; border: 1px solid #4CAF50; border-radius: 4px; text-align: center; transition: all 0.2s;">21-FlashSale</a>
             </div>
         </div>
 
@@ -605,7 +608,7 @@
                 }
             });
         });
-    </script>
+
         function shareHotel() {
             alert('📤 Chia sẻ khách sạn\n• Facebook\n• Zalo\n• Email\n• Copy link');
         }
@@ -676,27 +679,17 @@
         // Initialize price calculation
         updatePrice();
 
-        // Menu toggle functionality
-        document.getElementById('menuToggle').addEventListener('click', function() {
-            const content = document.getElementById('menuContent');
-            const toggle = document.getElementById('menuToggle');
-            
-            if (content.style.display === 'none') {
-                content.style.display = 'grid';
-                toggle.textContent = '−';
-            } else {
-                content.style.display = 'none';
-                toggle.textContent = '+';
-            }
+        // Add fade-in animation on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
         });
 
-        // Highlight current page
-        const currentPage = window.location.pathname.split('/').pop();
-        document.querySelectorAll('#wireframeMenu a').forEach(link => {
-            if (link.getAttribute('href') === currentPage) {
-                link.style.fontWeight = 'bold';
-                link.style.background = '#e8f4fd';
-            }
+        document.querySelectorAll('.fade-in').forEach(section => {
+            observer.observe(section);
         });
     </script>
 </body>

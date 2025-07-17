@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kiểm duyệt Tour - BigKey Admin</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .approval-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .approval-header {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+        }
+
+        .approval-queue {
+            display: grid;
+            grid-template-columns: 350px 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .queue-sidebar {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            height: fit-content;
+            position: sticky;
+            top: 20px;
+        }
+
+        .queue-item {
+            background: #f8f9fa;
+            border: 2px solid #e1e5e9;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .queue-item:hover {
+            border-color: #667eea;
+            transform: translateY(-2px);
+        }
+
+        .queue-item.active {
+            border-color: #667eea;
+            background: #f0f4ff;
+        }
+
+        .priority-high {
+            border-left: 4px solid #e74c3c;
+        }
+
+        .priority-normal {
+            border-left: 4px solid #3498db;
+        }
+
+        .review-panel {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+        }
+
+        .tour-preview {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .preview-images {
+            display: grid;
+            gap: 10px;
+        }
+
+        .main-image {
+            width: 100%;
+            height: 200px;
+            border-radius: 10px;
+            object-fit: cover;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-size: 48px;
+        }
+
+        .preview-gallery {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 5px;
+        }
+
+        .preview-gallery img {
+            width: 100%;
+            height: 60px;
+            border-radius: 5px;
+            object-fit: cover;
+            background: #e1e5e9;
+        }
+
+        .tour-info {
+            display: grid;
+            gap: 20px;
+        }
+
+        .info-section {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .checklist-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .checklist-category {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+        }
+
+        .checklist-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #e1e5e9;
+        }
+
+        .checklist-item:last-child {
+            border-bottom: none;
+        }
+
+        .status-indicator {
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .status-pass {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .status-warning {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .status-fail {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .ai-analysis {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .ai-score {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .score-circle {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .approval-actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 30px;
+            padding: 30px;
+            background: #f8f9fa;
+            border-radius: 15px;
+        }
+
+        .action-section {
+            display: grid;
+            gap: 15px;
+        }
+
+        .action-buttons {
+            display: grid;
+            gap: 10px;
+        }
+
+        .btn-approve {
+            background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
+            color: white;
+            border: none;
+            padding: 15px 25px;
+            border-radius: 10px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-reject {
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            color: white;
+            border: none;
+            padding: 15px 25px;
+            border-radius: 10px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-hold {
+            background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
+            color: white;
+            border: none;
+            padding: 15px 25px;
+            border-radius: 10px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .notes-area {
+            width: 100%;
+            min-height: 100px;
+            padding: 15px;
+            border: 2px solid #e1e5e9;
+            border-radius: 10px;
+            resize: vertical;
+            font-family: inherit;
+        }
+
+        .action-options {
+            display: grid;
+            gap: 10px;
+        }
+
+        .radio-option {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px;
+            border: 1px solid #e1e5e9;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .radio-option:hover {
+            background: #f8f9fa;
+        }
+
+        .radio-option input[type="radio"]:checked + label {
+            color: #667eea;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <i class="fas fa-shield-alt"></i> BigKey Admin - Kiểm duyệt Tour
+            </div>
+            <nav class="nav-menu">
+                <a href="13-admin-dashboard.html">Dashboard</a>
+                <a href="20-admin-tour-approval.html" style="background-color: rgba(255,255,255,0.2);">Kiểm duyệt Tour</a>
+                <a href="21-admin-flash-sale.html">Flash Sale</a>
+                <a href="11-partner-management.html">Đối tác</a>
+            </nav>
+            <div class="auth-section">
+                <div style="display: flex; align-items: center; gap: 15px;">
+                    <span style="color: white;">Admin: Nguyễn ABC</span>
+                    <button class="btn btn-secondary">Đăng xuất</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="approval-container">
+        <!-- Header với thống kê -->
+        <div class="approval-header">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                <h1><i class="fas fa-tasks"></i> Queue Kiểm duyệt Tour</h1>
+                <div style="display: flex; gap: 15px;">
+                    <div style="text-align: center; padding: 15px; background: #f8d7da; border-radius: 10px; min-width: 120px;">
+                        <div style="font-size: 24px; font-weight: bold; color: #721c24;">12</div>
+                        <div style="font-size: 12px; color: #721c24;">Chờ duyệt</div>
+                    </div>
+                    <div style="text-align: center; padding: 15px; background: #fff3cd; border-radius: 10px; min-width: 120px;">
+                        <div style="font-size: 24px; font-weight: bold; color: #856404;">4</div>
+                        <div style="font-size: 12px; color: #856404;">Ưu tiên cao</div>
+                    </div>
+                    <div style="text-align: center; padding: 15px; background: #d4edda; border-radius: 10px; min-width: 120px;">
+                        <div style="font-size: 24px; font-weight: bold; color: #155724;">89</div>
+                        <div style="font-size: 12px; color: #155724;">Đã duyệt hôm nay</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="approval-queue">
+            <!-- Queue Sidebar -->
+            <div class="queue-sidebar">
+                <div style="display: flex; justify-content: between; align-items: center; margin-bottom: 20px;">
+                    <h3><i class="fas fa-list"></i> Tour Queue</h3>
+                    <button class="btn btn-primary" style="font-size: 12px; padding: 8px 12px;">
+                        <i class="fas fa-sync"></i> Refresh
+                    </button>
+                </div>
+
+                <!-- High Priority -->
+                <div style="margin-bottom: 25px;">
+                    <h4 style="color: #e74c3c; margin-bottom: 15px;">
+                        <i class="fas fa-exclamation-triangle"></i> Ưu tiên cao (4)
+                    </h4>
+                    
+                    <div class="queue-item priority-high active">
+                        <div style="display: flex; justify-content: between; align-items: flex-start; margin-bottom: 10px;">
+                            <h5 style="margin: 0; font-size: 14px; line-height: 1.3;">Tour Hạ Long Premium 4N3Đ</h5>
+                            <span style="background: #e74c3c; color: white; padding: 2px 6px; border-radius: 10px; font-size: 10px;">HOT</span>
+                        </div>
+                        <div style="font-size: 12px; color: #666; margin-bottom: 8px;">
+                            <i class="fas fa-building"></i> Elite Travel ⭐
+                        </div>
+                        <div style="font-size: 11px; color: #999;">
+                            Submitted: 16/07 14:30<br>
+                            Est. Revenue: 15M+/tháng
+                        </div>
+                    </div>
+
+                    <div class="queue-item priority-high">
+                        <div style="margin-bottom: 10px;">
+                            <h5 style="margin: 0; font-size: 14px; line-height: 1.3;">Tour Sapa Luxury Experience</h5>
+                        </div>
+                        <div style="font-size: 12px; color: #666; margin-bottom: 8px;">
+                            <i class="fas fa-building"></i> Mountain Adventures
+                        </div>
+                        <div style="font-size: 11px; color: #999;">
+                            Submitted: 16/07 09:15<br>
+                            Est. Revenue: 8M+/tháng
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Normal Queue -->
+                <div>
+                    <h4 style="color: #3498db; margin-bottom: 15px;">
+                        <i class="fas fa-clock"></i> Queue thường (8)
+                    </h4>
+                    
+                    <div class="queue-item priority-normal">
+                        <div style="margin-bottom: 10px;">
+                            <h5 style="margin: 0; font-size: 14px; line-height: 1.3;">Tour Đà Nẵng 3N2Đ Budget</h5>
+                        </div>
+                        <div style="font-size: 12px; color: #666; margin-bottom: 8px;">
+                            <i class="fas fa-building"></i> ABC Travel Co.
+                        </div>
+                        <div style="font-size: 11px; color: #999;">
+                            Submitted: 15/07 16:45
+                        </div>
+                    </div>
+
+                    <div class="queue-item priority-normal">
+                        <div style="margin-bottom: 10px;">
+                            <h5 style="margin: 0; font-size: 14px; line-height: 1.3;">Tour Phú Quốc Family Package</h5>
+                        </div>
+                        <div style="font-size: 12px; color: #666; margin-bottom: 8px;">
+                            <i class="fas fa-building"></i> Family Tours Ltd
+                        </div>
+                        <div style="font-size: 11px; color: #999;">
+                            Submitted: 15/07 11:20
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bulk Actions -->
+                <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #e1e5e9;">
+                    <h4 style="margin-bottom: 15px;">
+                        <i class="fas fa-tools"></i> Thao tác hàng loạt
+                    </h4>
+                    <div style="display: grid; gap: 8px;">
+                        <button class="btn btn-secondary" style="font-size: 12px; padding: 8px;">
+                            <i class="fas fa-check-double"></i> Duyệt đã chọn
+                        </button>
+                        <button class="btn btn-secondary" style="font-size: 12px; padding: 8px;">
+                            <i class="fas fa-times-circle"></i> Từ chối đã chọn
+                        </button>
+                        <button class="btn btn-secondary" style="font-size: 12px; padding: 8px;">
+                            <i class="fas fa-user-plus"></i> Auto-assign reviewer
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Review Panel -->
+            <div class="review-panel">
+                <div style="margin-bottom: 30px;">
+                    <div style="display: flex; justify-content: between; align-items: center; margin-bottom: 20px;">
+                        <h2>Tour Hạ Long Premium 4N3Đ</h2>
+                        <div style="display: flex; gap: 15px; align-items: center;">
+                            <span class="status-indicator status-warning">Chờ duyệt</span>
+                            <span style="color: #666; font-size: 14px;">Review Date: 17/07/2025</span>
+                        </div>
+                    </div>
+                    
+                    <div style="display: flex; gap: 20px; margin-bottom: 20px;">
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <i class="fas fa-building" style="color: #667eea;"></i>
+                            <span><strong>Partner:</strong> Elite Travel ⭐ (Verified)</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <i class="fas fa-user" style="color: #667eea;"></i>
+                            <span><strong>Reviewer:</strong> Admin ABC</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tour Preview -->
+                <div class="tour-preview">
+                    <div class="preview-images">
+                        <div class="main-image">
+                            <i class="fas fa-camera"></i>
+                        </div>
+                        <div class="preview-gallery">
+                            <div style="background: #e1e5e9; height: 60px; border-radius: 5px;"></div>
+                            <div style="background: #e1e5e9; height: 60px; border-radius: 5px;"></div>
+                            <div style="background: #e1e5e9; height: 60px; border-radius: 5px;"></div>
+                            <div style="background: #e1e5e9; height: 60px; border-radius: 5px;"></div>
+                        </div>
+                    </div>
+
+                    <div class="tour-info">
+                        <div class="info-section">
+                            <h4><i class="fas fa-info-circle"></i> Thông tin cơ bản</h4>
+                            <div style="display: grid; gap: 10px; margin-top: 15px;">
+                                <div><strong>Tên tour:</strong> Hạ Long Premium 4N3Đ – Vịnh đẹp nhất miền Bắc</div>
+                                <div><strong>Nhà cung cấp:</strong> Elite Travel Company</div>
+                                <div><strong>Giá:</strong> 4.500.000 VNĐ/người</div>
+                                <div><strong>Thời lượng:</strong> 4 ngày 3 đêm</div>
+                                <div><strong>Điểm đến:</strong> Hạ Long, Quảng Ninh</div>
+                            </div>
+                        </div>
+
+                        <div class="info-section">
+                            <h4><i class="fas fa-map-marked-alt"></i> Lịch trình</h4>
+                            <div style="margin-top: 15px; font-size: 14px; line-height: 1.6;">
+                                <strong>Ngày 1:</strong> Hà Nội – Hạ Long – Ngủ đêm trên du thuyền<br>
+                                <strong>Ngày 2:</strong> Vịnh Lan Hạ – Hang Sửng Sốt – Đảo Ti Tốp<br>
+                                <strong>Ngày 3:</strong> Làng chài Cửa Vạn – Kayaking<br>
+                                <strong>Ngày 4:</strong> Trở về Hà Nội
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review Checklist -->
+                <div style="margin: 30px 0;">
+                    <h3><i class="fas fa-clipboard-check"></i> Review Checklist</h3>
+                    
+                    <div class="checklist-grid">
+                        <!-- Content Review -->
+                        <div class="checklist-category">
+                            <h4 style="margin-bottom: 15px; color: #333;">
+                                <i class="fas fa-file-alt"></i> Content Review
+                            </h4>
+                            <div class="checklist-item">
+                                <span>Tour title appropriate & clear</span>
+                                <span class="status-indicator status-pass">✅ Pass</span>
+                            </div>
+                            <div class="checklist-item">
+                                <span>Description grammar & accuracy</span>
+                                <span class="status-indicator status-pass">✅ Pass</span>
+                            </div>
+                            <div class="checklist-item">
+                                <span>Itinerary logical & realistic</span>
+                                <span class="status-indicator status-pass">✅ Pass</span>
+                            </div>
+                            <div class="checklist-item">
+                                <span>Pricing reasonable & competitive</span>
+                                <span class="status-indicator status-warning">⚠️ Need Check</span>
+                            </div>
+                            <div class="checklist-item">
+                                <span>Images quality & relevance</span>
+                                <span class="status-indicator status-pass">✅ Pass</span>
+                            </div>
+                        </div>
+
+                        <!-- Business Validation -->
+                        <div class="checklist-category">
+                            <h4 style="margin-bottom: 15px; color: #333;">
+                                <i class="fas fa-building"></i> Business Validation
+                            </h4>
+                            <div class="checklist-item">
+                                <span>Partner credentials verified</span>
+                                <span class="status-indicator status-pass">✅ Pass</span>
+                            </div>
+                            <div class="checklist-item">
+                                <span>Locations mentioned validated</span>
+                                <span class="status-indicator status-pass">✅ Pass</span>
+                            </div>
+                            <div class="checklist-item">
+                                <span>Legal compliance checked</span>
+                                <span class="status-indicator status-pass">✅ Pass</span>
+                            </div>
+                            <div class="checklist-item">
+                                <span>Insurance coverage adequate</span>
+                                <span class="status-indicator status-warning">⚠️ Need Review</span>
+                            </div>
+                        </div>
+
+                        <!-- Technical Checks -->
+                        <div class="checklist-category">
+                            <h4 style="margin-bottom: 15px; color: #333;">
+                                <i class="fas fa-cogs"></i> Technical Checks
+                            </h4>
+                            <div class="checklist-item">
+                                <span>All required fields completed</span>
+                                <span class="status-indicator status-pass">✅ Pass</span>
+                            </div>
+                            <div class="checklist-item">
+                                <span>Images load properly</span>
+                                <span class="status-indicator status-pass">✅ Pass</span>
+                            </div>
+                            <div class="checklist-item">
+                                <span>Pricing calculations correct</span>
+                                <span class="status-indicator status-fail">❌ Error Found</span>
+                            </div>
+                            <div class="checklist-item">
+                                <span>Categories correctly assigned</span>
+                                <span class="status-indicator status-pass">✅ Pass</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AI Analysis -->
+                <div class="ai-analysis">
+                    <h3 style="margin-bottom: 20px;">
+                        <i class="fas fa-robot"></i> Automated Analysis Results
+                    </h3>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
+                        <div class="ai-score">
+                            <div class="score-circle">92</div>
+                            <div>
+                                <div style="font-weight: bold;">AI Content Score</div>
+                                <div style="font-size: 12px; opacity: 0.8;">Excellent quality</div>
+                            </div>
+                        </div>
+                        <div class="ai-score">
+                            <div class="score-circle">✓</div>
+                            <div>
+                                <div style="font-weight: bold;">Plagiarism Check</div>
+                                <div style="font-size: 12px; opacity: 0.8;">Clean</div>
+                            </div>
+                        </div>
+                        <div class="ai-score">
+                            <div class="score-circle">⚠️</div>
+                            <div>
+                                <div style="font-weight: bold;">Price Analysis</div>
+                                <div style="font-size: 12px; opacity: 0.8;">15% above market avg</div>
+                            </div>
+                        </div>
+                        <div class="ai-score">
+                            <div class="score-circle">88</div>
+                            <div>
+                                <div style="font-weight: bold;">Image Quality</div>
+                                <div style="font-size: 12px; opacity: 0.8;">High quality</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review Notes -->
+                <div style="margin: 30px 0;">
+                    <h3><i class="fas fa-sticky-note"></i> Review Notes & Feedback</h3>
+                    <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; margin-top: 15px;">
+                        <ul style="margin: 0; padding-left: 20px;">
+                            <li style="margin-bottom: 10px;"><strong>Pricing Error:</strong> Adult price calculation incorrect for group discount</li>
+                            <li style="margin-bottom: 10px;"><strong>Suggestion:</strong> Verify insurance coverage documentation</li>
+                            <li><strong>Recommendation:</strong> Consider reducing price by 10-12% for competitiveness</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Approval Actions -->
+                <div class="approval-actions">
+                    <!-- Approve Section -->
+                    <div class="action-section">
+                        <h4 style="color: #27ae60; margin-bottom: 15px;">
+                            <i class="fas fa-check-circle"></i> Approve Actions
+                        </h4>
+                        
+                        <div class="action-options">
+                            <label class="radio-option">
+                                <input type="radio" name="approve_type" value="instant">
+                                <span>Instant Approve</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="approve_type" value="conditions">
+                                <span>Approve with Conditions</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="approve_type" value="feature">
+                                <span>Feature on Homepage</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="approve_type" value="meeting">
+                                <span>Schedule Review Meeting</span>
+                            </label>
+                        </div>
+
+                        <div class="action-buttons">
+                            <button class="btn-approve">
+                                <i class="fas fa-check"></i> Approve Now
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Reject Section -->
+                    <div class="action-section">
+                        <h4 style="color: #e74c3c; margin-bottom: 15px;">
+                            <i class="fas fa-times-circle"></i> Reject Actions
+                        </h4>
+                        
+                        <div class="action-options">
+                            <label class="radio-option">
+                                <input type="radio" name="reject_type" value="policy">
+                                <span>Content Policy Violation</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="reject_type" value="incomplete">
+                                <span>Incomplete Information</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="reject_type" value="pricing">
+                                <span>Pricing Issues</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="reject_type" value="verification">
+                                <span>Business Verification Needed</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="reject_type" value="images">
+                                <span>Image Quality Problems</span>
+                            </label>
+                        </div>
+
+                        <div class="action-buttons">
+                            <button class="btn-reject">
+                                <i class="fas fa-times"></i> Reject
+                            </button>
+                            <button class="btn-hold">
+                                <i class="fas fa-pause"></i> Hold for Review
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Final Notes -->
+                <div style="margin-top: 30px;">
+                    <h4><i class="fas fa-comment-alt"></i> Approval/Rejection Notes</h4>
+                    <textarea class="notes-area" placeholder="Nhập ghi chú chi tiết cho đối tác về quyết định duyệt/từ chối..."></textarea>
+                    
+                    <div style="display: flex; gap: 15px; margin-top: 20px;">
+                        <button class="btn btn-primary">
+                            <i class="fas fa-paper-plane"></i> Send to Partner
+                        </button>
+                        <button class="btn-approve">
+                            <i class="fas fa-check"></i> Approve Now
+                        </button>
+                        <button class="btn-reject">
+                            <i class="fas fa-times"></i> Reject
+                        </button>
+                        <button class="btn-hold">
+                            <i class="fas fa-pause"></i> Hold for Review
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Menu -->
+    <div id="wireframeMenu" style="position: fixed; bottom: 20px; right: 20px; background: white; padding: 20px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.2); max-height: 80vh; overflow-y: auto; z-index: 1000; transition: all 0.3s ease;">
+        <button onclick="toggleMenu()" style="position: absolute; top: 10px; right: 10px; background: #ff6b6b; color: white; border: none; border-radius: 50%; width: 25px; height: 25px; cursor: pointer; font-size: 14px;">×</button>
+        
+        <h3 style="margin: 0 0 15px 0; color: #333; font-size: 16px; border-bottom: 2px solid #eee; padding-bottom: 8px;">🗺️ Wireframe Menu</h3>
+        
+        <div style="margin-bottom: 15px;">
+            <h4 style="margin: 0 0 8px 0; color: #2196F3; font-size: 13px; font-weight: bold;">📱 User Interface</h4>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 5px; margin-bottom: 10px;">
+                <a href="01-search-integrated.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">01-Search</a>
+                <a href="02-filter-advanced.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">02-Filter</a>
+                <a href="03-tour-details.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">03-Tour</a>
+                <a href="04-booking-payment.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">04-Booking</a>
+                <a href="05-combo-details.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">05-Combo</a>
+                <a href="06-flight-details.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">06-Flight</a>
+                <a href="07-hotel-details.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">07-Hotel</a>
+                <a href="08-booking-success.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">08-Success</a>
+                <a href="09-user-orders.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">09-Orders</a>
+                <a href="10-order-details.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">10-Details</a>
+            </div>
+        </div>
+
+        <div style="margin-bottom: 15px;">
+            <h4 style="margin: 0 0 8px 0; color: #f44336; font-size: 13px; font-weight: bold;">🤝 Partner Panel</h4>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 5px; margin-bottom: 10px;">
+                <a href="11-partner-management.html" style="text-decoration: none; color: #f44336; font-size: 11px; padding: 4px 8px; border: 1px solid #f44336; border-radius: 4px; text-align: center; transition: all 0.2s;">11-Mgmt</a>
+                <a href="12-partner-analytics.html" style="text-decoration: none; color: #f44336; font-size: 11px; padding: 4px 8px; border: 1px solid #f44336; border-radius: 4px; text-align: center; transition: all 0.2s;">12-Analytics</a>
+            </div>
+        </div>
+
+        <div style="margin-bottom: 15px;">
+            <h4 style="margin: 0 0 8px 0; color: #4CAF50; font-size: 13px; font-weight: bold;">🛠️ Admin Panel</h4>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 5px; margin-bottom: 10px;">
+                <a href="13-admin-dashboard.html" style="text-decoration: none; color: #4CAF50; font-size: 11px; padding: 4px 8px; border: 1px solid #4CAF50; border-radius: 4px; text-align: center; transition: all 0.2s;">13-Dashboard</a>
+                <a href="20-admin-tour-approval.html" style="text-decoration: none; color: #4CAF50; font-size: 11px; padding: 4px 8px; border: 1px solid #4CAF50; border-radius: 4px; text-align: center; transition: all 0.2s; background: #4CAF50; color: white;">20-Approval</a>
+                <a href="21-admin-flash-sale.html" style="text-decoration: none; color: #4CAF50; font-size: 11px; padding: 4px 8px; border: 1px solid #4CAF50; border-radius: 4px; text-align: center; transition: all 0.2s;">21-FlashSale</a>
+            </div>
+        </div>
+
+        <div>
+            <h4 style="margin: 0 0 8px 0; color: #9C27B0; font-size: 13px; font-weight: bold;">⚙️ System Features</h4>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 5px;">
+                <a href="14-notification-center.html" style="text-decoration: none; color: #9C27B0; font-size: 11px; padding: 4px 8px; border: 1px solid #9C27B0; border-radius: 4px; text-align: center; transition: all 0.2s;">14-Notify</a>
+                <a href="15-help-support.html" style="text-decoration: none; color: #9C27B0; font-size: 11px; padding: 4px 8px; border: 1px solid #9C27B0; border-radius: 4px; text-align: center; transition: all 0.2s;">15-Support</a>
+                <a href="16-user-profile.html" style="text-decoration: none; color: #9C27B0; font-size: 11px; padding: 4px 8px; border: 1px solid #9C27B0; border-radius: 4px; text-align: center; transition: all 0.2s;">16-Profile</a>
+                <a href="17-reviews-ratings.html" style="text-decoration: none; color: #9C27B0; font-size: 11px; padding: 4px 8px; border: 1px solid #9C27B0; border-radius: 4px; text-align: center; transition: all 0.2s;">17-Reviews</a>
+                <a href="18-error-pages.html" style="text-decoration: none; color: #9C27B0; font-size: 11px; padding: 4px 8px; border: 1px solid #9C27B0; border-radius: 4px; text-align: center; transition: all 0.2s;">18-Errors</a>
+                <a href="19-mobile-responsive.html" style="text-decoration: none; color: #9C27B0; font-size: 11px; padding: 4px 8px; border: 1px solid #9C27B0; border-radius: 4px; text-align: center; transition: all 0.2s;">19-Mobile</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('wireframeMenu');
+            menu.style.display = menu.style.display === 'none' ? 'block' : 'none';
+        }
+
+        // Add hover effects
+        document.querySelectorAll('#wireframeMenu a').forEach(link => {
+            link.addEventListener('mouseenter', function() {
+                if (this.style.background !== 'rgb(33, 150, 243)' && this.style.background !== 'rgb(244, 67, 54)' && this.style.background !== 'rgb(76, 175, 80)' && this.style.background !== 'rgb(156, 39, 176)') {
+                    this.style.background = this.style.borderColor;
+                    this.style.color = 'white';
+                }
+            });
+            link.addEventListener('mouseleave', function() {
+                if (this.style.background !== 'rgb(33, 150, 243)' && this.style.background !== 'rgb(244, 67, 54)' && this.style.background !== 'rgb(76, 175, 80)' && this.style.background !== 'rgb(156, 39, 176)') {
+                    this.style.background = 'transparent';
+                    this.style.color = this.style.borderColor;
+                }
+            });
+        });
+
+        // Queue item click handler
+        document.querySelectorAll('.queue-item').forEach(item => {
+            item.addEventListener('click', function() {
+                document.querySelectorAll('.queue-item').forEach(i => i.classList.remove('active'));
+                this.classList.add('active');
+                // Load tour details here
+            });
+        });
+
+        // Action button handlers
+        document.querySelector('.btn-approve').addEventListener('click', function() {
+            if(confirm('Bạn có chắc chắn muốn duyệt tour này?')) {
+                alert('Tour đã được duyệt thành công!');
+                // Handle approval logic here
+            }
+        });
+
+        document.querySelector('.btn-reject').addEventListener('click', function() {
+            if(confirm('Bạn có chắc chắn muốn từ chối tour này?')) {
+                alert('Tour đã bị từ chối!');
+                // Handle rejection logic here
+            }
+        });
+
+        // Auto-save notes
+        document.querySelector('.notes-area').addEventListener('input', function() {
+            // Auto-save functionality here
+            console.log('Notes auto-saved');
+        });
+    </script>
+</body>
+</html>
