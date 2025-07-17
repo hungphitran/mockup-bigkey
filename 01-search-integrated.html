@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BigKey Travel - Tìm kiếm Tích hợp</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <i class="fas fa-compass"></i> BigKey Travel
+            </div>
+            <nav class="nav-menu">
+                <a href="01-search-integrated.html" style="background-color: rgba(255,255,255,0.2);">Tìm kiếm</a>
+                <a href="03-tour-details.html">Tours</a>
+                <a href="06-flight-details.html">Vé máy bay</a>
+                <a href="07-hotel-details.html">Khách sạn</a>
+                <a href="05-combo-details.html">Combo</a>
+            </nav>
+            <div class="auth-section">
+                <select style="padding: 5px; border-radius: 5px; border: none;">
+                    <option>🇻🇳 Tiếng Việt</option>
+                    <option>🇺🇸 English</option>
+                    <option>🇷🇺 Русский</option>
+                </select>
+                <a href="09-user-orders.html" class="btn btn-secondary">Đăng nhập</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Search Section -->
+        <section class="search-section fade-in">
+            <h1 class="search-title">
+                <i class="fas fa-search"></i> TÌM KIẾM TOÀN DIỆN
+            </h1>
+            
+            <div class="service-tabs">
+                <div class="service-tab active">
+                    <i class="fas fa-globe"></i> Tất cả
+                </div>
+                <div class="service-tab">
+                    <i class="fas fa-route"></i> Tour
+                </div>
+                <div class="service-tab">
+                    <i class="fas fa-plane"></i> Vé máy bay
+                </div>
+                <div class="service-tab">
+                    <i class="fas fa-hotel"></i> Khách sạn
+                </div>
+                <div class="service-tab">
+                    <i class="fas fa-box"></i> Combo
+                </div>
+            </div>
+
+            <form class="search-form">
+                <div class="form-group">
+                    <label>Điểm khởi hành</label>
+                    <select>
+                        <option>Hà Nội</option>
+                        <option>TP. Hồ Chí Minh</option>
+                        <option>Đà Nẵng</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Điểm đến</label>
+                    <input type="text" placeholder="Nhập điểm đến..." value="">
+                </div>
+                <div class="form-group">
+                    <label>Ngày đi</label>
+                    <input type="date" value="2025-08-20">
+                </div>
+                <div class="form-group">
+                    <label>Ngày về</label>
+                    <input type="date" value="2025-08-25">
+                </div>
+                <div class="form-group">
+                    <label>Người lớn</label>
+                    <select>
+                        <option>1</option>
+                        <option selected>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Trẻ em</label>
+                    <select>
+                        <option>0</option>
+                        <option selected>1</option>
+                        <option>2</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Em bé</label>
+                    <select>
+                        <option selected>0</option>
+                        <option>1</option>
+                        <option>2</option>
+                    </select>
+                </div>
+                <button type="submit" class="search-btn">
+                    <i class="fas fa-search"></i> TÌM KIẾM NGAY
+                </button>
+            </form>
+        </section>
+
+        <!-- Advanced Filters -->
+        <section class="filter-section fade-in" style="animation-delay: 0.2s;">
+            <h2 style="margin-bottom: 20px; color: #333;">
+                <i class="fas fa-filter"></i> BỘ LỌC NÂNG CAO
+            </h2>
+            <div class="filter-grid">
+                <div class="filter-group">
+                    <h3><i class="fas fa-money-bill"></i> Giá & Đánh giá</h3>
+                    <div style="margin-bottom: 10px;">
+                        <label>Khoảng giá (VNĐ):</label>
+                        <input type="range" min="500000" max="10000000" style="width: 100%;">
+                        <div style="display: flex; justify-content: space-between; font-size: 12px;">
+                            <span>500k</span>
+                            <span>10tr</span>
+                        </div>
+                    </div>
+                    <div>
+                        <label>Đánh giá:</label>
+                        <select style="width: 100%; padding: 8px;">
+                            <option>⭐⭐⭐⭐⭐</option>
+                            <option selected>⭐⭐⭐⭐☆ trở lên</option>
+                            <option>⭐⭐⭐☆☆ trở lên</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="filter-group">
+                    <h3><i class="fas fa-route"></i> Bộ lọc Tour</h3>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="domestic">
+                            <label for="domestic">Trong nước</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="international">
+                            <label for="international">Nước ngoài</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="luxury">
+                            <label for="luxury">Cao cấp</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="filter-group">
+                    <h3><i class="fas fa-plane"></i> Bộ lọc Vé máy bay</h3>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="vietjet">
+                            <label for="vietjet">VietJet</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="vietnam-airlines">
+                            <label for="vietnam-airlines">Vietnam Airlines</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="bamboo">
+                            <label for="bamboo">Bamboo Airways</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="filter-group">
+                    <h3><i class="fas fa-hotel"></i> Bộ lọc Khách sạn</h3>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="3star">
+                            <label for="3star">3⭐</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="4star">
+                            <label for="4star">4⭐</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="5star">
+                            <label for="5star">5⭐</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="resort">
+                            <label for="resort">Resort</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 20px;">
+                <button class="btn btn-primary" style="margin-right: 10px;">
+                    <i class="fas fa-check"></i> Áp dụng bộ lọc
+                </button>
+                <button class="btn btn-secondary">
+                    <i class="fas fa-times"></i> Xóa bộ lọc
+                </button>
+            </div>
+        </section>
+
+        <!-- Results Section -->
+        <section class="results-section fade-in" style="animation-delay: 0.4s;">
+            <h2 style="margin-bottom: 20px; color: #333;">
+                <i class="fas fa-list"></i> KẾT QUẢ TÌM KIẾM
+            </h2>
+            
+            <div class="result-tabs">
+                <div class="result-tab active">
+                    <i class="fas fa-route"></i> Tour (45)
+                </div>
+                <div class="result-tab">
+                    <i class="fas fa-plane"></i> Vé máy bay (12)
+                </div>
+                <div class="result-tab">
+                    <i class="fas fa-hotel"></i> Khách sạn (28)
+                </div>
+                <div class="result-tab">
+                    <i class="fas fa-box"></i> Combo (8)
+                </div>
+            </div>
+
+            <!-- Combo Suggestion -->
+            <div class="result-card" style="border: 3px solid #f39c12; margin-bottom: 20px;">
+                <div class="card-content">
+                    <div style="display: flex; align-items: center; margin-bottom: 15px;">
+                        <i class="fas fa-box" style="font-size: 24px; color: #f39c12; margin-right: 10px;"></i>
+                        <h3 style="color: #f39c12; margin: 0;">COMBO ĐỀ XUẤT - TIẾT KIỆM NHẤT</h3>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 100px 1fr 200px; gap: 20px; align-items: center;">
+                        <div class="card-image" style="height: 80px; border-radius: 10px;">
+                            <i class="fas fa-camera"></i>
+                        </div>
+                        <div>
+                            <h4>Combo Hạ Long: Tour 3N2Đ + Vé HAN-VDO + KS 4⭐</h4>
+                            <div style="margin: 10px 0;">
+                                <span style="color: #f39c12;">⭐⭐⭐⭐⭐</span>
+                                <span style="margin-left: 10px;">Khởi hành: 20/8/2025</span>
+                            </div>
+                        </div>
+                        <div style="text-align: right;">
+                            <div class="card-price" style="color: #f39c12;">8.500.000đ</div>
+                            <div style="color: #27ae60; font-weight: bold;">Tiết kiệm: 1.200.000đ</div>
+                            <button class="btn btn-primary" style="margin-top: 10px;" onclick="window.location.href='03A-combo-details.html'">
+                                Xem chi tiết
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tour Results -->
+            <div class="result-cards">
+                <div class="result-card">
+                    <div class="card-image">
+                        <i class="fas fa-camera"></i>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-title">
+                            <i class="fas fa-route"></i> Tour Hạ Long 3N2Đ
+                        </div>
+                        <div class="card-details">
+                            <span>⭐⭐⭐⭐☆</span> | 3 ngày 2 đêm | Khởi hành: 15/8/2025
+                        </div>
+                        <div class="card-price">3.500.000đ/người</div>
+                        <div class="card-actions">
+                            <button class="btn btn-primary" onclick="window.location.href='03-tour-details.html'">Chi tiết</button>
+                            <button class="btn btn-secondary">Thêm vào combo</button>
+                            <button class="btn btn-secondary">So sánh</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="result-card">
+                    <div class="card-image">
+                        <i class="fas fa-plane"></i>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-title">
+                            <i class="fas fa-plane"></i> HAN → SGN VietJet VJ142
+                        </div>
+                        <div class="card-details">
+                            🕐 06:30 → 08:45 | Bay thẳng
+                        </div>
+                        <div class="card-price">1.890.000đ</div>
+                        <div class="card-actions">
+                            <button class="btn btn-primary" onclick="window.location.href='03B-flight-details.html'">Chọn</button>
+                            <button class="btn btn-secondary">Chi tiết</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="result-card">
+                    <div class="card-image">
+                        <i class="fas fa-hotel"></i>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-title">
+                            <i class="fas fa-hotel"></i> Khách sạn Mường Thanh
+                        </div>
+                        <div class="card-details">
+                            ⭐⭐⭐⭐☆ | Trung tâm | Wifi miễn phí
+                        </div>
+                        <div class="card-price">1.200.000đ/đêm</div>
+                        <div class="card-actions">
+                            <button class="btn btn-primary" onclick="window.location.href='03C-hotel-details.html'">Đặt phòng</button>
+                            <button class="btn btn-secondary">Chi tiết</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Navigation Menu -->
+    <div id="wireframeMenu" style="position: fixed; bottom: 20px; right: 20px; background: white; padding: 20px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.2); max-height: 80vh; overflow-y: auto; z-index: 1000; transition: all 0.3s ease;">
+        <button onclick="toggleMenu()" style="position: absolute; top: 10px; right: 10px; background: #ff6b6b; color: white; border: none; border-radius: 50%; width: 25px; height: 25px; cursor: pointer; font-size: 14px;">×</button>
+        
+        <h3 style="margin: 0 0 15px 0; color: #333; font-size: 16px; border-bottom: 2px solid #eee; padding-bottom: 8px;">🗺️ Wireframe Menu</h3>
+        
+        <div style="margin-bottom: 15px;">
+            <h4 style="margin: 0 0 8px 0; color: #2196F3; font-size: 13px; font-weight: bold;">📱 User Interface</h4>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 5px; margin-bottom: 10px;">
+                <a href="01-search-integrated.html" style="text-decoration: none; color: white; background: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">01-Search</a>
+                <a href="02-filter-advanced.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">02-Filter</a>
+                <a href="03-tour-details.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">03-Tour</a>
+                <a href="04-booking-payment.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">04-Booking</a>
+                <a href="05-combo-details.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">05-Combo</a>
+                <a href="06-flight-details.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">06-Flight</a>
+                <a href="07-hotel-details.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">07-Hotel</a>
+                <a href="08-booking-success.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">08-Success</a>
+                <a href="09-user-orders.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">09-Orders</a>
+                <a href="10-order-details.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">10-Details</a>
+            </div>
+        </div>
+
+        <div style="margin-bottom: 15px;">
+            <h4 style="margin: 0 0 8px 0; color: #f44336; font-size: 13px; font-weight: bold;">🤝 Partner Panel</h4>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 5px; margin-bottom: 10px;">
+                <a href="11-partner-management.html" style="text-decoration: none; color: #f44336; font-size: 11px; padding: 4px 8px; border: 1px solid #f44336; border-radius: 4px; text-align: center; transition: all 0.2s;">11-Mgmt</a>
+                <a href="12-partner-analytics.html" style="text-decoration: none; color: #f44336; font-size: 11px; padding: 4px 8px; border: 1px solid #f44336; border-radius: 4px; text-align: center; transition: all 0.2s;">12-Analytics</a>
+            </div>
+        </div>
+
+        <div style="margin-bottom: 15px;">
+            <h4 style="margin: 0 0 8px 0; color: #4CAF50; font-size: 13px; font-weight: bold;">🛠️ Admin Panel</h4>
+            <div style="display: grid; grid-template-columns: 1fr; gap: 5px; margin-bottom: 10px;">
+                <a href="13-admin-dashboard.html" style="text-decoration: none; color: #4CAF50; font-size: 11px; padding: 4px 8px; border: 1px solid #4CAF50; border-radius: 4px; text-align: center; transition: all 0.2s;">13-Dashboard</a>
+            </div>
+        </div>
+
+        <div>
+            <h4 style="margin: 0 0 8px 0; color: #9C27B0; font-size: 13px; font-weight: bold;">⚙️ System Features</h4>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 5px;">
+                <a href="14-notification-center.html" style="text-decoration: none; color: #9C27B0; font-size: 11px; padding: 4px 8px; border: 1px solid #9C27B0; border-radius: 4px; text-align: center; transition: all 0.2s;">14-Notify</a>
+                <a href="15-help-support.html" style="text-decoration: none; color: #9C27B0; font-size: 11px; padding: 4px 8px; border: 1px solid #9C27B0; border-radius: 4px; text-align: center; transition: all 0.2s;">15-Support</a>
+                <a href="16-user-profile.html" style="text-decoration: none; color: #9C27B0; font-size: 11px; padding: 4px 8px; border: 1px solid #9C27B0; border-radius: 4px; text-align: center; transition: all 0.2s;">16-Profile</a>
+                <a href="17-reviews-ratings.html" style="text-decoration: none; color: #9C27B0; font-size: 11px; padding: 4px 8px; border: 1px solid #9C27B0; border-radius: 4px; text-align: center; transition: all 0.2s;">17-Reviews</a>
+                <a href="18-error-pages.html" style="text-decoration: none; color: #9C27B0; font-size: 11px; padding: 4px 8px; border: 1px solid #9C27B0; border-radius: 4px; text-align: center; transition: all 0.2s;">18-Errors</a>
+                <a href="19-mobile-responsive.html" style="text-decoration: none; color: #9C27B0; font-size: 11px; padding: 4px 8px; border: 1px solid #9C27B0; border-radius: 4px; text-align: center; transition: all 0.2s;">19-Mobile</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('wireframeMenu');
+            menu.style.display = menu.style.display === 'none' ? 'block' : 'none';
+        }
+
+        // Add hover effects
+        document.querySelectorAll('#wireframeMenu a').forEach(link => {
+            link.addEventListener('mouseenter', function() {
+                if (this.style.background !== 'rgb(33, 150, 243)' && this.style.background !== 'rgb(244, 67, 54)' && this.style.background !== 'rgb(76, 175, 80)' && this.style.background !== 'rgb(156, 39, 176)') {
+                    this.style.background = this.style.borderColor;
+                    this.style.color = 'white';
+                }
+            });
+            link.addEventListener('mouseleave', function() {
+                if (this.style.background !== 'rgb(33, 150, 243)' && this.style.background !== 'rgb(244, 67, 54)' && this.style.background !== 'rgb(76, 175, 80)' && this.style.background !== 'rgb(156, 39, 176)') {
+                    this.style.background = 'transparent';
+                    this.style.color = this.style.borderColor;
+                }
+            });
+        });
+
+        // Service tab switching
+        document.querySelectorAll('.service-tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                document.querySelectorAll('.service-tab').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        // Result tab switching
+        document.querySelectorAll('.result-tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                document.querySelectorAll('.result-tab').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        // Add fade-in animation on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        });
+
+        document.querySelectorAll('.result-card').forEach(card => {
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>

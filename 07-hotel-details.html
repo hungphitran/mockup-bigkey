@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chi tiết khách sạn - BigKey Travel</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <i class="fas fa-compass"></i> BigKey Travel
+            </div>
+            <nav class="nav-menu">
+                <a href="01-search-integrated.html">Tìm kiếm</a>
+                <a href="03-tour-details.html">Tours</a>
+                <a href="06-flight-details.html">Vé máy bay</a>
+                <a href="07-hotel-details.html" style="background-color: rgba(255,255,255,0.2);">Khách sạn</a>
+                <a href="05-combo-details.html">Combo</a>
+            </nav>
+            <div class="auth-section">
+                <select style="padding: 5px; border-radius: 5px; border: none;">
+                    <option>🇻🇳 Tiếng Việt</option>
+                    <option>🇺🇸 English</option>
+                    <option>🇷🇺 Русский</option>
+                </select>
+                <a href="09-user-orders.html" class="btn btn-primary">Đăng nhập</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Breadcrumb -->
+        <div style="margin-bottom: 20px; color: #666; font-size: 14px;">
+            <a href="01-search-integrated.html" style="color: #667eea; text-decoration: none;">Trang chủ</a> / 
+            <a href="01-search-integrated.html" style="color: #667eea; text-decoration: none;">Khách sạn</a> / 
+            Đà Nẵng / Royal Lotus Hotel Danang
+        </div>
+
+        <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 30px;">
+            <!-- Left Column - Hotel Details -->
+            <div class="fade-in">
+                <!-- Hotel Header -->
+                <div style="background: white; padding: 30px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); margin-bottom: 30px;">
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px;">
+                        <div>
+                            <h1 style="color: #333; margin: 0 0 10px 0;">
+                                🏨 Royal Lotus Hotel Danang
+                            </h1>
+                            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+                                <div style="color: #f39c12;">
+                                    ⭐⭐⭐⭐⭐
+                                </div>
+                                <span style="color: #666;">Khách sạn 5 sao</span>
+                            </div>
+                            <div style="color: #666; margin-bottom: 15px;">
+                                <i class="fas fa-map-marker-alt"></i> 120 Võ Nguyên Giáp, Đà Nẵng
+                            </div>
+                            <div style="display: flex; gap: 15px; margin-bottom: 15px;">
+                                <span style="background: #27ae60; color: white; padding: 5px 10px; border-radius: 15px; font-size: 12px;">
+                                    🏖️ Gần biển
+                                </span>
+                                <span style="background: #667eea; color: white; padding: 5px 10px; border-radius: 15px; font-size: 12px;">
+                                    🅿️ Miễn phí đỗ xe
+                                </span>
+                                <span style="background: #e74c3c; color: white; padding: 5px 10px; border-radius: 15px; font-size: 12px;">
+                                    ❤️ Yêu thích
+                                </span>
+                            </div>
+                        </div>
+                        <div style="text-align: center;">
+                            <div style="background: #27ae60; color: white; padding: 10px 15px; border-radius: 10px; margin-bottom: 10px;">
+                                <div style="font-size: 24px; font-weight: bold;">9.2</div>
+                                <div style="font-size: 12px;">Tuyệt vời</div>
+                            </div>
+                            <div style="color: #666; font-size: 14px;">1,247 đánh giá</div>
+                        </div>
+                    </div>
+
+                    <div style="display: flex; gap: 15px;">
+                        <button class="btn btn-secondary" onclick="shareHotel()">
+                            <i class="fas fa-share"></i> Chia sẻ
+                        </button>
+                        <button class="btn btn-secondary" onclick="saveHotel()">
+                            <i class="fas fa-heart"></i> Lưu
+                        </button>
+                        <button class="btn btn-primary" onclick="scrollToBooking()">
+                            <i class="fas fa-calendar"></i> Đặt phòng ngay
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Hotel Gallery -->
+                <div style="background: white; padding: 25px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); margin-bottom: 30px;">
+                    <h3 style="margin: 0 0 20px 0; color: #333;">
+                        📸 HÌNH ẢNH KHÁCH SẠN
+                    </h3>
+                    
+                    <div style="display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 15px; height: 400px;">
+                        <div style="background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://via.placeholder.com/600x400?text=Royal+Lotus+Hotel') center/cover; border-radius: 10px; position: relative; cursor: pointer;" onclick="openGallery(0)">
+                            <div style="position: absolute; bottom: 15px; left: 15px; color: white; font-weight: bold;">Sảnh chính</div>
+                        </div>
+                        <div style="display: flex; flex-direction: column; gap: 15px;">
+                            <div style="background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://via.placeholder.com/300x190?text=Pool') center/cover; border-radius: 10px; position: relative; cursor: pointer; flex: 1;" onclick="openGallery(1)">
+                                <div style="position: absolute; bottom: 10px; left: 10px; color: white; font-size: 14px;">Hồ bơi</div>
+                            </div>
+                            <div style="background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://via.placeholder.com/300x190?text=Room') center/cover; border-radius: 10px; position: relative; cursor: pointer; flex: 1;" onclick="openGallery(2)">
+                                <div style="position: absolute; bottom: 10px; left: 10px; color: white; font-size: 14px;">Phòng Suite</div>
+                            </div>
+                        </div>
+                        <div style="display: flex; flex-direction: column; gap: 15px;">
+                            <div style="background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://via.placeholder.com/300x190?text=Restaurant') center/cover; border-radius: 10px; position: relative; cursor: pointer; flex: 1;" onclick="openGallery(3)">
+                                <div style="position: absolute; bottom: 10px; left: 10px; color: white; font-size: 14px;">Nhà hàng</div>
+                            </div>
+                            <div style="background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), rgba(102, 126, 234, 0.8); border-radius: 10px; position: relative; cursor: pointer; flex: 1; display: flex; align-items: center; justify-content: center;" onclick="openGallery(4)">
+                                <div style="color: white; text-align: center;">
+                                    <div style="font-size: 20px; font-weight: bold; margin-bottom: 5px;">+25</div>
+                                    <div style="font-size: 14px;">Hình khác</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hotel Description -->
+                <div style="background: white; padding: 25px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); margin-bottom: 30px;">
+                    <h3 style="margin: 0 0 20px 0; color: #333;">
+                        📝 MÔ TẢ KHÁCH SẠN
+                    </h3>
+                    
+                    <div style="line-height: 1.8; color: #666; margin-bottom: 20px;">
+                        Royal Lotus Hotel Danang là khách sạn 5 sao cao cấp nằm ngay trung tâm thành phố Đà Nẵng, 
+                        cách bãi biển Mỹ Khê chỉ 200m. Khách sạn sở hữu kiến trúc hiện đại kết hợp với nét truyền thống Việt Nam, 
+                        mang đến không gian nghỉ dưỡng sang trọng và thoải mái.
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                        <div>
+                            <h4 style="color: #333; margin-bottom: 10px;">🏊‍♂️ Tiện ích</h4>
+                            <ul style="color: #666; line-height: 1.6; margin: 0;">
+                                <li>Hồ bơi ngoài trời tầng thượng</li>
+                                <li>Spa & Massage cao cấp</li>
+                                <li>Phòng gym 24/7</li>
+                                <li>Nhà hàng buffet quốc tế</li>
+                                <li>Bar rooftop với view biển</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 style="color: #333; margin-bottom: 10px;">🎯 Điểm nổi bật</h4>
+                            <ul style="color: #666; line-height: 1.6; margin: 0;">
+                                <li>Gần biển Mỹ Khê (200m)</li>
+                                <li>Trung tâm thành phố (500m)</li>
+                                <li>Sân bay quốc tế (8km)</li>
+                                <li>Bà Nà Hills (25km)</li>
+                                <li>Hội An cổ trấn (30km)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Room Types -->
+                <div style="background: white; padding: 25px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); margin-bottom: 30px;">
+                    <h3 style="margin: 0 0 20px 0; color: #333;">
+                        🛏️ LOẠI PHÒNG CÓ SẴN
+                    </h3>
+                    
+                    <div style="display: grid; gap: 20px;">
+                        <!-- Deluxe Room -->
+                        <div style="border: 1px solid #e0e0e0; border-radius: 10px; padding: 20px;">
+                            <div style="display: grid; grid-template-columns: 120px 1fr auto; gap: 20px; align-items: center;">
+                                <img src="https://via.placeholder.com/120x80?text=Deluxe" alt="Deluxe Room" style="border-radius: 8px; width: 100%; height: 80px; object-fit: cover;">
+                                <div>
+                                    <h4 style="margin: 0 0 10px 0; color: #333;">Deluxe City View</h4>
+                                    <div style="color: #666; font-size: 14px; margin-bottom: 10px;">
+                                        👥 2 khách • 🛏️ 1 giường đôi • 📐 28m² • 🌆 View thành phố
+                                    </div>
+                                    <div style="display: flex; gap: 10px; margin-bottom: 10px;">
+                                        <span style="background: #f8f9fa; padding: 3px 8px; border-radius: 15px; font-size: 12px;">📶 WiFi miễn phí</span>
+                                        <span style="background: #f8f9fa; padding: 3px 8px; border-radius: 15px; font-size: 12px;">❄️ Điều hòa</span>
+                                        <span style="background: #f8f9fa; padding: 3px 8px; border-radius: 15px; font-size: 12px;">🚿 Phòng tắm riêng</span>
+                                    </div>
+                                </div>
+                                <div style="text-align: right;">
+                                    <div style="font-size: 20px; font-weight: bold; color: #e74c3c; margin-bottom: 5px;">1.800.000 VNĐ</div>
+                                    <div style="color: #666; font-size: 14px; margin-bottom: 10px;">/ đêm</div>
+                                    <button class="btn btn-primary btn-sm" onclick="selectRoom('deluxe', '1800000')">Chọn phòng</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Premium Room -->
+                        <div style="border: 1px solid #e0e0e0; border-radius: 10px; padding: 20px;">
+                            <div style="display: grid; grid-template-columns: 120px 1fr auto; gap: 20px; align-items: center;">
+                                <img src="https://via.placeholder.com/120x80?text=Premium" alt="Premium Room" style="border-radius: 8px; width: 100%; height: 80px; object-fit: cover;">
+                                <div>
+                                    <h4 style="margin: 0 0 10px 0; color: #333;">Premium Ocean View</h4>
+                                    <div style="color: #666; font-size: 14px; margin-bottom: 10px;">
+                                        👥 2 khách • 🛏️ 1 giường đôi • 📐 35m² • 🌊 View biển
+                                    </div>
+                                    <div style="display: flex; gap: 10px; margin-bottom: 10px;">
+                                        <span style="background: #f8f9fa; padding: 3px 8px; border-radius: 15px; font-size: 12px;">📶 WiFi miễn phí</span>
+                                        <span style="background: #f8f9fa; padding: 3px 8px; border-radius: 15px; font-size: 12px;">🛁 Bồn tắm</span>
+                                        <span style="background: #f8f9fa; padding: 3px 8px; border-radius: 15px; font-size: 12px;">☕ Minibar</span>
+                                        <span style="background: #27ae60; color: white; padding: 3px 8px; border-radius: 15px; font-size: 12px;">🔥 Phổ biến</span>
+                                    </div>
+                                </div>
+                                <div style="text-align: right;">
+                                    <div style="font-size: 20px; font-weight: bold; color: #e74c3c; margin-bottom: 5px;">2.500.000 VNĐ</div>
+                                    <div style="color: #666; font-size: 14px; margin-bottom: 10px;">/ đêm</div>
+                                    <button class="btn btn-primary btn-sm" onclick="selectRoom('premium', '2500000')">Chọn phòng</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Suite Room -->
+                        <div style="border: 1px solid #e0e0e0; border-radius: 10px; padding: 20px;">
+                            <div style="display: grid; grid-template-columns: 120px 1fr auto; gap: 20px; align-items: center;">
+                                <img src="https://via.placeholder.com/120x80?text=Suite" alt="Suite Room" style="border-radius: 8px; width: 100%; height: 80px; object-fit: cover;">
+                                <div>
+                                    <h4 style="margin: 0 0 10px 0; color: #333;">Executive Suite</h4>
+                                    <div style="color: #666; font-size: 14px; margin-bottom: 10px;">
+                                        👥 4 khách • 🛏️ 1 giường king + sofa • 📐 65m² • 🌊 View biển panorama
+                                    </div>
+                                    <div style="display: flex; gap: 10px; margin-bottom: 10px;">
+                                        <span style="background: #f8f9fa; padding: 3px 8px; border-radius: 15px; font-size: 12px;">🍽️ Phòng khách riêng</span>
+                                        <span style="background: #f8f9fa; padding: 3px 8px; border-radius: 15px; font-size: 12px;">🥂 Welcome drink</span>
+                                        <span style="background: #f39c12; color: white; padding: 3px 8px; border-radius: 15px; font-size: 12px;">👑 Cao cấp</span>
+                                    </div>
+                                </div>
+                                <div style="text-align: right;">
+                                    <div style="font-size: 20px; font-weight: bold; color: #e74c3c; margin-bottom: 5px;">4.200.000 VNĐ</div>
+                                    <div style="color: #666; font-size: 14px; margin-bottom: 10px;">/ đêm</div>
+                                    <button class="btn btn-primary btn-sm" onclick="selectRoom('suite', '4200000')">Chọn phòng</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hotel Amenities -->
+                <div style="background: white; padding: 25px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); margin-bottom: 30px;">
+                    <h3 style="margin: 0 0 20px 0; color: #333;">
+                        🎯 TIỆN ÍCH KHÁCH SẠN
+                    </h3>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                        <div>
+                            <h4 style="color: #667eea; margin-bottom: 15px;">
+                                <i class="fas fa-swimmer"></i> Thể thao & Giải trí
+                            </h4>
+                            <ul style="color: #666; line-height: 1.8; margin: 0; list-style: none; padding: 0;">
+                                <li>✓ Hồ bơi ngoài trời</li>
+                                <li>✓ Phòng gym hiện đại</li>
+                                <li>✓ Spa & Massage</li>
+                                <li>✓ Sân tennis</li>
+                                <li>✓ Karaoke</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 style="color: #27ae60; margin-bottom: 15px;">
+                                <i class="fas fa-utensils"></i> Ẩm thực
+                            </h4>
+                            <ul style="color: #666; line-height: 1.8; margin: 0; list-style: none; padding: 0;">
+                                <li>✓ Nhà hàng buffet quốc tế</li>
+                                <li>✓ Nhà hàng Á Âu</li>
+                                <li>✓ Bar rooftop</li>
+                                <li>✓ Room service 24/7</li>
+                                <li>✓ Coffee shop</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 style="color: #f39c12; margin-bottom: 15px;">
+                                <i class="fas fa-concierge-bell"></i> Dịch vụ
+                            </h4>
+                            <ul style="color: #666; line-height: 1.8; margin: 0; list-style: none; padding: 0;">
+                                <li>✓ Lễ tân 24/7</li>
+                                <li>✓ Dịch vụ đưa đón sân bay</li>
+                                <li>✓ Giặt là & ủi</li>
+                                <li>✓ Cho thuê xe</li>
+                                <li>✓ Tour du lịch</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 style="color: #e74c3c; margin-bottom: 15px;">
+                                <i class="fas fa-business-time"></i> Doanh nghiệp
+                            </h4>
+                            <ul style="color: #666; line-height: 1.8; margin: 0; list-style: none; padding: 0;">
+                                <li>✓ Phòng họp</li>
+                                <li>✓ Trung tâm hội nghị</li>
+                                <li>✓ WiFi tốc độ cao</li>
+                                <li>✓ Dịch vụ in ấn</li>
+                                <li>✓ Business center</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Customer Reviews -->
+                <div style="background: white; padding: 25px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); margin-bottom: 30px;">
+                    <h3 style="margin: 0 0 20px 0; color: #333;">
+                        ⭐ ĐÁNH GIÁ KHÁCH HÀNG
+                    </h3>
+                    
+                    <!-- Rating Summary -->
+                    <div style="display: grid; grid-template-columns: auto 1fr; gap: 30px; margin-bottom: 30px;">
+                        <div style="text-align: center;">
+                            <div style="background: #27ae60; color: white; padding: 20px; border-radius: 15px; margin-bottom: 10px;">
+                                <div style="font-size: 32px; font-weight: bold;">9.2</div>
+                                <div style="font-size: 14px;">Tuyệt vời</div>
+                            </div>
+                            <div style="color: #666;">1,247 đánh giá</div>
+                        </div>
+                        <div>
+                            <div style="display: grid; gap: 10px;">
+                                <div style="display: flex; align-items: center; gap: 15px;">
+                                    <span style="min-width: 100px; color: #666;">Vị trí</span>
+                                    <div style="flex: 1; background: #f0f0f0; height: 8px; border-radius: 4px; overflow: hidden;">
+                                        <div style="width: 95%; height: 100%; background: #27ae60;"></div>
+                                    </div>
+                                    <span style="color: #333; font-weight: bold;">9.5</span>
+                                </div>
+                                <div style="display: flex; align-items: center; gap: 15px;">
+                                    <span style="min-width: 100px; color: #666;">Sạch sẽ</span>
+                                    <div style="flex: 1; background: #f0f0f0; height: 8px; border-radius: 4px; overflow: hidden;">
+                                        <div style="width: 92%; height: 100%; background: #27ae60;"></div>
+                                    </div>
+                                    <span style="color: #333; font-weight: bold;">9.2</span>
+                                </div>
+                                <div style="display: flex; align-items: center; gap: 15px;">
+                                    <span style="min-width: 100px; color: #666;">Dịch vụ</span>
+                                    <div style="flex: 1; background: #f0f0f0; height: 8px; border-radius: 4px; overflow: hidden;">
+                                        <div style="width: 90%; height: 100%; background: #27ae60;"></div>
+                                    </div>
+                                    <span style="color: #333; font-weight: bold;">9.0</span>
+                                </div>
+                                <div style="display: flex; align-items: center; gap: 15px;">
+                                    <span style="min-width: 100px; color: #666;">Tiện nghi</span>
+                                    <div style="flex: 1; background: #f0f0f0; height: 8px; border-radius: 4px; overflow: hidden;">
+                                        <div style="width: 88%; height: 100%; background: #f39c12;"></div>
+                                    </div>
+                                    <span style="color: #333; font-weight: bold;">8.8</span>
+                                </div>
+                                <div style="display: flex; align-items: center; gap: 15px;">
+                                    <span style="min-width: 100px; color: #666;">Giá cả</span>
+                                    <div style="flex: 1; background: #f0f0f0; height: 8px; border-radius: 4px; overflow: hidden;">
+                                        <div style="width: 85%; height: 100%; background: #f39c12;"></div>
+                                    </div>
+                                    <span style="color: #333; font-weight: bold;">8.5</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Individual Reviews -->
+                    <div style="display: grid; gap: 20px;">
+                        <div style="border-left: 4px solid #27ae60; padding-left: 15px;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                                <div>
+                                    <strong style="color: #333;">Nguyễn Minh Hoàng</strong>
+                                    <span style="color: #666; margin-left: 10px;">• Gia đình</span>
+                                </div>
+                                <div style="color: #f39c12;">⭐⭐⭐⭐⭐</div>
+                            </div>
+                            <p style="color: #666; line-height: 1.6; margin: 0;">
+                                "Khách sạn tuyệt vời! Vị trí rất thuận tiện, gần biển và trung tâm thành phố. 
+                                Phòng sạch sẽ, rộng rãi, nhân viên thân thiện. Buffet sáng đa dạng và ngon. 
+                                Chắc chắn sẽ quay lại lần sau!"
+                            </p>
+                            <div style="color: #999; font-size: 14px; margin-top: 10px;">Đã ở: 3 đêm • Tháng 7, 2024</div>
+                        </div>
+
+                        <div style="border-left: 4px solid #f39c12; padding-left: 15px;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                                <div>
+                                    <strong style="color: #333;">Sarah Johnson</strong>
+                                    <span style="color: #666; margin-left: 10px;">• Cặp đôi</span>
+                                </div>
+                                <div style="color: #f39c12;">⭐⭐⭐⭐⭐</div>
+                            </div>
+                            <p style="color: #666; line-height: 1.6; margin: 0;">
+                                "Perfect location near My Khe beach! The ocean view room was stunning, 
+                                especially at sunset. Hotel staff were very helpful with tour bookings. 
+                                The rooftop bar is a must-visit!"
+                            </p>
+                            <div style="color: #999; font-size: 14px; margin-top: 10px;">Stayed: 5 nights • August, 2024</div>
+                        </div>
+                    </div>
+
+                    <div style="text-align: center; margin-top: 20px;">
+                        <button class="btn btn-secondary" onclick="viewAllReviews()">
+                            <i class="fas fa-comments"></i> Xem tất cả đánh giá
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column - Booking Widget -->
+            <div class="fade-in" style="animation-delay: 0.2s;">
+                <!-- Booking Widget -->
+                <div id="bookingWidget" style="background: white; padding: 25px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); margin-bottom: 20px; position: sticky; top: 20px;">
+                    <h3 style="margin: 0 0 20px 0; color: #333; text-align: center;">
+                        🏨 ĐẶT PHÒNG NGAY
+                    </h3>
+                    
+                    <form onsubmit="bookHotel(event)">
+                        <div class="form-group">
+                            <label>📅 Ngày nhận phòng:</label>
+                            <input type="date" value="2025-08-20" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>📅 Ngày trả phòng:</label>
+                            <input type="date" value="2025-08-23" required>
+                        </div>
+
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                            <div class="form-group">
+                                <label>👥 Số khách:</label>
+                                <select>
+                                    <option>1 khách</option>
+                                    <option selected>2 khách</option>
+                                    <option>3 khách</option>
+                                    <option>4 khách</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>🏠 Số phòng:</label>
+                                <select>
+                                    <option selected>1 phòng</option>
+                                    <option>2 phòng</option>
+                                    <option>3 phòng</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>🛏️ Loại phòng:</label>
+                            <select id="roomTypeSelect" onchange="updatePrice()">
+                                <option value="deluxe" data-price="1800000">Deluxe City View - 1.800.000 VNĐ</option>
+                                <option value="premium" data-price="2500000" selected>Premium Ocean View - 2.500.000 VNĐ</option>
+                                <option value="suite" data-price="4200000">Executive Suite - 4.200.000 VNĐ</option>
+                            </select>
+                        </div>
+
+                        <!-- Price Summary -->
+                        <div style="background: #f8f9fa; padding: 15px; border-radius: 10px; margin: 20px 0;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                                <span>2.500.000 VNĐ x 3 đêm</span>
+                                <span id="subtotal">7.500.000 VNĐ</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                                <span>Phí dịch vụ</span>
+                                <span>375.000 VNĐ</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                                <span>Thuế</span>
+                                <span>787.500 VNĐ</span>
+                            </div>
+                            <hr style="margin: 10px 0;">
+                            <div style="display: flex; justify-content: space-between; font-weight: bold; font-size: 18px;">
+                                <span>TỔNG CỘNG</span>
+                                <span id="totalPrice" style="color: #e74c3c;">8.662.500 VNĐ</span>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary" style="width: 100%; padding: 15px; font-size: 16px; font-weight: bold;">
+                            <i class="fas fa-calendar-check"></i> ĐẶT PHÒNG NGAY
+                        </button>
+
+                        <div style="text-align: center; margin-top: 15px; font-size: 14px; color: #666;">
+                            <i class="fas fa-shield-alt"></i> Không tính phí hủy trong 24h
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Hotel Policies -->
+                <div style="background: white; padding: 20px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); margin-bottom: 20px;">
+                    <h4 style="margin: 0 0 15px 0; color: #333;">
+                        📋 CHÍNH SÁCH KHÁCH SẠN
+                    </h4>
+                    <div style="font-size: 14px; line-height: 1.6; color: #666;">
+                        <div style="margin-bottom: 10px;">
+                            <strong>⏰ Giờ nhận/trả phòng:</strong><br>
+                            Nhận: 14:00 • Trả: 12:00
+                        </div>
+                        <div style="margin-bottom: 10px;">
+                            <strong>❌ Chính sách hủy:</strong><br>
+                            Miễn phí hủy trước 24h
+                        </div>
+                        <div style="margin-bottom: 10px;">
+                            <strong>👶 Trẻ em:</strong><br>
+                            Dưới 6 tuổi miễn phí
+                        </div>
+                        <div>
+                            <strong>🚫 Quy định:</strong><br>
+                            Không hút thuốc • Không thú cưng
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Support -->
+                <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; border-radius: 15px; margin-bottom: 20px;">
+                    <h4 style="margin: 0 0 15px 0;">
+                        <i class="fas fa-box"></i> Tạo Combo tiết kiệm
+                    </h4>
+                    <div style="font-size: 14px; line-height: 1.6; margin-bottom: 15px;">
+                        Đặt khách sạn cùng với tour và vé máy bay để được giảm giá tối đa 20%!
+                    </div>
+                    <button class="btn" style="width: 100%; background: rgba(255,255,255,0.2); color: white; border: 1px solid rgba(255,255,255,0.3);" onclick="window.location.href='01-search-integrated.html'">
+                        <i class="fas fa-plus"></i> Thêm dịch vụ khác
+                    </button>
+                </div>
+
+                <!-- Contact Support -->
+                <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; border-radius: 15px;">
+                    <h4 style="margin: 0 0 15px 0;">
+                        <i class="fas fa-headset"></i> Hỗ trợ đặt phòng
+                    </h4>
+                    <div style="font-size: 14px; line-height: 1.6;">
+                        <div style="margin-bottom: 10px;">
+                            <strong>📞 Hotline:</strong> 1900.5678
+                        </div>
+                        <div style="margin-bottom: 15px;">
+                            <strong>📧 Email:</strong> hotels@bigkey.vn
+                        </div>
+                        <button class="btn" style="width: 100%; background: rgba(255,255,255,0.2); color: white; border: 1px solid rgba(255,255,255,0.3);" onclick="contactSupport()">
+                            <i class="fas fa-comments"></i> Chat ngay
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Menu -->
+    <div id="wireframeMenu" style="position: fixed; bottom: 20px; right: 20px; background: white; padding: 20px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.2); max-height: 80vh; overflow-y: auto; z-index: 1000; transition: all 0.3s ease;">
+        <button onclick="toggleMenu()" style="position: absolute; top: 10px; right: 10px; background: #ff6b6b; color: white; border: none; border-radius: 50%; width: 25px; height: 25px; cursor: pointer; font-size: 14px;">×</button>
+        
+        <h3 style="margin: 0 0 15px 0; color: #333; font-size: 16px; border-bottom: 2px solid #eee; padding-bottom: 8px;">🗺️ Wireframe Menu</h3>
+        
+        <div style="margin-bottom: 15px;">
+            <h4 style="margin: 0 0 8px 0; color: #2196F3; font-size: 13px; font-weight: bold;">📱 User Interface</h4>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 5px; margin-bottom: 10px;">
+                <a href="01-search-integrated.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">01-Search</a>
+                <a href="03-tour-details.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">03-Tour</a>
+                <a href="04-booking-payment.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">04-Booking</a>
+                <a href="05-combo-details.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">05-Combo</a>
+                <a href="06-flight-details.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">06-Flight</a>
+                <a href="07-hotel-details.html" style="text-decoration: none; color: white; background: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">07-Hotel</a>
+                <a href="08-booking-success.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">08-Success</a>
+                <a href="09-user-orders.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">09-Orders</a>
+                <a href="10-order-details.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">10-Details</a>
+            </div>
+        </div>
+
+        <div style="margin-bottom: 15px;">
+            <h4 style="margin: 0 0 8px 0; color: #f44336; font-size: 13px; font-weight: bold;">🤝 Partner Panel</h4>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 5px; margin-bottom: 10px;">
+                <a href="11-partner-management.html" style="text-decoration: none; color: #f44336; font-size: 11px; padding: 4px 8px; border: 1px solid #f44336; border-radius: 4px; text-align: center; transition: all 0.2s;">11-Mgmt</a>
+                <a href="12-partner-analytics.html" style="text-decoration: none; color: #f44336; font-size: 11px; padding: 4px 8px; border: 1px solid #f44336; border-radius: 4px; text-align: center; transition: all 0.2s;">12-Analytics</a>
+            </div>
+        </div>
+
+        <div style="margin-bottom: 15px;">
+            <h4 style="margin: 0 0 8px 0; color: #4CAF50; font-size: 13px; font-weight: bold;">🛠️ Admin Panel</h4>
+            <div style="display: grid; grid-template-columns: 1fr; gap: 5px; margin-bottom: 10px;">
+                <a href="13-admin-dashboard.html" style="text-decoration: none; color: #4CAF50; font-size: 11px; padding: 4px 8px; border: 1px solid #4CAF50; border-radius: 4px; text-align: center; transition: all 0.2s;">13-Dashboard</a>
+            </div>
+        </div>
+
+        <div>
+            <h4 style="margin: 0 0 8px 0; color: #9C27B0; font-size: 13px; font-weight: bold;">⚙️ System Features</h4>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 5px;">
+                <a href="14-notification-center.html" style="text-decoration: none; color: #9C27B0; font-size: 11px; padding: 4px 8px; border: 1px solid #9C27B0; border-radius: 4px; text-align: center; transition: all 0.2s;">14-Notify</a>
+                <a href="15-help-support.html" style="text-decoration: none; color: #9C27B0; font-size: 11px; padding: 4px 8px; border: 1px solid #9C27B0; border-radius: 4px; text-align: center; transition: all 0.2s;">15-Support</a>
+                <a href="16-user-profile.html" style="text-decoration: none; color: #9C27B0; font-size: 11px; padding: 4px 8px; border: 1px solid #9C27B0; border-radius: 4px; text-align: center; transition: all 0.2s;">16-Profile</a>
+                <a href="17-reviews-ratings.html" style="text-decoration: none; color: #9C27B0; font-size: 11px; padding: 4px 8px; border: 1px solid #9C27B0; border-radius: 4px; text-align: center; transition: all 0.2s;">17-Reviews</a>
+                <a href="18-error-pages.html" style="text-decoration: none; color: #9C27B0; font-size: 11px; padding: 4px 8px; border: 1px solid #9C27B0; border-radius: 4px; text-align: center; transition: all 0.2s;">18-Errors</a>
+                <a href="19-mobile-responsive.html" style="text-decoration: none; color: #9C27B0; font-size: 11px; padding: 4px 8px; border: 1px solid #9C27B0; border-radius: 4px; text-align: center; transition: all 0.2s;">19-Mobile</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('wireframeMenu');
+            menu.style.display = menu.style.display === 'none' ? 'block' : 'none';
+        }
+
+        // Add hover effects
+        document.querySelectorAll('#wireframeMenu a').forEach(link => {
+            link.addEventListener('mouseenter', function() {
+                if (this.style.background !== 'rgb(33, 150, 243)' && this.style.background !== 'rgb(244, 67, 54)' && this.style.background !== 'rgb(76, 175, 80)' && this.style.background !== 'rgb(156, 39, 176)') {
+                    this.style.background = this.style.borderColor;
+                    this.style.color = 'white';
+                }
+            });
+            link.addEventListener('mouseleave', function() {
+                if (this.style.background !== 'rgb(33, 150, 243)' && this.style.background !== 'rgb(244, 67, 54)' && this.style.background !== 'rgb(76, 175, 80)' && this.style.background !== 'rgb(156, 39, 176)') {
+                    this.style.background = 'transparent';
+                    this.style.color = this.style.borderColor;
+                }
+            });
+        });
+    </script>
+        function shareHotel() {
+            alert('📤 Chia sẻ khách sạn\n• Facebook\n• Zalo\n• Email\n• Copy link');
+        }
+
+        function saveHotel() {
+            alert('❤️ Đã lưu Royal Lotus Hotel vào danh sách yêu thích');
+        }
+
+        function scrollToBooking() {
+            document.getElementById('bookingWidget').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function openGallery(index) {
+            const images = [
+                'Sảnh chính khách sạn',
+                'Hồ bơi ngoài trời',
+                'Phòng Suite Executive',
+                'Nhà hàng buffet',
+                'Toàn bộ hình ảnh khách sạn'
+            ];
+            alert(`📸 Xem hình ảnh: ${images[index]}\nMở gallery với ${index === 4 ? '30+' : '1'} hình ảnh`);
+        }
+
+        function selectRoom(roomType, price) {
+            const roomNames = {
+                'deluxe': 'Deluxe City View',
+                'premium': 'Premium Ocean View',
+                'suite': 'Executive Suite'
+            };
+            
+            // Update room selection in booking widget
+            document.getElementById('roomTypeSelect').value = roomType;
+            updatePrice();
+            
+            alert(`✅ Đã chọn phòng ${roomNames[roomType]}\nGiá: ${parseInt(price).toLocaleString()} VNĐ/đêm`);
+            scrollToBooking();
+        }
+
+        function updatePrice() {
+            const select = document.getElementById('roomTypeSelect');
+            const selectedOption = select.options[select.selectedIndex];
+            const price = parseInt(selectedOption.dataset.price);
+            const nights = 3;
+            
+            const subtotal = price * nights;
+            const serviceFee = Math.round(subtotal * 0.05);
+            const tax = Math.round(subtotal * 0.105);
+            const total = subtotal + serviceFee + tax;
+            
+            document.getElementById('subtotal').textContent = subtotal.toLocaleString() + ' VNĐ';
+            document.getElementById('totalPrice').textContent = total.toLocaleString() + ' VNĐ';
+        }
+
+        function bookHotel(event) {
+            event.preventDefault();
+            alert('🎯 Chuyển đến trang đặt dịch vụ tích hợp\n✅ Thông tin khách sạn đã được lưu\n� Có thể thêm tour và vé máy bay để tạo combo');
+            window.location.href = '04-booking-payment.html';
+        }
+
+        function viewAllReviews() {
+            alert('📝 Xem tất cả 1,247 đánh giá\n• Lọc theo điểm số\n• Lọc theo loại khách\n• Sắp xếp theo thời gian');
+        }
+
+        function contactSupport() {
+            alert('💬 Kết nối với tư vấn viên...\nChào bạn! Tôi có thể hỗ trợ gì về đặt phòng khách sạn?');
+        }
+
+        // Initialize price calculation
+        updatePrice();
+
+        // Menu toggle functionality
+        document.getElementById('menuToggle').addEventListener('click', function() {
+            const content = document.getElementById('menuContent');
+            const toggle = document.getElementById('menuToggle');
+            
+            if (content.style.display === 'none') {
+                content.style.display = 'grid';
+                toggle.textContent = '−';
+            } else {
+                content.style.display = 'none';
+                toggle.textContent = '+';
+            }
+        });
+
+        // Highlight current page
+        const currentPage = window.location.pathname.split('/').pop();
+        document.querySelectorAll('#wireframeMenu a').forEach(link => {
+            if (link.getAttribute('href') === currentPage) {
+                link.style.fontWeight = 'bold';
+                link.style.background = '#e8f4fd';
+            }
+        });
+    </script>
+</body>
+</html>

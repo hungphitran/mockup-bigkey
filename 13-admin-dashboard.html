@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - BigKey Travel</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <i class="fas fa-compass"></i> BigKey Travel - Admin
+            </div>
+            <nav class="nav-menu">
+                <a href="13-admin-dashboard.html" style="background-color: rgba(255,255,255,0.2);">Dashboard</a>
+                <a href="11-partner-management.html">Quản lý Đối tác</a>
+                <a href="12-partner-analytics.html">Analytics</a>
+                <a href="01-search-integrated.html">Xem Frontend</a>
+            </nav>
+            <div class="auth-section">
+                <select style="padding: 5px; border-radius: 5px; border: none;">
+                    <option>🇻🇳 Tiếng Việt</option>
+                    <option>🇺🇸 English</option>
+                    <option>🇷🇺 Русский</option>
+                </select>
+                <div style="display: flex; align-items: center; gap: 15px;">
+                    <div style="position: relative;">
+                        <i class="fas fa-bell" style="font-size: 18px; color: white; cursor: pointer;" onclick="showNotifications()"></i>
+                        <span style="position: absolute; top: -5px; right: -5px; background: #e74c3c; color: white; border-radius: 50%; width: 18px; height: 18px; font-size: 12px; display: flex; align-items: center; justify-content: center;">5</span>
+                    </div>
+                    <a href="#" class="btn btn-primary">Admin System</a>
+                    <button class="btn btn-secondary" onclick="logout()">Đăng xuất</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Dashboard -->
+        <div class="dashboard">
+            <!-- Sidebar -->
+            <div class="sidebar fade-in">
+                <!-- Admin Profile -->
+                <div style="text-align: center; margin-bottom: 30px;">
+                    <div style="width: 80px; height: 80px; background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%); border-radius: 15px; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px auto; color: white; font-size: 24px;">
+                        <i class="fas fa-user-shield"></i>
+                    </div>
+                    <h3 style="margin: 0 0 5px 0; color: #333;">Super Admin</h3>
+                    <p style="color: #666; font-size: 14px; margin: 0;">Quyền toàn hệ thống</p>
+                    <div style="margin-top: 10px;">
+                        <span style="background: #e74c3c; color: white; padding: 4px 12px; border-radius: 15px; font-size: 12px;">
+                            🛡️ Administrator
+                        </span>
+                    </div>
+                </div>
+
+                <!-- System Health -->
+                <div style="margin-bottom: 30px;">
+                    <h4 style="margin-bottom: 15px; color: #333;">
+                        <i class="fas fa-server"></i> Tình trạng hệ thống
+                    </h4>
+                    <div style="display: grid; gap: 10px;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px; background: #d4edda; border: 1px solid #c3e6cb; border-radius: 8px;">
+                            <span style="font-size: 14px; color: #155724;">API Server</span>
+                            <span style="color: #27ae60;">🟢 Online</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px; background: #d4edda; border: 1px solid #c3e6cb; border-radius: 8px;">
+                            <span style="font-size: 14px; color: #155724;">Database</span>
+                            <span style="color: #27ae60;">🟢 Healthy</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px; background: #fff3cd; border: 1px solid #ffeaa7; border-radius: 8px;">
+                            <span style="font-size: 14px; color: #856404;">Payment Gateway</span>
+                            <span style="color: #f39c12;">🟡 Warning</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px; background: #d4edda; border: 1px solid #c3e6cb; border-radius: 8px;">
+                            <span style="font-size: 14px; color: #155724;">Email Service</span>
+                            <span style="color: #27ae60;">🟢 Active</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Admin Actions -->
+                <div style="margin-bottom: 30px;">
+                    <h4 style="margin-bottom: 15px; color: #333;">
+                        <i class="fas fa-bolt"></i> Thao tác Admin
+                    </h4>
+                    <div style="display: grid; gap: 10px;">
+                        <button class="btn btn-primary" style="width: 100%; justify-content: flex-start;" onclick="manageUsers()">
+                            <i class="fas fa-users-cog"></i> Quản lý Users
+                        </button>
+                        <button class="btn btn-secondary" style="width: 100%; justify-content: flex-start;" onclick="managePartners()">
+                            <i class="fas fa-handshake"></i> Quản lý Partners
+                        </button>
+                        <button class="btn btn-secondary" style="width: 100%; justify-content: flex-start;" onclick="systemSettings()">
+                            <i class="fas fa-cogs"></i> Cài đặt hệ thống
+                        </button>
+                        <button class="btn" style="width: 100%; justify-content: flex-start; background: #e74c3c; color: white;" onclick="emergencyMode()">
+                            <i class="fas fa-exclamation-triangle"></i> Chế độ khẩn cấp
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Recent Admin Activities -->
+                <div>
+                    <h4 style="margin-bottom: 15px; color: #333;">
+                        <i class="fas fa-history"></i> Hoạt động gần đây
+                    </h4>
+                    <div style="display: grid; gap: 10px;">
+                        <div style="padding: 10px; background: #f8f9fa; border-radius: 8px; font-size: 14px;">
+                            <div style="font-weight: bold; color: #333;">Thêm đối tác mới</div>
+                            <div style="color: #666;">TravelPro Company</div>
+                            <div style="color: #999; font-size: 12px;">30 phút trước</div>
+                        </div>
+                        <div style="padding: 10px; background: #f8f9fa; border-radius: 8px; font-size: 14px;">
+                            <div style="font-weight: bold; color: #333;">Cập nhật hệ thống</div>
+                            <div style="color: #666;">Version 2.4.1</div>
+                            <div style="color: #999; font-size: 12px;">2 giờ trước</div>
+                        </div>
+                        <div style="padding: 10px; background: #f8f9fa; border-radius: 8px; font-size: 14px;">
+                            <div style="font-weight: bold; color: #333;">Xử lý khiếu nại</div>
+                            <div style="color: #666;">Đơn #BK2025080023</div>
+                            <div style="color: #999; font-size: 12px;">4 giờ trước</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="main-content fade-in">
+                <!-- Header -->
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+                    <div>
+                        <h1 style="color: #333; margin: 0;">
+                            <i class="fas fa-tachometer-alt"></i> Admin Dashboard
+                        </h1>
+                        <p style="color: #666; margin: 5px 0 0 0;">Tổng quan và quản lý toàn hệ thống BigKey Travel</p>
+                    </div>
+                    <div style="text-align: right;">
+                        <div style="font-size: 18px; font-weight: bold; color: #e74c3c;">🛡️ Administrator</div>
+                        <div style="font-size: 14px; color: #666;">Cập nhật: 17/07/2025 10:45</div>
+                    </div>
+                </div>
+
+                <!-- System Overview Stats -->
+                <div class="stats-grid" style="margin-bottom: 30px;">
+                    <div class="stat-card" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                        <div class="stat-value">12.5B</div>
+                        <div class="stat-label">Tổng doanh thu (VNĐ)</div>
+                        <div style="font-size: 14px; opacity: 0.9; margin-top: 5px;">📈 +18% vs năm trước</div>
+                    </div>
+                    <div class="stat-card" style="background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);">
+                        <div class="stat-value">156</div>
+                        <div class="stat-label">Đối tác hoạt động</div>
+                        <div style="font-size: 14px; opacity: 0.9; margin-top: 5px;">📈 +12 đối tác mới</div>
+                    </div>
+                    <div class="stat-card" style="background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);">
+                        <div class="stat-value">24,567</div>
+                        <div class="stat-label">Người dùng</div>
+                        <div style="font-size: 14px; opacity: 0.9; margin-top: 5px;">📈 +8% vs tháng trước</div>
+                    </div>
+                    <div class="stat-card" style="background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);">
+                        <div class="stat-value">99.7%</div>
+                        <div class="stat-label">Uptime hệ thống</div>
+                        <div style="font-size: 14px; opacity: 0.9; margin-top: 5px;">🔄 8.9ms response time</div>
+                    </div>
+                </div>
+
+                <!-- Critical Alerts & Platform Analytics -->
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-bottom: 30px;">
+                    <!-- Critical Alerts -->
+                    <div style="background: white; padding: 25px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1);">
+                        <h3 style="margin: 0 0 20px 0; color: #333;">
+                            <i class="fas fa-exclamation-triangle"></i> Cảnh báo quan trọng
+                        </h3>
+                        <div style="display: grid; gap: 15px;">
+                            <div style="padding: 15px; background: #f8d7da; border: 1px solid #f5c6cb; border-radius: 10px; border-left: 4px solid #e74c3c;">
+                                <div style="font-weight: bold; color: #721c24; margin-bottom: 5px;">⚠️ Payment Gateway Issue</div>
+                                <div style="color: #721c24; font-size: 14px; margin-bottom: 10px;">Tỷ lệ thất bại thanh toán tăng 15% trong 2h qua</div>
+                                <button class="btn btn-sm" style="background: #e74c3c; color: white;" onclick="investigatePayment()">Kiểm tra</button>
+                            </div>
+                            <div style="padding: 15px; background: #fff3cd; border: 1px solid #ffeaa7; border-radius: 10px; border-left: 4px solid #f39c12;">
+                                <div style="font-weight: bold; color: #856404; margin-bottom: 5px;">🔄 High Server Load</div>
+                                <div style="color: #856404; font-size: 14px; margin-bottom: 10px;">CPU usage 85% trên server chính</div>
+                                <button class="btn btn-sm" style="background: #f39c12; color: white;" onclick="scaleServers()">Scale up</button>
+                            </div>
+                            <div style="padding: 15px; background: #d1ecf1; border: 1px solid #bee5eb; border-radius: 10px; border-left: 4px solid #17a2b8;">
+                                <div style="font-weight: bold; color: #0c5460; margin-bottom: 5px;">📊 Database Optimization</div>
+                                <div style="color: #0c5460; font-size: 14px; margin-bottom: 10px;">Slow queries tăng 20% - cần tối ưu</div>
+                                <button class="btn btn-sm" style="background: #17a2b8; color: white;" onclick="optimizeDB()">Tối ưu</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Platform Analytics -->
+                    <div style="background: white; padding: 25px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1);">
+                        <h3 style="margin: 0 0 20px 0; color: #333;">
+                            <i class="fas fa-chart-line"></i> Analytics nền tảng
+                        </h3>
+                        <canvas id="platformChart" width="400" height="180"></canvas>
+                    </div>
+                </div>
+
+                <!-- Users & Partners Management -->
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-bottom: 30px;">
+                    <!-- User Management -->
+                    <div style="background: white; padding: 25px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1);">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                            <h3 style="margin: 0; color: #333;">
+                                <i class="fas fa-users"></i> Quản lý người dùng
+                            </h3>
+                            <button class="btn btn-primary btn-sm" onclick="addNewUser()">
+                                <i class="fas fa-user-plus"></i> Thêm user
+                            </button>
+                        </div>
+                        
+                        <div style="margin-bottom: 20px;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                                <span style="color: #666;">Users hoạt động:</span>
+                                <span style="font-weight: bold; color: #27ae60;">18,234</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                                <span style="color: #666;">Users mới hôm nay:</span>
+                                <span style="font-weight: bold; color: #667eea;">67</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                                <span style="color: #666;">Users bị khóa:</span>
+                                <span style="font-weight: bold; color: #e74c3c;">23</span>
+                            </div>
+                        </div>
+
+                        <div style="background: #f8f9fa; padding: 15px; border-radius: 10px;">
+                            <h5 style="margin: 0 0 10px 0; color: #333;">🔍 Tìm kiếm nhanh</h5>
+                            <input type="text" placeholder="Email hoặc ID người dùng..." style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 5px; margin-bottom: 10px;">
+                            <div style="display: flex; gap: 5px;">
+                                <button class="btn btn-sm btn-primary">Tìm</button>
+                                <button class="btn btn-sm btn-secondary" onclick="viewAllUsers()">Xem tất cả</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Partner Management -->
+                    <div style="background: white; padding: 25px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1);">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                            <h3 style="margin: 0; color: #333;">
+                                <i class="fas fa-handshake"></i> Quản lý đối tác
+                            </h3>
+                            <button class="btn btn-primary btn-sm" onclick="addNewPartner()">
+                                <i class="fas fa-plus"></i> Thêm đối tác
+                            </button>
+                        </div>
+                        
+                        <div style="margin-bottom: 20px;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                                <span style="color: #666;">Đối tác hoạt động:</span>
+                                <span style="font-weight: bold; color: #27ae60;">156</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                                <span style="color: #666;">Chờ phê duyệt:</span>
+                                <span style="font-weight: bold; color: #f39c12;">8</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                                <span style="color: #666;">Tạm ngưng:</span>
+                                <span style="font-weight: bold; color: #e74c3c;">3</span>
+                            </div>
+                        </div>
+
+                        <div style="background: #f8f9fa; padding: 15px; border-radius: 10px;">
+                            <h5 style="margin: 0 0 10px 0; color: #333;">📝 Phê duyệt nhanh</h5>
+                            <div style="display: grid; gap: 5px;">
+                                <div style="font-size: 14px; color: #666;">TravelPro Company (Chờ duyệt)</div>
+                                <div style="display: flex; gap: 5px;">
+                                    <button class="btn btn-sm" style="background: #27ae60; color: white;" onclick="approvePartner('TravelPro')">Duyệt</button>
+                                    <button class="btn btn-sm" style="background: #e74c3c; color: white;" onclick="rejectPartner('TravelPro')">Từ chối</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- System Operations & Financial Overview -->
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-bottom: 30px;">
+                    <!-- System Operations -->
+                    <div style="background: white; padding: 25px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1);">
+                        <h3 style="margin: 0 0 20px 0; color: #333;">
+                            <i class="fas fa-cogs"></i> Vận hành hệ thống
+                        </h3>
+                        
+                        <div style="display: grid; gap: 15px;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; padding: 15px; background: #f8f9fa; border-radius: 10px;">
+                                <div>
+                                    <div style="font-weight: bold; color: #333;">Backup Database</div>
+                                    <div style="color: #666; font-size: 14px;">Lần cuối: 03:00 hôm nay</div>
+                                </div>
+                                <button class="btn btn-sm btn-primary" onclick="backupNow()">Backup ngay</button>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; align-items: center; padding: 15px; background: #f8f9fa; border-radius: 10px;">
+                                <div>
+                                    <div style="font-weight: bold; color: #333;">Maintenance Mode</div>
+                                    <div style="color: #666; font-size: 14px;">Hệ thống đang hoạt động</div>
+                                </div>
+                                <button class="btn btn-sm" style="background: #f39c12; color: white;" onclick="maintenanceMode()">Bảo trì</button>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; align-items: center; padding: 15px; background: #f8f9fa; border-radius: 10px;">
+                                <div>
+                                    <div style="font-weight: bold; color: #333;">Cache Clear</div>
+                                    <div style="color: #666; font-size: 14px;">Tăng hiệu suất hệ thống</div>
+                                </div>
+                                <button class="btn btn-sm btn-secondary" onclick="clearCache()">Clear cache</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Financial Overview -->
+                    <div style="background: white; padding: 25px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1);">
+                        <h3 style="margin: 0 0 20px 0; color: #333;">
+                            <i class="fas fa-chart-pie"></i> Tổng quan tài chính
+                        </h3>
+                        <canvas id="financialChart" width="400" height="180"></canvas>
+                    </div>
+                </div>
+
+                <!-- Recent Transactions & Logs -->
+                <div style="background: white; padding: 30px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1);">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px;">
+                        <h2 style="margin: 0; color: #333;">
+                            <i class="fas fa-list-alt"></i> SYSTEM LOGS & MONITORING
+                        </h2>
+                        <div style="display: flex; gap: 10px;">
+                            <button class="btn btn-secondary btn-sm" onclick="viewFullLogs()">
+                                <i class="fas fa-external-link-alt"></i> View Full Logs
+                            </button>
+                            <button class="btn btn-primary btn-sm" onclick="exportLogs()">
+                                <i class="fas fa-download"></i> Export
+                            </button>
+                        </div>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px;">
+                        <!-- Recent Transactions -->
+                        <div>
+                            <h4 style="margin-bottom: 15px; color: #333;">💳 Giao dịch gần đây</h4>
+                            <div style="max-height: 300px; overflow-y: auto;">
+                                <div style="padding: 12px; border: 1px solid #dee2e6; border-radius: 8px; margin-bottom: 10px;">
+                                    <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                                        <span style="font-weight: bold; color: #333;">#TXN789123456</span>
+                                        <span style="color: #27ae60; font-weight: bold;">+8.500.000 VNĐ</span>
+                                    </div>
+                                    <div style="color: #666; font-size: 14px;">
+                                        VietTravel Co. → BigKey | Combo Hạ Long
+                                    </div>
+                                    <div style="color: #999; font-size: 12px;">15:30 - 17/07/2025</div>
+                                </div>
+                                <div style="padding: 12px; border: 1px solid #dee2e6; border-radius: 8px; margin-bottom: 10px;">
+                                    <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                                        <span style="font-weight: bold; color: #333;">#TXN789123455</span>
+                                        <span style="color: #27ae60; font-weight: bold;">+6.200.000 VNĐ</span>
+                                    </div>
+                                    <div style="color: #666; font-size: 14px;">
+                                        SapaTravel → BigKey | Tour Sapa 3N2Đ
+                                    </div>
+                                    <div style="color: #999; font-size: 12px;">14:15 - 17/07/2025</div>
+                                </div>
+                                <div style="padding: 12px; border: 1px solid #dee2e6; border-radius: 8px; margin-bottom: 10px;">
+                                    <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                                        <span style="font-weight: bold; color: #333;">#TXN789123454</span>
+                                        <span style="color: #e74c3c; font-weight: bold;">-1.200.000 VNĐ</span>
+                                    </div>
+                                    <div style="color: #666; font-size: 14px;">
+                                        Refund → Nguyễn Văn A | Hủy tour
+                                    </div>
+                                    <div style="color: #999; font-size: 12px;">13:45 - 17/07/2025</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- System Logs -->
+                        <div>
+                            <h4 style="margin-bottom: 15px; color: #333;">📋 System logs</h4>
+                            <div style="max-height: 300px; overflow-y: auto; font-family: monospace; font-size: 12px;">
+                                <div style="padding: 8px; background: #f8f9fa; border-radius: 5px; margin-bottom: 8px;">
+                                    <span style="color: #27ae60;">[INFO]</span> <span style="color: #666;">10:45:23</span> - User login: admin@bigkey.vn
+                                </div>
+                                <div style="padding: 8px; background: #f8f9fa; border-radius: 5px; margin-bottom: 8px;">
+                                    <span style="color: #f39c12;">[WARN]</span> <span style="color: #666;">10:42:15</span> - High CPU usage detected: 85%
+                                </div>
+                                <div style="padding: 8px; background: #f8f9fa; border-radius: 5px; margin-bottom: 8px;">
+                                    <span style="color: #27ae60;">[INFO]</span> <span style="color: #666;">10:40:02</span> - Payment processed: TXN789123456
+                                </div>
+                                <div style="padding: 8px; background: #f8f9fa; border-radius: 5px; margin-bottom: 8px;">
+                                    <span style="color: #e74c3c;">[ERROR]</span> <span style="color: #666;">10:38:45</span> - Payment gateway timeout: Gateway_VNPay
+                                </div>
+                                <div style="padding: 8px; background: #f8f9fa; border-radius: 5px; margin-bottom: 8px;">
+                                    <span style="color: #27ae60;">[INFO]</span> <span style="color: #666;">10:35:12</span> - New partner registered: TravelPro Company
+                                </div>
+                                <div style="padding: 8px; background: #f8f9fa; border-radius: 5px; margin-bottom: 8px;">
+                                    <span style="color: #17a2b8;">[DEBUG]</span> <span style="color: #666;">10:33:47</span> - Database optimization completed
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Menu -->
+    <div id="wireframeMenu" style="position: fixed; bottom: 20px; right: 20px; background: white; padding: 20px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.2); max-height: 80vh; overflow-y: auto; z-index: 1000; transition: all 0.3s ease;">
+        <button onclick="toggleMenu()" style="position: absolute; top: 10px; right: 10px; background: #ff6b6b; color: white; border: none; border-radius: 50%; width: 25px; height: 25px; cursor: pointer; font-size: 14px;">×</button>
+        
+        <h3 style="margin: 0 0 15px 0; color: #333; font-size: 16px; border-bottom: 2px solid #eee; padding-bottom: 8px;">🗺️ Wireframe Menu</h3>
+        
+        <div style="margin-bottom: 15px;">
+            <h4 style="margin: 0 0 8px 0; color: #2196F3; font-size: 13px; font-weight: bold;">📱 User Interface</h4>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 5px; margin-bottom: 10px;">
+                <a href="01-search-integrated.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">01-Search</a>
+                <a href="02-filter-advanced.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">02-Filter</a>
+                <a href="03-tour-details.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">03-Tour</a>
+                <a href="04-booking-payment.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">04-Booking</a>
+                <a href="05-combo-details.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">05-Combo</a>
+                <a href="06-flight-details.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">06-Flight</a>
+                <a href="07-hotel-details.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">07-Hotel</a>
+                <a href="08-booking-success.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">08-Success</a>
+                <a href="09-user-orders.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">09-Orders</a>
+                <a href="10-order-details.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">10-Details</a>
+            </div>
+        </div>
+
+        <div style="margin-bottom: 15px;">
+            <h4 style="margin: 0 0 8px 0; color: #f44336; font-size: 13px; font-weight: bold;">🤝 Partner Panel</h4>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 5px; margin-bottom: 10px;">
+                <a href="11-partner-management.html" style="text-decoration: none; color: #f44336; font-size: 11px; padding: 4px 8px; border: 1px solid #f44336; border-radius: 4px; text-align: center; transition: all 0.2s;">11-Mgmt</a>
+                <a href="12-partner-analytics.html" style="text-decoration: none; color: #f44336; font-size: 11px; padding: 4px 8px; border: 1px solid #f44336; border-radius: 4px; text-align: center; transition: all 0.2s;">12-Analytics</a>
+            </div>
+        </div>
+
+        <div style="margin-bottom: 15px;">
+            <h4 style="margin: 0 0 8px 0; color: #4CAF50; font-size: 13px; font-weight: bold;">🛠️ Admin Panel</h4>
+            <div style="display: grid; grid-template-columns: 1fr; gap: 5px; margin-bottom: 10px;">
+                <a href="13-admin-dashboard.html" style="text-decoration: none; color: white; background: #4CAF50; font-size: 11px; padding: 4px 8px; border: 1px solid #4CAF50; border-radius: 4px; text-align: center; transition: all 0.2s;">13-Dashboard</a>
+            </div>
+        </div>
+
+        <div>
+            <h4 style="margin: 0 0 8px 0; color: #9C27B0; font-size: 13px; font-weight: bold;">⚙️ System Features</h4>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 5px;">
+                <a href="14-notification-center.html" style="text-decoration: none; color: #9C27B0; font-size: 11px; padding: 4px 8px; border: 1px solid #9C27B0; border-radius: 4px; text-align: center; transition: all 0.2s;">14-Notify</a>
+                <a href="15-help-support.html" style="text-decoration: none; color: #9C27B0; font-size: 11px; padding: 4px 8px; border: 1px solid #9C27B0; border-radius: 4px; text-align: center; transition: all 0.2s;">15-Support</a>
+                <a href="16-user-profile.html" style="text-decoration: none; color: #9C27B0; font-size: 11px; padding: 4px 8px; border: 1px solid #9C27B0; border-radius: 4px; text-align: center; transition: all 0.2s;">16-Profile</a>
+                <a href="17-reviews-ratings.html" style="text-decoration: none; color: #9C27B0; font-size: 11px; padding: 4px 8px; border: 1px solid #9C27B0; border-radius: 4px; text-align: center; transition: all 0.2s;">17-Reviews</a>
+                <a href="18-error-pages.html" style="text-decoration: none; color: #9C27B0; font-size: 11px; padding: 4px 8px; border: 1px solid #9C27B0; border-radius: 4px; text-align: center; transition: all 0.2s;">18-Errors</a>
+                <a href="19-mobile-responsive.html" style="text-decoration: none; color: #9C27B0; font-size: 11px; padding: 4px 8px; border: 1px solid #9C27B0; border-radius: 4px; text-align: center; transition: all 0.2s;">19-Mobile</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('wireframeMenu');
+            menu.style.display = menu.style.display === 'none' ? 'block' : 'none';
+        }
+
+        // Add hover effects
+        document.querySelectorAll('#wireframeMenu a').forEach(link => {
+            link.addEventListener('mouseenter', function() {
+                if (this.style.background !== 'rgb(33, 150, 243)' && this.style.background !== 'rgb(244, 67, 54)' && this.style.background !== 'rgb(76, 175, 80)' && this.style.background !== 'rgb(156, 39, 176)') {
+                    this.style.background = this.style.borderColor;
+                    this.style.color = 'white';
+                }
+            });
+            link.addEventListener('mouseleave', function() {
+                if (this.style.background !== 'rgb(33, 150, 243)' && this.style.background !== 'rgb(244, 67, 54)' && this.style.background !== 'rgb(76, 175, 80)' && this.style.background !== 'rgb(156, 39, 176)') {
+                    this.style.background = 'transparent';
+                    this.style.color = this.style.borderColor;
+                }
+            });
+        });
+    </script>
+
+    <script>
+        // Initialize Charts
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeAdminCharts();
+        });
+
+        function initializeAdminCharts() {
+            // Platform Analytics Chart
+            const platformCtx = document.getElementById('platformChart').getContext('2d');
+            new Chart(platformCtx, {
+                type: 'line',
+                data: {
+                    labels: ['00:00', '04:00', '08:00', '12:00', '16:00', '20:00', '24:00'],
+                    datasets: [{
+                        label: 'Active Users',
+                        data: [1200, 800, 1500, 2800, 3200, 2600, 1800],
+                        borderColor: '#667eea',
+                        backgroundColor: 'rgba(102, 126, 234, 0.1)',
+                        fill: true,
+                        tension: 0.4
+                    }, {
+                        label: 'API Requests',
+                        data: [15000, 8000, 22000, 35000, 42000, 38000, 25000],
+                        borderColor: '#27ae60',
+                        backgroundColor: 'rgba(39, 174, 96, 0.1)',
+                        fill: true,
+                        tension: 0.4,
+                        yAxisID: 'y1'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            type: 'linear',
+                            display: true,
+                            position: 'left',
+                        },
+                        y1: {
+                            type: 'linear',
+                            display: true,
+                            position: 'right',
+                            grid: {
+                                drawOnChartArea: false,
+                            },
+                        }
+                    }
+                }
+            });
+
+            // Financial Chart
+            const financialCtx = document.getElementById('financialChart').getContext('2d');
+            new Chart(financialCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Doanh thu Tours', 'Phí dịch vụ', 'Hoa hồng đối tác', 'Chi phí vận hành'],
+                    datasets: [{
+                        data: [8500, 1200, 2800, 500],
+                        backgroundColor: [
+                            '#667eea',
+                            '#27ae60',
+                            '#f39c12',
+                            '#e74c3c'
+                        ]
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom'
+                        }
+                    }
+                }
+            });
+        }
+
+        // Admin Functions
+        function showNotifications() {
+            alert('🔔 Thông báo mới:\n• 5 đối tác mới chờ phê duyệt\n• Cảnh báo tải cao trên server\n• 12 khiếu nại cần xử lý\n• Cập nhật hệ thống có sẵn\n• Báo cáo tài chính tuần đã sẵn sàng');
+        }
+
+        function investigatePayment() {
+            alert('🔍 Đang kiểm tra Payment Gateway...\n• VNPay: Timeout rate +15%\n• Momo: Normal\n• Banking: Normal\n→ Liên hệ VNPay để xử lý');
+        }
+
+        function scaleServers() {
+            if (confirm('🚀 Scale up servers?\nSẽ tự động thêm 2 instances mới.')) {
+                alert('✅ Đã khởi tạo 2 server instances mới.\nThời gian hoàn thành: ~5 phút');
+            }
+        }
+
+        function optimizeDB() {
+            if (confirm('🗄️ Tối ưu hóa database?\nQuá trình có thể mất 10-15 phút.')) {
+                alert('⚡ Đang chạy optimization...\nHệ thống sẽ thông báo khi hoàn thành.');
+            }
+        }
+
+        function manageUsers() {
+            alert('👥 Chuyển đến User Management System...');
+        }
+
+        function managePartners() {
+            alert('🤝 Chuyển đến Partner Management System...');
+        }
+
+        function systemSettings() {
+            alert('⚙️ Mở System Settings Panel...');
+        }
+
+        function emergencyMode() {
+            if (confirm('🚨 CẢNH BÁO: Kích hoạt chế độ khẩn cấp?\n• Tạm dừng tất cả giao dịch\n• Chuyển sang read-only mode\n• Thông báo maintenance cho users')) {
+                alert('🔴 EMERGENCY MODE ACTIVATED\nHệ thống đã chuyển sang chế độ bảo vệ.');
+            }
+        }
+
+        function addNewUser() {
+            alert('➕ Mở form thêm user mới...');
+        }
+
+        function viewAllUsers() {
+            alert('📋 Chuyển đến danh sách tất cả users...');
+        }
+
+        function addNewPartner() {
+            alert('➕ Mở form đăng ký đối tác mới...');
+        }
+
+        function approvePartner(name) {
+            if (confirm(`✅ Phê duyệt đối tác ${name}?`)) {
+                alert(`✅ Đã phê duyệt ${name}.\nEmail xác nhận đã được gửi.`);
+            }
+        }
+
+        function rejectPartner(name) {
+            const reason = prompt(`❌ Lý do từ chối ${name}:`);
+            if (reason) {
+                alert(`❌ Đã từ chối ${name}.\nEmail thông báo đã được gửi.`);
+            }
+        }
+
+        function backupNow() {
+            if (confirm('💾 Thực hiện backup database ngay?\nQuá trình có thể mất 5-10 phút.')) {
+                alert('⏳ Đang backup database...\nSẽ thông báo khi hoàn thành.');
+            }
+        }
+
+        function maintenanceMode() {
+            if (confirm('🔧 Chuyển sang maintenance mode?\n• Website sẽ hiển thị trang bảo trì\n• Tất cả giao dịch sẽ tạm dừng')) {
+                alert('🔧 Đã kích hoạt maintenance mode.\nNhớ tắt khi hoàn thành bảo trì.');
+            }
+        }
+
+        function clearCache() {
+            if (confirm('🗑️ Clear tất cả cache?\nCó thể làm chậm hệ thống tạm thời.')) {
+                alert('✅ Đã clear cache thành công.\nHiệu suất sẽ cải thiện sau vài phút.');
+            }
+        }
+
+        function viewFullLogs() {
+            alert('📊 Mở Log Viewer...\nHiển thị logs chi tiết từ tất cả services.');
+        }
+
+        function exportLogs() {
+            alert('📁 Đang xuất logs...\nFile .zip sẽ được tải xuống trong giây lát.');
+        }
+
+        function logout() {
+            if (confirm('🚪 Đăng xuất khỏi Admin Panel?')) {
+                alert('👋 Đã đăng xuất khỏi Admin Panel.\nChuyển về trang đăng nhập...');
+            }
+        }
+    </script>
+</body>
+</html>

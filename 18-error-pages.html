@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lỗi trang - BigKey Travel</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <i class="fas fa-compass"></i> BigKey Travel
+            </div>
+            <nav class="nav-menu">
+                <a href="01-search-integrated.html">Tìm kiếm</a>
+                <a href="03-tour-details.html">Tours</a>
+                <a href="09-user-orders.html">Đơn hàng</a>
+                <a href="16-user-profile.html">Tài khoản</a>
+            </nav>
+            <div class="auth-section">
+                <select style="padding: 5px; border-radius: 5px; border: none;">
+                    <option>🇻🇳 Tiếng Việt</option>
+                    <option>🇺🇸 English</option>
+                    <option>🇷🇺 Русский</option>
+                </select>
+                <a href="16-user-profile.html" class="btn btn-primary">Nguyễn Văn A</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Error Page Selector -->
+        <div style="text-align: center; margin: 30px 0;">
+            <h1 style="color: #333; margin-bottom: 20px;">
+                🚨 TRANG LỖI - DEMO
+            </h1>
+            <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-bottom: 40px;">
+                <button class="btn btn-primary" onclick="showError(404)">404 - Không tìm thấy</button>
+                <button class="btn btn-danger" onclick="showError(500)">500 - Lỗi server</button>
+                <button class="btn btn-warning" onclick="showError('maintenance')">Bảo trì</button>
+                <button class="btn btn-secondary" onclick="showError('network')">Lỗi mạng</button>
+                <button class="btn btn-info" onclick="showError('timeout')">Hết thời gian</button>
+                <button class="btn" style="background: #9b59b6; color: white;" onclick="showError('access')">Truy cập bị từ chối</button>
+            </div>
+        </div>
+
+        <!-- 404 Error -->
+        <div id="error404" class="error-page fade-in" style="display: none;">
+            <div style="text-align: center; max-width: 600px; margin: 50px auto; padding: 40px;">
+                <div style="font-size: 120px; color: #667eea; margin-bottom: 20px;">
+                    🔍
+                </div>
+                <h1 style="font-size: 72px; font-weight: bold; color: #667eea; margin: 0;">404</h1>
+                <h2 style="color: #333; margin: 20px 0;">Trang không tìm thấy</h2>
+                <p style="color: #666; font-size: 18px; line-height: 1.6; margin-bottom: 30px;">
+                    Xin lỗi! Trang bạn đang tìm kiếm không tồn tại hoặc đã bị di chuyển. 
+                    Có thể đường link đã bị lỗi hoặc nội dung đã được cập nhật.
+                </p>
+                
+                <div style="background: #f8f9fa; padding: 25px; border-radius: 15px; margin: 30px 0;">
+                    <h3 style="color: #333; margin-bottom: 20px;">🎯 Bạn có thể thử:</h3>
+                    <div style="display: grid; gap: 15px; text-align: left;">
+                        <div style="display: flex; align-items: center; gap: 15px;">
+                            <i class="fas fa-home" style="color: #667eea; font-size: 20px; width: 25px;"></i>
+                            <span>Quay về trang chủ để tìm nội dung mong muốn</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 15px;">
+                            <i class="fas fa-search" style="color: #27ae60; font-size: 20px; width: 25px;"></i>
+                            <span>Sử dụng tính năng tìm kiếm tours, khách sạn, vé máy bay</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 15px;">
+                            <i class="fas fa-arrow-left" style="color: #f39c12; font-size: 20px; width: 25px;"></i>
+                            <span>Quay lại trang trước đó</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 15px;">
+                            <i class="fas fa-phone" style="color: #e74c3c; font-size: 20px; width: 25px;"></i>
+                            <span>Liên hệ hotline 1900-2087 để được hỗ trợ</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+                    <a href="01-search-integrated.html" class="btn btn-primary">
+                        <i class="fas fa-home"></i> Trang chủ
+                    </a>
+                    <button class="btn btn-secondary" onclick="history.back()">
+                        <i class="fas fa-arrow-left"></i> Quay lại
+                    </button>
+                    <a href="15-help-support.html" class="btn btn-warning">
+                        <i class="fas fa-life-ring"></i> Hỗ trợ
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 500 Server Error -->
+        <div id="error500" class="error-page fade-in" style="display: none;">
+            <div style="text-align: center; max-width: 600px; margin: 50px auto; padding: 40px;">
+                <div style="font-size: 120px; color: #e74c3c; margin-bottom: 20px;">
+                    ⚠️
+                </div>
+                <h1 style="font-size: 72px; font-weight: bold; color: #e74c3c; margin: 0;">500</h1>
+                <h2 style="color: #333; margin: 20px 0;">Lỗi máy chủ nội bộ</h2>
+                <p style="color: #666; font-size: 18px; line-height: 1.6; margin-bottom: 30px;">
+                    Rất tiếc! Máy chủ đang gặp sự cố và không thể xử lý yêu cầu của bạn. 
+                    Đội ngũ kỹ thuật đã được thông báo và đang khắc phục.
+                </p>
+
+                <div style="background: #f8f9fa; padding: 25px; border-radius: 15px; margin: 30px 0;">
+                    <h3 style="color: #333; margin-bottom: 20px;">🔧 Đang khắc phục:</h3>
+                    <div style="display: grid; gap: 15px; text-align: left;">
+                        <div style="display: flex; align-items: center; gap: 15px;">
+                            <div style="width: 12px; height: 12px; background: #27ae60; border-radius: 50%; animation: pulse 2s infinite;"></div>
+                            <span>Kiểm tra hệ thống database</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 15px;">
+                            <div style="width: 12px; height: 12px; background: #f39c12; border-radius: 50%; animation: pulse 2s infinite;"></div>
+                            <span>Khôi phục dịch vụ thanh toán</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 15px;">
+                            <div style="width: 12px; height: 12px; background: #667eea; border-radius: 50%; animation: pulse 2s infinite;"></div>
+                            <span>Tối ưu hiệu suất server</span>
+                        </div>
+                    </div>
+                    
+                    <div style="background: #e8f5e8; padding: 15px; border-radius: 8px; margin-top: 20px;">
+                        <div style="color: #27ae60; font-weight: bold; margin-bottom: 5px;">
+                            ⏱️ Thời gian dự kiến hoàn tất: 15-30 phút
+                        </div>
+                        <div style="color: #666; font-size: 14px;">
+                            Cập nhật lần cuối: 14:35 - 25/08/2025
+                        </div>
+                    </div>
+                </div>
+
+                <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+                    <button class="btn btn-primary" onclick="location.reload()">
+                        <i class="fas fa-refresh"></i> Thử lại
+                    </button>
+                    <a href="15-help-support.html" class="btn btn-warning">
+                        <i class="fas fa-phone"></i> Liên hệ hỗ trợ
+                    </a>
+                    <button class="btn btn-secondary" onclick="subscribeNotification()">
+                        <i class="fas fa-bell"></i> Nhận thông báo
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Maintenance Error -->
+        <div id="errorMaintenance" class="error-page fade-in" style="display: none;">
+            <div style="text-align: center; max-width: 700px; margin: 50px auto; padding: 40px;">
+                <div style="font-size: 120px; color: #f39c12; margin-bottom: 20px;">
+                    🛠️
+                </div>
+                <h1 style="font-size: 48px; font-weight: bold; color: #f39c12; margin: 0;">ĐANG BẢO TRÌ</h1>
+                <h2 style="color: #333; margin: 20px 0;">Hệ thống tạm thời ngưng hoạt động</h2>
+                <p style="color: #666; font-size: 18px; line-height: 1.6; margin-bottom: 30px;">
+                    BigKey Travel đang tiến hành bảo trì và nâng cấp hệ thống để mang đến trải nghiệm tốt hơn. 
+                    Chúng tôi sẽ sớm trở lại với nhiều tính năng mới!
+                </p>
+
+                <!-- Countdown Timer -->
+                <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 30px; border-radius: 20px; margin: 30px 0;">
+                    <h3 style="margin: 0 0 20px 0;">⏰ Thời gian hoàn tất dự kiến:</h3>
+                    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin-bottom: 20px;">
+                        <div style="text-align: center;">
+                            <div id="hours" style="font-size: 36px; font-weight: bold;">02</div>
+                            <div style="font-size: 14px; opacity: 0.8;">Giờ</div>
+                        </div>
+                        <div style="text-align: center;">
+                            <div id="minutes" style="font-size: 36px; font-weight: bold;">45</div>
+                            <div style="font-size: 14px; opacity: 0.8;">Phút</div>
+                        </div>
+                        <div style="text-align: center;">
+                            <div id="seconds" style="font-size: 36px; font-weight: bold;">30</div>
+                            <div style="font-size: 14px; opacity: 0.8;">Giây</div>
+                        </div>
+                        <div style="text-align: center;">
+                            <div style="font-size: 36px; font-weight: bold;">✨</div>
+                            <div style="font-size: 14px; opacity: 0.8;">Sắp xong</div>
+                        </div>
+                    </div>
+                    <div style="font-size: 14px; opacity: 0.8;">
+                        Dự kiến hoàn tất: 17:30 - 25/08/2025
+                    </div>
+                </div>
+
+                <!-- What's New -->
+                <div style="background: #f8f9fa; padding: 25px; border-radius: 15px; margin: 30px 0; text-align: left;">
+                    <h3 style="color: #333; margin-bottom: 20px; text-align: center;">🚀 Tính năng mới sắp ra mắt:</h3>
+                    <div style="display: grid; gap: 15px;">
+                        <div style="display: flex; align-items: center; gap: 15px;">
+                            <i class="fas fa-robot" style="color: #667eea; font-size: 20px; width: 25px;"></i>
+                            <span>AI Chatbot hỗ trợ tư vấn 24/7</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 15px;">
+                            <i class="fas fa-mobile-alt" style="color: #27ae60; font-size: 20px; width: 25px;"></i>
+                            <span>Ứng dụng mobile mới với giao diện thân thiện</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 15px;">
+                            <i class="fas fa-map-marked-alt" style="color: #e74c3c; font-size: 20px; width: 25px;"></i>
+                            <span>Bản đồ tương tác với AR/VR</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 15px;">
+                            <i class="fas fa-gift" style="color: #f39c12; font-size: 20px; width: 25px;"></i>
+                            <span>Chương trình khuyến mãi và tích điểm mới</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact During Maintenance -->
+                <div style="background: #e8f5e8; padding: 20px; border-radius: 15px; margin: 30px 0;">
+                    <h4 style="color: #27ae60; margin-bottom: 15px;">📞 Liên hệ khẩn cấp:</h4>
+                    <div style="color: #666; line-height: 1.6;">
+                        <strong>Hotline:</strong> 1900-2087 (24/7)<br>
+                        <strong>Email:</strong> support@bigkeytravel.com<br>
+                        <strong>Zalo:</strong> @BigKeyTravel
+                    </div>
+                </div>
+
+                <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+                    <button class="btn btn-primary" onclick="subscribeNotification()">
+                        <i class="fas fa-bell"></i> Nhận thông báo
+                    </button>
+                    <a href="tel:19002087" class="btn btn-warning">
+                        <i class="fas fa-phone"></i> Gọi hotline
+                    </a>
+                    <button class="btn btn-secondary" onclick="checkStatus()">
+                        <i class="fas fa-refresh"></i> Kiểm tra tình trạng
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Network Error -->
+        <div id="errorNetwork" class="error-page fade-in" style="display: none;">
+            <div style="text-align: center; max-width: 600px; margin: 50px auto; padding: 40px;">
+                <div style="font-size: 120px; color: #95a5a6; margin-bottom: 20px;">
+                    📶
+                </div>
+                <h1 style="font-size: 48px; font-weight: bold; color: #95a5a6; margin: 0;">KHÔNG CÓ KẾT NỐI</h1>
+                <h2 style="color: #333; margin: 20px 0;">Kiểm tra kết nối mạng</h2>
+                <p style="color: #666; font-size: 18px; line-height: 1.6; margin-bottom: 30px;">
+                    Có vẻ như thiết bị của bạn đang gặp vấn đề về kết nối internet. 
+                    Vui lòng kiểm tra và thử lại.
+                </p>
+
+                <div style="background: #f8f9fa; padding: 25px; border-radius: 15px; margin: 30px 0;">
+                    <h3 style="color: #333; margin-bottom: 20px;">🔍 Các bước khắc phục:</h3>
+                    <div style="display: grid; gap: 15px; text-align: left;">
+                        <div style="display: flex; align-items: center; gap: 15px;">
+                            <i class="fas fa-wifi" style="color: #667eea; font-size: 20px; width: 25px;"></i>
+                            <span>Kiểm tra kết nối WiFi hoặc 3G/4G</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 15px;">
+                            <i class="fas fa-refresh" style="color: #27ae60; font-size: 20px; width: 25px;"></i>
+                            <span>Thử tải lại trang web</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 15px;">
+                            <i class="fas fa-router" style="color: #f39c12; font-size: 20px; width: 25px;"></i>
+                            <span>Khởi động lại modem/router</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 15px;">
+                            <i class="fas fa-phone" style="color: #e74c3c; font-size: 20px; width: 25px;"></i>
+                            <span>Liên hệ nhà cung cấp dịch vụ internet</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="background: #fff3cd; padding: 20px; border-radius: 15px; margin: 30px 0;">
+                    <h4 style="color: #856404; margin-bottom: 15px;">💡 Mẹo hữu ích:</h4>
+                    <ul style="text-align: left; color: #666; line-height: 1.6; margin: 0; padding-left: 20px;">
+                        <li>Tắt và bật lại WiFi trên thiết bị</li>
+                        <li>Thử chuyển từ WiFi sang 4G hoặc ngược lại</li>
+                        <li>Xóa cache và cookies của trình duyệt</li>
+                        <li>Tắt VPN nếu đang sử dụng</li>
+                    </ul>
+                </div>
+
+                <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+                    <button class="btn btn-primary" onclick="location.reload()">
+                        <i class="fas fa-refresh"></i> Thử lại
+                    </button>
+                    <button class="btn btn-secondary" onclick="runNetworkDiagnostic()">
+                        <i class="fas fa-stethoscope"></i> Chẩn đoán mạng
+                    </button>
+                    <a href="tel:19002087" class="btn btn-warning">
+                        <i class="fas fa-phone"></i> Hỗ trợ
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Timeout Error -->
+        <div id="errorTimeout" class="error-page fade-in" style="display: none;">
+            <div style="text-align: center; max-width: 600px; margin: 50px auto; padding: 40px;">
+                <div style="font-size: 120px; color: #e67e22; margin-bottom: 20px;">
+                    ⏱️
+                </div>
+                <h1 style="font-size: 48px; font-weight: bold; color: #e67e22; margin: 0;">HẾT THỜI GIAN</h1>
+                <h2 style="color: #333; margin: 20px 0;">Yêu cầu xử lý quá lâu</h2>
+                <p style="color: #666; font-size: 18px; line-height: 1.6; margin-bottom: 30px;">
+                    Máy chủ đang xử lý quá chậm và yêu cầu của bạn đã hết thời gian chờ. 
+                    Điều này có thể do tải cao hoặc vấn đề tạm thời.
+                </p>
+
+                <div style="background: #f8f9fa; padding: 25px; border-radius: 15px; margin: 30px 0;">
+                    <h3 style="color: #333; margin-bottom: 20px;">⚡ Thử ngay:</h3>
+                    <div style="display: grid; gap: 15px; text-align: left;">
+                        <div style="display: flex; align-items: center; gap: 15px;">
+                            <i class="fas fa-clock" style="color: #e67e22; font-size: 20px; width: 25px;"></i>
+                            <span>Đợi vài phút rồi thử lại</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 15px;">
+                            <i class="fas fa-tachometer-alt" style="color: #27ae60; font-size: 20px; width: 25px;"></i>
+                            <span>Giảm tải bằng cách đơn giản hóa tìm kiếm</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 15px;">
+                            <i class="fas fa-save" style="color: #667eea; font-size: 20px; width: 25px;"></i>
+                            <span>Lưu lại thông tin đã nhập trước khi thử lại</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="background: #e8f5e8; padding: 20px; border-radius: 15px; margin: 30px 0;">
+                    <div style="color: #27ae60; font-weight: bold; margin-bottom: 10px;">
+                        🚀 Hiệu suất hệ thống hiện tại:
+                    </div>
+                    <div style="display: grid; gap: 10px;">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <span style="color: #666;">Tìm kiếm tours:</span>
+                            <div style="display: flex; align-items: center; gap: 10px;">
+                                <div style="width: 100px; height: 6px; background: #f0f0f0; border-radius: 3px; overflow: hidden;">
+                                    <div style="width: 75%; height: 100%; background: #27ae60;"></div>
+                                </div>
+                                <span style="color: #27ae60; font-size: 14px;">Bình thường</span>
+                            </div>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <span style="color: #666;">Thanh toán:</span>
+                            <div style="display: flex; align-items: center; gap: 10px;">
+                                <div style="width: 100px; height: 6px; background: #f0f0f0; border-radius: 3px; overflow: hidden;">
+                                    <div style="width: 45%; height: 100%; background: #f39c12;"></div>
+                                </div>
+                                <span style="color: #f39c12; font-size: 14px;">Chậm</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+                    <button class="btn btn-primary" onclick="location.reload()">
+                        <i class="fas fa-refresh"></i> Thử lại
+                    </button>
+                    <button class="btn btn-secondary" onclick="goToLightVersion()">
+                        <i class="fas fa-feather"></i> Phiên bản nhẹ
+                    </button>
+                    <a href="15-help-support.html" class="btn btn-warning">
+                        <i class="fas fa-life-ring"></i> Hỗ trợ
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Access Denied Error -->
+        <div id="errorAccess" class="error-page fade-in" style="display: none;">
+            <div style="text-align: center; max-width: 600px; margin: 50px auto; padding: 40px;">
+                <div style="font-size: 120px; color: #9b59b6; margin-bottom: 20px;">
+                    🔒
+                </div>
+                <h1 style="font-size: 48px; font-weight: bold; color: #9b59b6; margin: 0;">TRUY CẬP BỊ TỪ CHỐI</h1>
+                <h2 style="color: #333; margin: 20px 0;">Bạn không có quyền truy cập</h2>
+                <p style="color: #666; font-size: 18px; line-height: 1.6; margin-bottom: 30px;">
+                    Trang này yêu cầu quyền truy cập đặc biệt hoặc bạn cần đăng nhập 
+                    với tài khoản có đủ thẩm quyền.
+                </p>
+
+                <div style="background: #f8f9fa; padding: 25px; border-radius: 15px; margin: 30px 0;">
+                    <h3 style="color: #333; margin-bottom: 20px;">🔐 Có thể bạn cần:</h3>
+                    <div style="display: grid; gap: 15px; text-align: left;">
+                        <div style="display: flex; align-items: center; gap: 15px;">
+                            <i class="fas fa-sign-in-alt" style="color: #9b59b6; font-size: 20px; width: 25px;"></i>
+                            <span>Đăng nhập với tài khoản phù hợp</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 15px;">
+                            <i class="fas fa-user-shield" style="color: #e74c3c; font-size: 20px; width: 25px;"></i>
+                            <span>Nâng cấp quyền truy cập tài khoản</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 15px;">
+                            <i class="fas fa-crown" style="color: #f39c12; font-size: 20px; width: 25px;"></i>
+                            <span>Đăng ký thành viên VIP</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 15px;">
+                            <i class="fas fa-headset" style="color: #27ae60; font-size: 20px; width: 25px;"></i>
+                            <span>Liên hệ admin để được cấp quyền</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Login Options -->
+                <div style="background: #e8f4fd; padding: 20px; border-radius: 15px; margin: 30px 0;">
+                    <h4 style="color: #1976d2; margin-bottom: 15px;">👤 Đăng nhập nhanh:</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+                        <button class="btn" style="background: #1877f2; color: white; width: 100%;" onclick="loginFacebook()">
+                            <i class="fab fa-facebook-f"></i> Facebook
+                        </button>
+                        <button class="btn" style="background: #db4437; color: white; width: 100%;" onclick="loginGoogle()">
+                            <i class="fab fa-google"></i> Google
+                        </button>
+                    </div>
+                </div>
+
+                <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+                    <a href="login.html" class="btn btn-primary">
+                        <i class="fas fa-sign-in-alt"></i> Đăng nhập
+                    </a>
+                    <a href="register.html" class="btn btn-success">
+                        <i class="fas fa-user-plus"></i> Đăng ký
+                    </a>
+                    <a href="01-search-integrated.html" class="btn btn-secondary">
+                        <i class="fas fa-home"></i> Trang chủ
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Menu -->
+    <div id="wireframeMenu" style="position: fixed; bottom: 20px; right: 20px; background: white; padding: 20px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.2); max-height: 80vh; overflow-y: auto; z-index: 1000; transition: all 0.3s ease;">
+        <button onclick="toggleMenu()" style="position: absolute; top: 10px; right: 10px; background: #ff6b6b; color: white; border: none; border-radius: 50%; width: 25px; height: 25px; cursor: pointer; font-size: 14px;">×</button>
+        
+        <h3 style="margin: 0 0 15px 0; color: #333; font-size: 16px; border-bottom: 2px solid #eee; padding-bottom: 8px;">🗺️ Wireframe Menu</h3>
+        
+        <div style="margin-bottom: 15px;">
+            <h4 style="margin: 0 0 8px 0; color: #2196F3; font-size: 13px; font-weight: bold;">📱 User Interface</h4>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 5px; margin-bottom: 10px;">
+                <a href="01-search-integrated.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">01-Search</a>
+                <a href="02-filter-advanced.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">02-Filter</a>
+                <a href="03-tour-details.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">03-Tour</a>
+                <a href="04-booking-payment.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">04-Booking</a>
+                <a href="05-combo-details.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">05-Combo</a>
+                <a href="06-flight-details.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">06-Flight</a>
+                <a href="07-hotel-details.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">07-Hotel</a>
+                <a href="08-booking-success.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">08-Success</a>
+                <a href="09-user-orders.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">09-Orders</a>
+                <a href="10-order-details.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">10-Details</a>
+            </div>
+        </div>
+
+        <div style="margin-bottom: 15px;">
+            <h4 style="margin: 0 0 8px 0; color: #f44336; font-size: 13px; font-weight: bold;">🤝 Partner Panel</h4>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 5px; margin-bottom: 10px;">
+                <a href="11-partner-management.html" style="text-decoration: none; color: #f44336; font-size: 11px; padding: 4px 8px; border: 1px solid #f44336; border-radius: 4px; text-align: center; transition: all 0.2s;">11-Mgmt</a>
+                <a href="12-partner-analytics.html" style="text-decoration: none; color: #f44336; font-size: 11px; padding: 4px 8px; border: 1px solid #f44336; border-radius: 4px; text-align: center; transition: all 0.2s;">12-Analytics</a>
+            </div>
+        </div>
+
+        <div style="margin-bottom: 15px;">
+            <h4 style="margin: 0 0 8px 0; color: #4CAF50; font-size: 13px; font-weight: bold;">🛠️ Admin Panel</h4>
+            <div style="display: grid; grid-template-columns: 1fr; gap: 5px; margin-bottom: 10px;">
+                <a href="13-admin-dashboard.html" style="text-decoration: none; color: #4CAF50; font-size: 11px; padding: 4px 8px; border: 1px solid #4CAF50; border-radius: 4px; text-align: center; transition: all 0.2s;">13-Dashboard</a>
+            </div>
+        </div>
+
+        <div>
+            <h4 style="margin: 0 0 8px 0; color: #9C27B0; font-size: 13px; font-weight: bold;">⚙️ System Features</h4>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 5px;">
+                <a href="14-notification-center.html" style="text-decoration: none; color: #9C27B0; font-size: 11px; padding: 4px 8px; border: 1px solid #9C27B0; border-radius: 4px; text-align: center; transition: all 0.2s;">14-Notify</a>
+                <a href="15-help-support.html" style="text-decoration: none; color: #9C27B0; font-size: 11px; padding: 4px 8px; border: 1px solid #9C27B0; border-radius: 4px; text-align: center; transition: all 0.2s;">15-Support</a>
+                <a href="16-user-profile.html" style="text-decoration: none; color: #9C27B0; font-size: 11px; padding: 4px 8px; border: 1px solid #9C27B0; border-radius: 4px; text-align: center; transition: all 0.2s;">16-Profile</a>
+                <a href="17-reviews-ratings.html" style="text-decoration: none; color: #9C27B0; font-size: 11px; padding: 4px 8px; border: 1px solid #9C27B0; border-radius: 4px; text-align: center; transition: all 0.2s;">17-Reviews</a>
+                <a href="18-error-pages.html" style="text-decoration: none; color: white; background: #9C27B0; font-size: 11px; padding: 4px 8px; border: 1px solid #9C27B0; border-radius: 4px; text-align: center; transition: all 0.2s;">18-Errors</a>
+                <a href="19-mobile-responsive.html" style="text-decoration: none; color: #9C27B0; font-size: 11px; padding: 4px 8px; border: 1px solid #9C27B0; border-radius: 4px; text-align: center; transition: all 0.2s;">19-Mobile</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('wireframeMenu');
+            menu.style.display = menu.style.display === 'none' ? 'block' : 'none';
+        }
+
+        // Add hover effects
+        document.querySelectorAll('#wireframeMenu a').forEach(link => {
+            link.addEventListener('mouseenter', function() {
+                if (this.style.background !== 'rgb(33, 150, 243)' && this.style.background !== 'rgb(244, 67, 54)' && this.style.background !== 'rgb(76, 175, 80)' && this.style.background !== 'rgb(156, 39, 176)') {
+                    this.style.background = this.style.borderColor;
+                    this.style.color = 'white';
+                }
+            });
+            link.addEventListener('mouseleave', function() {
+                if (this.style.background !== 'rgb(33, 150, 243)' && this.style.background !== 'rgb(244, 67, 54)' && this.style.background !== 'rgb(76, 175, 80)' && this.style.background !== 'rgb(156, 39, 176)') {
+                    this.style.background = 'transparent';
+                    this.style.color = this.style.borderColor;
+                }
+            });
+        });
+    </script>
+
+    <script>
+        // Show specific error page
+        function showError(errorType) {
+            // Hide all error pages
+            document.querySelectorAll('.error-page').forEach(page => {
+                page.style.display = 'none';
+            });
+            
+            // Show selected error page
+            const errorId = `error${errorType.charAt(0).toUpperCase() + errorType.slice(1)}`;
+            const errorPage = document.getElementById(errorId);
+            if (errorPage) {
+                errorPage.style.display = 'block';
+                errorPage.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        // Countdown timer for maintenance
+        function startCountdown() {
+            let hours = 2;
+            let minutes = 45;
+            let seconds = 30;
+            
+            setInterval(() => {
+                seconds--;
+                if (seconds < 0) {
+                    seconds = 59;
+                    minutes--;
+                    if (minutes < 0) {
+                        minutes = 59;
+                        hours--;
+                        if (hours < 0) {
+                            hours = 0;
+                            minutes = 0;
+                            seconds = 0;
+                        }
+                    }
+                }
+                
+                document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+                document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+                document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+            }, 1000);
+        }
+
+        // Notification subscription
+        function subscribeNotification() {
+            alert('🔔 Đăng ký nhận thông báo thành công!\n\n✅ Bạn sẽ nhận được thông báo khi:\n• Hệ thống hoạt động trở lại\n• Có cập nhật về tình trạng bảo trì\n• Các tính năng mới được ra mắt\n\n📧 Thông báo sẽ được gửi qua email và SMS');
+        }
+
+        // Check system status
+        function checkStatus() {
+            alert('📊 TÌNH TRẠNG HỆ THỐNG:\n\n🟢 Website: Đang bảo trì\n🟡 Mobile App: Hoạt động bình thường\n🟢 Hotline: Hoạt động 24/7\n🟡 Chat support: Giới hạn\n\n⏱️ Cập nhật: 14:35 - 25/08/2025');
+        }
+
+        // Network diagnostic
+        function runNetworkDiagnostic() {
+            alert('🔍 CHẨN ĐOÁN MẠNG:\n\n📡 Tốc độ kết nối: Đang kiểm tra...\n🌐 DNS: Đang kiểm tra...\n📶 Ping: Đang kiểm tra...\n\n⏳ Vui lòng đợi 10-15 giây...');
+            
+            setTimeout(() => {
+                alert('📋 KẾT QUẢ CHẨN ĐOÁN:\n\n✅ Kết nối internet: Tốt\n⚠️ DNS: Chậm (khuyến nghị đổi DNS)\n✅ Ping: 45ms (Tốt)\n🔧 Đề xuất: Đổi DNS sang 8.8.8.8');
+            }, 3000);
+        }
+
+        // Light version redirect
+        function goToLightVersion() {
+            alert('🪶 Chuyển sang phiên bản nhẹ:\n\n• Giao diện đơn giản hơn\n• Tải nhanh hơn\n• Ít tính năng hơn\n• Phù hợp với mạng chậm\n\n🚀 Đang chuyển hướng...');
+        }
+
+        // Social login functions
+        function loginFacebook() {
+            alert('📘 Đăng nhập Facebook:\n\n🔐 Chuyển hướng đến Facebook...\n✅ Xác thực an toàn\n🔄 Tự động đăng nhập');
+        }
+
+        function loginGoogle() {
+            alert('🔍 Đăng nhập Google:\n\n🔐 Chuyển hướng đến Google...\n✅ Xác thực 2 bước\n🔄 Đồng bộ tài khoản');
+        }
+
+        // Start countdown on page load
+        window.onload = function() {
+            startCountdown();
+            
+            // Show 404 by default
+            showError(404);
+        };
+
+        // Pulse animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes pulse {
+                0% { opacity: 1; }
+                50% { opacity: 0.5; }
+                100% { opacity: 1; }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>

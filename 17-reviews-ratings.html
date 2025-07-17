@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đánh giá & Nhận xét - BigKey Travel</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <i class="fas fa-compass"></i> BigKey Travel
+            </div>
+            <nav class="nav-menu">
+                <a href="01-search-integrated.html">Tìm kiếm</a>
+                <a href="03-tour-details.html">Tours</a>
+                <a href="09-user-orders.html">Đơn hàng</a>
+                <a href="17-reviews-ratings.html" class="active">Đánh giá</a>
+            </nav>
+            <div class="auth-section">
+                <select style="padding: 5px; border-radius: 5px; border: none;">
+                    <option>🇻🇳 Tiếng Việt</option>
+                    <option>🇺🇸 English</option>
+                    <option>🇷🇺 Русский</option>
+                </select>
+                <a href="16-user-profile.html" class="btn btn-primary">Nguyễn Văn A</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Page Header -->
+        <div style="text-align: center; margin: 30px 0;">
+            <h1 style="color: #333; margin-bottom: 10px;">
+                ⭐ ĐÁNH GIÁ & NHẬN XÉT
+            </h1>
+            <p style="color: #666; font-size: 16px;">
+                Chia sẻ trải nghiệm và xem đánh giá từ cộng đồng du lịch
+            </p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 30px;">
+            <!-- Left Column - Reviews Content -->
+            <div class="fade-in">
+                <!-- My Reviews Summary -->
+                <div style="background: white; padding: 25px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); margin-bottom: 30px;">
+                    <h3 style="margin: 0 0 20px 0; color: #333;">
+                        👤 ĐÁNH GIÁ CỦA TÔI
+                    </h3>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-bottom: 25px;">
+                        <div style="text-align: center; padding: 15px; background: #f8f9fa; border-radius: 10px;">
+                            <div style="font-size: 24px; font-weight: bold; color: #27ae60;">8</div>
+                            <div style="color: #666; font-size: 14px;">Đánh giá đã viết</div>
+                        </div>
+                        <div style="text-align: center; padding: 15px; background: #f8f9fa; border-radius: 10px;">
+                            <div style="font-size: 24px; font-weight: bold; color: #f39c12;">4.6⭐</div>
+                            <div style="color: #666; font-size: 14px;">Điểm trung bình</div>
+                        </div>
+                        <div style="text-align: center; padding: 15px; background: #f8f9fa; border-radius: 10px;">
+                            <div style="font-size: 24px; font-weight: bold; color: #667eea;">127</div>
+                            <div style="color: #666; font-size: 14px;">Lượt thích</div>
+                        </div>
+                        <div style="text-align: center; padding: 15px; background: #f8f9fa; border-radius: 10px;">
+                            <div style="font-size: 24px; font-weight: bold; color: #e74c3c;">3</div>
+                            <div style="color: #666; font-size: 14px;">Chờ đánh giá</div>
+                        </div>
+                    </div>
+
+                    <!-- Pending Reviews -->
+                    <div style="background: #fff3cd; border: 1px solid #ffeaa7; border-radius: 10px; padding: 15px; margin-bottom: 20px;">
+                        <h4 style="margin: 0 0 15px 0; color: #856404;">
+                            ⏰ TOURS CHỜ ĐÁNH GIÁ (3)
+                        </h4>
+                        <div style="display: grid; gap: 10px;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px; background: white; border-radius: 5px;">
+                                <div>
+                                    <div style="font-weight: bold;">Tour Hạ Long Premium 4N3Đ</div>
+                                    <div style="color: #666; font-size: 14px;">Hoàn thành: 22/08/2025</div>
+                                </div>
+                                <button class="btn btn-warning btn-sm" onclick="writeReview('BK2025080001')">Viết đánh giá</button>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px; background: white; border-radius: 5px;">
+                                <div>
+                                    <div style="font-weight: bold;">Tour Sapa 3N2Đ</div>
+                                    <div style="color: #666; font-size: 14px;">Hoàn thành: 15/07/2025</div>
+                                </div>
+                                <button class="btn btn-warning btn-sm" onclick="writeReview('BK2025070015')">Viết đánh giá</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary" onclick="showMyReviews()">
+                        <i class="fas fa-list"></i> Xem tất cả đánh giá của tôi
+                    </button>
+                </div>
+
+                <!-- Write New Review -->
+                <div id="writeReviewSection" style="background: white; padding: 25px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); margin-bottom: 30px; display: none;">
+                    <h3 style="margin: 0 0 20px 0; color: #333;">
+                        ✍️ VIẾT ĐÁNH GIÁ MỚI
+                    </h3>
+                    
+                    <form onsubmit="submitReview(event)">
+                        <div style="border: 1px solid #e0e0e0; border-radius: 10px; padding: 20px; margin-bottom: 20px; background: #f8f9fa;">
+                            <h4 style="margin: 0 0 15px 0;">Tour: Hạ Long Premium 4N3Đ</h4>
+                            <div style="color: #666; margin-bottom: 10px;">Mã booking: #BK2025080001</div>
+                            <div style="color: #666;">Thời gian: 20/08/2025 - 22/08/2025</div>
+                        </div>
+
+                        <!-- Overall Rating -->
+                        <div style="margin-bottom: 25px;">
+                            <label style="font-weight: bold; color: #333; margin-bottom: 10px; display: block;">
+                                Đánh giá tổng thể:
+                            </label>
+                            <div id="overallRating" style="display: flex; gap: 5px; margin-bottom: 10px;">
+                                <i class="fas fa-star rating-star" data-rating="1" onclick="setRating('overall', 1)"></i>
+                                <i class="fas fa-star rating-star" data-rating="2" onclick="setRating('overall', 2)"></i>
+                                <i class="fas fa-star rating-star" data-rating="3" onclick="setRating('overall', 3)"></i>
+                                <i class="fas fa-star rating-star" data-rating="4" onclick="setRating('overall', 4)"></i>
+                                <i class="fas fa-star rating-star" data-rating="5" onclick="setRating('overall', 5)"></i>
+                            </div>
+                            <div id="overallText" style="color: #666; font-size: 14px;">Click vào sao để đánh giá</div>
+                        </div>
+
+                        <!-- Detailed Ratings -->
+                        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-bottom: 25px;">
+                            <div>
+                                <label style="font-weight: bold; color: #333; margin-bottom: 10px; display: block;">
+                                    Chất lượng tour:
+                                </label>
+                                <div id="qualityRating" style="display: flex; gap: 5px;">
+                                    <i class="fas fa-star rating-star" data-rating="1" onclick="setRating('quality', 1)"></i>
+                                    <i class="fas fa-star rating-star" data-rating="2" onclick="setRating('quality', 2)"></i>
+                                    <i class="fas fa-star rating-star" data-rating="3" onclick="setRating('quality', 3)"></i>
+                                    <i class="fas fa-star rating-star" data-rating="4" onclick="setRating('quality', 4)"></i>
+                                    <i class="fas fa-star rating-star" data-rating="5" onclick="setRating('quality', 5)"></i>
+                                </div>
+                            </div>
+                            <div>
+                                <label style="font-weight: bold; color: #333; margin-bottom: 10px; display: block;">
+                                    Hướng dẫn viên:
+                                </label>
+                                <div id="guideRating" style="display: flex; gap: 5px;">
+                                    <i class="fas fa-star rating-star" data-rating="1" onclick="setRating('guide', 1)"></i>
+                                    <i class="fas fa-star rating-star" data-rating="2" onclick="setRating('guide', 2)"></i>
+                                    <i class="fas fa-star rating-star" data-rating="3" onclick="setRating('guide', 3)"></i>
+                                    <i class="fas fa-star rating-star" data-rating="4" onclick="setRating('guide', 4)"></i>
+                                    <i class="fas fa-star rating-star" data-rating="5" onclick="setRating('guide', 5)"></i>
+                                </div>
+                            </div>
+                            <div>
+                                <label style="font-weight: bold; color: #333; margin-bottom: 10px; display: block;">
+                                    Khách sạn:
+                                </label>
+                                <div id="hotelRating" style="display: flex; gap: 5px;">
+                                    <i class="fas fa-star rating-star" data-rating="1" onclick="setRating('hotel', 1)"></i>
+                                    <i class="fas fa-star rating-star" data-rating="2" onclick="setRating('hotel', 2)"></i>
+                                    <i class="fas fa-star rating-star" data-rating="3" onclick="setRating('hotel', 3)"></i>
+                                    <i class="fas fa-star rating-star" data-rating="4" onclick="setRating('hotel', 4)"></i>
+                                    <i class="fas fa-star rating-star" data-rating="5" onclick="setRating('hotel', 5)"></i>
+                                </div>
+                            </div>
+                            <div>
+                                <label style="font-weight: bold; color: #333; margin-bottom: 10px; display: block;">
+                                    Phương tiện:
+                                </label>
+                                <div id="transportRating" style="display: flex; gap: 5px;">
+                                    <i class="fas fa-star rating-star" data-rating="1" onclick="setRating('transport', 1)"></i>
+                                    <i class="fas fa-star rating-star" data-rating="2" onclick="setRating('transport', 2)"></i>
+                                    <i class="fas fa-star rating-star" data-rating="3" onclick="setRating('transport', 3)"></i>
+                                    <i class="fas fa-star rating-star" data-rating="4" onclick="setRating('transport', 4)"></i>
+                                    <i class="fas fa-star rating-star" data-rating="5" onclick="setRating('transport', 5)"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Review Title -->
+                        <div class="form-group">
+                            <label>Tiêu đề đánh giá:</label>
+                            <input type="text" placeholder="VD: Tour tuyệt vời, đáng nhớ!" required>
+                        </div>
+
+                        <!-- Review Content -->
+                        <div class="form-group">
+                            <label>Nội dung đánh giá:</label>
+                            <textarea rows="6" placeholder="Chia sẻ trải nghiệm chi tiết của bạn về tour này..." required></textarea>
+                        </div>
+
+                        <!-- Upload Photos -->
+                        <div class="form-group">
+                            <label>Upload hình ảnh (tùy chọn):</label>
+                            <input type="file" multiple accept="image/*" onchange="previewImages(this)">
+                            <small style="color: #666;">Tối đa 10 hình, mỗi hình không quá 5MB</small>
+                            <div id="imagePreview" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 10px; margin-top: 10px;"></div>
+                        </div>
+
+                        <!-- Recommend -->
+                        <div style="margin-bottom: 20px;">
+                            <label style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
+                                <input type="checkbox" checked>
+                                <span style="font-weight: bold;">Tôi sẽ giới thiệu tour này cho bạn bè</span>
+                            </label>
+                        </div>
+
+                        <div style="display: flex; gap: 15px;">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-star"></i> Gửi đánh giá
+                            </button>
+                            <button type="button" class="btn btn-secondary" onclick="cancelReview()">
+                                Hủy bỏ
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Recent Reviews -->
+                <div style="background: white; padding: 25px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); margin-bottom: 30px;">
+                    <h3 style="margin: 0 0 20px 0; color: #333;">
+                        🌟 ĐÁNH GIÁ MỚI NHẤT
+                    </h3>
+                    
+                    <!-- Filter Options -->
+                    <div style="display: flex; gap: 15px; margin-bottom: 25px; flex-wrap: wrap;">
+                        <select style="padding: 8px 12px; border: 1px solid #e0e0e0; border-radius: 5px;">
+                            <option>Tất cả tours</option>
+                            <option>Tours miền Bắc</option>
+                            <option>Tours miền Trung</option>
+                            <option>Tours miền Nam</option>
+                        </select>
+                        <select style="padding: 8px 12px; border: 1px solid #e0e0e0; border-radius: 5px;">
+                            <option>Tất cả đánh giá</option>
+                            <option>5 sao</option>
+                            <option>4 sao</option>
+                            <option>3 sao</option>
+                            <option>1-2 sao</option>
+                        </select>
+                        <select style="padding: 8px 12px; border: 1px solid #e0e0e0; border-radius: 5px;">
+                            <option>Mới nhất</option>
+                            <option>Cũ nhất</option>
+                            <option>Điểm cao nhất</option>
+                            <option>Nhiều like nhất</option>
+                        </select>
+                    </div>
+
+                    <!-- Review Items -->
+                    <div style="display: grid; gap: 25px;">
+                        <!-- Review 1 -->
+                        <div style="border: 1px solid #e0e0e0; border-radius: 15px; padding: 20px;">
+                            <div style="display: flex; gap: 15px; margin-bottom: 15px;">
+                                <img src="https://via.placeholder.com/50x50?text=User" alt="Avatar" style="width: 50px; height: 50px; border-radius: 50%;">
+                                <div style="flex: 1;">
+                                    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px;">
+                                        <div>
+                                            <div style="font-weight: bold; color: #333;">Nguyễn Thị Lan</div>
+                                            <div style="color: #666; font-size: 14px;">Gia đình • 3 ngày trước</div>
+                                        </div>
+                                        <div style="text-align: right;">
+                                            <div style="color: #f39c12; margin-bottom: 5px;">⭐⭐⭐⭐⭐</div>
+                                            <div style="background: #27ae60; color: white; padding: 2px 8px; border-radius: 10px; font-size: 12px;">Đã xác thực</div>
+                                        </div>
+                                    </div>
+                                    <h4 style="margin: 0 0 10px 0; color: #333;">Tour Hạ Long tuyệt vời!</h4>
+                                    <p style="color: #666; line-height: 1.6; margin-bottom: 15px;">
+                                        Tour rất đáng tiền! Hướng dẫn viên nhiệt tình, khách sạn sạch sẽ, 
+                                        cảnh đẹp như mơ. Đặc biệt là trải nghiệm ngủ đêm trên du thuyền, 
+                                        cả gia đình đều rất hài lòng. Sẽ đi lại lần nữa!
+                                    </p>
+                                    
+                                    <!-- Review Images -->
+                                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); gap: 10px; margin-bottom: 15px; max-width: 400px;">
+                                        <img src="https://via.placeholder.com/80x60?text=Halong1" alt="Review Image" style="border-radius: 8px; cursor: pointer;" onclick="viewImage(this)">
+                                        <img src="https://via.placeholder.com/80x60?text=Halong2" alt="Review Image" style="border-radius: 8px; cursor: pointer;" onclick="viewImage(this)">
+                                        <img src="https://via.placeholder.com/80x60?text=Halong3" alt="Review Image" style="border-radius: 8px; cursor: pointer;" onclick="viewImage(this)">
+                                        <div style="background: #f0f0f0; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #666; font-size: 12px; cursor: pointer;" onclick="viewAllImages()">
+                                            +5 ảnh khác
+                                        </div>
+                                    </div>
+
+                                    <!-- Tour Info -->
+                                    <div style="background: #f8f9fa; padding: 10px; border-radius: 8px; margin-bottom: 15px;">
+                                        <div style="font-size: 14px; color: #333;">
+                                            <strong>Tour:</strong> Hạ Long Premium 4N3Đ
+                                        </div>
+                                        <div style="font-size: 14px; color: #666;">
+                                            Thời gian: 15-18/07/2025 • Nhà cung cấp: Elite Travel
+                                        </div>
+                                    </div>
+
+                                    <!-- Actions -->
+                                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                                        <div style="display: flex; gap: 15px;">
+                                            <button style="background: none; border: none; color: #667eea; cursor: pointer; display: flex; align-items: center; gap: 5px;" onclick="likeReview(this)">
+                                                <i class="fas fa-thumbs-up"></i> <span>24</span>
+                                            </button>
+                                            <button style="background: none; border: none; color: #666; cursor: pointer; display: flex; align-items: center; gap: 5px;" onclick="replyReview()">
+                                                <i class="fas fa-reply"></i> Trả lời
+                                            </button>
+                                            <button style="background: none; border: none; color: #666; cursor: pointer; display: flex; align-items: center; gap: 5px;" onclick="shareReview()">
+                                                <i class="fas fa-share"></i> Chia sẻ
+                                            </button>
+                                        </div>
+                                        <button style="background: none; border: none; color: #999; cursor: pointer;" onclick="reportReview()">
+                                            <i class="fas fa-flag"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Review 2 -->
+                        <div style="border: 1px solid #e0e0e0; border-radius: 15px; padding: 20px;">
+                            <div style="display: flex; gap: 15px; margin-bottom: 15px;">
+                                <img src="https://via.placeholder.com/50x50?text=User2" alt="Avatar" style="width: 50px; height: 50px; border-radius: 50%;">
+                                <div style="flex: 1;">
+                                    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px;">
+                                        <div>
+                                            <div style="font-weight: bold; color: #333;">Trần Minh Hoàng</div>
+                                            <div style="color: #666; font-size: 14px;">Cặp đôi • 1 tuần trước</div>
+                                        </div>
+                                        <div style="text-align: right;">
+                                            <div style="color: #f39c12; margin-bottom: 5px;">⭐⭐⭐⭐☆</div>
+                                            <div style="background: #27ae60; color: white; padding: 2px 8px; border-radius: 10px; font-size: 12px;">Đã xác thực</div>
+                                        </div>
+                                    </div>
+                                    <h4 style="margin: 0 0 10px 0; color: #333;">Sapa đẹp như tranh vẽ</h4>
+                                    <p style="color: #666; line-height: 1.6; margin-bottom: 15px;">
+                                        Cảnh núi đồi Sapa thật sự rất đẹp. Thời tiết mát mẻ, không khí trong lành. 
+                                        Chỉ trừ điểm nhỏ là khách sạn hơi cũ một chút. Nhưng tổng thể vẫn rất hài lòng!
+                                    </p>
+
+                                    <!-- Tour Info -->
+                                    <div style="background: #f8f9fa; padding: 10px; border-radius: 8px; margin-bottom: 15px;">
+                                        <div style="font-size: 14px; color: #333;">
+                                            <strong>Tour:</strong> Sapa Discovery 3N2Đ
+                                        </div>
+                                        <div style="font-size: 14px; color: #666;">
+                                            Thời gian: 08-10/07/2025 • Nhà cung cấp: Mountain Adventures
+                                        </div>
+                                    </div>
+
+                                    <!-- Actions -->
+                                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                                        <div style="display: flex; gap: 15px;">
+                                            <button style="background: none; border: none; color: #667eea; cursor: pointer; display: flex; align-items: center; gap: 5px;" onclick="likeReview(this)">
+                                                <i class="fas fa-thumbs-up"></i> <span>18</span>
+                                            </button>
+                                            <button style="background: none; border: none; color: #666; cursor: pointer; display: flex; align-items: center; gap: 5px;" onclick="replyReview()">
+                                                <i class="fas fa-reply"></i> Trả lời
+                                            </button>
+                                            <button style="background: none; border: none; color: #666; cursor: pointer; display: flex; align-items: center; gap: 5px;" onclick="shareReview()">
+                                                <i class="fas fa-share"></i> Chia sẻ
+                                            </button>
+                                        </div>
+                                        <button style="background: none; border: none; color: #999; cursor: pointer;" onclick="reportReview()">
+                                            <i class="fas fa-flag"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Load More -->
+                    <div style="text-align: center; margin-top: 25px;">
+                        <button class="btn btn-secondary" onclick="loadMoreReviews()">
+                            <i class="fas fa-plus"></i> Xem thêm đánh giá
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column - Sidebar -->
+            <div class="fade-in" style="animation-delay: 0.2s;">
+                <!-- Review Statistics -->
+                <div style="background: white; padding: 20px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); margin-bottom: 20px; position: sticky; top: 20px;">
+                    <h4 style="margin: 0 0 15px 0; color: #333;">
+                        📊 THỐNG KÊ ĐÁNH GIÁ
+                    </h4>
+                    
+                    <div style="text-align: center; margin-bottom: 20px;">
+                        <div style="font-size: 36px; font-weight: bold; color: #f39c12;">4.3</div>
+                        <div style="color: #f39c12; margin-bottom: 5px;">⭐⭐⭐⭐⭐</div>
+                        <div style="color: #666; font-size: 14px;">Dựa trên 1,247 đánh giá</div>
+                    </div>
+
+                    <div style="display: grid; gap: 10px;">
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <span style="min-width: 20px; font-size: 14px;">5⭐</span>
+                            <div style="flex: 1; background: #f0f0f0; height: 6px; border-radius: 3px; overflow: hidden;">
+                                <div style="width: 65%; height: 100%; background: #f39c12;"></div>
+                            </div>
+                            <span style="color: #666; font-size: 14px;">65%</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <span style="min-width: 20px; font-size: 14px;">4⭐</span>
+                            <div style="flex: 1; background: #f0f0f0; height: 6px; border-radius: 3px; overflow: hidden;">
+                                <div style="width: 25%; height: 100%; background: #f39c12;"></div>
+                            </div>
+                            <span style="color: #666; font-size: 14px;">25%</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <span style="min-width: 20px; font-size: 14px;">3⭐</span>
+                            <div style="flex: 1; background: #f0f0f0; height: 6px; border-radius: 3px; overflow: hidden;">
+                                <div style="width: 8%; height: 100%; background: #f39c12;"></div>
+                            </div>
+                            <span style="color: #666; font-size: 14px;">8%</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <span style="min-width: 20px; font-size: 14px;">2⭐</span>
+                            <div style="flex: 1; background: #f0f0f0; height: 6px; border-radius: 3px; overflow: hidden;">
+                                <div style="width: 2%; height: 100%; background: #e74c3c;"></div>
+                            </div>
+                            <span style="color: #666; font-size: 14px;">2%</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <span style="min-width: 20px; font-size: 14px;">1⭐</span>
+                            <div style="flex: 1; background: #f0f0f0; height: 6px; border-radius: 3px; overflow: hidden;">
+                                <div style="width: 0%; height: 100%; background: #e74c3c;"></div>
+                            </div>
+                            <span style="color: #666; font-size: 14px;">0%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Top Reviewers -->
+                <div style="background: white; padding: 20px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); margin-bottom: 20px;">
+                    <h4 style="margin: 0 0 15px 0; color: #333;">
+                        🏆 REVIEWER NỔI BẬT
+                    </h4>
+                    
+                    <div style="display: grid; gap: 15px;">
+                        <div style="display: flex; align-items: center; gap: 10px; padding: 10px; border: 1px solid #f0f0f0; border-radius: 8px;">
+                            <img src="https://via.placeholder.com/40x40?text=Top1" alt="Top Reviewer" style="width: 40px; height: 40px; border-radius: 50%;">
+                            <div style="flex: 1;">
+                                <div style="font-weight: bold; font-size: 14px;">Mai Ngọc Anh</div>
+                                <div style="color: #666; font-size: 12px;">47 đánh giá • 4.8⭐</div>
+                            </div>
+                            <div style="background: #f39c12; color: white; padding: 2px 6px; border-radius: 10px; font-size: 10px;">
+                                #1
+                            </div>
+                        </div>
+                        
+                        <div style="display: flex; align-items: center; gap: 10px; padding: 10px; border: 1px solid #f0f0f0; border-radius: 8px;">
+                            <img src="https://via.placeholder.com/40x40?text=Top2" alt="Top Reviewer" style="width: 40px; height: 40px; border-radius: 50%;">
+                            <div style="flex: 1;">
+                                <div style="font-weight: bold; font-size: 14px;">Phạm Đức Thành</div>
+                                <div style="color: #666; font-size: 12px;">34 đánh giá • 4.6⭐</div>
+                            </div>
+                            <div style="background: #95a5a6; color: white; padding: 2px 6px; border-radius: 10px; font-size: 10px;">
+                                #2
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review Guidelines -->
+                <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; border-radius: 15px;">
+                    <h4 style="margin: 0 0 15px 0;">
+                        📝 HƯỚNG DẪN VIẾT ĐÁNH GIÁ
+                    </h4>
+                    
+                    <ul style="margin: 0; padding-left: 20px; line-height: 1.6; font-size: 14px;">
+                        <li>Chia sẻ trải nghiệm thật và chi tiết</li>
+                        <li>Đánh giá công bằng, khách quan</li>
+                        <li>Upload hình ảnh thực tế của tour</li>
+                        <li>Tránh sử dụng ngôn từ không phù hợp</li>
+                        <li>Góp ý xây dựng để cải thiện dịch vụ</li>
+                    </ul>
+                    
+                    <div style="text-align: center; margin-top: 15px;">
+                        <button class="btn" style="background: rgba(255,255,255,0.2); color: white; border: 1px solid rgba(255,255,255,0.3);" onclick="readFullGuidelines()">
+                            Xem đầy đủ
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Menu -->
+    <div id="wireframeMenu" style="position: fixed; bottom: 20px; right: 20px; background: white; padding: 20px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.2); max-height: 80vh; overflow-y: auto; z-index: 1000; transition: all 0.3s ease;">
+        <button onclick="toggleMenu()" style="position: absolute; top: 10px; right: 10px; background: #ff6b6b; color: white; border: none; border-radius: 50%; width: 25px; height: 25px; cursor: pointer; font-size: 14px;">×</button>
+        
+        <h3 style="margin: 0 0 15px 0; color: #333; font-size: 16px; border-bottom: 2px solid #eee; padding-bottom: 8px;">🗺️ Wireframe Menu</h3>
+        
+        <div style="margin-bottom: 15px;">
+            <h4 style="margin: 0 0 8px 0; color: #2196F3; font-size: 13px; font-weight: bold;">📱 User Interface</h4>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 5px; margin-bottom: 10px;">
+                <a href="01-search-integrated.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">01-Search</a>
+                <a href="02-filter-advanced.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">02-Filter</a>
+                <a href="03-tour-details.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">03-Tour</a>
+                <a href="04-booking-payment.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">04-Booking</a>
+                <a href="05-combo-details.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">05-Combo</a>
+                <a href="06-flight-details.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">06-Flight</a>
+                <a href="07-hotel-details.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">07-Hotel</a>
+                <a href="08-booking-success.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">08-Success</a>
+                <a href="09-user-orders.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">09-Orders</a>
+                <a href="10-order-details.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">10-Details</a>
+            </div>
+        </div>
+
+        <div style="margin-bottom: 15px;">
+            <h4 style="margin: 0 0 8px 0; color: #f44336; font-size: 13px; font-weight: bold;">🤝 Partner Panel</h4>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 5px; margin-bottom: 10px;">
+                <a href="11-partner-management.html" style="text-decoration: none; color: #f44336; font-size: 11px; padding: 4px 8px; border: 1px solid #f44336; border-radius: 4px; text-align: center; transition: all 0.2s;">11-Mgmt</a>
+                <a href="12-partner-analytics.html" style="text-decoration: none; color: #f44336; font-size: 11px; padding: 4px 8px; border: 1px solid #f44336; border-radius: 4px; text-align: center; transition: all 0.2s;">12-Analytics</a>
+            </div>
+        </div>
+
+        <div style="margin-bottom: 15px;">
+            <h4 style="margin: 0 0 8px 0; color: #4CAF50; font-size: 13px; font-weight: bold;">🛠️ Admin Panel</h4>
+            <div style="display: grid; grid-template-columns: 1fr; gap: 5px; margin-bottom: 10px;">
+                <a href="13-admin-dashboard.html" style="text-decoration: none; color: #4CAF50; font-size: 11px; padding: 4px 8px; border: 1px solid #4CAF50; border-radius: 4px; text-align: center; transition: all 0.2s;">13-Dashboard</a>
+            </div>
+        </div>
+
+        <div>
+            <h4 style="margin: 0 0 8px 0; color: #9C27B0; font-size: 13px; font-weight: bold;">⚙️ System Features</h4>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 5px;">
+                <a href="14-notification-center.html" style="text-decoration: none; color: #9C27B0; font-size: 11px; padding: 4px 8px; border: 1px solid #9C27B0; border-radius: 4px; text-align: center; transition: all 0.2s;">14-Notify</a>
+                <a href="15-help-support.html" style="text-decoration: none; color: #9C27B0; font-size: 11px; padding: 4px 8px; border: 1px solid #9C27B0; border-radius: 4px; text-align: center; transition: all 0.2s;">15-Support</a>
+                <a href="16-user-profile.html" style="text-decoration: none; color: #9C27B0; font-size: 11px; padding: 4px 8px; border: 1px solid #9C27B0; border-radius: 4px; text-align: center; transition: all 0.2s;">16-Profile</a>
+                <a href="17-reviews-ratings.html" style="text-decoration: none; color: white; background: #9C27B0; font-size: 11px; padding: 4px 8px; border: 1px solid #9C27B0; border-radius: 4px; text-align: center; transition: all 0.2s;">17-Reviews</a>
+                <a href="18-error-pages.html" style="text-decoration: none; color: #9C27B0; font-size: 11px; padding: 4px 8px; border: 1px solid #9C27B0; border-radius: 4px; text-align: center; transition: all 0.2s;">18-Errors</a>
+                <a href="19-mobile-responsive.html" style="text-decoration: none; color: #9C27B0; font-size: 11px; padding: 4px 8px; border: 1px solid #9C27B0; border-radius: 4px; text-align: center; transition: all 0.2s;">19-Mobile</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('wireframeMenu');
+            menu.style.display = menu.style.display === 'none' ? 'block' : 'none';
+        }
+
+        // Add hover effects
+        document.querySelectorAll('#wireframeMenu a').forEach(link => {
+            link.addEventListener('mouseenter', function() {
+                if (this.style.background !== 'rgb(33, 150, 243)' && this.style.background !== 'rgb(244, 67, 54)' && this.style.background !== 'rgb(76, 175, 80)' && this.style.background !== 'rgb(156, 39, 176)') {
+                    this.style.background = this.style.borderColor;
+                    this.style.color = 'white';
+                }
+            });
+            link.addEventListener('mouseleave', function() {
+                if (this.style.background !== 'rgb(33, 150, 243)' && this.style.background !== 'rgb(244, 67, 54)' && this.style.background !== 'rgb(76, 175, 80)' && this.style.background !== 'rgb(156, 39, 176)') {
+                    this.style.background = 'transparent';
+                    this.style.color = this.style.borderColor;
+                }
+            });
+        });
+    </script>
+
+    <script>
+        // Rating styles
+        const style = document.createElement('style');
+        style.textContent = `
+            .rating-star {
+                color: #ddd;
+                cursor: pointer;
+                font-size: 24px;
+                transition: color 0.2s;
+            }
+            .rating-star:hover,
+            .rating-star.active {
+                color: #f39c12;
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Rating functionality
+        let ratings = {
+            overall: 0,
+            quality: 0,
+            guide: 0,
+            hotel: 0,
+            transport: 0
+        };
+
+        function setRating(category, rating) {
+            ratings[category] = rating;
+            
+            const stars = document.querySelectorAll(`#${category}Rating .rating-star`);
+            stars.forEach((star, index) => {
+                if (index < rating) {
+                    star.classList.add('active');
+                } else {
+                    star.classList.remove('active');
+                }
+            });
+
+            if (category === 'overall') {
+                const ratingTexts = ['', 'Rất tệ', 'Tệ', 'Trung bình', 'Tốt', 'Tuyệt vời'];
+                document.getElementById('overallText').textContent = ratingTexts[rating];
+            }
+        }
+
+        function writeReview(bookingId) {
+            document.getElementById('writeReviewSection').style.display = 'block';
+            document.getElementById('writeReviewSection').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function showMyReviews() {
+            alert('📝 Danh sách đánh giá của bạn:\n\n⭐ Tour Hạ Long (4.5⭐) - 15/07/2025\n⭐ Tour Sapa (4.2⭐) - 10/06/2025\n⭐ Tour Đà Nẵng (4.8⭐) - 20/05/2025\n...\n\n✅ Tổng: 8 đánh giá');
+        }
+
+        function previewImages(input) {
+            const preview = document.getElementById('imagePreview');
+            preview.innerHTML = '';
+            
+            if (input.files) {
+                Array.from(input.files).forEach(file => {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        const img = document.createElement('img');
+                        img.src = e.target.result;
+                        img.style.width = '100px';
+                        img.style.height = '75px';
+                        img.style.objectFit = 'cover';
+                        img.style.borderRadius = '8px';
+                        img.style.cursor = 'pointer';
+                        preview.appendChild(img);
+                    };
+                    reader.readAsDataURL(file);
+                });
+            }
+        }
+
+        function submitReview(event) {
+            event.preventDefault();
+            
+            if (ratings.overall === 0) {
+                alert('❌ Vui lòng đánh giá tổng thể trước khi gửi!');
+                return;
+            }
+            
+            alert('⭐ Đánh giá đã được gửi thành công!\n\n✅ Cảm ơn bạn đã chia sẻ trải nghiệm\n🎁 Bạn nhận được 50 điểm tích lũy\n📧 Đánh giá sẽ được duyệt trong 24h');
+            
+            document.getElementById('writeReviewSection').style.display = 'none';
+        }
+
+        function cancelReview() {
+            if (confirm('Bạn có chắc muốn hủy đánh giá đang viết?')) {
+                document.getElementById('writeReviewSection').style.display = 'none';
+            }
+        }
+
+        function likeReview(button) {
+            const likeCount = button.querySelector('span');
+            const currentCount = parseInt(likeCount.textContent);
+            
+            if (button.style.color === 'rgb(102, 126, 234)') {
+                button.style.color = '#666';
+                likeCount.textContent = currentCount - 1;
+            } else {
+                button.style.color = '#667eea';
+                likeCount.textContent = currentCount + 1;
+            }
+        }
+
+        function replyReview() {
+            alert('💬 Trả lời đánh giá:\n\n📝 Nhập nội dung phản hồi\n👤 Phản hồi sẽ hiển thị công khai\n✅ Góp phần xây dựng cộng đồng');
+        }
+
+        function shareReview() {
+            alert('📤 Chia sẻ đánh giá:\n\n📱 Facebook\n📱 Zalo\n📧 Email\n🔗 Copy link');
+        }
+
+        function reportReview() {
+            alert('🚩 Báo cáo đánh giá:\n\n• Nội dung không phù hợp\n• Spam hoặc quảng cáo\n• Thông tin sai lệch\n• Vi phạm quy định cộng đồng');
+        }
+
+        function viewImage(img) {
+            alert('🖼️ Xem ảnh full size:\n\n📷 Mở lightbox gallery\n🔍 Zoom in/out\n📤 Chia sẻ ảnh');
+        }
+
+        function viewAllImages() {
+            alert('📸 Xem tất cả 8 hình ảnh:\n\n🖼️ Gallery slideshow\n📷 Ảnh chất lượng cao\n💬 Bình luận về ảnh');
+        }
+
+        function loadMoreReviews() {
+            alert('📄 Đang tải thêm đánh giá...\nHiển thị 10 đánh giá tiếp theo');
+        }
+
+        function readFullGuidelines() {
+            alert('📋 HƯỚNG DẪN VIẾT ĐÁNH GIÁ CHI TIẾT:\n\n✅ Nội dung phù hợp\n✅ Trải nghiệm cá nhân\n✅ Hình ảnh thực tế\n❌ Ngôn từ không phù hợp\n❌ Quảng cáo/spam\n\n💡 Đánh giá chất lượng sẽ được ưu tiên hiển thị');
+        }
+    </script>
+</body>
+</html>

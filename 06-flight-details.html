@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chi tiết vé máy bay - BigKey Travel</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <i class="fas fa-compass"></i> BigKey Travel
+            </div>
+            <nav class="nav-menu">
+                <a href="01-search-integrated.html">Tìm kiếm</a>
+                <a href="03-tour-details.html">Chi tiết</a>
+                <a href="04-booking-payment.html">Đặt tour</a>
+                <a href="09-user-orders.html">Đơn hàng</a>
+            </nav>
+            <div class="auth-section">
+                <select style="padding: 5px; border-radius: 5px; border: none;">
+                    <option>🇻🇳 Tiếng Việt</option>
+                    <option>🇺🇸 English</option>
+                    <option>🇷🇺 Русский</option>
+                </select>
+                <a href="09-user-orders.html" class="btn btn-primary">Đăng nhập</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Breadcrumb -->
+        <div style="margin-bottom: 20px; color: #666; font-size: 14px;">
+            <a href="01-search-integrated.html" style="color: #667eea; text-decoration: none;">Trang chủ</a> / 
+            <a href="01-search-integrated.html" style="color: #667eea; text-decoration: none;">Vé máy bay</a> / 
+            HAN → SGN
+        </div>
+
+        <!-- Flight Header -->
+        <div class="fade-in" style="background: white; padding: 30px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); margin-bottom: 30px;">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div>
+                    <h1 style="color: #333; margin: 0 0 10px 0;">
+                        ✈️ Hà Nội → Thành phố Hồ Chí Minh
+                    </h1>
+                    <div style="color: #666; margin-bottom: 10px;">
+                        Thứ 3, 20 tháng 8, 2025 • 2 hành khách
+                    </div>
+                </div>
+                <button class="btn btn-secondary" onclick="changeSearch()">
+                    <i class="fas fa-edit"></i> Thay đổi tìm kiếm
+                </button>
+            </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 30px;">
+            <!-- Left Column - Flight Options -->
+            <div class="fade-in">
+                <!-- Filter Bar -->
+                <div style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); margin-bottom: 20px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                        <h3 style="margin: 0; color: #333;">🔍 BỘ LỌC VÉ MÁY BAY</h3>
+                        <button class="btn btn-secondary btn-sm" onclick="resetFilters()">Đặt lại</button>
+                    </div>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+                        <div class="form-group">
+                            <label>Hãng bay:</label>
+                            <select onchange="filterFlights()">
+                                <option value="all">Tất cả</option>
+                                <option value="vn">Vietnam Airlines</option>
+                                <option value="vj">VietJet Air</option>
+                                <option value="qh">Bamboo Airways</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Thời gian bay:</label>
+                            <select onchange="filterFlights()">
+                                <option value="all">Tất cả</option>
+                                <option value="morning">Sáng (06:00-12:00)</option>
+                                <option value="afternoon">Chiều (12:00-18:00)</option>
+                                <option value="evening">Tối (18:00-24:00)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Giá vé:</label>
+                            <select onchange="filterFlights()">
+                                <option value="all">Tất cả</option>
+                                <option value="low">< 2 triệu</option>
+                                <option value="mid">2-4 triệu</option>
+                                <option value="high">> 4 triệu</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Loại vé:</label>
+                            <select onchange="filterFlights()">
+                                <option value="economy">Phổ thông</option>
+                                <option value="business">Thương gia</option>
+                                <option value="premium">Cao cấp</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sort Options -->
+                <div style="background: white; padding: 15px; border-radius: 10px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); margin-bottom: 20px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span style="font-weight: bold; color: #333;">Sắp xếp theo:</span>
+                        <div style="display: flex; gap: 10px;">
+                            <button class="btn btn-sm btn-primary" onclick="sortFlights('price')">Giá thấp nhất</button>
+                            <button class="btn btn-sm btn-secondary" onclick="sortFlights('time')">Thời gian bay</button>
+                            <button class="btn btn-sm btn-secondary" onclick="sortFlights('duration')">Thời gian ngắn nhất</button>
+                            <button class="btn btn-sm btn-secondary" onclick="sortFlights('rating')">Đánh giá cao</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Flight Results -->
+                <div id="flightResults">
+                    <!-- VietJet Flight -->
+                    <div class="result-card flight-card" data-airline="vj" data-time="morning" data-price="1890000">
+                        <div class="card-content">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                                <div style="display: flex; align-items: center; gap: 15px;">
+                                    <img src="https://via.placeholder.com/60x40?text=VJ" alt="VietJet" style="border-radius: 5px;">
+                                    <div>
+                                        <div style="font-weight: bold; color: #333;">VietJet Air</div>
+                                        <div style="color: #666; font-size: 14px;">VJ142 • Airbus A321</div>
+                                    </div>
+                                </div>
+                                <div style="text-align: right;">
+                                    <div style="font-size: 24px; font-weight: bold; color: #e74c3c;">1.890.000 VNĐ</div>
+                                    <div style="color: #666; font-size: 14px;">/ khách</div>
+                                </div>
+                            </div>
+
+                            <!-- Flight Timeline -->
+                            <div style="display: flex; align-items: center; gap: 20px; margin-bottom: 20px;">
+                                <div style="text-align: center;">
+                                    <div style="font-size: 20px; font-weight: bold; color: #333;">06:30</div>
+                                    <div style="color: #666; font-size: 14px;">HAN</div>
+                                    <div style="color: #666; font-size: 12px;">Nội Bài</div>
+                                </div>
+                                <div style="flex: 1; position: relative; display: flex; align-items: center;">
+                                    <div style="flex: 1; height: 2px; background: #667eea;"></div>
+                                    <div style="background: #667eea; color: white; padding: 4px 8px; border-radius: 10px; font-size: 12px; position: absolute; left: 50%; transform: translateX(-50%);">
+                                        ✈️ 2h 15m
+                                    </div>
+                                    <div style="flex: 1; height: 2px; background: #667eea;"></div>
+                                </div>
+                                <div style="text-align: center;">
+                                    <div style="font-size: 20px; font-weight: bold; color: #333;">08:45</div>
+                                    <div style="color: #666; font-size: 14px;">SGN</div>
+                                    <div style="color: #666; font-size: 12px;">Tân Sơn Nhất</div>
+                                </div>
+                            </div>
+
+                            <!-- Flight Details -->
+                            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin-bottom: 20px; padding: 15px; background: #f8f9fa; border-radius: 10px;">
+                                <div style="text-align: center;">
+                                    <i class="fas fa-suitcase" style="color: #667eea; margin-bottom: 5px;"></i>
+                                    <div style="font-size: 14px; color: #333;">Hành lý</div>
+                                    <div style="font-size: 12px; color: #666;">7kg + 20kg</div>
+                                </div>
+                                <div style="text-align: center;">
+                                    <i class="fas fa-utensils" style="color: #27ae60; margin-bottom: 5px;"></i>
+                                    <div style="font-size: 14px; color: #333;">Bữa ăn</div>
+                                    <div style="font-size: 12px; color: #666;">Có phí</div>
+                                </div>
+                                <div style="text-align: center;">
+                                    <i class="fas fa-exchange-alt" style="color: #f39c12; margin-bottom: 5px;"></i>
+                                    <div style="font-size: 14px; color: #333;">Đổi vé</div>
+                                    <div style="font-size: 12px; color: #666;">Phí 500k</div>
+                                </div>
+                                <div style="text-align: center;">
+                                    <i class="fas fa-times-circle" style="color: #e74c3c; margin-bottom: 5px;"></i>
+                                    <div style="font-size: 14px; color: #333;">Hủy vé</div>
+                                    <div style="font-size: 12px; color: #666;">Không hoàn</div>
+                                </div>
+                            </div>
+
+                            <!-- Actions -->
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <div style="display: flex; gap: 10px;">
+                                    <button class="btn btn-secondary btn-sm" onclick="viewFlightDetails('VJ142')">Chi tiết</button>
+                                    <button class="btn btn-secondary btn-sm" onclick="compareFlight('VJ142')">So sánh</button>
+                                </div>
+                                <button class="btn btn-primary" onclick="selectFlight('VJ142', '1890000')">Chọn chuyến bay</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Vietnam Airlines Flight -->
+                    <div class="result-card flight-card" data-airline="vn" data-time="afternoon" data-price="2450000">
+                        <div class="card-content">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                                <div style="display: flex; align-items: center; gap: 15px;">
+                                    <img src="https://via.placeholder.com/60x40?text=VN&color=red" alt="Vietnam Airlines" style="border-radius: 5px;">
+                                    <div>
+                                        <div style="font-weight: bold; color: #333;">Vietnam Airlines</div>
+                                        <div style="color: #666; font-size: 14px;">VN210 • Boeing 787</div>
+                                        <span style="background: #f39c12; color: white; padding: 2px 6px; border-radius: 10px; font-size: 10px;">PHỔ BIẾN</span>
+                                    </div>
+                                </div>
+                                <div style="text-align: right;">
+                                    <div style="font-size: 24px; font-weight: bold; color: #e74c3c;">2.450.000 VNĐ</div>
+                                    <div style="color: #666; font-size: 14px;">/ khách</div>
+                                </div>
+                            </div>
+
+                            <!-- Flight Timeline -->
+                            <div style="display: flex; align-items: center; gap: 20px; margin-bottom: 20px;">
+                                <div style="text-align: center;">
+                                    <div style="font-size: 20px; font-weight: bold; color: #333;">14:20</div>
+                                    <div style="color: #666; font-size: 14px;">HAN</div>
+                                    <div style="color: #666; font-size: 12px;">Nội Bài</div>
+                                </div>
+                                <div style="flex: 1; position: relative; display: flex; align-items: center;">
+                                    <div style="flex: 1; height: 2px; background: #e74c3c;"></div>
+                                    <div style="background: #e74c3c; color: white; padding: 4px 8px; border-radius: 10px; font-size: 12px; position: absolute; left: 50%; transform: translateX(-50%);">
+                                        ✈️ 2h 10m
+                                    </div>
+                                    <div style="flex: 1; height: 2px; background: #e74c3c;"></div>
+                                </div>
+                                <div style="text-align: center;">
+                                    <div style="font-size: 20px; font-weight: bold; color: #333;">16:30</div>
+                                    <div style="color: #666; font-size: 14px;">SGN</div>
+                                    <div style="color: #666; font-size: 12px;">Tân Sơn Nhất</div>
+                                </div>
+                            </div>
+
+                            <!-- Flight Details -->
+                            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin-bottom: 20px; padding: 15px; background: #f8f9fa; border-radius: 10px;">
+                                <div style="text-align: center;">
+                                    <i class="fas fa-suitcase" style="color: #667eea; margin-bottom: 5px;"></i>
+                                    <div style="font-size: 14px; color: #333;">Hành lý</div>
+                                    <div style="font-size: 12px; color: #666;">7kg + 23kg</div>
+                                </div>
+                                <div style="text-align: center;">
+                                    <i class="fas fa-utensils" style="color: #27ae60; margin-bottom: 5px;"></i>
+                                    <div style="font-size: 14px; color: #333;">Bữa ăn</div>
+                                    <div style="font-size: 12px; color: #666;">Miễn phí</div>
+                                </div>
+                                <div style="text-align: center;">
+                                    <i class="fas fa-exchange-alt" style="color: #f39c12; margin-bottom: 5px;"></i>
+                                    <div style="font-size: 14px; color: #333;">Đổi vé</div>
+                                    <div style="font-size: 12px; color: #666;">Phí 300k</div>
+                                </div>
+                                <div style="text-align: center;">
+                                    <i class="fas fa-undo" style="color: #27ae60; margin-bottom: 5px;"></i>
+                                    <div style="font-size: 14px; color: #333;">Hủy vé</div>
+                                    <div style="font-size: 12px; color: #666;">Hoàn 80%</div>
+                                </div>
+                            </div>
+
+                            <!-- Actions -->
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <div style="display: flex; gap: 10px;">
+                                    <button class="btn btn-secondary btn-sm" onclick="viewFlightDetails('VN210')">Chi tiết</button>
+                                    <button class="btn btn-secondary btn-sm" onclick="compareFlight('VN210')">So sánh</button>
+                                </div>
+                                <button class="btn btn-primary" onclick="selectFlight('VN210', '2450000')">Chọn chuyến bay</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bamboo Airways Flight -->
+                    <div class="result-card flight-card" data-airline="qh" data-time="evening" data-price="2150000">
+                        <div class="card-content">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                                <div style="display: flex; align-items: center; gap: 15px;">
+                                    <img src="https://via.placeholder.com/60x40?text=QH&color=green" alt="Bamboo Airways" style="border-radius: 5px;">
+                                    <div>
+                                        <div style="font-weight: bold; color: #333;">Bamboo Airways</div>
+                                        <div style="color: #666; font-size: 14px;">QH1508 • Airbus A320</div>
+                                    </div>
+                                </div>
+                                <div style="text-align: right;">
+                                    <div style="font-size: 24px; font-weight: bold; color: #e74c3c;">2.150.000 VNĐ</div>
+                                    <div style="color: #666; font-size: 14px;">/ khách</div>
+                                </div>
+                            </div>
+
+                            <!-- Flight Timeline -->
+                            <div style="display: flex; align-items: center; gap: 20px; margin-bottom: 20px;">
+                                <div style="text-align: center;">
+                                    <div style="font-size: 20px; font-weight: bold; color: #333;">19:45</div>
+                                    <div style="color: #666; font-size: 14px;">HAN</div>
+                                    <div style="color: #666; font-size: 12px;">Nội Bài</div>
+                                </div>
+                                <div style="flex: 1; position: relative; display: flex; align-items: center;">
+                                    <div style="flex: 1; height: 2px; background: #27ae60;"></div>
+                                    <div style="background: #27ae60; color: white; padding: 4px 8px; border-radius: 10px; font-size: 12px; position: absolute; left: 50%; transform: translateX(-50%);">
+                                        ✈️ 2h 20m
+                                    </div>
+                                    <div style="flex: 1; height: 2px; background: #27ae60;"></div>
+                                </div>
+                                <div style="text-align: center;">
+                                    <div style="font-size: 20px; font-weight: bold; color: #333;">22:05</div>
+                                    <div style="color: #666; font-size: 14px;">SGN</div>
+                                    <div style="color: #666; font-size: 12px;">Tân Sơn Nhất</div>
+                                </div>
+                            </div>
+
+                            <!-- Flight Details -->
+                            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin-bottom: 20px; padding: 15px; background: #f8f9fa; border-radius: 10px;">
+                                <div style="text-align: center;">
+                                    <i class="fas fa-suitcase" style="color: #667eea; margin-bottom: 5px;"></i>
+                                    <div style="font-size: 14px; color: #333;">Hành lý</div>
+                                    <div style="font-size: 12px; color: #666;">7kg + 20kg</div>
+                                </div>
+                                <div style="text-align: center;">
+                                    <i class="fas fa-utensils" style="color: #27ae60; margin-bottom: 5px;"></i>
+                                    <div style="font-size: 14px; color: #333;">Bữa ăn</div>
+                                    <div style="font-size: 12px; color: #666;">Miễn phí</div>
+                                </div>
+                                <div style="text-align: center;">
+                                    <i class="fas fa-exchange-alt" style="color: #f39c12; margin-bottom: 5px;"></i>
+                                    <div style="font-size: 14px; color: #333;">Đổi vé</div>
+                                    <div style="font-size: 12px; color: #666;">Phí 400k</div>
+                                </div>
+                                <div style="text-align: center;">
+                                    <i class="fas fa-undo" style="color: #27ae60; margin-bottom: 5px;"></i>
+                                    <div style="font-size: 14px; color: #333;">Hủy vé</div>
+                                    <div style="font-size: 12px; color: #666;">Hoàn 70%</div>
+                                </div>
+                            </div>
+
+                            <!-- Actions -->
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <div style="display: flex; gap: 10px;">
+                                    <button class="btn btn-secondary btn-sm" onclick="viewFlightDetails('QH1508')">Chi tiết</button>
+                                    <button class="btn btn-secondary btn-sm" onclick="compareFlight('QH1508')">So sánh</button>
+                                </div>
+                                <button class="btn btn-primary" onclick="selectFlight('QH1508', '2150000')">Chọn chuyến bay</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Load More -->
+                <div style="text-align: center; margin-top: 30px;">
+                    <button class="btn btn-secondary" onclick="loadMoreFlights()">
+                        <i class="fas fa-plus"></i> Xem thêm chuyến bay
+                    </button>
+                </div>
+            </div>
+
+            <!-- Right Column - Sidebar -->
+            <div class="fade-in" style="animation-delay: 0.2s;">
+                <!-- Selected Flight Summary -->
+                <div style="background: white; padding: 25px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); margin-bottom: 20px;">
+                    <h3 style="margin: 0 0 20px 0; color: #333;">
+                        🎯 CHUYẾN BAY ĐÃ CHỌN
+                    </h3>
+                    
+                    <div id="selectedFlight" style="text-align: center; color: #666; padding: 20px;">
+                        <i class="fas fa-plane" style="font-size: 48px; opacity: 0.3; margin-bottom: 15px;"></i>
+                        <p>Chưa chọn chuyến bay nào</p>
+                        <p style="font-size: 14px;">Vui lòng chọn chuyến bay phù hợp</p>
+                    </div>
+                </div>
+
+                <!-- Price Comparison -->
+                <div style="background: white; padding: 25px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); margin-bottom: 20px;">
+                    <h3 style="margin: 0 0 20px 0; color: #333;">
+                        📊 SO SÁNH GIÁ
+                    </h3>
+                    
+                    <div style="display: grid; gap: 15px;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; padding: 15px; background: #f8f9fa; border-radius: 10px;">
+                            <div>
+                                <div style="font-weight: bold; color: #333;">VietJet Air</div>
+                                <div style="color: #666; font-size: 14px;">06:30 - 08:45</div>
+                            </div>
+                            <div style="font-weight: bold; color: #27ae60;">1.890.000 VNĐ</div>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; padding: 15px; background: #f8f9fa; border-radius: 10px;">
+                            <div>
+                                <div style="font-weight: bold; color: #333;">Bamboo Airways</div>
+                                <div style="color: #666; font-size: 14px;">19:45 - 22:05</div>
+                            </div>
+                            <div style="font-weight: bold; color: #f39c12;">2.150.000 VNĐ</div>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; padding: 15px; background: #f8f9fa; border-radius: 10px;">
+                            <div>
+                                <div style="font-weight: bold; color: #333;">Vietnam Airlines</div>
+                                <div style="color: #666; font-size: 14px;">14:20 - 16:30</div>
+                            </div>
+                            <div style="font-weight: bold; color: #e74c3c;">2.450.000 VNĐ</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Flight Tips -->
+                <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 25px; border-radius: 15px; margin-bottom: 20px;">
+                    <h3 style="margin: 0 0 15px 0;">
+                        💡 TIPS ĐẶT VÉ
+                    </h3>
+                    <ul style="margin: 0; padding-left: 20px; line-height: 1.6;">
+                        <li>Đặt vé sớm 2-3 tuần để có giá tốt nhất</li>
+                        <li>Chuyến bay sáng sớm thường rẻ hơn</li>
+                        <li>Kiểm tra chính sách hành lý kỹ</li>
+                        <li>Mua bảo hiểm du lịch khi cần thiết</li>
+                    </ul>
+                </div>
+
+                <!-- Support -->
+                <div style="background: white; padding: 20px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1);">
+                    <h4 style="margin: 0 0 15px 0; color: #333;">
+                        <i class="fas fa-headset"></i> Hỗ trợ đặt vé
+                    </h4>
+                    <div style="font-size: 14px; line-height: 1.6;">
+                        <div style="margin-bottom: 10px;">
+                            <strong>📞 Hotline:</strong> 1900.1234
+                        </div>
+                        <div style="margin-bottom: 10px;">
+                            <strong>📧 Email:</strong> flights@bigkey.vn
+                        </div>
+                        <div style="margin-bottom: 15px;">
+                            <strong>💬 Live Chat:</strong> 24/7
+                        </div>
+                        <button class="btn btn-primary" style="width: 100%;" onclick="contactSupport()">
+                            <i class="fas fa-comments"></i> Chat ngay
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Menu -->
+    <div id="wireframeMenu" style="position: fixed; bottom: 20px; right: 20px; background: white; padding: 20px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.2); max-height: 80vh; overflow-y: auto; z-index: 1000; transition: all 0.3s ease;">
+        <button onclick="toggleMenu()" style="position: absolute; top: 10px; right: 10px; background: #ff6b6b; color: white; border: none; border-radius: 50%; width: 25px; height: 25px; cursor: pointer; font-size: 14px;">×</button>
+        
+        <h3 style="margin: 0 0 15px 0; color: #333; font-size: 16px; border-bottom: 2px solid #eee; padding-bottom: 8px;">🗺️ Wireframe Menu</h3>
+        
+        <div style="margin-bottom: 15px;">
+            <h4 style="margin: 0 0 8px 0; color: #2196F3; font-size: 13px; font-weight: bold;">📱 User Interface</h4>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 5px; margin-bottom: 10px;">
+                <a href="01-search-integrated.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">01-Search</a>
+                <a href="02-filter-advanced.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">02-Filter</a>
+                <a href="03-tour-details.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">03-Tour</a>
+                <a href="04-booking-payment.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">04-Booking</a>
+                <a href="05-combo-details.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">05-Combo</a>
+                <a href="06-flight-details.html" style="text-decoration: none; color: white; background: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">06-Flight</a>
+                <a href="07-hotel-details.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">07-Hotel</a>
+                <a href="08-booking-success.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">08-Success</a>
+                <a href="09-user-orders.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">09-Orders</a>
+                <a href="10-order-details.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">10-Details</a>
+            </div>
+        </div>
+
+        <div style="margin-bottom: 15px;">
+            <h4 style="margin: 0 0 8px 0; color: #f44336; font-size: 13px; font-weight: bold;">🤝 Partner Panel</h4>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 5px; margin-bottom: 10px;">
+                <a href="11-partner-management.html" style="text-decoration: none; color: #f44336; font-size: 11px; padding: 4px 8px; border: 1px solid #f44336; border-radius: 4px; text-align: center; transition: all 0.2s;">11-Mgmt</a>
+                <a href="12-partner-analytics.html" style="text-decoration: none; color: #f44336; font-size: 11px; padding: 4px 8px; border: 1px solid #f44336; border-radius: 4px; text-align: center; transition: all 0.2s;">12-Analytics</a>
+            </div>
+        </div>
+
+        <div style="margin-bottom: 15px;">
+            <h4 style="margin: 0 0 8px 0; color: #4CAF50; font-size: 13px; font-weight: bold;">🛠️ Admin Panel</h4>
+            <div style="display: grid; grid-template-columns: 1fr; gap: 5px; margin-bottom: 10px;">
+                <a href="13-admin-dashboard.html" style="text-decoration: none; color: #4CAF50; font-size: 11px; padding: 4px 8px; border: 1px solid #4CAF50; border-radius: 4px; text-align: center; transition: all 0.2s;">13-Dashboard</a>
+            </div>
+        </div>
+
+        <div>
+            <h4 style="margin: 0 0 8px 0; color: #9C27B0; font-size: 13px; font-weight: bold;">⚙️ System Features</h4>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 5px;">
+                <a href="14-notification-center.html" style="text-decoration: none; color: #9C27B0; font-size: 11px; padding: 4px 8px; border: 1px solid #9C27B0; border-radius: 4px; text-align: center; transition: all 0.2s;">14-Notify</a>
+                <a href="15-help-support.html" style="text-decoration: none; color: #9C27B0; font-size: 11px; padding: 4px 8px; border: 1px solid #9C27B0; border-radius: 4px; text-align: center; transition: all 0.2s;">15-Support</a>
+                <a href="16-user-profile.html" style="text-decoration: none; color: #9C27B0; font-size: 11px; padding: 4px 8px; border: 1px solid #9C27B0; border-radius: 4px; text-align: center; transition: all 0.2s;">16-Profile</a>
+                <a href="17-reviews-ratings.html" style="text-decoration: none; color: #9C27B0; font-size: 11px; padding: 4px 8px; border: 1px solid #9C27B0; border-radius: 4px; text-align: center; transition: all 0.2s;">17-Reviews</a>
+                <a href="18-error-pages.html" style="text-decoration: none; color: #9C27B0; font-size: 11px; padding: 4px 8px; border: 1px solid #9C27B0; border-radius: 4px; text-align: center; transition: all 0.2s;">18-Errors</a>
+                <a href="19-mobile-responsive.html" style="text-decoration: none; color: #9C27B0; font-size: 11px; padding: 4px 8px; border: 1px solid #9C27B0; border-radius: 4px; text-align: center; transition: all 0.2s;">19-Mobile</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('wireframeMenu');
+            menu.style.display = menu.style.display === 'none' ? 'block' : 'none';
+        }
+
+        // Add hover effects
+        document.querySelectorAll('#wireframeMenu a').forEach(link => {
+            link.addEventListener('mouseenter', function() {
+                if (this.style.background !== 'rgb(33, 150, 243)' && this.style.background !== 'rgb(244, 67, 54)' && this.style.background !== 'rgb(76, 175, 80)' && this.style.background !== 'rgb(156, 39, 176)') {
+                    this.style.background = this.style.borderColor;
+                    this.style.color = 'white';
+                }
+            });
+            link.addEventListener('mouseleave', function() {
+                if (this.style.background !== 'rgb(33, 150, 243)' && this.style.background !== 'rgb(244, 67, 54)' && this.style.background !== 'rgb(76, 175, 80)' && this.style.background !== 'rgb(156, 39, 176)') {
+                    this.style.background = 'transparent';
+                    this.style.color = this.style.borderColor;
+                }
+            });
+        });
+    </script>
+    </script>
+
+    <script>
+        let selectedFlightInfo = null;
+
+        function changeSearch() {
+            alert('✏️ Thay đổi thông tin tìm kiếm\nChuyển về trang tìm kiếm...');
+            window.location.href = '01-search-integrated.html';
+        }
+
+        function filterFlights() {
+            alert('🔍 Áp dụng bộ lọc...\nHiển thị kết quả phù hợp');
+        }
+
+        function resetFilters() {
+            alert('🔄 Đặt lại tất cả bộ lọc');
+        }
+
+        function sortFlights(type) {
+            const sortNames = {
+                'price': 'giá thấp nhất',
+                'time': 'thời gian bay',
+                'duration': 'thời gian ngắn nhất',
+                'rating': 'đánh giá cao nhất'
+            };
+            alert(`📊 Sắp xếp theo ${sortNames[type]}...`);
+        }
+
+        function viewFlightDetails(flightCode) {
+            alert(`📋 Chi tiết chuyến bay ${flightCode}\n• Thông tin máy bay\n• Dịch vụ bổ sung\n• Chính sách hành lý\n• Điều kiện vé`);
+        }
+
+        function compareFlight(flightCode) {
+            alert(`⚖️ Thêm ${flightCode} vào danh sách so sánh\nTối đa 3 chuyến bay`);
+        }
+
+        function selectFlight(flightCode, price) {
+            selectedFlightInfo = { code: flightCode, price: price };
+            
+            // Update selected flight display
+            const selectedFlightDiv = document.getElementById('selectedFlight');
+            selectedFlightDiv.innerHTML = `
+                <div style="border: 2px solid #667eea; border-radius: 10px; padding: 15px;">
+                    <div style="font-weight: bold; color: #333; margin-bottom: 10px;">${flightCode}</div>
+                    <div style="color: #666; margin-bottom: 10px;">HAN → SGN</div>
+                    <div style="font-size: 18px; font-weight: bold; color: #e74c3c; margin-bottom: 15px;">
+                        ${parseInt(price).toLocaleString()} VNĐ
+                    </div>
+                    <button class="btn btn-primary" style="width: 100%;" onclick="proceedToBooking()">
+                        <i class="fas fa-arrow-right"></i> Tiến hành đặt vé
+                    </button>
+                </div>
+            `;
+            
+            alert(`✅ Đã chọn chuyến bay ${flightCode}\nGiá: ${parseInt(price).toLocaleString()} VNĐ`);
+        }
+
+        function proceedToBooking() {
+            if (selectedFlightInfo) {
+                alert(`🎯 Chuyển đến trang đặt vé\nChuyến bay: ${selectedFlightInfo.code}\nGiá: ${parseInt(selectedFlightInfo.price).toLocaleString()} VNĐ`);
+                window.location.href = '04-booking-payment.html';
+            }
+        }
+
+        function loadMoreFlights() {
+            alert('📄 Đang tải thêm chuyến bay...\nHiển thị 10 chuyến bay tiếp theo');
+        }
+
+        function contactSupport() {
+            alert('💬 Kết nối với tư vấn viên...\nChào bạn! Tôi có thể hỗ trợ gì về đặt vé máy bay?');
+        }
+    </script>
+</body>
+</html>

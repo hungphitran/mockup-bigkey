@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đặt chỗ thành công - BigKey Travel</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <i class="fas fa-compass"></i> BigKey Travel
+            </div>
+            <nav class="nav-menu">
+                <a href="01-search-integrated.html">Tìm kiếm</a>
+                <a href="03-tour-details.html">Tours</a>
+                <a href="09-user-orders.html" class="active">Đơn hàng</a>
+            </nav>
+            <div class="auth-section">
+                <select style="padding: 5px; border-radius: 5px; border: none;">
+                    <option>🇻🇳 Tiếng Việt</option>
+                    <option>🇺🇸 English</option>
+                    <option>🇷🇺 Русский</option>
+                </select>
+                <a href="09-user-orders.html" class="btn btn-primary">Tài khoản</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Success Animation -->
+        <div style="text-align: center; margin: 50px 0;">
+            <div class="success-animation" style="display: inline-block; animation: bounceIn 1s ease-out;">
+                <div style="background: linear-gradient(135deg, #27ae60, #2ecc71); width: 120px; height: 120px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; box-shadow: 0 10px 30px rgba(39, 174, 96, 0.3);">
+                    <i class="fas fa-check" style="color: white; font-size: 48px;"></i>
+                </div>
+            </div>
+            <h1 style="color: #27ae60; margin-bottom: 10px; font-size: 32px;">🎉 ĐẶT CHỖ THÀNH CÔNG!</h1>
+            <p style="color: #666; font-size: 18px; margin-bottom: 30px;">
+                Cảm ơn bạn đã tin tưởng BigKey Travel. Chúng tôi đã gửi email xác nhận đến địa chỉ của bạn.
+            </p>
+        </div>
+
+        <!-- Booking Summary -->
+        <div class="fade-in" style="max-width: 800px; margin: 0 auto;">
+            <div style="background: white; padding: 30px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); margin-bottom: 30px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; padding-bottom: 20px; border-bottom: 2px solid #f0f0f0;">
+                    <div>
+                        <h2 style="color: #333; margin: 0 0 10px 0;">📄 THÔNG TIN ĐẶT CHỖ</h2>
+                        <div style="color: #666;">Mã đặt chỗ: <strong style="color: #667eea;">#BK240820001</strong></div>
+                    </div>
+                    <div style="text-align: right;">
+                        <div style="background: #27ae60; color: white; padding: 8px 15px; border-radius: 20px; font-size: 14px; font-weight: bold;">
+                            ✅ ĐÃ XÁC NHẬN
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Trip Details -->
+                <div style="display: grid; grid-template-columns: 80px 1fr; gap: 20px; margin-bottom: 25px;">
+                    <div style="background: linear-gradient(135deg, #667eea, #764ba2); border-radius: 10px; display: flex; align-items: center; justify-content: center;">
+                        <i class="fas fa-map-marked-alt" style="color: white; font-size: 24px;"></i>
+                    </div>
+                    <div>
+                        <h3 style="color: #333; margin: 0 0 10px 0;">🌟 Tour Miền Bắc 4N3Đ: Hà Nội - Sapa - Hạ Long</h3>
+                        <div style="color: #666; margin-bottom: 15px;">
+                            📅 <strong>Khởi hành:</strong> Thứ 6, 23 tháng 8, 2025<br>
+                            👥 <strong>Số khách:</strong> 2 người lớn<br>
+                            🚌 <strong>Phương tiện:</strong> Xe du lịch cao cấp + Tàu Hạ Long<br>
+                            🏨 <strong>Khách sạn:</strong> 4 sao
+                        </div>
+                        <div style="display: flex; gap: 10px;">
+                            <span style="background: #e3f2fd; color: #1976d2; padding: 5px 10px; border-radius: 15px; font-size: 12px;">
+                                🍽️ Bao gồm bữa ăn
+                            </span>
+                            <span style="background: #f3e5f5; color: #7b1fa2; padding: 5px 10px; border-radius: 15px; font-size: 12px;">
+                                🎯 Hướng dẫn viên
+                            </span>
+                            <span style="background: #e8f5e8; color: #2e7d32; padding: 5px 10px; border-radius: 15px; font-size: 12px;">
+                                🔒 Bảo hiểm du lịch
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Customer Information -->
+                <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; margin-bottom: 25px;">
+                    <h4 style="color: #333; margin: 0 0 15px 0;">👤 THÔNG TIN KHÁCH HÀNG</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                        <div>
+                            <strong style="color: #333;">Người đặt chính:</strong><br>
+                            <span style="color: #666;">Nguyễn Văn Nam</span>
+                        </div>
+                        <div>
+                            <strong style="color: #333;">Số điện thoại:</strong><br>
+                            <span style="color: #666;">0987.654.321</span>
+                        </div>
+                        <div>
+                            <strong style="color: #333;">Email:</strong><br>
+                            <span style="color: #666;">nam.nguyen@email.com</span>
+                        </div>
+                        <div>
+                            <strong style="color: #333;">Địa chỉ:</strong><br>
+                            <span style="color: #666;">123 Nguyễn Trãi, Q.1, TP.HCM</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Payment Summary -->
+                <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; margin-bottom: 25px;">
+                    <h4 style="color: #333; margin: 0 0 15px 0;">💰 CHI TIẾT THANH TOÁN</h4>
+                    <div style="display: grid; gap: 10px;">
+                        <div style="display: flex; justify-content: space-between;">
+                            <span style="color: #666;">Giá tour (2 người x 7.500.000 VNĐ)</span>
+                            <span style="color: #333;">15.000.000 VNĐ</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between;">
+                            <span style="color: #666;">Phụ thu phòng đơn</span>
+                            <span style="color: #333;">0 VNĐ</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between;">
+                            <span style="color: #666;">Bảo hiểm du lịch</span>
+                            <span style="color: #333;">200.000 VNĐ</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; color: #27ae60;">
+                            <span>Khuyến mãi (-10%)</span>
+                            <span>-1.500.000 VNĐ</span>
+                        </div>
+                        <hr style="margin: 10px 0; border: none; border-top: 1px solid #ddd;">
+                        <div style="display: flex; justify-content: space-between; font-weight: bold; font-size: 18px; color: #e74c3c;">
+                            <span>TỔNG THANH TOÁN</span>
+                            <span>13.700.000 VNĐ</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; color: #666; font-size: 14px;">
+                            <span>Phương thức: Thẻ tín dụng ****1234</span>
+                            <span>Đã thanh toán: 13.700.000 VNĐ</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Important Information -->
+                <div style="background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%); padding: 20px; border-radius: 10px; margin-bottom: 25px;">
+                    <h4 style="color: #d84315; margin: 0 0 15px 0;">
+                        <i class="fas fa-exclamation-triangle"></i> THÔNG TIN QUAN TRỌNG
+                    </h4>
+                    <ul style="color: #5d4037; line-height: 1.8; margin: 0; padding-left: 20px;">
+                        <li>Vui lòng có mặt tại điểm tập trung <strong>30 phút trước giờ khởi hành</strong></li>
+                        <li>Mang theo CMND/Passport và giấy tờ tùy thân hợp lệ</li>
+                        <li>Liên hệ hướng dẫn viên: <strong>0901.234.567 (A. Minh)</strong></li>
+                        <li>Địa điểm tập trung: <strong>95 Nguyễn Du, Q.1, TP.HCM (7:00 AM)</strong></li>
+                        <li>Check-in sớm tại sân bay: <strong>5:00 AM - Sân bay Tân Sơn Nhất</strong></li>
+                    </ul>
+                </div>
+
+                <!-- Action Buttons -->
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+                    <button class="btn btn-primary" onclick="downloadVoucher()">
+                        <i class="fas fa-download"></i> Tải voucher PDF
+                    </button>
+                    <button class="btn btn-secondary" onclick="viewItinerary()">
+                        <i class="fas fa-route"></i> Xem lịch trình chi tiết
+                    </button>
+                    <button class="btn btn-secondary" onclick="contactGuide()">
+                        <i class="fas fa-phone"></i> Liên hệ hướng dẫn viên
+                    </button>
+                    <button class="btn btn-secondary" onclick="addToCalendar()">
+                        <i class="fas fa-calendar-plus"></i> Thêm vào lịch
+                    </button>
+                </div>
+            </div>
+
+            <!-- Next Steps -->
+            <div style="background: white; padding: 30px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); margin-bottom: 30px;">
+                <h3 style="color: #333; margin: 0 0 20px 0;">🚀 BƯỚC TIẾP THEO</h3>
+                
+                <div style="display: grid; gap: 20px;">
+                    <div style="display: flex; align-items: center; gap: 20px; padding: 15px; background: #f8f9fa; border-radius: 10px;">
+                        <div style="background: #667eea; color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold;">1</div>
+                        <div>
+                            <strong style="color: #333;">Kiểm tra email xác nhận</strong><br>
+                            <span style="color: #666; font-size: 14px;">Chúng tôi đã gửi voucher và thông tin chi tiết đến email của bạn</span>
+                        </div>
+                        <button class="btn btn-secondary btn-sm" onclick="resendEmail()">Gửi lại</button>
+                    </div>
+
+                    <div style="display: flex; align-items: center; gap: 20px; padding: 15px; background: #f8f9fa; border-radius: 10px;">
+                        <div style="background: #27ae60; color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold;">2</div>
+                        <div>
+                            <strong style="color: #333;">Chuẩn bị hành lý</strong><br>
+                            <span style="color: #666; font-size: 14px;">Xem danh sách đồ cần mang theo cho chuyến đi</span>
+                        </div>
+                        <button class="btn btn-secondary btn-sm" onclick="viewPackingList()">Xem danh sách</button>
+                    </div>
+
+                    <div style="display: flex; align-items: center; gap: 20px; padding: 15px; background: #f8f9fa; border-radius: 10px;">
+                        <div style="background: #f39c12; color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold;">3</div>
+                        <div>
+                            <strong style="color: #333;">Tham gia nhóm Zalo tour</strong><br>
+                            <span style="color: #666; font-size: 14px;">Kết nối với đồng hành và nhận thông báo cập nhật</span>
+                        </div>
+                        <button class="btn btn-secondary btn-sm" onclick="joinZaloGroup()">Tham gia</button>
+                    </div>
+
+                    <div style="display: flex; align-items: center; gap: 20px; padding: 15px; background: #f8f9fa; border-radius: 10px;">
+                        <div style="background: #e74c3c; color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold;">4</div>
+                        <div>
+                            <strong style="color: #333;">Có mặt đúng giờ</strong><br>
+                            <span style="color: #666; font-size: 14px;">7:00 AM ngày 23/08/2025 tại 95 Nguyễn Du, Q.1, TP.HCM</span>
+                        </div>
+                        <button class="btn btn-secondary btn-sm" onclick="setReminder()">Đặt nhắc nhở</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Related Services -->
+            <div style="background: white; padding: 30px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); margin-bottom: 30px;">
+                <h3 style="color: #333; margin: 0 0 20px 0;">🎯 DỊCH VỤ KHÁC BẠN QUAN TÂM</h3>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                    <div style="border: 1px solid #e0e0e0; border-radius: 10px; padding: 20px; text-align: center;">
+                        <i class="fas fa-plane" style="color: #667eea; font-size: 24px; margin-bottom: 10px;"></i>
+                        <h4 style="color: #333; margin: 0 0 10px 0;">Vé máy bay</h4>
+                        <p style="color: #666; font-size: 14px; margin-bottom: 15px;">Đặt vé máy bay giá tốt cho chuyến đi tiếp theo</p>
+                        <button class="btn btn-secondary btn-sm" onclick="bookFlight()">Xem ngay</button>
+                    </div>
+
+                    <div style="border: 1px solid #e0e0e0; border-radius: 10px; padding: 20px; text-align: center;">
+                        <i class="fas fa-hotel" style="color: #27ae60; font-size: 24px; margin-bottom: 10px;"></i>
+                        <h4 style="color: #333; margin: 0 0 10px 0;">Khách sạn</h4>
+                        <p style="color: #666; font-size: 14px; margin-bottom: 15px;">Đặt phòng khách sạn với giá ưu đãi</p>
+                        <button class="btn btn-secondary btn-sm" onclick="bookHotel()">Đặt phòng</button>
+                    </div>
+
+                    <div style="border: 1px solid #e0e0e0; border-radius: 10px; padding: 20px; text-align: center;">
+                        <i class="fas fa-car" style="color: #f39c12; font-size: 24px; margin-bottom: 10px;"></i>
+                        <h4 style="color: #333; margin: 0 0 10px 0;">Thuê xe</h4>
+                        <p style="color: #666; font-size: 14px; margin-bottom: 15px;">Thuê xe tự lái cho chuyến khám phá</p>
+                        <button class="btn btn-secondary btn-sm" onclick="rentCar()">Thuê ngay</button>
+                    </div>
+
+                    <div style="border: 1px solid #e0e0e0; border-radius: 10px; padding: 20px; text-align: center;">
+                        <i class="fas fa-gift" style="color: #e74c3c; font-size: 24px; margin-bottom: 10px;"></i>
+                        <h4 style="color: #333; margin: 0 0 10px 0;">Ưu đãi</h4>
+                        <p style="color: #666; font-size: 14px; margin-bottom: 15px;">Nhận voucher giảm giá cho lần đặt tiếp theo</p>
+                        <button class="btn btn-secondary btn-sm" onclick="getVoucher()">Nhận ngay</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Support -->
+            <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 30px; border-radius: 15px; text-align: center;">
+                <h3 style="margin: 0 0 15px 0;">
+                    <i class="fas fa-headset"></i> CẦN HỖ TRỢ?
+                </h3>
+                <p style="margin: 0 0 20px 0; opacity: 0.9;">
+                    Đội ngũ chăm sóc khách hàng của BigKey Travel luôn sẵn sàng hỗ trợ bạn 24/7
+                </p>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+                    <button class="btn" style="background: rgba(255,255,255,0.2); color: white; border: 1px solid rgba(255,255,255,0.3);" onclick="callHotline()">
+                        <i class="fas fa-phone"></i> Hotline: 1900.1234
+                    </button>
+                    <button class="btn" style="background: rgba(255,255,255,0.2); color: white; border: 1px solid rgba(255,255,255,0.3);" onclick="openChat()">
+                        <i class="fas fa-comments"></i> Live Chat
+                    </button>
+                    <button class="btn" style="background: rgba(255,255,255,0.2); color: white; border: 1px solid rgba(255,255,255,0.3);" onclick="sendEmail()">
+                        <i class="fas fa-envelope"></i> Email hỗ trợ
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Menu -->
+    <div id="wireframeMenu" style="position: fixed; bottom: 20px; right: 20px; background: white; padding: 20px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.2); max-height: 80vh; overflow-y: auto; z-index: 1000; transition: all 0.3s ease;">
+        <button onclick="toggleMenu()" style="position: absolute; top: 10px; right: 10px; background: #ff6b6b; color: white; border: none; border-radius: 50%; width: 25px; height: 25px; cursor: pointer; font-size: 14px;">×</button>
+        
+        <h3 style="margin: 0 0 15px 0; color: #333; font-size: 16px; border-bottom: 2px solid #eee; padding-bottom: 8px;">🗺️ Wireframe Menu</h3>
+        
+        <div style="margin-bottom: 15px;">
+            <h4 style="margin: 0 0 8px 0; color: #2196F3; font-size: 13px; font-weight: bold;">📱 User Interface</h4>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 5px; margin-bottom: 10px;">
+                <a href="01-search-integrated.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">01-Search</a>
+                <a href="02-filter-advanced.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">02-Filter</a>
+                <a href="03-tour-details.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">03-Tour</a>
+                <a href="04-booking-payment.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">04-Booking</a>
+                <a href="05-combo-details.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">05-Combo</a>
+                <a href="06-flight-details.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">06-Flight</a>
+                <a href="07-hotel-details.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">07-Hotel</a>
+                <a href="08-booking-success.html" style="text-decoration: none; color: white; background: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">08-Success</a>
+                <a href="09-user-orders.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">09-Orders</a>
+                <a href="10-order-details.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">10-Details</a>
+            </div>
+        </div>
+
+        <div style="margin-bottom: 15px;">
+            <h4 style="margin: 0 0 8px 0; color: #f44336; font-size: 13px; font-weight: bold;">🤝 Partner Panel</h4>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 5px; margin-bottom: 10px;">
+                <a href="11-partner-management.html" style="text-decoration: none; color: #f44336; font-size: 11px; padding: 4px 8px; border: 1px solid #f44336; border-radius: 4px; text-align: center; transition: all 0.2s;">11-Mgmt</a>
+                <a href="12-partner-analytics.html" style="text-decoration: none; color: #f44336; font-size: 11px; padding: 4px 8px; border: 1px solid #f44336; border-radius: 4px; text-align: center; transition: all 0.2s;">12-Analytics</a>
+            </div>
+        </div>
+
+        <div style="margin-bottom: 15px;">
+            <h4 style="margin: 0 0 8px 0; color: #4CAF50; font-size: 13px; font-weight: bold;">🛠️ Admin Panel</h4>
+            <div style="display: grid; grid-template-columns: 1fr; gap: 5px; margin-bottom: 10px;">
+                <a href="13-admin-dashboard.html" style="text-decoration: none; color: #4CAF50; font-size: 11px; padding: 4px 8px; border: 1px solid #4CAF50; border-radius: 4px; text-align: center; transition: all 0.2s;">13-Dashboard</a>
+            </div>
+        </div>
+
+        <div>
+            <h4 style="margin: 0 0 8px 0; color: #9C27B0; font-size: 13px; font-weight: bold;">⚙️ System Features</h4>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 5px;">
+                <a href="14-notification-center.html" style="text-decoration: none; color: #9C27B0; font-size: 11px; padding: 4px 8px; border: 1px solid #9C27B0; border-radius: 4px; text-align: center; transition: all 0.2s;">14-Notify</a>
+                <a href="15-help-support.html" style="text-decoration: none; color: #9C27B0; font-size: 11px; padding: 4px 8px; border: 1px solid #9C27B0; border-radius: 4px; text-align: center; transition: all 0.2s;">15-Support</a>
+                <a href="16-user-profile.html" style="text-decoration: none; color: #9C27B0; font-size: 11px; padding: 4px 8px; border: 1px solid #9C27B0; border-radius: 4px; text-align: center; transition: all 0.2s;">16-Profile</a>
+                <a href="17-reviews-ratings.html" style="text-decoration: none; color: #9C27B0; font-size: 11px; padding: 4px 8px; border: 1px solid #9C27B0; border-radius: 4px; text-align: center; transition: all 0.2s;">17-Reviews</a>
+                <a href="18-error-pages.html" style="text-decoration: none; color: #9C27B0; font-size: 11px; padding: 4px 8px; border: 1px solid #9C27B0; border-radius: 4px; text-align: center; transition: all 0.2s;">18-Errors</a>
+                <a href="19-mobile-responsive.html" style="text-decoration: none; color: #9C27B0; font-size: 11px; padding: 4px 8px; border: 1px solid #9C27B0; border-radius: 4px; text-align: center; transition: all 0.2s;">19-Mobile</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('wireframeMenu');
+            menu.style.display = menu.style.display === 'none' ? 'block' : 'none';
+        }
+
+        // Add hover effects
+        document.querySelectorAll('#wireframeMenu a').forEach(link => {
+            link.addEventListener('mouseenter', function() {
+                if (this.style.background !== 'rgb(33, 150, 243)' && this.style.background !== 'rgb(244, 67, 54)' && this.style.background !== 'rgb(76, 175, 80)' && this.style.background !== 'rgb(156, 39, 176)') {
+                    this.style.background = this.style.borderColor;
+                    this.style.color = 'white';
+                }
+            });
+            link.addEventListener('mouseleave', function() {
+                if (this.style.background !== 'rgb(33, 150, 243)' && this.style.background !== 'rgb(244, 67, 54)' && this.style.background !== 'rgb(76, 175, 80)' && this.style.background !== 'rgb(156, 39, 176)') {
+                    this.style.background = 'transparent';
+                    this.style.color = this.style.borderColor;
+                }
+            });
+        });
+    </script>
+
+    <script>
+        // Success animation
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add confetti effect
+            setTimeout(() => {
+                for (let i = 0; i < 50; i++) {
+                    createConfetti();
+                }
+            }, 500);
+        });
+
+        function createConfetti() {
+            const confetti = document.createElement('div');
+            confetti.style.cssText = `
+                position: fixed;
+                width: 10px;
+                height: 10px;
+                background: ${['#667eea', '#27ae60', '#f39c12', '#e74c3c'][Math.floor(Math.random() * 4)]};
+                left: ${Math.random() * 100}vw;
+                top: -10px;
+                z-index: 1000;
+                animation: confettiFall 3s linear forwards;
+            `;
+            document.body.appendChild(confetti);
+            
+            setTimeout(() => confetti.remove(), 3000);
+        }
+
+        // Add confetti animation to CSS
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes confettiFall {
+                to { transform: translateY(100vh) rotate(360deg); }
+            }
+            @keyframes bounceIn {
+                0% { transform: scale(0.3); opacity: 0; }
+                50% { transform: scale(1.05); }
+                70% { transform: scale(0.9); }
+                100% { transform: scale(1); opacity: 1; }
+            }
+        `;
+        document.head.appendChild(style);
+
+        function downloadVoucher() {
+            alert('📱 Đang tải voucher PDF...\n✅ File đã được lưu vào thư mục Downloads\n📄 Voucher bao gồm mã QR và thông tin chi tiết');
+        }
+
+        function viewItinerary() {
+            alert('📋 Lịch trình chi tiết:\n\nNgày 1: TP.HCM - Hà Nội\n• 05:00 Tập trung sân bay\n• 07:00 Bay đến Hà Nội\n• 10:00 Tham quan Văn Miếu\n• 14:00 Phố cổ Hà Nội\n\nNgày 2: Hà Nội - Sapa\n• 08:00 Khởi hành đi Sapa\n• 12:00 Tham quan bản Cát Cát\n• 16:00 Chinh phục Fansipan');
+        }
+
+        function contactGuide() {
+            alert('📞 Thông tin hướng dẫn viên:\n\nTên: Nguyễn Minh\nSĐT: 0901.234.567\nEmail: minh.guide@bigkey.vn\nKinh nghiệm: 8 năm\n\n💬 Bạn có thể liên hệ trực tiếp để hỏi thêm thông tin!');
+        }
+
+        function addToCalendar() {
+            alert('📅 Thêm vào lịch:\n\n🎯 Tên sự kiện: Tour Miền Bắc 4N3Đ\n📅 Ngày: 23/08/2025 - 26/08/2025\n⏰ Giờ: 07:00 AM\n📍 Địa điểm: 95 Nguyễn Du, Q.1, TP.HCM\n\n✅ Đã thêm vào Google Calendar');
+        }
+
+        function resendEmail() {
+            alert('📧 Đã gửi lại email xác nhận!\n✅ Vui lòng kiểm tra hộp thư và thư mục spam');
+        }
+
+        function viewPackingList() {
+            alert('🎒 DANH SÁCH ĐỒ CẦN MANG:\n\n📄 Giấy tờ tùy thân\n👕 Quần áo ấm (Sapa)\n👟 Giày trekking\n🧴 Kem chống nắng\n💊 Thuốc cá nhân\n📱 Sạc dự phòng\n🧥 Áo mưa\n💰 Tiền mặt dự phòng');
+        }
+
+        function joinZaloGroup() {
+            alert('📱 Tham gia nhóm Zalo tour:\n\n🔗 Link nhóm: zalo.me/g/bigkey-tour-230825\n👥 Mã nhóm: BKTOUR230825\n\n📝 Hoặc quét mã QR trong voucher để tham gia tự động');
+        }
+
+        function setReminder() {
+            alert('⏰ Đặt nhắc nhở thành công!\n\n📅 Nhắc nhở vào 22/08/2025 lúc 20:00\n📱 Sẽ gửi SMS và push notification\n✅ Đã đồng bộ với lịch điện thoại');
+        }
+
+        function bookFlight() {
+            window.open('06-flight-details.html', '_blank');
+        }
+
+        function bookHotel() {
+            window.open('07-hotel-details.html', '_blank');
+        }
+
+        function rentCar() {
+            alert('🚗 Dịch vụ thuê xe:\n\n🔥 Ưu đãi đặc biệt cho khách BigKey\n💥 Giảm 15% cho thuê xe 3+ ngày\n🎯 Miễn phí giao xe tận nơi\n\n📞 Hotline: 1900.5678');
+        }
+
+        function getVoucher() {
+            alert('🎁 Chúc mừng bạn nhận được:\n\n💰 Voucher giảm 500.000 VNĐ\n📅 Có hiệu lực đến 31/12/2025\n🎯 Áp dụng cho đơn hàng từ 5.000.000 VNĐ\n\n✅ Mã voucher: BIGKEY500K');
+        }
+
+        function callHotline() {
+            alert('📞 Đang kết nối tới hotline...\n\n🔥 Hotline 24/7: 1900.1234\n⚡ Thời gian chờ trung bình: < 30 giây\n🎯 Hỗ trợ đa ngôn ngữ');
+        }
+
+        function openChat() {
+            alert('💬 Đang mở live chat...\n\n⚡ Phản hồi tức thì\n🤖 AI Assistant + Tư vấn viên\n🔄 Lịch sử chat được lưu trữ');
+        }
+
+        function sendEmail() {
+            alert('📧 Gửi email hỗ trợ:\n\nĐịa chỉ: support@bigkey.vn\nThời gian phản hồi: < 2 giờ\n\n✅ Đã mở ứng dụng email mặc định');
+        }
+    </script>
+
+</body>
+</html>

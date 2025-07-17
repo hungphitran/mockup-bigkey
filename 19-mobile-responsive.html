@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Responsive Demo - BigKey Travel</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Mobile-First Responsive Design */
+        .mobile-demo {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .device-showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 30px 0;
+        }
+
+        .device-frame {
+            background: #f8f9fa;
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .device-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .device-type {
+            font-weight: bold;
+            color: #333;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .screen-size {
+            font-size: 14px;
+            color: #666;
+            background: #e8f4fd;
+            padding: 5px 10px;
+            border-radius: 15px;
+        }
+
+        .mobile-screen {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .mobile-screen:hover {
+            transform: scale(1.02);
+        }
+
+        /* Mobile Navigation */
+        .mobile-nav {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .mobile-logo {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .mobile-menu-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        /* Mobile Content */
+        .mobile-content {
+            padding: 20px 15px;
+        }
+
+        .mobile-search {
+            background: #f8f9fa;
+            border-radius: 25px;
+            padding: 12px 20px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .mobile-search input {
+            flex: 1;
+            border: none;
+            background: none;
+            outline: none;
+            font-size: 14px;
+        }
+
+        .mobile-cards {
+            display: grid;
+            gap: 15px;
+        }
+
+        .mobile-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            border: 1px solid #f0f0f0;
+        }
+
+        .mobile-card-image {
+            height: 120px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+        }
+
+        .mobile-card-content {
+            padding: 15px;
+        }
+
+        .mobile-card-title {
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #333;
+            font-size: 14px;
+        }
+
+        .mobile-card-price {
+            color: #e74c3c;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .mobile-card-rating {
+            color: #f39c12;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+
+        /* Mobile Bottom Navigation */
+        .mobile-bottom-nav {
+            background: white;
+            border-top: 1px solid #e0e0e0;
+            padding: 10px;
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 5px;
+        }
+
+        .mobile-nav-item {
+            text-align: center;
+            padding: 8px;
+            border-radius: 8px;
+            color: #666;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-nav-item.active {
+            background: #e8f4fd;
+            color: #667eea;
+        }
+
+        .mobile-nav-item i {
+            font-size: 18px;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        /* Tablet Styles */
+        .tablet-layout {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            height: 400px;
+        }
+
+        .tablet-sidebar {
+            background: #f8f9fa;
+            padding: 20px;
+            border-right: 1px solid #e0e0e0;
+        }
+
+        .tablet-main {
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        /* Desktop Styles */
+        .desktop-layout {
+            height: 350px;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .desktop-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .desktop-nav {
+            display: flex;
+            gap: 30px;
+        }
+
+        .desktop-nav a {
+            color: white;
+            text-decoration: none;
+            padding: 5px 0;
+            border-bottom: 2px solid transparent;
+            transition: border-color 0.3s ease;
+        }
+
+        .desktop-nav a:hover,
+        .desktop-nav a.active {
+            border-color: white;
+        }
+
+        .desktop-content {
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 20px;
+            height: calc(100% - 70px);
+        }
+
+        /* Responsive Features Demo */
+        .responsive-features {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin: 30px 0;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .feature-item {
+            padding: 20px;
+            border: 2px solid #f0f0f0;
+            border-radius: 12px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .feature-item:hover {
+            border-color: #667eea;
+            background: #f8f9fa;
+        }
+
+        .feature-icon {
+            font-size: 36px;
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+
+        .feature-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .feature-desc {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        /* Breakpoint Indicator */
+        .breakpoint-indicator {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(0,0,0,0.8);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        /* Media Queries Demo */
+        @media (max-width: 1200px) {
+            .breakpoint-indicator:after {
+                content: " - Large Desktop";
+            }
+        }
+
+        @media (max-width: 992px) {
+            .breakpoint-indicator:after {
+                content: " - Desktop";
+            }
+            .device-showcase {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .breakpoint-indicator:after {
+                content: " - Tablet";
+            }
+            .mobile-demo {
+                padding: 10px;
+            }
+            .desktop-content {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .breakpoint-indicator:after {
+                content: " - Mobile";
+            }
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+            .device-header {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+
+        /* Touch Gestures Demo */
+        .touch-demo {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .gesture-area {
+            background: white;
+            border: 2px dashed #ddd;
+            border-radius: 10px;
+            padding: 40px 20px;
+            margin: 15px 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .gesture-area:hover {
+            border-color: #667eea;
+            background: #f8f9fa;
+        }
+    </style>
+</head>
+<body>
+    <!-- Breakpoint Indicator -->
+    <div class="breakpoint-indicator" id="breakpointIndicator">
+        Screen: <span id="screenSize"></span>px
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <i class="fas fa-compass"></i> BigKey Travel
+            </div>
+            <nav class="nav-menu">
+                <a href="01-search-integrated.html">Tìm kiếm</a>
+                <a href="03-tour-details.html">Tours</a>
+                <a href="09-user-orders.html">Đơn hàng</a>
+                <a href="19-mobile-responsive.html" class="active">Responsive</a>
+            </nav>
+            <div class="auth-section">
+                <select style="padding: 5px; border-radius: 5px; border: none;">
+                    <option>🇻🇳 Tiếng Việt</option>
+                    <option>🇺🇸 English</option>
+                    <option>🇷🇺 Русский</option>
+                </select>
+                <a href="16-user-profile.html" class="btn btn-primary">Nguyễn Văn A</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="mobile-demo">
+        <!-- Page Header -->
+        <div style="text-align: center; margin: 30px 0;">
+            <h1 style="color: #333; margin-bottom: 10px;">
+                📱 MOBILE RESPONSIVE DESIGN
+            </h1>
+            <p style="color: #666; font-size: 16px;">
+                Trải nghiệm BigKey Travel trên mọi thiết bị
+            </p>
+        </div>
+
+        <!-- Device Showcase -->
+        <div class="device-showcase">
+            <!-- Mobile View -->
+            <div class="device-frame">
+                <div class="device-header">
+                    <div class="device-type">
+                        <i class="fas fa-mobile-alt" style="color: #667eea;"></i>
+                        Điện thoại
+                    </div>
+                    <div class="screen-size">320-576px</div>
+                </div>
+                
+                <div class="mobile-screen" style="max-width: 320px; margin: 0 auto;">
+                    <!-- Mobile Navigation -->
+                    <div class="mobile-nav">
+                        <div class="mobile-logo">
+                            <i class="fas fa-compass"></i> BigKey
+                        </div>
+                        <button class="mobile-menu-btn">
+                            <i class="fas fa-bars"></i>
+                        </button>
+                    </div>
+
+                    <!-- Mobile Content -->
+                    <div class="mobile-content">
+                        <!-- Mobile Search -->
+                        <div class="mobile-search">
+                            <i class="fas fa-search" style="color: #666;"></i>
+                            <input type="text" placeholder="Tìm tours, khách sạn...">
+                            <i class="fas fa-filter" style="color: #667eea;"></i>
+                        </div>
+
+                        <!-- Mobile Cards -->
+                        <div class="mobile-cards">
+                            <div class="mobile-card">
+                                <div class="mobile-card-image">
+                                    🏖️
+                                </div>
+                                <div class="mobile-card-content">
+                                    <div class="mobile-card-title">Tour Hạ Long 3N2Đ</div>
+                                    <div class="mobile-card-price">2.990.000đ</div>
+                                    <div class="mobile-card-rating">⭐ 4.5 (127 đánh giá)</div>
+                                </div>
+                            </div>
+
+                            <div class="mobile-card">
+                                <div class="mobile-card-image">
+                                    🏔️
+                                </div>
+                                <div class="mobile-card-content">
+                                    <div class="mobile-card-title">Tour Sapa 2N1Đ</div>
+                                    <div class="mobile-card-price">1.890.000đ</div>
+                                    <div class="mobile-card-rating">⭐ 4.3 (89 đánh giá)</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Mobile Bottom Navigation -->
+                    <div class="mobile-bottom-nav">
+                        <div class="mobile-nav-item active">
+                            <i class="fas fa-home"></i>
+                            Trang chủ
+                        </div>
+                        <div class="mobile-nav-item">
+                            <i class="fas fa-search"></i>
+                            Tìm kiếm
+                        </div>
+                        <div class="mobile-nav-item">
+                            <i class="fas fa-heart"></i>
+                            Yêu thích
+                        </div>
+                        <div class="mobile-nav-item">
+                            <i class="fas fa-shopping-cart"></i>
+                            Giỏ hàng
+                        </div>
+                        <div class="mobile-nav-item">
+                            <i class="fas fa-user"></i>
+                            Tài khoản
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tablet View -->
+            <div class="device-frame">
+                <div class="device-header">
+                    <div class="device-type">
+                        <i class="fas fa-tablet-alt" style="color: #27ae60;"></i>
+                        Máy tính bảng
+                    </div>
+                    <div class="screen-size">577-992px</div>
+                </div>
+                
+                <div class="mobile-screen">
+                    <div class="tablet-layout">
+                        <!-- Tablet Sidebar -->
+                        <div class="tablet-sidebar">
+                            <h3 style="margin: 0 0 20px 0; color: #333; font-size: 16px;">📋 Bộ lọc</h3>
+                            <div style="margin-bottom: 15px;">
+                                <label style="font-size: 14px; color: #666; display: block; margin-bottom: 5px;">Loại tour:</label>
+                                <select style="width: 100%; padding: 8px; border: 1px solid #e0e0e0; border-radius: 5px; font-size: 14px;">
+                                    <option>Tất cả</option>
+                                    <option>Miền Bắc</option>
+                                    <option>Miền Trung</option>
+                                    <option>Miền Nam</option>
+                                </select>
+                            </div>
+                            <div style="margin-bottom: 15px;">
+                                <label style="font-size: 14px; color: #666; display: block; margin-bottom: 5px;">Giá:</label>
+                                <div style="display: grid; gap: 5px;">
+                                    <label style="font-size: 13px; display: flex; align-items: center; gap: 8px;">
+                                        <input type="checkbox"> Dưới 2 triệu
+                                    </label>
+                                    <label style="font-size: 13px; display: flex; align-items: center; gap: 8px;">
+                                        <input type="checkbox"> 2-5 triệu
+                                    </label>
+                                    <label style="font-size: 13px; display: flex; align-items: center; gap: 8px;">
+                                        <input type="checkbox"> Trên 5 triệu
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Tablet Main Content -->
+                        <div class="tablet-main">
+                            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px;">
+                                <div class="mobile-card">
+                                    <div class="mobile-card-image" style="height: 80px;">🏖️</div>
+                                    <div class="mobile-card-content" style="padding: 10px;">
+                                        <div class="mobile-card-title" style="font-size: 13px;">Tour Hạ Long Premium</div>
+                                        <div class="mobile-card-price" style="font-size: 14px;">2.990.000đ</div>
+                                        <div class="mobile-card-rating" style="font-size: 11px;">⭐ 4.5</div>
+                                    </div>
+                                </div>
+                                <div class="mobile-card">
+                                    <div class="mobile-card-image" style="height: 80px;">🏔️</div>
+                                    <div class="mobile-card-content" style="padding: 10px;">
+                                        <div class="mobile-card-title" style="font-size: 13px;">Tour Sapa Discovery</div>
+                                        <div class="mobile-card-price" style="font-size: 14px;">1.890.000đ</div>
+                                        <div class="mobile-card-rating" style="font-size: 11px;">⭐ 4.3</div>
+                                    </div>
+                                </div>
+                                <div class="mobile-card">
+                                    <div class="mobile-card-image" style="height: 80px;">🏛️</div>
+                                    <div class="mobile-card-content" style="padding: 10px;">
+                                        <div class="mobile-card-title" style="font-size: 13px;">Tour Huế Cố Đô</div>
+                                        <div class="mobile-card-price" style="font-size: 14px;">2.590.000đ</div>
+                                        <div class="mobile-card-rating" style="font-size: 11px;">⭐ 4.7</div>
+                                    </div>
+                                </div>
+                                <div class="mobile-card">
+                                    <div class="mobile-card-image" style="height: 80px;">🌊</div>
+                                    <div class="mobile-card-content" style="padding: 10px;">
+                                        <div class="mobile-card-title" style="font-size: 13px;">Tour Phú Quốc</div>
+                                        <div class="mobile-card-price" style="font-size: 14px;">3.490.000đ</div>
+                                        <div class="mobile-card-rating" style="font-size: 11px;">⭐ 4.6</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Desktop View -->
+            <div class="device-frame">
+                <div class="device-header">
+                    <div class="device-type">
+                        <i class="fas fa-desktop" style="color: #e74c3c;"></i>
+                        Máy tính
+                    </div>
+                    <div class="screen-size">993px+</div>
+                </div>
+                
+                <div class="mobile-screen">
+                    <div class="desktop-layout">
+                        <!-- Desktop Header -->
+                        <div class="desktop-header">
+                            <div style="display: flex; align-items: center; gap: 15px;">
+                                <div style="font-size: 18px; font-weight: bold;">
+                                    <i class="fas fa-compass"></i> BigKey Travel
+                                </div>
+                            </div>
+                            <nav class="desktop-nav">
+                                <a href="#" class="active">Trang chủ</a>
+                                <a href="#">Tours</a>
+                                <a href="#">Khách sạn</a>
+                                <a href="#">Vé máy bay</a>
+                                <a href="#">Combo</a>
+                            </nav>
+                            <div style="display: flex; align-items: center; gap: 15px;">
+                                <select style="padding: 5px 10px; border: none; border-radius: 5px; font-size: 12px;">
+                                    <option>🇻🇳 VI</option>
+                                    <option>🇺🇸 EN</option>
+                                </select>
+                                <button style="background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.3); color: white; padding: 5px 15px; border-radius: 15px; font-size: 12px;">
+                                    Nguyễn Văn A
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Desktop Content -->
+                        <div class="desktop-content">
+                            <!-- Main Content -->
+                            <div>
+                                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
+                                    <div class="mobile-card">
+                                        <div class="mobile-card-image" style="height: 60px; font-size: 18px;">🏖️</div>
+                                        <div class="mobile-card-content" style="padding: 8px;">
+                                            <div class="mobile-card-title" style="font-size: 12px;">Hạ Long Premium</div>
+                                            <div class="mobile-card-price" style="font-size: 13px;">2.990.000đ</div>
+                                        </div>
+                                    </div>
+                                    <div class="mobile-card">
+                                        <div class="mobile-card-image" style="height: 60px; font-size: 18px;">🏔️</div>
+                                        <div class="mobile-card-content" style="padding: 8px;">
+                                            <div class="mobile-card-title" style="font-size: 12px;">Sapa Discovery</div>
+                                            <div class="mobile-card-price" style="font-size: 13px;">1.890.000đ</div>
+                                        </div>
+                                    </div>
+                                    <div class="mobile-card">
+                                        <div class="mobile-card-image" style="height: 60px; font-size: 18px;">🏛️</div>
+                                        <div class="mobile-card-content" style="padding: 8px;">
+                                            <div class="mobile-card-title" style="font-size: 12px;">Huế Cố Đô</div>
+                                            <div class="mobile-card-price" style="font-size: 13px;">2.590.000đ</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Sidebar -->
+                            <div style="background: #f8f9fa; padding: 15px; border-radius: 8px;">
+                                <h4 style="margin: 0 0 15px 0; font-size: 14px; color: #333;">🔥 Hot Deals</h4>
+                                <div style="display: grid; gap: 10px;">
+                                    <div style="background: white; padding: 8px; border-radius: 5px; font-size: 12px;">
+                                        <div style="font-weight: bold;">Flash Sale 50%</div>
+                                        <div style="color: #e74c3c;">Kết thúc sau 2h</div>
+                                    </div>
+                                    <div style="background: white; padding: 8px; border-radius: 5px; font-size: 12px;">
+                                        <div style="font-weight: bold;">Combo tiết kiệm</div>
+                                        <div style="color: #27ae60;">Tour + Hotel</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Responsive Features -->
+        <div class="responsive-features">
+            <h2 style="text-align: center; margin-bottom: 10px; color: #333;">
+                🚀 TÍNH NĂNG RESPONSIVE
+            </h2>
+            <p style="text-align: center; color: #666; margin-bottom: 25px;">
+                Những tính năng giúp BigKey Travel hoạt động mượt mà trên mọi thiết bị
+            </p>
+
+            <div class="feature-grid">
+                <div class="feature-item" onclick="demoFeature('adaptive')">
+                    <div class="feature-icon">🎯</div>
+                    <div class="feature-title">Adaptive Layout</div>
+                    <div class="feature-desc">Bố cục tự động thích ứng với kích thước màn hình, tối ưu trải nghiệm người dùng</div>
+                </div>
+
+                <div class="feature-item" onclick="demoFeature('touch')">
+                    <div class="feature-icon">👆</div>
+                    <div class="feature-title">Touch Gestures</div>
+                    <div class="feature-desc">Hỗ trợ đầy đủ thao tác cử chỉ: vuốt, chạm, zoom, kéo thả trên thiết bị cảm ứng</div>
+                </div>
+
+                <div class="feature-item" onclick="demoFeature('performance')">
+                    <div class="feature-icon">⚡</div>
+                    <div class="feature-title">Fast Performance</div>
+                    <div class="feature-desc">Tối ưu tốc độ tải trang, lazy loading hình ảnh, nén CSS/JS cho mobile</div>
+                </div>
+
+                <div class="feature-item" onclick="demoFeature('navigation')">
+                    <div class="feature-icon">🧭</div>
+                    <div class="feature-title">Smart Navigation</div>
+                    <div class="feature-desc">Navigation thông minh: hamburger menu, bottom tabs, breadcrumb tùy thiết bị</div>
+                </div>
+
+                <div class="feature-item" onclick="demoFeature('forms')">
+                    <div class="feature-icon">📝</div>
+                    <div class="feature-title">Mobile Forms</div>
+                    <div class="feature-desc">Form nhập liệu tối ưu: keyboard phù hợp, validation real-time, autofill</div>
+                </div>
+
+                <div class="feature-item" onclick="demoFeature('offline')">
+                    <div class="feature-icon">📴</div>
+                    <div class="feature-title">Offline Support</div>
+                    <div class="feature-desc">Hoạt động offline với Service Worker, cache dữ liệu quan trọng</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Touch Gestures Demo -->
+        <div class="touch-demo">
+            <h3 style="margin-bottom: 15px; color: #333;">👆 DEMO CỬ CHỈ CẢM ỨNG</h3>
+            <p style="color: #666; margin-bottom: 20px;">Thử các thao tác cử chỉ trên vùng demo bên dưới</p>
+            
+            <div class="gesture-area" id="gestureArea" onmousedown="startGesture(event)" ontouchstart="startGesture(event)">
+                <div id="gestureText" style="color: #666; font-size: 16px;">
+                    Chạm và kéo để thử nghiệm cử chỉ
+                </div>
+                <div style="margin-top: 15px; color: #999; font-size: 14px;">
+                    💡 Hỗ trợ: Tap, Swipe, Pinch, Long Press
+                </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin-top: 20px;">
+                <div style="text-align: center; padding: 10px; background: white; border-radius: 8px;">
+                    <div style="font-size: 24px;">👆</div>
+                    <div style="font-size: 14px; font-weight: bold;">Tap</div>
+                    <div style="font-size: 12px; color: #666;">Chạm nhanh</div>
+                </div>
+                <div style="text-align: center; padding: 10px; background: white; border-radius: 8px;">
+                    <div style="font-size: 24px;">👈</div>
+                    <div style="font-size: 14px; font-weight: bold;">Swipe</div>
+                    <div style="font-size: 12px; color: #666;">Vuốt ngang</div>
+                </div>
+                <div style="text-align: center; padding: 10px; background: white; border-radius: 8px;">
+                    <div style="font-size: 24px;">🤏</div>
+                    <div style="font-size: 14px; font-weight: bold;">Pinch</div>
+                    <div style="font-size: 12px; color: #666;">Thu phóng</div>
+                </div>
+                <div style="text-align: center; padding: 10px; background: white; border-radius: 8px;">
+                    <div style="font-size: 24px;">⏱️</div>
+                    <div style="font-size: 14px; font-weight: bold;">Long Press</div>
+                    <div style="font-size: 12px; color: #666;">Giữ lâu</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Responsive Testing Tools -->
+        <div class="responsive-features">
+            <h2 style="text-align: center; margin-bottom: 10px; color: #333;">
+                🛠️ CÔNG CỤ KIỂM TRA RESPONSIVE
+            </h2>
+            <p style="text-align: center; color: #666; margin-bottom: 25px;">
+                Các công cụ giúp test và debug giao diện responsive
+            </p>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
+                <button class="btn btn-primary" onclick="simulateDevice('mobile')" style="padding: 15px;">
+                    <i class="fas fa-mobile-alt"></i><br>
+                    Kiểm tra Mobile<br>
+                    <small>(320-576px)</small>
+                </button>
+                <button class="btn btn-success" onclick="simulateDevice('tablet')" style="padding: 15px;">
+                    <i class="fas fa-tablet-alt"></i><br>
+                    Kiểm tra Tablet<br>
+                    <small>(577-992px)</small>
+                </button>
+                <button class="btn btn-warning" onclick="simulateDevice('desktop')" style="padding: 15px;">
+                    <i class="fas fa-desktop"></i><br>
+                    Kiểm tra Desktop<br>
+                    <small>(993px+)</small>
+                </button>
+                <button class="btn btn-info" onclick="checkPerformance()" style="padding: 15px;">
+                    <i class="fas fa-tachometer-alt"></i><br>
+                    Performance Test<br>
+                    <small>Tốc độ tải</small>
+                </button>
+            </div>
+
+            <div style="margin-top: 25px; background: #f8f9fa; padding: 20px; border-radius: 12px;">
+                <h4 style="margin-bottom: 15px; color: #333;">📊 Thống kê hiện tại:</h4>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px;">
+                    <div style="text-align: center;">
+                        <div style="font-size: 24px; font-weight: bold; color: #667eea;" id="currentWidth">1200</div>
+                        <div style="font-size: 14px; color: #666;">Độ rộng (px)</div>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="font-size: 24px; font-weight: bold; color: #27ae60;" id="deviceType">Desktop</div>
+                        <div style="font-size: 14px; color: #666;">Loại thiết bị</div>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="font-size: 24px; font-weight: bold; color: #f39c12;" id="orientation">Landscape</div>
+                        <div style="font-size: 14px; color: #666;">Hướng màn hình</div>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="font-size: 24px; font-weight: bold; color: #e74c3c;" id="pixelRatio">1.0</div>
+                        <div style="font-size: 14px; color: #666;">Pixel Ratio</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Menu -->
+    <div id="wireframeMenu" style="position: fixed; bottom: 20px; right: 20px; background: white; padding: 20px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.2); max-height: 80vh; overflow-y: auto; z-index: 1000; transition: all 0.3s ease;">
+        <button onclick="toggleMenu()" style="position: absolute; top: 10px; right: 10px; background: #ff6b6b; color: white; border: none; border-radius: 50%; width: 25px; height: 25px; cursor: pointer; font-size: 14px;">×</button>
+        
+        <h3 style="margin: 0 0 15px 0; color: #333; font-size: 16px; border-bottom: 2px solid #eee; padding-bottom: 8px;">🗺️ Wireframe Menu</h3>
+        
+        <div style="margin-bottom: 15px;">
+            <h4 style="margin: 0 0 8px 0; color: #2196F3; font-size: 13px; font-weight: bold;">📱 User Interface</h4>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 5px; margin-bottom: 10px;">
+                <a href="01-search-integrated.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">01-Search</a>
+                <a href="02-filter-advanced.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">02-Filter</a>
+                <a href="03-tour-details.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">03-Tour</a>
+                <a href="04-booking-payment.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">04-Booking</a>
+                <a href="05-combo-details.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">05-Combo</a>
+                <a href="06-flight-details.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">06-Flight</a>
+                <a href="07-hotel-details.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">07-Hotel</a>
+                <a href="08-booking-success.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">08-Success</a>
+                <a href="09-user-orders.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">09-Orders</a>
+                <a href="10-order-details.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">10-Details</a>
+            </div>
+        </div>
+
+        <div style="margin-bottom: 15px;">
+            <h4 style="margin: 0 0 8px 0; color: #f44336; font-size: 13px; font-weight: bold;">🤝 Partner Panel</h4>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 5px; margin-bottom: 10px;">
+                <a href="11-partner-management.html" style="text-decoration: none; color: #f44336; font-size: 11px; padding: 4px 8px; border: 1px solid #f44336; border-radius: 4px; text-align: center; transition: all 0.2s;">11-Mgmt</a>
+                <a href="12-partner-analytics.html" style="text-decoration: none; color: #f44336; font-size: 11px; padding: 4px 8px; border: 1px solid #f44336; border-radius: 4px; text-align: center; transition: all 0.2s;">12-Analytics</a>
+            </div>
+        </div>
+
+        <div style="margin-bottom: 15px;">
+            <h4 style="margin: 0 0 8px 0; color: #4CAF50; font-size: 13px; font-weight: bold;">🛠️ Admin Panel</h4>
+            <div style="display: grid; grid-template-columns: 1fr; gap: 5px; margin-bottom: 10px;">
+                <a href="13-admin-dashboard.html" style="text-decoration: none; color: #4CAF50; font-size: 11px; padding: 4px 8px; border: 1px solid #4CAF50; border-radius: 4px; text-align: center; transition: all 0.2s;">13-Dashboard</a>
+            </div>
+        </div>
+
+        <div>
+            <h4 style="margin: 0 0 8px 0; color: #9C27B0; font-size: 13px; font-weight: bold;">⚙️ System Features</h4>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 5px;">
+                <a href="14-notification-center.html" style="text-decoration: none; color: #9C27B0; font-size: 11px; padding: 4px 8px; border: 1px solid #9C27B0; border-radius: 4px; text-align: center; transition: all 0.2s;">14-Notify</a>
+                <a href="15-help-support.html" style="text-decoration: none; color: #9C27B0; font-size: 11px; padding: 4px 8px; border: 1px solid #9C27B0; border-radius: 4px; text-align: center; transition: all 0.2s;">15-Support</a>
+                <a href="16-user-profile.html" style="text-decoration: none; color: #9C27B0; font-size: 11px; padding: 4px 8px; border: 1px solid #9C27B0; border-radius: 4px; text-align: center; transition: all 0.2s;">16-Profile</a>
+                <a href="17-reviews-ratings.html" style="text-decoration: none; color: #9C27B0; font-size: 11px; padding: 4px 8px; border: 1px solid #9C27B0; border-radius: 4px; text-align: center; transition: all 0.2s;">17-Reviews</a>
+                <a href="18-error-pages.html" style="text-decoration: none; color: #9C27B0; font-size: 11px; padding: 4px 8px; border: 1px solid #9C27B0; border-radius: 4px; text-align: center; transition: all 0.2s;">18-Errors</a>
+                <a href="19-mobile-responsive.html" style="text-decoration: none; color: white; background: #9C27B0; font-size: 11px; padding: 4px 8px; border: 1px solid #9C27B0; border-radius: 4px; text-align: center; transition: all 0.2s;">19-Mobile</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('wireframeMenu');
+            menu.style.display = menu.style.display === 'none' ? 'block' : 'none';
+        }
+
+        // Add hover effects
+        document.querySelectorAll('#wireframeMenu a').forEach(link => {
+            link.addEventListener('mouseenter', function() {
+                if (this.style.background !== 'rgb(33, 150, 243)' && this.style.background !== 'rgb(244, 67, 54)' && this.style.background !== 'rgb(76, 175, 80)' && this.style.background !== 'rgb(156, 39, 176)') {
+                    this.style.background = this.style.borderColor;
+                    this.style.color = 'white';
+                }
+            });
+            link.addEventListener('mouseleave', function() {
+                if (this.style.background !== 'rgb(33, 150, 243)' && this.style.background !== 'rgb(244, 67, 54)' && this.style.background !== 'rgb(76, 175, 80)' && this.style.background !== 'rgb(156, 39, 176)') {
+                    this.style.background = 'transparent';
+                    this.style.color = this.style.borderColor;
+                }
+            });
+        });
+    </script>
+
+    <script>
+        // Update screen size indicator
+        function updateScreenInfo() {
+            const width = window.innerWidth;
+            const height = window.innerHeight;
+            
+            document.getElementById('screenSize').textContent = width;
+            document.getElementById('currentWidth').textContent = width;
+            document.getElementById('pixelRatio').textContent = window.devicePixelRatio || 1;
+            
+            // Device type detection
+            let deviceType = 'Desktop';
+            if (width <= 576) deviceType = 'Mobile';
+            else if (width <= 992) deviceType = 'Tablet';
+            
+            document.getElementById('deviceType').textContent = deviceType;
+            
+            // Orientation
+            const orientation = width > height ? 'Landscape' : 'Portrait';
+            document.getElementById('orientation').textContent = orientation;
+        }
+
+        // Feature demonstrations
+        function demoFeature(feature) {
+            const demos = {
+                adaptive: '🎯 ADAPTIVE LAYOUT:\n\n✅ Responsive Grid System\n✅ Flexible Typography\n✅ Fluid Images\n✅ Container Queries\n\n💡 Layout tự động điều chỉnh theo màn hình',
+                touch: '👆 TOUCH GESTURES:\n\n✅ Tap to select\n✅ Swipe to navigate\n✅ Pinch to zoom\n✅ Long press menu\n✅ Pull to refresh\n\n💡 Hỗ trợ đầy đủ cử chỉ cảm ứng',
+                performance: '⚡ FAST PERFORMANCE:\n\n✅ Lazy Loading Images\n✅ Code Splitting\n✅ Compressed Assets\n✅ Service Worker Cache\n✅ Critical CSS\n\n💡 Tốc độ tải < 3 giây',
+                navigation: '🧭 SMART NAVIGATION:\n\n✅ Hamburger Menu (Mobile)\n✅ Bottom Tabs (Mobile)\n✅ Horizontal Scroll (Tablet)\n✅ Full Menu (Desktop)\n✅ Breadcrumb Navigation\n\n💡 Navigation thích ứng thiết bị',
+                forms: '📝 MOBILE FORMS:\n\n✅ Touch-friendly inputs\n✅ Smart keyboard types\n✅ Real-time validation\n✅ Autofill support\n✅ Progress indicators\n\n💡 Nhập liệu dễ dàng trên mobile',
+                offline: '📴 OFFLINE SUPPORT:\n\n✅ Service Worker\n✅ Cache API\n✅ IndexedDB storage\n✅ Background sync\n✅ Offline fallbacks\n\n💡 Hoạt động khi mất mạng'
+            };
+            
+            alert(demos[feature] || 'Tính năng đang được phát triển...');
+        }
+
+        // Device simulation
+        function simulateDevice(device) {
+            const sizes = {
+                mobile: { width: 375, height: 667 },
+                tablet: { width: 768, height: 1024 },
+                desktop: { width: 1200, height: 800 }
+            };
+            
+            const size = sizes[device];
+            if (size) {
+                alert(`📱 MÔ PHỎNG ${device.toUpperCase()}:\n\n📏 Kích thước: ${size.width}x${size.height}px\n🖥️ Viewport: Đang điều chỉnh...\n⚡ Performance: Đang kiểm tra...\n\n💡 Mở DevTools > Device Toolbar để test thực tế`);
+            }
+        }
+
+        // Performance check
+        function checkPerformance() {
+            const timing = performance.timing;
+            const loadTime = timing.loadEventEnd - timing.navigationStart;
+            
+            alert(`🚀 BÁO CÁO HIỆU SUẤT:\n\n⏱️ Thời gian tải: ${loadTime}ms\n📶 Kết nối: ${navigator.connection?.effectiveType || 'Unknown'}\n💾 Memory: ${navigator.deviceMemory || 'Unknown'} GB\n🔄 Service Worker: ${navigator.serviceWorker ? 'Supported' : 'Not supported'}\n\n${loadTime < 3000 ? '✅ Hiệu suất tốt!' : '⚠️ Cần tối ưu thêm'}`);
+        }
+
+        // Gesture demo
+        let gestureStartTime = 0;
+        let gestureStartX = 0;
+        let gestureStartY = 0;
+
+        function startGesture(event) {
+            gestureStartTime = Date.now();
+            const touch = event.touches ? event.touches[0] : event;
+            gestureStartX = touch.clientX;
+            gestureStartY = touch.clientY;
+            
+            const gestureArea = document.getElementById('gestureArea');
+            const gestureText = document.getElementById('gestureText');
+            
+            gestureArea.style.background = '#e8f4fd';
+            gestureText.textContent = 'Đang nhận diện cử chỉ...';
+            
+            // Handle gesture end
+            const endHandler = (e) => {
+                const duration = Date.now() - gestureStartTime;
+                const endTouch = e.changedTouches ? e.changedTouches[0] : e;
+                const deltaX = endTouch.clientX - gestureStartX;
+                const deltaY = endTouch.clientY - gestureStartY;
+                const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+                
+                let gestureType = '';
+                
+                if (duration > 500 && distance < 20) {
+                    gestureType = 'Long Press - Menu ngữ cảnh';
+                } else if (distance > 50) {
+                    if (Math.abs(deltaX) > Math.abs(deltaY)) {
+                        gestureType = deltaX > 0 ? 'Swipe Right - Quay lại' : 'Swipe Left - Tiếp theo';
+                    } else {
+                        gestureType = deltaY > 0 ? 'Swipe Down - Refresh' : 'Swipe Up - Thêm';
+                    }
+                } else {
+                    gestureType = 'Tap - Chọn';
+                }
+                
+                gestureText.textContent = `✅ ${gestureType}`;
+                gestureArea.style.background = '#e8f5e8';
+                
+                setTimeout(() => {
+                    gestureArea.style.background = '';
+                    gestureText.textContent = 'Chạm và kéo để thử nghiệm cử chỉ';
+                }, 2000);
+                
+                document.removeEventListener('mouseup', endHandler);
+                document.removeEventListener('touchend', endHandler);
+            };
+            
+            document.addEventListener('mouseup', endHandler);
+            document.addEventListener('touchend', endHandler);
+        }
+
+        // Initialize
+        window.addEventListener('resize', updateScreenInfo);
+        window.addEventListener('load', updateScreenInfo);
+        updateScreenInfo();
+
+        // Mobile navigation demo
+        document.querySelectorAll('.mobile-nav-item').forEach(item => {
+            item.addEventListener('click', function() {
+                document.querySelectorAll('.mobile-nav-item').forEach(i => i.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>

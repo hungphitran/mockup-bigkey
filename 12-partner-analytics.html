@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thống kê đối tác - BigKey Travel</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <i class="fas fa-compass"></i> BigKey Travel - Partner
+            </div>
+            <nav class="nav-menu">
+                <a href="11-partner-management.html">Quản lý Tours</a>
+                <a href="12-partner-analytics.html" style="background-color: rgba(255,255,255,0.2);">Thống kê & Phân tích</a>
+                <a href="09-user-orders.html">Đơn hàng của tôi</a>
+                <a href="01-search-integrated.html">Xem trang chủ</a>
+            </nav>
+            <div class="auth-section">
+                <select style="padding: 5px; border-radius: 5px; border: none;">
+                    <option>🇻🇳 Tiếng Việt</option>
+                    <option>🇺🇸 English</option>
+                    <option>🇷🇺 Русский</option>
+                </select>
+                <a href="#" class="btn btn-primary">VietTravel Co.</a>
+                <button class="btn btn-secondary" onclick="logout()">Đăng xuất</button>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Dashboard -->
+        <div class="dashboard">
+            <!-- Sidebar -->
+            <div class="sidebar fade-in">
+                <!-- Time Period Selection -->
+                <div style="margin-bottom: 30px;">
+                    <h4 style="margin-bottom: 15px; color: #333;">
+                        <i class="fas fa-calendar-alt"></i> Thời gian
+                    </h4>
+                    <select id="timePeriod" onchange="updateCharts()" style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #ddd;">
+                        <option value="7days">7 ngày qua</option>
+                        <option value="30days" selected>30 ngày qua</option>
+                        <option value="90days">3 tháng qua</option>
+                        <option value="year">1 năm qua</option>
+                    </select>
+                </div>
+
+                <!-- Quick Metrics -->
+                <div style="margin-bottom: 30px;">
+                    <h4 style="margin-bottom: 15px; color: #333;">
+                        <i class="fas fa-tachometer-alt"></i> Chỉ số nhanh
+                    </h4>
+                    <div style="display: grid; gap: 15px;">
+                        <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 15px; border-radius: 10px;">
+                            <div style="font-size: 18px; font-weight: bold;">2.8 tỷ</div>
+                            <div style="font-size: 14px; opacity: 0.9;">Doanh thu tháng</div>
+                        </div>
+                        <div style="background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%); color: white; padding: 15px; border-radius: 10px;">
+                            <div style="font-size: 18px; font-weight: bold;">1,234</div>
+                            <div style="font-size: 14px; opacity: 0.9;">Đơn hàng mới</div>
+                        </div>
+                        <div style="background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%); color: white; padding: 15px; border-radius: 10px;">
+                            <div style="font-size: 18px; font-weight: bold;">89.5%</div>
+                            <div style="font-size: 14px; opacity: 0.9;">Tỷ lệ hài lòng</div>
+                        </div>
+                        <div style="background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%); color: white; padding: 15px; border-radius: 10px;">
+                            <div style="font-size: 18px; font-weight: bold;">15%</div>
+                            <div style="font-size: 14px; opacity: 0.9;">Tăng trưởng</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Export Options -->
+                <div style="margin-bottom: 30px;">
+                    <h4 style="margin-bottom: 15px; color: #333;">
+                        <i class="fas fa-download"></i> Xuất báo cáo
+                    </h4>
+                    <div style="display: grid; gap: 10px;">
+                        <button class="btn btn-primary" style="width: 100%; justify-content: flex-start;" onclick="exportReport('pdf')">
+                            <i class="fas fa-file-pdf"></i> PDF
+                        </button>
+                        <button class="btn btn-secondary" style="width: 100%; justify-content: flex-start;" onclick="exportReport('excel')">
+                            <i class="fas fa-file-excel"></i> Excel
+                        </button>
+                        <button class="btn btn-secondary" style="width: 100%; justify-content: flex-start;" onclick="exportReport('csv')">
+                            <i class="fas fa-file-csv"></i> CSV
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Filters -->
+                <div>
+                    <h4 style="margin-bottom: 15px; color: #333;">
+                        <i class="fas fa-filter"></i> Bộ lọc
+                    </h4>
+                    <div style="display: grid; gap: 10px;">
+                        <div>
+                            <label style="display: block; margin-bottom: 5px; font-weight: bold; color: #333;">Loại tour:</label>
+                            <select style="width: 100%; padding: 8px; border-radius: 5px; border: 1px solid #ddd;">
+                                <option>Tất cả</option>
+                                <option>Trong nước</option>
+                                <option>Nước ngoài</option>
+                                <option>Combo</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label style="display: block; margin-bottom: 5px; font-weight: bold; color: #333;">Khu vực:</label>
+                            <select style="width: 100%; padding: 8px; border-radius: 5px; border: 1px solid #ddd;">
+                                <option>Tất cả</option>
+                                <option>Miền Bắc</option>
+                                <option>Miền Trung</option>
+                                <option>Miền Nam</option>
+                            </select>
+                        </div>
+                        <button class="btn btn-primary" style="width: 100%; margin-top: 10px;">
+                            <i class="fas fa-search"></i> Áp dụng
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="main-content fade-in">
+                <!-- Header -->
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+                    <div>
+                        <h1 style="color: #333; margin: 0;">
+                            <i class="fas fa-chart-bar"></i> Thống kê & Báo cáo
+                        </h1>
+                        <p style="color: #666; margin: 5px 0 0 0;">Phân tích hiệu suất kinh doanh và xu hướng thị trường</p>
+                    </div>
+                    <div style="text-align: right;">
+                        <div style="font-size: 18px; font-weight: bold; color: #667eea;">📊 Analytics</div>
+                        <div style="font-size: 14px; color: #666;">Cập nhật: 17/07/2025 10:30</div>
+                    </div>
+                </div>
+
+                <!-- Key Performance Indicators -->
+                <div class="stats-grid" style="margin-bottom: 30px;">
+                    <div class="stat-card" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                        <div class="stat-value">2.8B</div>
+                        <div class="stat-label">Doanh thu (VNĐ)</div>
+                        <div style="font-size: 14px; opacity: 0.9; margin-top: 5px;">📈 +15% vs tháng trước</div>
+                    </div>
+                    <div class="stat-card" style="background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);">
+                        <div class="stat-value">1,234</div>
+                        <div class="stat-label">Đơn hàng</div>
+                        <div style="font-size: 14px; opacity: 0.9; margin-top: 5px;">📈 +8% vs tháng trước</div>
+                    </div>
+                    <div class="stat-card" style="background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);">
+                        <div class="stat-value">2.27M</div>
+                        <div class="stat-label">Giá trị TB/đơn</div>
+                        <div style="font-size: 14px; opacity: 0.9; margin-top: 5px;">📈 +6% vs tháng trước</div>
+                    </div>
+                    <div class="stat-card" style="background: linear-gradient(135deg, #9b59b6 0%, #8e44ad 100%);">
+                        <div class="stat-value">456</div>
+                        <div class="stat-label">Khách mới</div>
+                        <div style="font-size: 14px; opacity: 0.9; margin-top: 5px;">📈 +12% vs tháng trước</div>
+                    </div>
+                </div>
+
+                <!-- Charts Section -->
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; margin-bottom: 30px;">
+                    <!-- Revenue Chart -->
+                    <div style="background: white; padding: 25px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1);">
+                        <h3 style="margin: 0 0 20px 0; color: #333;">
+                            <i class="fas fa-chart-line"></i> Doanh thu theo thời gian
+                        </h3>
+                        <canvas id="revenueChart" width="400" height="200"></canvas>
+                    </div>
+
+                    <!-- Orders Chart -->
+                    <div style="background: white; padding: 25px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1);">
+                        <h3 style="margin: 0 0 20px 0; color: #333;">
+                            <i class="fas fa-shopping-cart"></i> Đơn hàng theo ngày
+                        </h3>
+                        <canvas id="ordersChart" width="400" height="200"></canvas>
+                    </div>
+                </div>
+
+                <!-- Tour Performance & Customer Satisfaction -->
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; margin-bottom: 30px;">
+                    <!-- Top Tours -->
+                    <div style="background: white; padding: 25px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1);">
+                        <h3 style="margin: 0 0 20px 0; color: #333;">
+                            <i class="fas fa-trophy"></i> Top Tours bán chạy
+                        </h3>
+                        <canvas id="topToursChart" width="400" height="200"></canvas>
+                    </div>
+
+                    <!-- Customer Demographics -->
+                    <div style="background: white; padding: 25px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1);">
+                        <h3 style="margin: 0 0 20px 0; color: #333;">
+                            <i class="fas fa-users"></i> Phân bố khách hàng theo tuổi
+                        </h3>
+                        <canvas id="demographicsChart" width="400" height="200"></canvas>
+                    </div>
+                </div>
+
+                <!-- Detailed Analytics -->
+                <div style="background: white; padding: 30px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); margin-bottom: 30px;">
+                    <h2 style="margin: 0 0 25px 0; color: #333;">
+                        <i class="fas fa-chart-pie"></i> PHÂN TÍCH CHI TIẾT
+                    </h2>
+
+                    <!-- Performance Metrics Table -->
+                    <div style="margin-bottom: 30px;">
+                        <h4 style="margin-bottom: 15px; color: #333;">📊 Chỉ số hiệu suất tour</h4>
+                        <div class="table-container">
+                            <table style="width: 100%; border-collapse: collapse;">
+                                <thead>
+                                    <tr style="background: #f8f9fa;">
+                                        <th style="padding: 12px; text-align: left; border-bottom: 2px solid #dee2e6;">Tour</th>
+                                        <th style="padding: 12px; text-align: center; border-bottom: 2px solid #dee2e6;">Đã bán</th>
+                                        <th style="padding: 12px; text-align: center; border-bottom: 2px solid #dee2e6;">Doanh thu</th>
+                                        <th style="padding: 12px; text-align: center; border-bottom: 2px solid #dee2e6;">Đánh giá</th>
+                                        <th style="padding: 12px; text-align: center; border-bottom: 2px solid #dee2e6;">Tỷ lệ chuyển đổi</th>
+                                        <th style="padding: 12px; text-align: center; border-bottom: 2px solid #dee2e6;">Xu hướng</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td style="padding: 12px; border-bottom: 1px solid #dee2e6;">
+                                            <div style="font-weight: bold;">Tour Hạ Long Premium</div>
+                                            <div style="color: #666; font-size: 14px;">3N2Đ</div>
+                                        </td>
+                                        <td style="padding: 12px; border-bottom: 1px solid #dee2e6; text-align: center;">234</td>
+                                        <td style="padding: 12px; border-bottom: 1px solid #dee2e6; text-align: center;">
+                                            <div style="font-weight: bold; color: #27ae60;">982M VNĐ</div>
+                                        </td>
+                                        <td style="padding: 12px; border-bottom: 1px solid #dee2e6; text-align: center;">
+                                            <div style="color: #f39c12;">⭐ 4.8</div>
+                                        </td>
+                                        <td style="padding: 12px; border-bottom: 1px solid #dee2e6; text-align: center;">
+                                            <div style="color: #27ae60; font-weight: bold;">12.3%</div>
+                                        </td>
+                                        <td style="padding: 12px; border-bottom: 1px solid #dee2e6; text-align: center;">
+                                            <div style="color: #27ae60;">📈 +8%</div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 12px; border-bottom: 1px solid #dee2e6;">
+                                            <div style="font-weight: bold;">Tour Sapa Cổ Tích</div>
+                                            <div style="color: #666; font-size: 14px;">2N1Đ</div>
+                                        </td>
+                                        <td style="padding: 12px; border-bottom: 1px solid #dee2e6; text-align: center;">156</td>
+                                        <td style="padding: 12px; border-bottom: 1px solid #dee2e6; text-align: center;">
+                                            <div style="font-weight: bold; color: #27ae60;">437M VNĐ</div>
+                                        </td>
+                                        <td style="padding: 12px; border-bottom: 1px solid #dee2e6; text-align: center;">
+                                            <div style="color: #f39c12;">⭐ 4.6</div>
+                                        </td>
+                                        <td style="padding: 12px; border-bottom: 1px solid #dee2e6; text-align: center;">
+                                            <div style="color: #27ae60; font-weight: bold;">9.8%</div>
+                                        </td>
+                                        <td style="padding: 12px; border-bottom: 1px solid #dee2e6; text-align: center;">
+                                            <div style="color: #27ae60;">📈 +15%</div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 12px; border-bottom: 1px solid #dee2e6;">
+                                            <div style="font-weight: bold;">Tour Đà Nẵng Resort</div>
+                                            <div style="color: #666; font-size: 14px;">4N3Đ</div>
+                                        </td>
+                                        <td style="padding: 12px; border-bottom: 1px solid #dee2e6; text-align: center;">98</td>
+                                        <td style="padding: 12px; border-bottom: 1px solid #dee2e6; text-align: center;">
+                                            <div style="font-weight: bold; color: #27ae60;">637M VNĐ</div>
+                                        </td>
+                                        <td style="padding: 12px; border-bottom: 1px solid #dee2e6; text-align: center;">
+                                            <div style="color: #f39c12;">⭐ 4.9</div>
+                                        </td>
+                                        <td style="padding: 12px; border-bottom: 1px solid #dee2e6; text-align: center;">
+                                            <div style="color: #f39c12; font-weight: bold;">7.2%</div>
+                                        </td>
+                                        <td style="padding: 12px; border-bottom: 1px solid #dee2e6; text-align: center;">
+                                            <div style="color: #e74c3c;">📉 -3%</div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Customer Insights -->
+                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
+                        <div style="background: #f8f9fa; padding: 20px; border-radius: 10px;">
+                            <h5 style="margin: 0 0 15px 0; color: #333;">
+                                <i class="fas fa-heart"></i> Khách hàng trung thành
+                            </h5>
+                            <div style="font-size: 24px; font-weight: bold; color: #e74c3c; margin-bottom: 5px;">65%</div>
+                            <div style="color: #666; font-size: 14px;">Tỷ lệ khách quay lại</div>
+                            <div style="color: #27ae60; font-size: 14px; margin-top: 5px;">📈 +5% vs tháng trước</div>
+                        </div>
+                        <div style="background: #f8f9fa; padding: 20px; border-radius: 10px;">
+                            <h5 style="margin: 0 0 15px 0; color: #333;">
+                                <i class="fas fa-clock"></i> Thời gian đặt TB
+                            </h5>
+                            <div style="font-size: 24px; font-weight: bold; color: #667eea; margin-bottom: 5px;">18 ngày</div>
+                            <div style="color: #666; font-size: 14px;">Trước khởi hành</div>
+                            <div style="color: #27ae60; font-size: 14px; margin-top: 5px;">📈 +2 ngày vs tháng trước</div>
+                        </div>
+                        <div style="background: #f8f9fa; padding: 20px; border-radius: 10px;">
+                            <h5 style="margin: 0 0 15px 0; color: #333;">
+                                <i class="fas fa-star"></i> Điểm đánh giá TB
+                            </h5>
+                            <div style="font-size: 24px; font-weight: bold; color: #f39c12; margin-bottom: 5px;">4.7/5</div>
+                            <div style="color: #666; font-size: 14px;">Từ 1,547 đánh giá</div>
+                            <div style="color: #27ae60; font-size: 14px; margin-top: 5px;">📈 +0.2 vs tháng trước</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Monthly Comparison -->
+                <div style="background: white; padding: 30px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1);">
+                    <h2 style="margin: 0 0 25px 0; color: #333;">
+                        <i class="fas fa-calendar-check"></i> SO SÁNH THEO THÁNG
+                    </h2>
+                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px;">
+                        <!-- Current vs Previous Month -->
+                        <div>
+                            <h4 style="margin-bottom: 15px; color: #333;">Tháng 7/2025 vs Tháng 6/2025</h4>
+                            <div style="display: grid; gap: 15px;">
+                                <div style="display: flex; justify-content: space-between; align-items: center; padding: 15px; background: #f8f9fa; border-radius: 8px;">
+                                    <div>
+                                        <div style="font-weight: bold; color: #333;">Doanh thu</div>
+                                        <div style="color: #666; font-size: 14px;">2.8B vs 2.4B VNĐ</div>
+                                    </div>
+                                    <div style="color: #27ae60; font-weight: bold;">+15%</div>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; align-items: center; padding: 15px; background: #f8f9fa; border-radius: 8px;">
+                                    <div>
+                                        <div style="font-weight: bold; color: #333;">Đơn hàng</div>
+                                        <div style="color: #666; font-size: 14px;">1,234 vs 1,142 đơn</div>
+                                    </div>
+                                    <div style="color: #27ae60; font-weight: bold;">+8%</div>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; align-items: center; padding: 15px; background: #f8f9fa; border-radius: 8px;">
+                                    <div>
+                                        <div style="font-weight: bold; color: #333;">Khách mới</div>
+                                        <div style="color: #666; font-size: 14px;">456 vs 407 khách</div>
+                                    </div>
+                                    <div style="color: #27ae60; font-weight: bold;">+12%</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Year over Year -->
+                        <div>
+                            <h4 style="margin-bottom: 15px; color: #333;">Tháng 7/2025 vs Tháng 7/2024</h4>
+                            <div style="display: grid; gap: 15px;">
+                                <div style="display: flex; justify-content: space-between; align-items: center; padding: 15px; background: #f8f9fa; border-radius: 8px;">
+                                    <div>
+                                        <div style="font-weight: bold; color: #333;">Doanh thu</div>
+                                        <div style="color: #666; font-size: 14px;">2.8B vs 1.9B VNĐ</div>
+                                    </div>
+                                    <div style="color: #27ae60; font-weight: bold;">+47%</div>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; align-items: center; padding: 15px; background: #f8f9fa; border-radius: 8px;">
+                                    <div>
+                                        <div style="font-weight: bold; color: #333;">Đơn hàng</div>
+                                        <div style="color: #666; font-size: 14px;">1,234 vs 867 đơn</div>
+                                    </div>
+                                    <div style="color: #27ae60; font-weight: bold;">+42%</div>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; align-items: center; padding: 15px; background: #f8f9fa; border-radius: 8px;">
+                                    <div>
+                                        <div style="font-weight: bold; color: #333;">Đánh giá TB</div>
+                                        <div style="color: #666; font-size: 14px;">4.7 vs 4.3</div>
+                                    </div>
+                                    <div style="color: #27ae60; font-weight: bold;">+9%</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Menu -->
+    <div id="wireframeMenu" style="position: fixed; bottom: 20px; right: 20px; background: white; padding: 20px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.2); max-height: 80vh; overflow-y: auto; z-index: 1000; transition: all 0.3s ease;">
+        <button onclick="toggleMenu()" style="position: absolute; top: 10px; right: 10px; background: #ff6b6b; color: white; border: none; border-radius: 50%; width: 25px; height: 25px; cursor: pointer; font-size: 14px;">×</button>
+        
+        <h3 style="margin: 0 0 15px 0; color: #333; font-size: 16px; border-bottom: 2px solid #eee; padding-bottom: 8px;">🗺️ Wireframe Menu</h3>
+        
+        <div style="margin-bottom: 15px;">
+            <h4 style="margin: 0 0 8px 0; color: #2196F3; font-size: 13px; font-weight: bold;">📱 User Interface</h4>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 5px; margin-bottom: 10px;">
+                <a href="01-search-integrated.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">01-Search</a>
+                <a href="02-filter-advanced.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">02-Filter</a>
+                <a href="03-tour-details.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">03-Tour</a>
+                <a href="04-booking-payment.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">04-Booking</a>
+                <a href="05-combo-details.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">05-Combo</a>
+                <a href="06-flight-details.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">06-Flight</a>
+                <a href="07-hotel-details.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">07-Hotel</a>
+                <a href="08-booking-success.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">08-Success</a>
+                <a href="09-user-orders.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">09-Orders</a>
+                <a href="10-order-details.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">10-Details</a>
+            </div>
+        </div>
+
+        <div style="margin-bottom: 15px;">
+            <h4 style="margin: 0 0 8px 0; color: #f44336; font-size: 13px; font-weight: bold;">🤝 Partner Panel</h4>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 5px; margin-bottom: 10px;">
+                <a href="11-partner-management.html" style="text-decoration: none; color: #f44336; font-size: 11px; padding: 4px 8px; border: 1px solid #f44336; border-radius: 4px; text-align: center; transition: all 0.2s;">11-Mgmt</a>
+                <a href="12-partner-analytics.html" style="text-decoration: none; color: white; background: #f44336; font-size: 11px; padding: 4px 8px; border: 1px solid #f44336; border-radius: 4px; text-align: center; transition: all 0.2s;">12-Analytics</a>
+            </div>
+        </div>
+
+        <div style="margin-bottom: 15px;">
+            <h4 style="margin: 0 0 8px 0; color: #4CAF50; font-size: 13px; font-weight: bold;">🛠️ Admin Panel</h4>
+            <div style="display: grid; grid-template-columns: 1fr; gap: 5px; margin-bottom: 10px;">
+                <a href="13-admin-dashboard.html" style="text-decoration: none; color: #4CAF50; font-size: 11px; padding: 4px 8px; border: 1px solid #4CAF50; border-radius: 4px; text-align: center; transition: all 0.2s;">13-Dashboard</a>
+            </div>
+        </div>
+
+        <div>
+            <h4 style="margin: 0 0 8px 0; color: #9C27B0; font-size: 13px; font-weight: bold;">⚙️ System Features</h4>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 5px;">
+                <a href="14-notification-center.html" style="text-decoration: none; color: #9C27B0; font-size: 11px; padding: 4px 8px; border: 1px solid #9C27B0; border-radius: 4px; text-align: center; transition: all 0.2s;">14-Notify</a>
+                <a href="15-help-support.html" style="text-decoration: none; color: #9C27B0; font-size: 11px; padding: 4px 8px; border: 1px solid #9C27B0; border-radius: 4px; text-align: center; transition: all 0.2s;">15-Support</a>
+                <a href="16-user-profile.html" style="text-decoration: none; color: #9C27B0; font-size: 11px; padding: 4px 8px; border: 1px solid #9C27B0; border-radius: 4px; text-align: center; transition: all 0.2s;">16-Profile</a>
+                <a href="17-reviews-ratings.html" style="text-decoration: none; color: #9C27B0; font-size: 11px; padding: 4px 8px; border: 1px solid #9C27B0; border-radius: 4px; text-align: center; transition: all 0.2s;">17-Reviews</a>
+                <a href="18-error-pages.html" style="text-decoration: none; color: #9C27B0; font-size: 11px; padding: 4px 8px; border: 1px solid #9C27B0; border-radius: 4px; text-align: center; transition: all 0.2s;">18-Errors</a>
+                <a href="19-mobile-responsive.html" style="text-decoration: none; color: #9C27B0; font-size: 11px; padding: 4px 8px; border: 1px solid #9C27B0; border-radius: 4px; text-align: center; transition: all 0.2s;">19-Mobile</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('wireframeMenu');
+            menu.style.display = menu.style.display === 'none' ? 'block' : 'none';
+        }
+
+        // Add hover effects
+        document.querySelectorAll('#wireframeMenu a').forEach(link => {
+            link.addEventListener('mouseenter', function() {
+                if (this.style.background !== 'rgb(33, 150, 243)' && this.style.background !== 'rgb(244, 67, 54)' && this.style.background !== 'rgb(76, 175, 80)' && this.style.background !== 'rgb(156, 39, 176)') {
+                    this.style.background = this.style.borderColor;
+                    this.style.color = 'white';
+                }
+            });
+            link.addEventListener('mouseleave', function() {
+                if (this.style.background !== 'rgb(33, 150, 243)' && this.style.background !== 'rgb(244, 67, 54)' && this.style.background !== 'rgb(76, 175, 80)' && this.style.background !== 'rgb(156, 39, 176)') {
+                    this.style.background = 'transparent';
+                    this.style.color = this.style.borderColor;
+                }
+            });
+        });
+    </script>
+
+    <script>
+        // Initialize Charts
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeCharts();
+        });
+
+        function initializeCharts() {
+            // Revenue Chart
+            const revenueCtx = document.getElementById('revenueChart').getContext('2d');
+            new Chart(revenueCtx, {
+                type: 'line',
+                data: {
+                    labels: ['T1', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7'],
+                    datasets: [{
+                        label: 'Doanh thu (triệu VNĐ)',
+                        data: [1800, 2100, 1950, 2300, 2600, 2400, 2800],
+                        borderColor: '#667eea',
+                        backgroundColor: 'rgba(102, 126, 234, 0.1)',
+                        borderWidth: 3,
+                        fill: true,
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                callback: function(value) {
+                                    return value + 'M';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Orders Chart
+            const ordersCtx = document.getElementById('ordersChart').getContext('2d');
+            new Chart(ordersCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['CN', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7'],
+                    datasets: [{
+                        label: 'Đơn hàng',
+                        data: [45, 78, 65, 89, 72, 95, 68],
+                        backgroundColor: 'rgba(39, 174, 96, 0.8)',
+                        borderColor: '#27ae60',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+
+            // Top Tours Chart
+            const topToursCtx = document.getElementById('topToursChart').getContext('2d');
+            new Chart(topToursCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Hạ Long', 'Sapa', 'Đà Nẵng', 'Phú Quốc', 'Khác'],
+                    datasets: [{
+                        data: [234, 156, 98, 87, 145],
+                        backgroundColor: [
+                            '#667eea',
+                            '#27ae60',
+                            '#f39c12',
+                            '#e74c3c',
+                            '#9b59b6'
+                        ]
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom'
+                        }
+                    }
+                }
+            });
+
+            // Demographics Chart
+            const demographicsCtx = document.getElementById('demographicsChart').getContext('2d');
+            new Chart(demographicsCtx, {
+                type: 'pie',
+                data: {
+                    labels: ['18-25', '26-35', '36-45', '46-55', '55+'],
+                    datasets: [{
+                        data: [15, 35, 28, 15, 7],
+                        backgroundColor: [
+                            '#667eea',
+                            '#27ae60',
+                            '#f39c12',
+                            '#e74c3c',
+                            '#9b59b6'
+                        ]
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom'
+                        }
+                    }
+                }
+            });
+        }
+
+        function updateCharts() {
+            const period = document.getElementById('timePeriod').value;
+            console.log('Updating charts for period:', period);
+            // In real app, would fetch new data and update charts
+            alert('📊 Đang cập nhật biểu đồ cho khoảng thời gian: ' + 
+                  document.getElementById('timePeriod').selectedOptions[0].text);
+        }
+
+        function exportReport(format) {
+            alert(`📁 Đang xuất báo cáo định dạng ${format.toUpperCase()}...\nFile sẽ được tải xuống trong giây lát.`);
+        }
+
+        function logout() {
+            if (confirm('🚪 Đăng xuất khỏi hệ thống?')) {
+                alert('👋 Đã đăng xuất. Chuyển về trang đăng nhập...');
+            }
+        }
+    </script>
+</body>
+</html>

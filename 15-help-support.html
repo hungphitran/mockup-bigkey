@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trung tâm hỗ trợ - BigKey Travel</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <i class="fas fa-compass"></i> BigKey Travel
+            </div>
+            <nav class="nav-menu">
+                <a href="01-search-integrated.html">Tìm kiếm</a>
+                <a href="03-tour-details.html">Tours</a>
+                <a href="09-user-orders.html">Đơn hàng</a>
+                <a href="15-help-support.html" class="active">Hỗ trợ</a>
+            </nav>
+            <div class="auth-section">
+                <select style="padding: 5px; border-radius: 5px; border: none;">
+                    <option>🇻🇳 Tiếng Việt</option>
+                    <option>🇺🇸 English</option>
+                    <option>🇷🇺 Русский</option>
+                </select>
+                <a href="09-user-orders.html" class="btn btn-primary">Nguyễn Văn A</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Page Header -->
+        <div style="text-align: center; margin: 30px 0;">
+            <h1 style="color: #333; margin-bottom: 10px;">
+                🎧 TRUNG TÂM HỖ TRỢ
+            </h1>
+            <p style="color: #666; font-size: 16px;">
+                Chúng tôi luôn sẵn sàng hỗ trợ bạn 24/7
+            </p>
+        </div>
+
+        <!-- Quick Contact -->
+        <div class="fade-in" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 30px; border-radius: 15px; margin-bottom: 30px; color: white; text-align: center;">
+            <h2 style="margin: 0 0 20px 0;">⚡ LIÊN HỆ NHANH</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
+                <button class="btn" style="background: rgba(255,255,255,0.2); color: white; border: 1px solid rgba(255,255,255,0.3); padding: 15px;" onclick="callHotline()">
+                    <i class="fas fa-phone" style="font-size: 20px; margin-bottom: 10px; display: block;"></i>
+                    <strong>Hotline 24/7</strong><br>
+                    <small>1900.1234</small>
+                </button>
+                <button class="btn" style="background: rgba(255,255,255,0.2); color: white; border: 1px solid rgba(255,255,255,0.3); padding: 15px;" onclick="openLiveChat()">
+                    <i class="fas fa-comments" style="font-size: 20px; margin-bottom: 10px; display: block;"></i>
+                    <strong>Live Chat</strong><br>
+                    <small>Phản hồi < 1 phút</small>
+                </button>
+                <button class="btn" style="background: rgba(255,255,255,0.2); color: white; border: 1px solid rgba(255,255,255,0.3); padding: 15px;" onclick="sendEmail()">
+                    <i class="fas fa-envelope" style="font-size: 20px; margin-bottom: 10px; display: block;"></i>
+                    <strong>Email</strong><br>
+                    <small>support@bigkey.vn</small>
+                </button>
+                <button class="btn" style="background: rgba(255,255,255,0.2); color: white; border: 1px solid rgba(255,255,255,0.3); padding: 15px;" onclick="openZalo()">
+                    <i class="fab fa-facebook-messenger" style="font-size: 20px; margin-bottom: 10px; display: block;"></i>
+                    <strong>Zalo/Messenger</strong><br>
+                    <small>Hỗ trợ nhanh</small>
+                </button>
+            </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 30px;">
+            <!-- Left Column - Main Content -->
+            <div class="fade-in">
+                <!-- Search Help -->
+                <div style="background: white; padding: 25px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); margin-bottom: 30px;">
+                    <h3 style="margin: 0 0 20px 0; color: #333;">
+                        🔍 TÌM KIẾM HỖ TRỢ
+                    </h3>
+                    
+                    <div style="position: relative; margin-bottom: 20px;">
+                        <input type="text" placeholder="Nhập câu hỏi của bạn..." style="width: 100%; padding: 15px 50px 15px 20px; border: 2px solid #e0e0e0; border-radius: 25px; font-size: 16px;" id="searchInput" onkeypress="handleSearch(event)">
+                        <button style="position: absolute; right: 5px; top: 50%; transform: translateY(-50%); background: #667eea; color: white; border: none; padding: 10px 15px; border-radius: 20px; cursor: pointer;" onclick="performSearch()">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+
+                    <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                        <span style="color: #666; font-size: 14px;">Gợi ý:</span>
+                        <button class="btn btn-secondary btn-sm" onclick="quickSearch('đặt tour')">Đặt tour</button>
+                        <button class="btn btn-secondary btn-sm" onclick="quickSearch('hủy booking')">Hủy booking</button>
+                        <button class="btn btn-secondary btn-sm" onclick="quickSearch('thanh toán')">Thanh toán</button>
+                        <button class="btn btn-secondary btn-sm" onclick="quickSearch('hoàn tiền')">Hoàn tiền</button>
+                    </div>
+                </div>
+
+                <!-- FAQ Categories -->
+                <div style="background: white; padding: 25px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); margin-bottom: 30px;">
+                    <h3 style="margin: 0 0 20px 0; color: #333;">
+                        ❓ CÂU HỎI THƯỜNG GẶP
+                    </h3>
+                    
+                    <div style="display: grid; gap: 15px;">
+                        <div class="faq-category" style="border: 1px solid #e0e0e0; border-radius: 10px; overflow: hidden;">
+                            <div style="background: #f8f9fa; padding: 15px; cursor: pointer; display: flex; justify-content: space-between; align-items: center;" onclick="toggleFAQ('booking')">
+                                <span style="font-weight: bold; color: #333;">
+                                    🎯 Đặt chỗ & Thanh toán (12 câu hỏi)
+                                </span>
+                                <i class="fas fa-chevron-down" id="booking-icon"></i>
+                            </div>
+                            <div id="booking-content" style="display: none; padding: 20px;">
+                                <div class="faq-item" style="margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px solid #f0f0f0;">
+                                    <div style="font-weight: bold; color: #333; margin-bottom: 8px; cursor: pointer;" onclick="toggleAnswer('q1')">
+                                        Q: Làm thế nào để đặt tour trên BigKey Travel?
+                                    </div>
+                                    <div id="q1" style="display: none; color: #666; line-height: 1.6;">
+                                        A: Bạn có thể đặt tour bằng cách: 1) Tìm kiếm tour phù hợp, 2) Chọn ngày và số người, 3) Điền thông tin hành khách, 4) Thanh toán online. Quá trình rất đơn giản và chỉ mất 5-10 phút.
+                                    </div>
+                                </div>
+                                <div class="faq-item" style="margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px solid #f0f0f0;">
+                                    <div style="font-weight: bold; color: #333; margin-bottom: 8px; cursor: pointer;" onclick="toggleAnswer('q2')">
+                                        Q: Những phương thức thanh toán nào được hỗ trợ?
+                                    </div>
+                                    <div id="q2" style="display: none; color: #666; line-height: 1.6;">
+                                        A: Chúng tôi hỗ trợ: VNPay, MoMo, thẻ tín dụng Visa/Master, chuyển khoản ngân hàng, và trả góp 0%. Tất cả đều an toàn và bảo mật.
+                                    </div>
+                                </div>
+                                <div class="faq-item" style="margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px solid #f0f0f0;">
+                                    <div style="font-weight: bold; color: #333; margin-bottom: 8px; cursor: pointer;" onclick="toggleAnswer('q3')">
+                                        Q: Tôi có thể hủy tour sau khi đã đặt không?
+                                    </div>
+                                    <div id="q3" style="display: none; color: #666; line-height: 1.6;">
+                                        A: Có, bạn có thể hủy tour theo chính sách của từng nhà cung cấp. Thường sẽ miễn phí hủy trong 24h đầu, sau đó áp dụng phí hủy theo quy định.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="faq-category" style="border: 1px solid #e0e0e0; border-radius: 10px; overflow: hidden;">
+                            <div style="background: #f8f9fa; padding: 15px; cursor: pointer; display: flex; justify-content: space-between; align-items: center;" onclick="toggleFAQ('travel')">
+                                <span style="font-weight: bold; color: #333;">
+                                    ✈️ Du lịch & Lịch trình (8 câu hỏi)
+                                </span>
+                                <i class="fas fa-chevron-down" id="travel-icon"></i>
+                            </div>
+                            <div id="travel-content" style="display: none; padding: 20px;">
+                                <div class="faq-item" style="margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px solid #f0f0f0;">
+                                    <div style="font-weight: bold; color: #333; margin-bottom: 8px; cursor: pointer;" onclick="toggleAnswer('q4')">
+                                        Q: Lịch trình tour có thể thay đổi không?
+                                    </div>
+                                    <div id="q4" style="display: none; color: #666; line-height: 1.6;">
+                                        A: Lịch trình có thể thay đổi do thời tiết hoặc lý do an toàn. Chúng tôi sẽ thông báo trước và bồi thường nếu có sự thay đổi lớn.
+                                    </div>
+                                </div>
+                                <div class="faq-item" style="margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px solid #f0f0f0;">
+                                    <div style="font-weight: bold; color: #333; margin-bottom: 8px; cursor: pointer;" onclick="toggleAnswer('q5')">
+                                        Q: Tôi cần chuẩn bị gì cho chuyến đi?
+                                    </div>
+                                    <div id="q5" style="display: none; color: #666; line-height: 1.6;">
+                                        A: Chuẩn bị CMND/Passport, quần áo theo thời tiết, thuốc cá nhân, và các vật dụng cần thiết. Chúng tôi sẽ gửi checklist chi tiết qua email.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="faq-category" style="border: 1px solid #e0e0e0; border-radius: 10px; overflow: hidden;">
+                            <div style="background: #f8f9fa; padding: 15px; cursor: pointer; display: flex; justify-content: space-between; align-items: center;" onclick="toggleFAQ('account')">
+                                <span style="font-weight: bold; color: #333;">
+                                    👤 Tài khoản & Bảo mật (6 câu hỏi)
+                                </span>
+                                <i class="fas fa-chevron-down" id="account-icon"></i>
+                            </div>
+                            <div id="account-content" style="display: none; padding: 20px;">
+                                <div class="faq-item" style="margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px solid #f0f0f0;">
+                                    <div style="font-weight: bold; color: #333; margin-bottom: 8px; cursor: pointer;" onclick="toggleAnswer('q6')">
+                                        Q: Làm thế nào để tạo tài khoản BigKey?
+                                    </div>
+                                    <div id="q6" style="display: none; color: #666; line-height: 1.6;">
+                                        A: Click "Đăng ký" ở góc phải màn hình, điền thông tin email và mật khẩu. Xác thực email và bạn đã có tài khoản BigKey để tích lũy điểm thưởng.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div style="background: white; padding: 25px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); margin-bottom: 30px;">
+                    <h3 style="margin: 0 0 20px 0; color: #333;">
+                        📝 GỬI YÊU CẦU HỖ TRỢ
+                    </h3>
+                    
+                    <form onsubmit="submitSupportRequest(event)">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px;">
+                            <div class="form-group">
+                                <label>Họ tên:</label>
+                                <input type="text" value="Nguyễn Văn A" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Email:</label>
+                                <input type="email" value="nguyenvana@email.com" required>
+                            </div>
+                        </div>
+
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px;">
+                            <div class="form-group">
+                                <label>Số điện thoại:</label>
+                                <input type="tel" value="0987654321" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Loại yêu cầu:</label>
+                                <select required>
+                                    <option value="">Chọn loại yêu cầu</option>
+                                    <option value="booking">Vấn đề đặt tour</option>
+                                    <option value="payment">Vấn đề thanh toán</option>
+                                    <option value="refund">Yêu cầu hoàn tiền</option>
+                                    <option value="change">Thay đổi booking</option>
+                                    <option value="complaint">Khiếu nại dịch vụ</option>
+                                    <option value="other">Khác</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Mã đơn hàng (nếu có):</label>
+                            <input type="text" placeholder="VD: BK2025080001">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Độ ưu tiên:</label>
+                            <div style="display: flex; gap: 15px;">
+                                <label style="display: flex; align-items: center; gap: 5px;">
+                                    <input type="radio" name="priority" value="low" checked> Thấp
+                                </label>
+                                <label style="display: flex; align-items: center; gap: 5px;">
+                                    <input type="radio" name="priority" value="normal"> Bình thường
+                                </label>
+                                <label style="display: flex; align-items: center; gap: 5px;">
+                                    <input type="radio" name="priority" value="high"> Cao
+                                </label>
+                                <label style="display: flex; align-items: center; gap: 5px;">
+                                    <input type="radio" name="priority" value="urgent"> Khẩn cấp
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Mô tả chi tiết vấn đề:</label>
+                            <textarea rows="5" placeholder="Vui lòng mô tả chi tiết vấn đề bạn gặp phải..." required></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Đính kèm file (tùy chọn):</label>
+                            <input type="file" multiple accept=".jpg,.png,.pdf,.doc,.docx">
+                            <small style="color: #666;">Hỗ trợ: JPG, PNG, PDF, DOC. Tối đa 5MB mỗi file.</small>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary" style="width: 100%; padding: 15px; font-size: 16px;">
+                            <i class="fas fa-paper-plane"></i> Gửi yêu cầu hỗ trợ
+                        </button>
+
+                        <div style="text-align: center; margin-top: 15px; font-size: 14px; color: #666;">
+                            <i class="fas fa-clock"></i> Thời gian phản hồi: 2-4 giờ trong giờ hành chính
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Right Column - Support Info -->
+            <div class="fade-in" style="animation-delay: 0.2s;">
+                <!-- Support Status -->
+                <div style="background: white; padding: 20px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); margin-bottom: 20px; position: sticky; top: 20px;">
+                    <h4 style="margin: 0 0 15px 0; color: #333;">
+                        📊 TRẠNG THÁI HỖ TRỢ
+                    </h4>
+                    
+                    <div style="display: grid; gap: 15px;">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <span style="color: #666;">Thời gian phản hồi:</span>
+                            <span style="font-weight: bold; color: #27ae60;">< 2 giờ</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <span style="color: #666;">Tư vấn viên online:</span>
+                            <span style="font-weight: bold; color: #27ae60;">15/20</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <span style="color: #666;">Tickets hôm nay:</span>
+                            <span style="font-weight: bold; color: #333;">47</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <span style="color: #666;">Tỷ lệ giải quyết:</span>
+                            <span style="font-weight: bold; color: #27ae60;">98.5%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Live Chat Widget -->
+                <div id="liveChatWidget" style="background: linear-gradient(135deg, #27ae60, #2ecc71); color: white; padding: 20px; border-radius: 15px; margin-bottom: 20px;">
+                    <h4 style="margin: 0 0 15px 0;">
+                        💬 LIVE CHAT
+                    </h4>
+                    
+                    <div style="background: rgba(255,255,255,0.1); padding: 15px; border-radius: 10px; margin-bottom: 15px;">
+                        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+                            <div style="width: 8px; height: 8px; background: #fff; border-radius: 50%; animation: pulse 2s infinite;"></div>
+                            <span style="font-weight: bold;">Tư vấn viên: Mai Anh</span>
+                        </div>
+                        <div style="font-size: 14px; opacity: 0.9;">
+                            "Chào bạn! Tôi có thể hỗ trợ gì cho bạn hôm nay?"
+                        </div>
+                    </div>
+                    
+                    <button class="btn" style="background: rgba(255,255,255,0.2); color: white; border: 1px solid rgba(255,255,255,0.3); width: 100%;" onclick="startLiveChat()">
+                        <i class="fas fa-comments"></i> Bắt đầu chat ngay
+                    </button>
+                </div>
+
+                <!-- Contact Hours -->
+                <div style="background: white; padding: 20px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); margin-bottom: 20px;">
+                    <h4 style="margin: 0 0 15px 0; color: #333;">
+                        ⏰ GIỜ HOẠT ĐỘNG
+                    </h4>
+                    
+                    <div style="display: grid; gap: 10px; font-size: 14px;">
+                        <div style="display: flex; justify-content: space-between;">
+                            <span style="color: #666;">Hotline:</span>
+                            <span style="color: #27ae60; font-weight: bold;">24/7</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between;">
+                            <span style="color: #666;">Live Chat:</span>
+                            <span style="color: #27ae60; font-weight: bold;">24/7</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between;">
+                            <span style="color: #666;">Email:</span>
+                            <span style="color: #333;">2-4h (8:00-22:00)</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between;">
+                            <span style="color: #666;">Văn phòng:</span>
+                            <span style="color: #333;">8:00-18:00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Popular Articles -->
+                <div style="background: white; padding: 20px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1);">
+                    <h4 style="margin: 0 0 15px 0; color: #333;">
+                        📚 BÀI VIẾT PHỔ BIẾN
+                    </h4>
+                    
+                    <div style="display: grid; gap: 15px;">
+                        <a href="#" style="text-decoration: none; color: #333; padding: 10px; border-radius: 8px; border: 1px solid #f0f0f0; transition: all 0.3s;" onmouseover="this.style.borderColor='#667eea'" onmouseout="this.style.borderColor='#f0f0f0'">
+                            <div style="font-weight: bold; font-size: 14px; margin-bottom: 5px;">📋 Hướng dẫn đặt tour</div>
+                            <div style="color: #666; font-size: 12px;">Cách đặt tour nhanh chóng và an toàn</div>
+                        </a>
+                        
+                        <a href="#" style="text-decoration: none; color: #333; padding: 10px; border-radius: 8px; border: 1px solid #f0f0f0; transition: all 0.3s;" onmouseover="this.style.borderColor='#667eea'" onmouseout="this.style.borderColor='#f0f0f0'">
+                            <div style="font-weight: bold; font-size: 14px; margin-bottom: 5px;">💳 Thanh toán an toàn</div>
+                            <div style="color: #666; font-size: 12px;">Các phương thức thanh toán được hỗ trợ</div>
+                        </a>
+                        
+                        <a href="#" style="text-decoration: none; color: #333; padding: 10px; border-radius: 8px; border: 1px solid #f0f0f0; transition: all 0.3s;" onmouseover="this.style.borderColor='#667eea'" onmouseout="this.style.borderColor='#f0f0f0'">
+                            <div style="font-weight: bold; font-size: 14px; margin-bottom: 5px;">🔄 Chính sách hủy tour</div>
+                            <div style="color: #666; font-size: 12px;">Điều kiện và quy trình hủy booking</div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Menu -->
+    <div id="wireframeMenu" style="position: fixed; bottom: 20px; right: 20px; background: white; padding: 20px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.2); max-height: 80vh; overflow-y: auto; z-index: 1000; transition: all 0.3s ease;">
+        <button onclick="toggleMenu()" style="position: absolute; top: 10px; right: 10px; background: #ff6b6b; color: white; border: none; border-radius: 50%; width: 25px; height: 25px; cursor: pointer; font-size: 14px;">×</button>
+        
+        <h3 style="margin: 0 0 15px 0; color: #333; font-size: 16px; border-bottom: 2px solid #eee; padding-bottom: 8px;">🗺️ Wireframe Menu</h3>
+        
+        <div style="margin-bottom: 15px;">
+            <h4 style="margin: 0 0 8px 0; color: #2196F3; font-size: 13px; font-weight: bold;">📱 User Interface</h4>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 5px; margin-bottom: 10px;">
+                <a href="01-search-integrated.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">01-Search</a>
+                <a href="02-filter-advanced.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">02-Filter</a>
+                <a href="03-tour-details.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">03-Tour</a>
+                <a href="04-booking-payment.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">04-Booking</a>
+                <a href="05-combo-details.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">05-Combo</a>
+                <a href="06-flight-details.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">06-Flight</a>
+                <a href="07-hotel-details.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">07-Hotel</a>
+                <a href="08-booking-success.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">08-Success</a>
+                <a href="09-user-orders.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">09-Orders</a>
+                <a href="10-order-details.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">10-Details</a>
+            </div>
+        </div>
+
+        <div style="margin-bottom: 15px;">
+            <h4 style="margin: 0 0 8px 0; color: #f44336; font-size: 13px; font-weight: bold;">🤝 Partner Panel</h4>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 5px; margin-bottom: 10px;">
+                <a href="11-partner-management.html" style="text-decoration: none; color: #f44336; font-size: 11px; padding: 4px 8px; border: 1px solid #f44336; border-radius: 4px; text-align: center; transition: all 0.2s;">11-Mgmt</a>
+                <a href="12-partner-analytics.html" style="text-decoration: none; color: #f44336; font-size: 11px; padding: 4px 8px; border: 1px solid #f44336; border-radius: 4px; text-align: center; transition: all 0.2s;">12-Analytics</a>
+            </div>
+        </div>
+
+        <div style="margin-bottom: 15px;">
+            <h4 style="margin: 0 0 8px 0; color: #4CAF50; font-size: 13px; font-weight: bold;">🛠️ Admin Panel</h4>
+            <div style="display: grid; grid-template-columns: 1fr; gap: 5px; margin-bottom: 10px;">
+                <a href="13-admin-dashboard.html" style="text-decoration: none; color: #4CAF50; font-size: 11px; padding: 4px 8px; border: 1px solid #4CAF50; border-radius: 4px; text-align: center; transition: all 0.2s;">13-Dashboard</a>
+            </div>
+        </div>
+
+        <div>
+            <h4 style="margin: 0 0 8px 0; color: #9C27B0; font-size: 13px; font-weight: bold;">⚙️ System Features</h4>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 5px;">
+                <a href="14-notification-center.html" style="text-decoration: none; color: #9C27B0; font-size: 11px; padding: 4px 8px; border: 1px solid #9C27B0; border-radius: 4px; text-align: center; transition: all 0.2s;">14-Notify</a>
+                <a href="15-help-support.html" style="text-decoration: none; color: white; background: #9C27B0; font-size: 11px; padding: 4px 8px; border: 1px solid #9C27B0; border-radius: 4px; text-align: center; transition: all 0.2s;">15-Support</a>
+                <a href="16-user-profile.html" style="text-decoration: none; color: #9C27B0; font-size: 11px; padding: 4px 8px; border: 1px solid #9C27B0; border-radius: 4px; text-align: center; transition: all 0.2s;">16-Profile</a>
+                <a href="17-reviews-ratings.html" style="text-decoration: none; color: #9C27B0; font-size: 11px; padding: 4px 8px; border: 1px solid #9C27B0; border-radius: 4px; text-align: center; transition: all 0.2s;">17-Reviews</a>
+                <a href="18-error-pages.html" style="text-decoration: none; color: #9C27B0; font-size: 11px; padding: 4px 8px; border: 1px solid #9C27B0; border-radius: 4px; text-align: center; transition: all 0.2s;">18-Errors</a>
+                <a href="19-mobile-responsive.html" style="text-decoration: none; color: #9C27B0; font-size: 11px; padding: 4px 8px; border: 1px solid #9C27B0; border-radius: 4px; text-align: center; transition: all 0.2s;">19-Mobile</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function callHotline() {
+            alert('📞 Đang kết nối hotline 1900.1234...\n⏱️ Thời gian chờ: < 30 giây\n🎯 Tư vấn viên chuyên nghiệp sẵn sàng hỗ trợ');
+        }
+
+        function openLiveChat() {
+            alert('💬 Mở cửa sổ Live Chat...\n👤 Tư vấn viên: Mai Anh\n✅ Đang online\n⚡ Phản hồi ngay lập tức');
+        }
+
+        function sendEmail() {
+            alert('📧 Gửi email hỗ trợ:\n\n📩 support@bigkey.vn\n⏱️ Phản hồi trong 2-4h\n📋 Vui lòng đính kèm thông tin chi tiết');
+        }
+
+        function openZalo() {
+            alert('📱 Liên hệ qua Zalo/Messenger:\n\nZalo: 0901.234.567\nMessenger: BigKey Travel\n💬 Hỗ trợ nhanh chóng');
+        }
+
+        function handleSearch(event) {
+            if (event.key === 'Enter') {
+                performSearch();
+            }
+        }
+
+        function performSearch() {
+            const query = document.getElementById('searchInput').value;
+            if (query.trim()) {
+                alert(`🔍 Tìm kiếm: "${query}"\n\n📋 Kết quả phù hợp:\n• Cách đặt tour trên BigKey\n• Thanh toán an toàn\n• Chính sách hủy booking\n\n💡 Bạn có thể chat trực tiếp để được hỗ trợ nhanh hơn!`);
+            }
+        }
+
+        function quickSearch(topic) {
+            document.getElementById('searchInput').value = topic;
+            performSearch();
+        }
+
+        function toggleFAQ(category) {
+            const content = document.getElementById(category + '-content');
+            const icon = document.getElementById(category + '-icon');
+            
+            if (content.style.display === 'none') {
+                content.style.display = 'block';
+                icon.className = 'fas fa-chevron-up';
+            } else {
+                content.style.display = 'none';
+                icon.className = 'fas fa-chevron-down';
+            }
+        }
+
+        function toggleAnswer(questionId) {
+            const answer = document.getElementById(questionId);
+            if (answer.style.display === 'none') {
+                answer.style.display = 'block';
+            } else {
+                answer.style.display = 'none';
+            }
+        }
+
+        function submitSupportRequest(event) {
+            event.preventDefault();
+            alert('📧 Yêu cầu hỗ trợ đã được gửi!\n\n✅ Mã ticket: #TK2025080001\n⏱️ Thời gian phản hồi: 2-4 giờ\n📧 Email xác nhận đã được gửi\n\n💬 Bạn có thể chat trực tiếp để được hỗ trợ nhanh hơn!');
+        }
+
+        function startLiveChat() {
+            alert('💬 Bắt đầu Live Chat...\n\n👤 Mai Anh: "Chào bạn! Tôi có thể hỗ trợ gì cho bạn hôm nay?"\n\n✨ Hệ thống chat đã sẵn sàng\n⚡ Phản hồi ngay lập tức');
+        }
+
+        function toggleMenu() {
+            const menu = document.getElementById('wireframeMenu');
+            menu.style.display = menu.style.display === 'none' ? 'block' : 'none';
+        }
+
+        // Add hover effects
+        document.querySelectorAll('#wireframeMenu a').forEach(link => {
+            link.addEventListener('mouseenter', function() {
+                if (this.style.background !== 'rgb(33, 150, 243)' && this.style.background !== 'rgb(244, 67, 54)' && this.style.background !== 'rgb(76, 175, 80)' && this.style.background !== 'rgb(156, 39, 176)') {
+                    this.style.background = this.style.borderColor;
+                    this.style.color = 'white';
+                }
+            });
+            link.addEventListener('mouseleave', function() {
+                if (this.style.background !== 'rgb(33, 150, 243)' && this.style.background !== 'rgb(244, 67, 54)' && this.style.background !== 'rgb(76, 175, 80)' && this.style.background !== 'rgb(156, 39, 176)') {
+                    this.style.background = 'transparent';
+                    this.style.color = this.style.borderColor;
+                }
+            });
+        });
+
+        // Add pulse animation for chat status
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes pulse {
+                0% { opacity: 1; }
+                50% { opacity: 0.5; }
+                100% { opacity: 1; }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
