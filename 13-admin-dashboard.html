@@ -98,9 +98,6 @@
                         <button class="btn btn-secondary" style="width: 100%; justify-content: flex-start;" onclick="systemSettings()">
                             <i class="fas fa-cogs"></i> Cài đặt hệ thống
                         </button>
-                        <button class="btn" style="width: 100%; justify-content: flex-start; background: #e74c3c; color: white;" onclick="emergencyMode()">
-                            <i class="fas fa-exclamation-triangle"></i> Chế độ khẩn cấp
-                        </button>
                     </div>
                 </div>
 
@@ -139,10 +136,6 @@
                         </h1>
                         <p style="color: #666; margin: 5px 0 0 0;">Tổng quan và quản lý toàn hệ thống BigKey Travel</p>
                     </div>
-                    <div style="text-align: right;">
-                        <div style="font-size: 18px; font-weight: bold; color: #e74c3c;">🛡️ Administrator</div>
-                        <div style="font-size: 14px; color: #666;">Cập nhật: 17/07/2025 10:45</div>
-                    </div>
                 </div>
 
                 <!-- System Overview Stats -->
@@ -168,235 +161,285 @@
                         <div style="font-size: 14px; opacity: 0.9; margin-top: 5px;">🔄 8.9ms response time</div>
                     </div>
                 </div>
-
-                <!-- Critical Alerts & Platform Analytics -->
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-bottom: 30px;">
-                    <!-- Critical Alerts -->
-                    <div style="background: white; padding: 25px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1);">
-                        <h3 style="margin: 0 0 20px 0; color: #333;">
-                            <i class="fas fa-exclamation-triangle"></i> Cảnh báo quan trọng
-                        </h3>
-                        <div style="display: grid; gap: 15px;">
-                            <div style="padding: 15px; background: #f8d7da; border: 1px solid #f5c6cb; border-radius: 10px; border-left: 4px solid #e74c3c;">
-                                <div style="font-weight: bold; color: #721c24; margin-bottom: 5px;">⚠️ Payment Gateway Issue</div>
-                                <div style="color: #721c24; font-size: 14px; margin-bottom: 10px;">Tỷ lệ thất bại thanh toán tăng 15% trong 2h qua</div>
-                                <button class="btn btn-sm" style="background: #e74c3c; color: white;" onclick="investigatePayment()">Kiểm tra</button>
-                            </div>
-                            <div style="padding: 15px; background: #fff3cd; border: 1px solid #ffeaa7; border-radius: 10px; border-left: 4px solid #f39c12;">
-                                <div style="font-weight: bold; color: #856404; margin-bottom: 5px;">🔄 High Server Load</div>
-                                <div style="color: #856404; font-size: 14px; margin-bottom: 10px;">CPU usage 85% trên server chính</div>
-                                <button class="btn btn-sm" style="background: #f39c12; color: white;" onclick="scaleServers()">Scale up</button>
-                            </div>
-                            <div style="padding: 15px; background: #d1ecf1; border: 1px solid #bee5eb; border-radius: 10px; border-left: 4px solid #17a2b8;">
-                                <div style="font-weight: bold; color: #0c5460; margin-bottom: 5px;">📊 Database Optimization</div>
-                                <div style="color: #0c5460; font-size: 14px; margin-bottom: 10px;">Slow queries tăng 20% - cần tối ưu</div>
-                                <button class="btn btn-sm" style="background: #17a2b8; color: white;" onclick="optimizeDB()">Tối ưu</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Platform Analytics -->
-                    <div style="background: white; padding: 25px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1);">
-                        <h3 style="margin: 0 0 20px 0; color: #333;">
-                            <i class="fas fa-chart-line"></i> Analytics nền tảng
-                        </h3>
-                        <canvas id="platformChart" width="400" height="180"></canvas>
-                    </div>
+                
+                
                 </div>
-
                 <!-- Users & Partners Management -->
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-bottom: 30px;">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 20px; margin-bottom: 25px;">
                     <!-- User Management -->
-                    <div style="background: white; padding: 25px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1);">
-                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-                            <h3 style="margin: 0; color: #333;">
+                    <div style="background: white; padding: 20px; border-radius: 12px; box-shadow: 0 3px 15px rgba(0,0,0,0.08);">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                            <h3 style="margin: 0; color: #333; font-size: 16px;">
                                 <i class="fas fa-users"></i> Quản lý người dùng
                             </h3>
-                            <button class="btn btn-primary btn-sm" onclick="addNewUser()">
+                            <button class="btn btn-primary btn-sm" onclick="addNewUser()" style="font-size: 12px; padding: 5px 10px;">
                                 <i class="fas fa-user-plus"></i> Thêm user
                             </button>
                         </div>
                         
-                        <div style="margin-bottom: 20px;">
-                            <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
-                                <span style="color: #666;">Users hoạt động:</span>
+                        <div style="margin-bottom: 15px;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                                <span style="color: #666; font-size: 14px;">Users hoạt động:</span>
                                 <span style="font-weight: bold; color: #27ae60;">18,234</span>
                             </div>
-                            <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
-                                <span style="color: #666;">Users mới hôm nay:</span>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                                <span style="color: #666; font-size: 14px;">Users mới hôm nay:</span>
                                 <span style="font-weight: bold; color: #667eea;">67</span>
                             </div>
-                            <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
-                                <span style="color: #666;">Users bị khóa:</span>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                                <span style="color: #666; font-size: 14px;">Users bị khóa:</span>
                                 <span style="font-weight: bold; color: #e74c3c;">23</span>
                             </div>
                         </div>
 
-                        <div style="background: #f8f9fa; padding: 15px; border-radius: 10px;">
-                            <h5 style="margin: 0 0 10px 0; color: #333;">🔍 Tìm kiếm nhanh</h5>
-                            <input type="text" placeholder="Email hoặc ID người dùng..." style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 5px; margin-bottom: 10px;">
+                        <div style="background: #f8f9fa; padding: 12px; border-radius: 8px;">
+                            <h5 style="margin: 0 0 8px 0; color: #333; font-size: 14px;">🔍 Tìm kiếm nhanh</h5>
+                            <input type="text" placeholder="Email hoặc ID người dùng..." style="width: 100%; padding: 6px; border: 1px solid #ddd; border-radius: 4px; margin-bottom: 8px; font-size: 14px; box-sizing: border-box;">
                             <div style="display: flex; gap: 5px;">
-                                <button class="btn btn-sm btn-primary">Tìm</button>
-                                <button class="btn btn-sm btn-secondary" onclick="viewAllUsers()">Xem tất cả</button>
+                                <button class="btn btn-sm btn-primary" style="font-size: 12px;">Tìm</button>
+                                <button class="btn btn-sm btn-secondary" onclick="viewAllUsers()" style="font-size: 12px;">Xem tất cả</button>
                             </div>
                         </div>
                     </div>
 
                     <!-- Partner Management -->
-                    <div style="background: white; padding: 25px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1);">
-                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-                            <h3 style="margin: 0; color: #333;">
+                    <div style="background: white; padding: 20px; border-radius: 12px; box-shadow: 0 3px 15px rgba(0,0,0,0.08);">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                            <h3 style="margin: 0; color: #333; font-size: 16px;">
                                 <i class="fas fa-handshake"></i> Quản lý đối tác
                             </h3>
-                            <button class="btn btn-primary btn-sm" onclick="addNewPartner()">
+                            <button class="btn btn-primary btn-sm" onclick="addNewPartner()" style="font-size: 12px; padding: 5px 10px;">
                                 <i class="fas fa-plus"></i> Thêm đối tác
                             </button>
                         </div>
                         
-                        <div style="margin-bottom: 20px;">
-                            <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
-                                <span style="color: #666;">Đối tác hoạt động:</span>
+                        <div style="margin-bottom: 15px;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                                <span style="color: #666; font-size: 14px;">Đối tác hoạt động:</span>
                                 <span style="font-weight: bold; color: #27ae60;">156</span>
                             </div>
-                            <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
-                                <span style="color: #666;">Chờ phê duyệt:</span>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                                <span style="color: #666; font-size: 14px;">Chờ phê duyệt:</span>
                                 <span style="font-weight: bold; color: #f39c12;">8</span>
                             </div>
-                            <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
-                                <span style="color: #666;">Tạm ngưng:</span>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                                <span style="color: #666; font-size: 14px;">Tạm ngưng:</span>
                                 <span style="font-weight: bold; color: #e74c3c;">3</span>
                             </div>
                         </div>
 
-                        <div style="background: #f8f9fa; padding: 15px; border-radius: 10px;">
-                            <h5 style="margin: 0 0 10px 0; color: #333;">📝 Phê duyệt nhanh</h5>
+                        <div style="background: #f8f9fa; padding: 12px; border-radius: 8px;">
+                            <h5 style="margin: 0 0 8px 0; color: #333; font-size: 14px;">📝 Phê duyệt nhanh</h5>
                             <div style="display: grid; gap: 5px;">
-                                <div style="font-size: 14px; color: #666;">TravelPro Company (Chờ duyệt)</div>
+                                <div style="font-size: 13px; color: #666;">TravelPro Company (Chờ duyệt)</div>
                                 <div style="display: flex; gap: 5px;">
-                                    <button class="btn btn-sm" style="background: #27ae60; color: white;" onclick="approvePartner('TravelPro')">Duyệt</button>
-                                    <button class="btn btn-sm" style="background: #e74c3c; color: white;" onclick="rejectPartner('TravelPro')">Từ chối</button>
+                                    <button class="btn btn-sm" style="background: #27ae60; color: white; font-size: 12px;" onclick="approvePartner('TravelPro')">Duyệt</button>
+                                    <button class="btn btn-sm" style="background: #e74c3c; color: white; font-size: 12px;" onclick="rejectPartner('TravelPro')">Từ chối</button>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-
-                <!-- System Operations & Financial Overview -->
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-bottom: 30px;">
+                </div>                <!-- System Operations & Financial Overview -->
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 20px; margin-bottom: 25px;">
                     <!-- System Operations -->
-                    <div style="background: white; padding: 25px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1);">
-                        <h3 style="margin: 0 0 20px 0; color: #333;">
+                    <div style="background: white; padding: 20px; border-radius: 12px; box-shadow: 0 3px 15px rgba(0,0,0,0.08);">
+                        <h3 style="margin: 0 0 15px 0; color: #333; font-size: 16px;">
                             <i class="fas fa-cogs"></i> Vận hành hệ thống
                         </h3>
                         
-                        <div style="display: grid; gap: 15px;">
-                            <div style="display: flex; justify-content: space-between; align-items: center; padding: 15px; background: #f8f9fa; border-radius: 10px;">
+                        <div style="display: grid; gap: 12px;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px; background: #f8f9fa; border-radius: 8px;">
                                 <div>
-                                    <div style="font-weight: bold; color: #333;">Backup Database</div>
-                                    <div style="color: #666; font-size: 14px;">Lần cuối: 03:00 hôm nay</div>
+                                    <div style="font-weight: bold; color: #333; font-size: 14px;">Backup Database</div>
+                                    <div style="color: #666; font-size: 12px;">Lần cuối: 03:00 hôm nay</div>
                                 </div>
-                                <button class="btn btn-sm btn-primary" onclick="backupNow()">Backup ngay</button>
+                                <button class="btn btn-sm btn-primary" onclick="backupNow()" style="font-size: 12px;">Backup ngay</button>
                             </div>
-                            <div style="display: flex; justify-content: space-between; align-items: center; padding: 15px; background: #f8f9fa; border-radius: 10px;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px; background: #f8f9fa; border-radius: 8px;">
                                 <div>
-                                    <div style="font-weight: bold; color: #333;">Maintenance Mode</div>
-                                    <div style="color: #666; font-size: 14px;">Hệ thống đang hoạt động</div>
+                                    <div style="font-weight: bold; color: #333; font-size: 14px;">Maintenance Mode</div>
+                                    <div style="color: #666; font-size: 12px;">Hệ thống đang hoạt động</div>
                                 </div>
-                                <button class="btn btn-sm" style="background: #f39c12; color: white;" onclick="maintenanceMode()">Bảo trì</button>
+                                <button class="btn btn-sm" style="background: #f39c12; color: white; font-size: 12px;" onclick="maintenanceMode()">Bảo trì</button>
                             </div>
-                            <div style="display: flex; justify-content: space-between; align-items: center; padding: 15px; background: #f8f9fa; border-radius: 10px;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px; background: #f8f9fa; border-radius: 8px;">
                                 <div>
-                                    <div style="font-weight: bold; color: #333;">Cache Clear</div>
-                                    <div style="color: #666; font-size: 14px;">Tăng hiệu suất hệ thống</div>
+                                    <div style="font-weight: bold; color: #333; font-size: 14px;">Cache Clear</div>
+                                    <div style="color: #666; font-size: 12px;">Tăng hiệu suất hệ thống</div>
                                 </div>
-                                <button class="btn btn-sm btn-secondary" onclick="clearCache()">Clear cache</button>
+                                <button class="btn btn-sm btn-secondary" onclick="clearCache()" style="font-size: 12px;">Clear cache</button>
                             </div>
                         </div>
                     </div>
+                </div>
 
-                    <!-- Financial Overview -->
-                    <div style="background: white; padding: 25px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1);">
-                        <h3 style="margin: 0 0 20px 0; color: #333;">
-                            <i class="fas fa-chart-pie"></i> Tổng quan tài chính
+                <!-- Real-time System Performance & Traffic Analysis -->
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 20px; margin-bottom: 25px;">
+
+                    <!-- Revenue Trends -->
+                    <div style="background: white; padding: 20px; border-radius: 12px; box-shadow: 0 3px 15px rgba(0,0,0,0.08);">
+                        <h3 style="margin: 0 0 15px 0; color: #333; font-size: 16px;">
+                            <i class="fas fa-money-bill-trend-up"></i> Xu hướng doanh thu
                         </h3>
-                        <canvas id="financialChart" width="400" height="180"></canvas>
+                        
+                        <!-- Revenue Stats -->
+                        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 15px;">
+                            <div style="background: #f8f9fa; padding: 12px; border-radius: 6px; text-align: center;">
+                                <div style="font-size: 16px; font-weight: bold; color: #27ae60;">📈 +15.3%</div>
+                                <div style="font-size: 11px; color: #666;">vs tháng trước</div>
+                            </div>
+                            <div style="background: #f8f9fa; padding: 12px; border-radius: 6px; text-align: center;">
+                                <div style="font-size: 16px; font-weight: bold; color: #667eea;">8.2B VNĐ</div>
+                                <div style="font-size: 11px; color: #666;">Tháng này</div>
+                            </div>
+                        </div>
+                        
+                        <div style="height: 180px;">
+                            <canvas id="revenueChart"></canvas>
+                        </div>
                     </div>
                 </div>
 
+                <!-- User Activity & Geographic Distribution -->
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 20px; margin-bottom: 25px;">
+                    
+
+                    <!-- Geographic Distribution -->
+                    <div style="background: white; padding: 20px; border-radius: 12px; box-shadow: 0 3px 15px rgba(0,0,0,0.08);">
+                        <h3 style="margin: 0 0 15px 0; color: #333; font-size: 16px;">
+                            <i class="fas fa-globe-asia"></i> Phân bổ địa lý
+                        </h3>
+                        
+                        <div style="display: grid; gap: 12px; margin-bottom: 15px;">
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <div style="display: flex; align-items: center; gap: 8px;">
+                                    <span style="font-size: 18px;">🇻🇳</span>
+                                    <span style="color: #666; font-size: 14px;">Việt Nam</span>
+                                </div>
+                                <div style="display: flex; align-items: center; gap: 8px;">
+                                    <div style="width: 80px; height: 5px; background: #f8f9fa; border-radius: 3px; overflow: hidden;">
+                                        <div style="width: 85%; height: 100%; background: #27ae60;"></div>
+                                    </div>
+                                    <span style="font-weight: bold; color: #27ae60; font-size: 14px;">85%</span>
+                                </div>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <div style="display: flex; align-items: center; gap: 8px;">
+                                    <span style="font-size: 18px;">🇰🇷</span>
+                                    <span style="color: #666; font-size: 14px;">Hàn Quốc</span>
+                                </div>
+                                <div style="display: flex; align-items: center; gap: 8px;">
+                                    <div style="width: 80px; height: 5px; background: #f8f9fa; border-radius: 3px; overflow: hidden;">
+                                        <div style="width: 8%; height: 100%; background: #667eea;"></div>
+                                    </div>
+                                    <span style="font-weight: bold; color: #667eea; font-size: 14px;">8%</span>
+                                </div>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <div style="display: flex; align-items: center; gap: 8px;">
+                                    <span style="font-size: 18px;">🇯🇵</span>
+                                    <span style="color: #666; font-size: 14px;">Nhật Bản</span>
+                                </div>
+                                <div style="display: flex; align-items: center; gap: 8px;">
+                                    <div style="width: 80px; height: 5px; background: #f8f9fa; border-radius: 3px; overflow: hidden;">
+                                        <div style="width: 4%; height: 100%; background: #f39c12;"></div>
+                                    </div>
+                                    <span style="font-weight: bold; color: #f39c12; font-size: 14px;">4%</span>
+                                </div>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <div style="display: flex; align-items: center; gap: 8px;">
+                                    <span style="font-size: 18px;">🌏</span>
+                                    <span style="color: #666; font-size: 14px;">Khác</span>
+                                </div>
+                                <div style="display: flex; align-items: center; gap: 8px;">
+                                    <div style="width: 80px; height: 5px; background: #f8f9fa; border-radius: 3px; overflow: hidden;">
+                                        <div style="width: 3%; height: 100%; background: #e74c3c;"></div>
+                                    </div>
+                                    <span style="font-weight: bold; color: #e74c3c; font-size: 14px;">3%</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div style="height: 140px;">
+                            <canvas id="geoChart2"></canvas>
+                        </div>
+                    </div>
+                </div>
                 <!-- Recent Transactions & Logs -->
-                <div style="background: white; padding: 30px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1);">
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px;">
-                        <h2 style="margin: 0; color: #333;">
+                <div style="background: white; padding: 25px; border-radius: 12px; box-shadow: 0 3px 15px rgba(0,0,0,0.08); margin-bottom: 25px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                        <h2 style="margin: 0; color: #333; font-size: 18px;">
                             <i class="fas fa-list-alt"></i> SYSTEM LOGS & MONITORING
                         </h2>
-                        <div style="display: flex; gap: 10px;">
-                            <button class="btn btn-secondary btn-sm" onclick="viewFullLogs()">
+                        <div style="display: flex; gap: 8px;">
+                            <button class="btn btn-secondary btn-sm" onclick="viewFullLogs()" style="font-size: 12px;">
                                 <i class="fas fa-external-link-alt"></i> View Full Logs
                             </button>
-                            <button class="btn btn-primary btn-sm" onclick="exportLogs()">
+                            <button class="btn btn-primary btn-sm" onclick="exportLogs()" style="font-size: 12px;">
                                 <i class="fas fa-download"></i> Export
                             </button>
                         </div>
                     </div>
 
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px;">
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
                         <!-- Recent Transactions -->
                         <div>
-                            <h4 style="margin-bottom: 15px; color: #333;">💳 Giao dịch gần đây</h4>
-                            <div style="max-height: 300px; overflow-y: auto;">
-                                <div style="padding: 12px; border: 1px solid #dee2e6; border-radius: 8px; margin-bottom: 10px;">
-                                    <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
-                                        <span style="font-weight: bold; color: #333;">#TXN789123456</span>
-                                        <span style="color: #27ae60; font-weight: bold;">+8.500.000 VNĐ</span>
+                            <h4 style="margin-bottom: 12px; color: #333; font-size: 16px;">💳 Giao dịch gần đây</h4>
+                            <div style="max-height: 250px; overflow-y: auto;">
+                                <div style="padding: 10px; border: 1px solid #dee2e6; border-radius: 6px; margin-bottom: 8px;">
+                                    <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
+                                        <span style="font-weight: bold; color: #333; font-size: 14px;">#TXN789123456</span>
+                                        <span style="color: #27ae60; font-weight: bold; font-size: 14px;">+8.500.000 VNĐ</span>
                                     </div>
-                                    <div style="color: #666; font-size: 14px;">
+                                    <div style="color: #666; font-size: 13px;">
                                         VietTravel Co. → BigKey | Combo Hạ Long
                                     </div>
-                                    <div style="color: #999; font-size: 12px;">15:30 - 17/07/2025</div>
+                                    <div style="color: #999; font-size: 11px;">15:30 - 17/07/2025</div>
                                 </div>
-                                <div style="padding: 12px; border: 1px solid #dee2e6; border-radius: 8px; margin-bottom: 10px;">
-                                    <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
-                                        <span style="font-weight: bold; color: #333;">#TXN789123455</span>
-                                        <span style="color: #27ae60; font-weight: bold;">+6.200.000 VNĐ</span>
+                                <div style="padding: 10px; border: 1px solid #dee2e6; border-radius: 6px; margin-bottom: 8px;">
+                                    <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
+                                        <span style="font-weight: bold; color: #333; font-size: 14px;">#TXN789123455</span>
+                                        <span style="color: #27ae60; font-weight: bold; font-size: 14px;">+6.200.000 VNĐ</span>
                                     </div>
-                                    <div style="color: #666; font-size: 14px;">
+                                    <div style="color: #666; font-size: 13px;">
                                         SapaTravel → BigKey | Tour Sapa 3N2Đ
                                     </div>
-                                    <div style="color: #999; font-size: 12px;">14:15 - 17/07/2025</div>
+                                    <div style="color: #999; font-size: 11px;">14:15 - 17/07/2025</div>
                                 </div>
-                                <div style="padding: 12px; border: 1px solid #dee2e6; border-radius: 8px; margin-bottom: 10px;">
-                                    <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
-                                        <span style="font-weight: bold; color: #333;">#TXN789123454</span>
-                                        <span style="color: #e74c3c; font-weight: bold;">-1.200.000 VNĐ</span>
+                                <div style="padding: 10px; border: 1px solid #dee2e6; border-radius: 6px; margin-bottom: 8px;">
+                                    <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
+                                        <span style="font-weight: bold; color: #333; font-size: 14px;">#TXN789123454</span>
+                                        <span style="color: #e74c3c; font-weight: bold; font-size: 14px;">-1.200.000 VNĐ</span>
                                     </div>
-                                    <div style="color: #666; font-size: 14px;">
+                                    <div style="color: #666; font-size: 13px;">
                                         Refund → Nguyễn Văn A | Hủy tour
                                     </div>
-                                    <div style="color: #999; font-size: 12px;">13:45 - 17/07/2025</div>
+                                    <div style="color: #999; font-size: 11px;">13:45 - 17/07/2025</div>
                                 </div>
                             </div>
                         </div>
 
                         <!-- System Logs -->
                         <div>
-                            <h4 style="margin-bottom: 15px; color: #333;">📋 System logs</h4>
-                            <div style="max-height: 300px; overflow-y: auto; font-family: monospace; font-size: 12px;">
-                                <div style="padding: 8px; background: #f8f9fa; border-radius: 5px; margin-bottom: 8px;">
+                            <h4 style="margin-bottom: 12px; color: #333; font-size: 16px;">📋 System logs</h4>
+                            <div style="max-height: 250px; overflow-y: auto; font-family: monospace; font-size: 11px;">
+                                <div style="padding: 6px; background: #f8f9fa; border-radius: 4px; margin-bottom: 6px;">
                                     <span style="color: #27ae60;">[INFO]</span> <span style="color: #666;">10:45:23</span> - User login: admin@bigkey.vn
                                 </div>
-                                <div style="padding: 8px; background: #f8f9fa; border-radius: 5px; margin-bottom: 8px;">
+                                <div style="padding: 6px; background: #f8f9fa; border-radius: 4px; margin-bottom: 6px;">
                                     <span style="color: #f39c12;">[WARN]</span> <span style="color: #666;">10:42:15</span> - High CPU usage detected: 85%
                                 </div>
-                                <div style="padding: 8px; background: #f8f9fa; border-radius: 5px; margin-bottom: 8px;">
+                                <div style="padding: 6px; background: #f8f9fa; border-radius: 4px; margin-bottom: 6px;">
                                     <span style="color: #27ae60;">[INFO]</span> <span style="color: #666;">10:40:02</span> - Payment processed: TXN789123456
                                 </div>
-                                <div style="padding: 8px; background: #f8f9fa; border-radius: 5px; margin-bottom: 8px;">
+                                <div style="padding: 6px; background: #f8f9fa; border-radius: 4px; margin-bottom: 6px;">
                                     <span style="color: #e74c3c;">[ERROR]</span> <span style="color: #666;">10:38:45</span> - Payment gateway timeout: Gateway_VNPay
                                 </div>
-                                <div style="padding: 8px; background: #f8f9fa; border-radius: 5px; margin-bottom: 8px;">
+                                <div style="padding: 6px; background: #f8f9fa; border-radius: 4px; margin-bottom: 6px;">
                                     <span style="color: #27ae60;">[INFO]</span> <span style="color: #666;">10:35:12</span> - New partner registered: TravelPro Company
                                 </div>
-                                <div style="padding: 8px; background: #f8f9fa; border-radius: 5px; margin-bottom: 8px;">
+                                <div style="padding: 6px; background: #f8f9fa; border-radius: 4px; margin-bottom: 6px;">
                                     <span style="color: #17a2b8;">[DEBUG]</span> <span style="color: #666;">10:33:47</span> - Database optimization completed
                                 </div>
                             </div>
@@ -454,32 +497,16 @@
                 <a href="16-user-profile.html" style="text-decoration: none; color: #9C27B0; font-size: 11px; padding: 4px 8px; border: 1px solid #9C27B0; border-radius: 4px; text-align: center; transition: all 0.2s;">16-Profile</a>
                 <a href="17-reviews-ratings.html" style="text-decoration: none; color: #9C27B0; font-size: 11px; padding: 4px 8px; border: 1px solid #9C27B0; border-radius: 4px; text-align: center; transition: all 0.2s;">17-Reviews</a>
                 <a href="18-error-pages.html" style="text-decoration: none; color: #9C27B0; font-size: 11px; padding: 4px 8px; border: 1px solid #9C27B0; border-radius: 4px; text-align: center; transition: all 0.2s;">18-Errors</a>
-                <a href="19-mobile-responsive.html" style="text-decoration: none; color: #9C27B0; font-size: 11px; padding: 4px 8px; border: 1px solid #9C27B0; border-radius: 4px; text-align: center; transition: all 0.2s;">19-Mobile</a>
             </div>
         </div>
     </div>
 
     <script>
+        // Simple menu toggle
         function toggleMenu() {
             const menu = document.getElementById('wireframeMenu');
             menu.style.display = menu.style.display === 'none' ? 'block' : 'none';
         }
-
-        // Add hover effects
-        document.querySelectorAll('#wireframeMenu a').forEach(link => {
-            link.addEventListener('mouseenter', function() {
-                if (this.style.background !== 'rgb(33, 150, 243)' && this.style.background !== 'rgb(244, 67, 54)' && this.style.background !== 'rgb(76, 175, 80)' && this.style.background !== 'rgb(156, 39, 176)') {
-                    this.style.background = this.style.borderColor;
-                    this.style.color = 'white';
-                }
-            });
-            link.addEventListener('mouseleave', function() {
-                if (this.style.background !== 'rgb(33, 150, 243)' && this.style.background !== 'rgb(244, 67, 54)' && this.style.background !== 'rgb(76, 175, 80)' && this.style.background !== 'rgb(156, 39, 176)') {
-                    this.style.background = 'transparent';
-                    this.style.color = this.style.borderColor;
-                }
-            });
-        });
     </script>
 
     <script>
@@ -488,38 +515,129 @@
             initializeAdminCharts();
         });
 
+        let platformChart, serverChart;
+        let currentPlatformPeriod = '24h';
+
+        const platformData = {
+            '24h': {
+                labels: ['00:00', '02:00', '04:00', '06:00', '08:00', '10:00', '12:00', '14:00', '16:00', '18:00', '20:00', '22:00'],
+                users: [1200, 950, 800, 650, 1100, 1800, 2800, 3200, 3500, 3100, 2600, 1800],
+                requests: [15000, 12000, 8000, 6500, 18000, 28000, 35000, 42000, 45000, 40000, 35000, 25000],
+                errors: [45, 32, 28, 22, 55, 88, 120, 135, 142, 128, 105, 78]
+            },
+            '7d': {
+                labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                users: [18500, 22300, 25100, 28900, 31200, 19800, 16500],
+                requests: [285000, 342000, 398000, 445000, 485000, 312000, 265000],
+                errors: [1250, 1580, 1720, 1950, 2100, 1420, 1180]
+            },
+            '30d': {
+                labels: ['W1', 'W2', 'W3', 'W4'],
+                users: [85000, 92000, 88000, 95000],
+                requests: [1250000, 1380000, 1320000, 1420000],
+                errors: [5200, 5800, 5500, 5900]
+            }
+        };
+
         function initializeAdminCharts() {
             // Platform Analytics Chart
             const platformCtx = document.getElementById('platformChart').getContext('2d');
-            new Chart(platformCtx, {
+            platformChart = new Chart(platformCtx, {
                 type: 'line',
                 data: {
-                    labels: ['00:00', '04:00', '08:00', '12:00', '16:00', '20:00', '24:00'],
+                    labels: platformData['24h'].labels,
                     datasets: [{
                         label: 'Active Users',
-                        data: [1200, 800, 1500, 2800, 3200, 2600, 1800],
+                        data: platformData['24h'].users,
                         borderColor: '#667eea',
                         backgroundColor: 'rgba(102, 126, 234, 0.1)',
                         fill: true,
-                        tension: 0.4
+                        tension: 0.4,
+                        pointRadius: 4,
+                        pointHoverRadius: 6
                     }, {
                         label: 'API Requests',
-                        data: [15000, 8000, 22000, 35000, 42000, 38000, 25000],
+                        data: platformData['24h'].requests,
                         borderColor: '#27ae60',
                         backgroundColor: 'rgba(39, 174, 96, 0.1)',
                         fill: true,
                         tension: 0.4,
+                        pointRadius: 4,
+                        pointHoverRadius: 6,
                         yAxisID: 'y1'
+                    }, {
+                        label: 'Errors',
+                        data: platformData['24h'].errors,
+                        borderColor: '#e74c3c',
+                        backgroundColor: 'rgba(231, 76, 60, 0.1)',
+                        fill: false,
+                        tension: 0.4,
+                        pointRadius: 3,
+                        pointHoverRadius: 5,
+                        yAxisID: 'y2'
                     }]
                 },
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
+                    interaction: {
+                        mode: 'index',
+                        intersect: false,
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                            labels: {
+                                usePointStyle: true,
+                                padding: 20
+                            }
+                        },
+                        tooltip: {
+                            backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                            titleColor: '#fff',
+                            bodyColor: '#fff',
+                            borderColor: '#667eea',
+                            borderWidth: 1,
+                            cornerRadius: 8,
+                            displayColors: true,
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.dataset.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    if (context.datasetIndex === 1) {
+                                        label += context.parsed.y.toLocaleString();
+                                    } else {
+                                        label += context.parsed.y.toLocaleString();
+                                    }
+                                    return label;
+                                }
+                            }
+                        }
+                    },
                     scales: {
+                        x: {
+                            grid: {
+                                color: 'rgba(0, 0, 0, 0.05)'
+                            },
+                            ticks: {
+                                color: '#666'
+                            }
+                        },
                         y: {
                             type: 'linear',
                             display: true,
                             position: 'left',
+                            grid: {
+                                color: 'rgba(0, 0, 0, 0.05)'
+                            },
+                            ticks: {
+                                color: '#666',
+                                callback: function(value) {
+                                    return value.toLocaleString();
+                                }
+                            }
                         },
                         y1: {
                             type: 'linear',
@@ -528,7 +646,125 @@
                             grid: {
                                 drawOnChartArea: false,
                             },
+                            ticks: {
+                                color: '#666',
+                                callback: function(value) {
+                                    return value.toLocaleString();
+                                }
+                            }
+                        },
+                        y2: {
+                            type: 'linear',
+                            display: false,
+                            position: 'right',
+                            grid: {
+                                drawOnChartArea: false,
+                            }
                         }
+                    },
+                    animation: {
+                        duration: 1000,
+                        easing: 'easeInOutQuart'
+                    }
+                }
+            });
+
+            // Server Performance Chart
+            const serverCtx = document.getElementById('serverChart').getContext('2d');
+            serverChart = new Chart(serverCtx, {
+                type: 'line',
+                data: {
+                    labels: ['10:30', '10:35', '10:40', '10:45', '10:50', '10:55', '11:00'],
+                    datasets: [{
+                        label: 'CPU %',
+                        data: [78, 82, 85, 87, 85, 83, 80],
+                        borderColor: '#f39c12',
+                        backgroundColor: 'rgba(243, 156, 18, 0.1)',
+                        fill: true,
+                        tension: 0.4
+                    }, {
+                        label: 'Memory %',
+                        data: [58, 60, 62, 64, 62, 60, 58],
+                        borderColor: '#27ae60',
+                        backgroundColor: 'rgba(39, 174, 96, 0.1)',
+                        fill: true,
+                        tension: 0.4
+                    }, {
+                        label: 'Response Time (ms)',
+                        data: [45, 52, 58, 62, 55, 48, 42],
+                        borderColor: '#667eea',
+                        backgroundColor: 'rgba(102, 126, 234, 0.1)',
+                        fill: false,
+                        tension: 0.4,
+                        yAxisID: 'y1'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                            labels: {
+                                usePointStyle: true,
+                                padding: 15,
+                                font: {
+                                    size: 12
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            grid: {
+                                color: 'rgba(0, 0, 0, 0.05)'
+                            },
+                            ticks: {
+                                color: '#666',
+                                font: {
+                                    size: 11
+                                }
+                            }
+                        },
+                        y: {
+                            type: 'linear',
+                            display: true,
+                            position: 'left',
+                            grid: {
+                                color: 'rgba(0, 0, 0, 0.05)'
+                            },
+                            ticks: {
+                                color: '#666',
+                                font: {
+                                    size: 11
+                                },
+                                callback: function(value) {
+                                    return value + '%';
+                                }
+                            },
+                            max: 100
+                        },
+                        y1: {
+                            type: 'linear',
+                            display: true,
+                            position: 'right',
+                            grid: {
+                                drawOnChartArea: false,
+                            },
+                            ticks: {
+                                color: '#666',
+                                font: {
+                                    size: 11
+                                },
+                                callback: function(value) {
+                                    return value + 'ms';
+                                }
+                            }
+                        }
+                    },
+                    animation: {
+                        duration: 800,
+                        easing: 'easeInOutQuart'
                     }
                 }
             });
@@ -546,7 +782,9 @@
                             '#27ae60',
                             '#f39c12',
                             '#e74c3c'
-                        ]
+                        ],
+                        borderWidth: 0,
+                        hoverOffset: 4
                     }]
                 },
                 options: {
@@ -554,107 +792,368 @@
                     maintainAspectRatio: false,
                     plugins: {
                         legend: {
-                            position: 'bottom'
+                            position: 'bottom',
+                            labels: {
+                                padding: 20,
+                                usePointStyle: true,
+                                font: {
+                                    size: 12
+                                }
+                            }
+                        },
+                        tooltip: {
+                            backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                            titleColor: '#fff',
+                            bodyColor: '#fff',
+                            borderColor: '#667eea',
+                            borderWidth: 1,
+                            cornerRadius: 8,
+                            callbacks: {
+                                label: function(context) {
+                                    const label = context.label || '';
+                                    const value = context.parsed;
+                                    const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                                    const percentage = ((value / total) * 100).toFixed(1);
+                                    return `${label}: ${value.toLocaleString()} triệu VNĐ (${percentage}%)`;
+                                }
+                            }
+                        }
+                    },
+                    animation: {
+                        animateRotate: true,
+                        duration: 1000
+                    }
+                }
+            });
+
+            // Traffic Sources Chart
+            const trafficCtx = document.getElementById('trafficChart').getContext('2d');
+            new Chart(trafficCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Direct', 'Social Media', 'Search Engine', 'Email', 'Referral'],
+                    datasets: [{
+                        data: [35, 25, 20, 12, 8],
+                        backgroundColor: [
+                            '#667eea',
+                            '#27ae60',
+                            '#f39c12',
+                            '#e74c3c',
+                            '#9b59b6'
+                        ],
+                        borderWidth: 0,
+                        hoverOffset: 6
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                padding: 20,
+                                usePointStyle: true,
+                                font: {
+                                    size: 12
+                                }
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return `${context.label}: ${context.parsed}%`;
+                                }
+                            }
                         }
                     }
                 }
             });
+
+            // Revenue Chart
+            const revenueCtx = document.getElementById('revenueChart').getContext('2d');
+            new Chart(revenueCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
+                    datasets: [{
+                        label: 'Doanh thu (tỷ VNĐ)',
+                        data: [6.8, 7.2, 6.9, 8.1, 7.8, 8.5, 8.2],
+                        backgroundColor: 'rgba(102, 126, 234, 0.8)',
+                        borderColor: '#667eea',
+                        borderWidth: 1,
+                        borderRadius: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: {
+                                color: 'rgba(0, 0, 0, 0.05)'
+                            },
+                            ticks: {
+                                callback: function(value) {
+                                    return value + 'B';
+                                }
+                            }
+                        },
+                        x: {
+                            grid: {
+                                display: false
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Activity Chart
+            const activityCtx = document.getElementById('activityChart').getContext('2d');
+            new Chart(activityCtx, {
+                type: 'line',
+                data: {
+                    labels: ['06:00', '09:00', '12:00', '15:00', '18:00', '21:00'],
+                    datasets: [{
+                        label: 'Đăng ký',
+                        data: [12, 25, 45, 62, 38, 28],
+                        borderColor: '#27ae60',
+                        backgroundColor: 'rgba(39, 174, 96, 0.1)',
+                        fill: true,
+                        tension: 0.4
+                    }, {
+                        label: 'Đặt tour',
+                        data: [45, 78, 125, 156, 98, 72],
+                        borderColor: '#667eea',
+                        backgroundColor: 'rgba(102, 126, 234, 0.1)',
+                        fill: true,
+                        tension: 0.4
+                    }, {
+                        label: 'Thanh toán',
+                        data: [32, 58, 98, 124, 78, 56],
+                        borderColor: '#f39c12',
+                        backgroundColor: 'rgba(243, 156, 18, 0.1)',
+                        fill: true,
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: {
+                                color: 'rgba(0, 0, 0, 0.05)'
+                            }
+                        },
+                        x: {
+                            grid: {
+                                display: false
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Geographic Chart
+            const geoCtx = document.getElementById('geoChart').getContext('2d');
+            new Chart(geoCtx, {
+                type: 'polarArea',
+                data: {
+                    labels: ['Việt Nam', 'Hàn Quốc', 'Nhật Bản', 'Khác'],
+                    datasets: [{
+                        data: [85, 8, 4, 3],
+                        backgroundColor: [
+                            'rgba(39, 174, 96, 0.8)',
+                            'rgba(102, 126, 234, 0.8)',
+                            'rgba(243, 156, 18, 0.8)',
+                            'rgba(231, 76, 60, 0.8)'
+                        ],
+                        borderColor: [
+                            '#27ae60',
+                            '#667eea',
+                            '#f39c12',
+                            '#e74c3c'
+                        ],
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        r: {
+                            beginAtZero: true,
+                            grid: {
+                                color: 'rgba(0, 0, 0, 0.05)'
+                            },
+                            ticks: {
+                                display: false
+                            }
+                        }
+                    }
+                }
+            });
+
+
+
+            // Update platform stats
+            updatePlatformStats();
         }
 
-        // Admin Functions
+        function switchPlatformChart(period) {
+            currentPlatformPeriod = period;
+            
+            // Update button states
+            document.querySelectorAll('#btn-24h, #btn-7d, #btn-30d').forEach(btn => {
+                btn.style.background = '#6c757d';
+                btn.style.color = 'white';
+            });
+            document.getElementById(`btn-${period}`).style.background = '#667eea';
+            document.getElementById(`btn-${period}`).style.color = 'white';
+            
+            // Update chart data
+            const data = platformData[period];
+            platformChart.data.labels = data.labels;
+            platformChart.data.datasets[0].data = data.users;
+            platformChart.data.datasets[1].data = data.requests;
+            platformChart.data.datasets[2].data = data.errors;
+            
+            platformChart.update('active');
+            updatePlatformStats();
+        }
+
+        function updatePlatformStats() {
+            const data = platformData[currentPlatformPeriod];
+            
+            // Calculate totals
+            const totalUsers = Math.max(...data.users);
+            const totalRequests = Math.max(...data.requests);
+            const totalErrors = data.errors.reduce((a, b) => a + b, 0);
+            const totalRequests_sum = data.requests.reduce((a, b) => a + b, 0);
+            const errorRate = ((totalErrors / totalRequests_sum) * 100).toFixed(1);
+            
+            document.getElementById('activeUsers').textContent = totalUsers.toLocaleString();
+            document.getElementById('apiRequests').textContent = totalRequests.toLocaleString();
+            document.getElementById('errorRate').textContent = errorRate + '%';
+            
+            // Update error rate color
+            const errorElement = document.getElementById('errorRate');
+            if (errorRate > 1) {
+                errorElement.style.color = '#e74c3c';
+            } else if (errorRate > 0.5) {
+                errorElement.style.color = '#f39c12';
+            } else {
+                errorElement.style.color = '#27ae60';
+            }
+        }
+
+        // Core Admin Functions
         function showNotifications() {
-            alert('🔔 Thông báo mới:\n• 5 đối tác mới chờ phê duyệt\n• Cảnh báo tải cao trên server\n• 12 khiếu nại cần xử lý\n• Cập nhật hệ thống có sẵn\n• Báo cáo tài chính tuần đã sẵn sàng');
+            // Implement notification system
+            console.log('Loading notifications...');
         }
 
         function investigatePayment() {
-            alert('🔍 Đang kiểm tra Payment Gateway...\n• VNPay: Timeout rate +15%\n• Momo: Normal\n• Banking: Normal\n→ Liên hệ VNPay để xử lý');
+            // Implement payment investigation
+            console.log('Investigating payment gateway...');
         }
 
         function scaleServers() {
-            if (confirm('🚀 Scale up servers?\nSẽ tự động thêm 2 instances mới.')) {
-                alert('✅ Đã khởi tạo 2 server instances mới.\nThời gian hoàn thành: ~5 phút');
-            }
+            // Implement server scaling
+            console.log('Scaling servers...');
         }
 
         function optimizeDB() {
-            if (confirm('🗄️ Tối ưu hóa database?\nQuá trình có thể mất 10-15 phút.')) {
-                alert('⚡ Đang chạy optimization...\nHệ thống sẽ thông báo khi hoàn thành.');
-            }
+            // Implement database optimization
+            console.log('Optimizing database...');
         }
 
         function manageUsers() {
-            alert('👥 Chuyển đến User Management System...');
+            // Navigate to user management
+            console.log('Loading user management...');
         }
 
         function managePartners() {
-            alert('🤝 Chuyển đến Partner Management System...');
+            // Navigate to partner management
+            console.log('Loading partner management...');
         }
 
         function systemSettings() {
-            alert('⚙️ Mở System Settings Panel...');
-        }
-
-        function emergencyMode() {
-            if (confirm('🚨 CẢNH BÁO: Kích hoạt chế độ khẩn cấp?\n• Tạm dừng tất cả giao dịch\n• Chuyển sang read-only mode\n• Thông báo maintenance cho users')) {
-                alert('🔴 EMERGENCY MODE ACTIVATED\nHệ thống đã chuyển sang chế độ bảo vệ.');
-            }
+            // Navigate to system settings
+            console.log('Loading system settings...');
         }
 
         function addNewUser() {
-            alert('➕ Mở form thêm user mới...');
+            // Add new user form
+            console.log('Opening new user form...');
         }
 
         function viewAllUsers() {
-            alert('📋 Chuyển đến danh sách tất cả users...');
+            // View all users list
+            console.log('Loading all users...');
         }
 
         function addNewPartner() {
-            alert('➕ Mở form đăng ký đối tác mới...');
+            // Add new partner form
+            console.log('Opening new partner form...');
         }
 
         function approvePartner(name) {
-            if (confirm(`✅ Phê duyệt đối tác ${name}?`)) {
-                alert(`✅ Đã phê duyệt ${name}.\nEmail xác nhận đã được gửi.`);
-            }
+            // Approve partner
+            console.log(`Approving partner: ${name}`);
         }
 
         function rejectPartner(name) {
-            const reason = prompt(`❌ Lý do từ chối ${name}:`);
-            if (reason) {
-                alert(`❌ Đã từ chối ${name}.\nEmail thông báo đã được gửi.`);
-            }
+            // Reject partner
+            console.log(`Rejecting partner: ${name}`);
         }
 
         function backupNow() {
-            if (confirm('💾 Thực hiện backup database ngay?\nQuá trình có thể mất 5-10 phút.')) {
-                alert('⏳ Đang backup database...\nSẽ thông báo khi hoàn thành.');
-            }
+            // Backup database
+            console.log('Starting database backup...');
         }
 
         function maintenanceMode() {
-            if (confirm('🔧 Chuyển sang maintenance mode?\n• Website sẽ hiển thị trang bảo trì\n• Tất cả giao dịch sẽ tạm dừng')) {
-                alert('🔧 Đã kích hoạt maintenance mode.\nNhớ tắt khi hoàn thành bảo trì.');
-            }
+            // Enable maintenance mode
+            console.log('Enabling maintenance mode...');
         }
 
         function clearCache() {
-            if (confirm('🗑️ Clear tất cả cache?\nCó thể làm chậm hệ thống tạm thời.')) {
-                alert('✅ Đã clear cache thành công.\nHiệu suất sẽ cải thiện sau vài phút.');
-            }
+            // Clear system cache
+            console.log('Clearing cache...');
         }
 
         function viewFullLogs() {
-            alert('📊 Mở Log Viewer...\nHiển thị logs chi tiết từ tất cả services.');
+            // View system logs
+            console.log('Loading system logs...');
         }
 
         function exportLogs() {
-            alert('📁 Đang xuất logs...\nFile .zip sẽ được tải xuống trong giây lát.');
+            // Export logs
+            console.log('Exporting logs...');
         }
 
         function logout() {
-            if (confirm('🚪 Đăng xuất khỏi Admin Panel?')) {
-                alert('👋 Đã đăng xuất khỏi Admin Panel.\nChuyển về trang đăng nhập...');
-            }
+            // Logout functionality
+            console.log('Logging out...');
         }
     </script>
 </body>

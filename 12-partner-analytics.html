@@ -7,6 +7,88 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        
+        @keyframes chartFadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        
+        .chart-container {
+            animation: chartFadeIn 0.8s ease-out;
+        }
+        
+        .chart-container:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15) !important;
+            transition: all 0.3s ease;
+        }
+        
+        .stat-card {
+            transition: all 0.3s ease;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+        }
+        
+        .chart-toggle-btn {
+            transition: all 0.2s ease;
+        }
+        
+        .chart-toggle-btn:hover {
+            transform: scale(1.05);
+        }
+        
+        .chart-toggle-btn:active {
+            transform: scale(0.95);
+        }
+        
+        .loading-spinner {
+            display: none;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #667eea;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .chart-info-tooltip {
+            position: absolute;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            display: none;
+            z-index: 1000;
+            pointer-events: none;
+        }
+    </style>
 </head>
 <body>
     <!-- Header -->
@@ -135,10 +217,6 @@
                         </h1>
                         <p style="color: #666; margin: 5px 0 0 0;">Phân tích hiệu suất kinh doanh và xu hướng thị trường</p>
                     </div>
-                    <div style="text-align: right;">
-                        <div style="font-size: 18px; font-weight: bold; color: #667eea;">📊 Analytics</div>
-                        <div style="font-size: 14px; color: #666;">Cập nhật: 17/07/2025 10:30</div>
-                    </div>
                 </div>
 
                 <!-- Key Performance Indicators -->
@@ -165,7 +243,16 @@
                     </div>
                 </div>
 
-                <!-- Charts Section -->
+                
+
+                
+
+                
+            
+        </div>
+        
+    </div>
+<!-- Charts Section -->
                 <div style="display: grid; grid-template-columns: 1fr; gap: 30px; margin-bottom: 30px;">
                     <!-- Enhanced Revenue Chart -->
                     <div style="background: white; padding: 30px; border-radius: 18px; box-shadow: 0 8px 30px rgba(0,0,0,0.08); border: 1px solid #f1f3f4;">
@@ -270,36 +357,151 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- Secondary Charts -->
-                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; margin-bottom: 30px;">
-
                 <!-- Secondary Charts -->
                 <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; margin-bottom: 30px;">
                     <!-- Orders Chart -->
-                    <div style="background: white; padding: 25px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1);">
-                        <h3 style="margin: 0 0 20px 0; color: #333;">
-                            <i class="fas fa-shopping-cart"></i> Đơn hàng theo ngày
-                        </h3>
-                        <canvas id="ordersChart" width="400" height="200"></canvas>
+                    <div class="chart-container" style="background: white; padding: 25px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1);">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                            <h3 style="margin: 0; color: #333;">
+                                <i class="fas fa-shopping-cart" style="color: #27ae60;"></i> Đơn hàng theo ngày
+                            </h3>
+                            <div style="display: flex; gap: 8px;">
+                                <button onclick="toggleOrdersChart('bar')" id="ordersBarBtn" class="chart-toggle-btn" style="padding: 6px 12px; border: none; background: #27ae60; color: white; border-radius: 6px; font-size: 12px; cursor: pointer;">
+                                    <i class="fas fa-chart-bar"></i>
+                                </button>
+                                <button onclick="toggleOrdersChart('line')" id="ordersLineBtn" class="chart-toggle-btn" style="padding: 6px 12px; border: none; background: #e9ecef; color: #666; border-radius: 6px; font-size: 12px; cursor: pointer;">
+                                    <i class="fas fa-chart-line"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div style="height: 250px; position: relative;">
+                            <canvas id="ordersChart"></canvas>
+                        </div>
+                        <div style="margin-top: 15px; padding-top: 15px; border-top: 1px solid #eee;">
+                            <div style="display: flex; justify-content: space-between; text-align: center;">
+                                <div>
+                                    <div style="font-size: 18px; font-weight: bold; color: #27ae60;">512</div>
+                                    <div style="font-size: 12px; color: #666;">Tổng đơn hàng</div>
+                                </div>
+                                <div>
+                                    <div style="font-size: 18px; font-weight: bold; color: #667eea;">73</div>
+                                    <div style="font-size: 12px; color: #666;">TB/ngày</div>
+                                </div>
+                                <div>
+                                    <div style="font-size: 18px; font-weight: bold; color: #f39c12;">+8%</div>
+                                    <div style="font-size: 12px; color: #666;">Tăng trưởng</div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
-                <!-- Tour Performance & Customer Satisfaction -->
-                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; margin-bottom: 30px;">
-                    <!-- Top Tours -->
-                    <div style="background: white; padding: 25px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1);">
+                    <!-- Customer Satisfaction -->
+                    <div class="chart-container" style="background: white; padding: 25px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1);">
                         <h3 style="margin: 0 0 20px 0; color: #333;">
-                            <i class="fas fa-trophy"></i> Top Tours bán chạy
+                            <i class="fas fa-star" style="color: #f39c12;"></i> Mức độ hài lòng khách hàng
                         </h3>
-                        <canvas id="topToursChart" width="400" height="200"></canvas>
+                        <div style="height: 250px; position: relative;">
+                            <canvas id="satisfactionChart"></canvas>
+                        </div>
+                        <div style="margin-top: 15px; padding-top: 15px; border-top: 1px solid #eee;">
+                            <div style="display: flex; justify-content: space-between; text-align: center;">
+                                <div>
+                                    <div style="font-size: 18px; font-weight: bold; color: #f39c12;">4.7/5</div>
+                                    <div style="font-size: 12px; color: #666;">Điểm TB</div>
+                                </div>
+                                <div>
+                                    <div style="font-size: 18px; font-weight: bold; color: #27ae60;">89%</div>
+                                    <div style="font-size: 12px; color: #666;">Hài lòng</div>
+                                </div>
+                                <div>
+                                    <div style="font-size: 18px; font-weight: bold; color: #667eea;">1,547</div>
+                                    <div style="font-size: 12px; color: #666;">Đánh giá</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Enhanced Analytics Charts -->
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-bottom: 30px;">
+                    <!-- Top Tours Performance -->
+                    <div class="chart-container" style="background: white; padding: 25px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1);">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                            <h3 style="margin: 0; color: #333;">
+                                <i class="fas fa-trophy" style="color: #f39c12;"></i> Top Tours
+                            </h3>
+                            <button onclick="exportChart('topTours')" class="chart-toggle-btn" style="padding: 6px 10px; border: none; background: #667eea; color: white; border-radius: 6px; font-size: 12px; cursor: pointer;">
+                                <i class="fas fa-download"></i>
+                            </button>
+                        </div>
+                        <div style="height: 280px; position: relative;">
+                            <canvas id="topToursChart"></canvas>
+                        </div>
+                        <div style="margin-top: 15px; padding-top: 15px; border-top: 1px solid #eee;">
+                            <div style="display: flex; justify-content: space-between; font-size: 12px; color: #666;">
+                                <span>🥇 Hạ Long: 234 tour</span>
+                                <span>🥈 Sapa: 156 tour</span>
+                                <span>🥉 Đà Nẵng: 98 tour</span>
+                            </div>
+                        </div>
                     </div>
 
                     <!-- Customer Demographics -->
-                    <div style="background: white; padding: 25px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1);">
-                        <h3 style="margin: 0 0 20px 0; color: #333;">
-                            <i class="fas fa-users"></i> Phân bố khách hàng theo tuổi
-                        </h3>
-                        <canvas id="demographicsChart" width="400" height="200"></canvas>
+                    <div class="chart-container" style="background: white; padding: 25px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1);">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                            <h3 style="margin: 0; color: #333;">
+                                <i class="fas fa-users" style="color: #9b59b6;"></i> Độ tuổi khách hàng
+                            </h3>
+                            <button onclick="toggleDemographicsView()" id="demographicsToggle" class="chart-toggle-btn" style="padding: 6px 10px; border: none; background: #9b59b6; color: white; border-radius: 6px; font-size: 12px; cursor: pointer;">
+                                <i class="fas fa-chart-pie"></i>
+                            </button>
+                        </div>
+                        <div style="height: 280px; position: relative;">
+                            <canvas id="demographicsChart"></canvas>
+                        </div>
+                        <div style="margin-top: 15px; padding-top: 15px; border-top: 1px solid #eee;">
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; font-size: 12px; color: #666;">
+                                <span>👥 26-35: 35%</span>
+                                <span>👥 36-45: 28%</span>
+                                <span>👥 18-25: 15%</span>
+                                <span>👥 46-55: 15%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Regional Performance -->
+                    <div class="chart-container" style="background: white; padding: 25px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1);">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                            <h3 style="margin: 0; color: #333;">
+                                <i class="fas fa-map-marker-alt" style="color: #e74c3c;"></i> Theo khu vực
+                            </h3>
+                            <div style="display: flex; gap: 4px;">
+                                <button onclick="toggleRegionalChart('doughnut')" id="regionalDoughnutBtn" class="chart-toggle-btn" style="padding: 4px 8px; border: none; background: #e74c3c; color: white; border-radius: 4px; font-size: 10px; cursor: pointer;">
+                                    <i class="fas fa-chart-pie"></i>
+                                </button>
+                                <button onclick="toggleRegionalChart('bar')" id="regionalBarBtn" class="chart-toggle-btn" style="padding: 4px 8px; border: none; background: #e9ecef; color: #666; border-radius: 4px; font-size: 10px; cursor: pointer;">
+                                    <i class="fas fa-chart-bar"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div style="height: 280px; position: relative;">
+                            <canvas id="regionalChart"></canvas>
+                        </div>
+                        <div style="margin-top: 15px; padding-top: 15px; border-top: 1px solid #eee;">
+                            <div style="display: grid; grid-template-columns: 1fr; gap: 6px; font-size: 12px; color: #666;">
+                                <div style="display: flex; justify-content: space-between;">
+                                    <span>🏔️ Miền Bắc</span>
+                                    <span style="font-weight: bold;">40%</span>
+                                </div>
+                                <div style="display: flex; justify-content: space-between;">
+                                    <span>🏖️ Miền Trung</span>
+                                    <span style="font-weight: bold;">35%</span>
+                                </div>
+                                <div style="display: flex; justify-content: space-between;">
+                                    <span>🌴 Miền Nam</span>
+                                    <span style="font-weight: bold;">25%</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -480,9 +682,6 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-
     <!-- Navigation Menu -->
     <div id="wireframeMenu" style="position: fixed; bottom: 20px; right: 20px; background: white; padding: 20px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.2); max-height: 80vh; overflow-y: auto; z-index: 1000; transition: all 0.3s ease;">
         <button onclick="toggleMenu()" style="position: absolute; top: 10px; right: 10px; background: #ff6b6b; color: white; border: none; border-radius: 50%; width: 25px; height: 25px; cursor: pointer; font-size: 14px;">×</button>
@@ -530,7 +729,6 @@
                 <a href="16-user-profile.html" style="text-decoration: none; color: #9C27B0; font-size: 11px; padding: 4px 8px; border: 1px solid #9C27B0; border-radius: 4px; text-align: center; transition: all 0.2s;">16-Profile</a>
                 <a href="17-reviews-ratings.html" style="text-decoration: none; color: #9C27B0; font-size: 11px; padding: 4px 8px; border: 1px solid #9C27B0; border-radius: 4px; text-align: center; transition: all 0.2s;">17-Reviews</a>
                 <a href="18-error-pages.html" style="text-decoration: none; color: #9C27B0; font-size: 11px; padding: 4px 8px; border: 1px solid #9C27B0; border-radius: 4px; text-align: center; transition: all 0.2s;">18-Errors</a>
-                <a href="19-mobile-responsive.html" style="text-decoration: none; color: #9C27B0; font-size: 11px; padding: 4px 8px; border: 1px solid #9C27B0; border-radius: 4px; text-align: center; transition: all 0.2s;">19-Mobile</a>
             </div>
         </div>
     </div>
@@ -776,7 +974,7 @@
         function initializeOtherCharts() {
             // Orders Chart
             const ordersCtx = document.getElementById('ordersChart').getContext('2d');
-            new Chart(ordersCtx, {
+            window.ordersChart = new Chart(ordersCtx, {
                 type: 'bar',
                 data: {
                     labels: ['CN', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7'],
@@ -785,8 +983,9 @@
                         data: [45, 78, 65, 89, 72, 95, 68],
                         backgroundColor: 'rgba(39, 174, 96, 0.8)',
                         borderColor: '#27ae60',
-                        borderWidth: 1,
-                        borderRadius: 4
+                        borderWidth: 2,
+                        borderRadius: 8,
+                        borderSkipped: false,
                     }]
                 },
                 options: {
@@ -795,30 +994,113 @@
                     plugins: {
                         legend: {
                             display: false
+                        },
+                        tooltip: {
+                            backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                            titleColor: '#ffffff',
+                            bodyColor: '#ffffff',
+                            borderColor: '#27ae60',
+                            borderWidth: 1,
+                            cornerRadius: 8,
+                            displayColors: true,
+                            callbacks: {
+                                label: function(context) {
+                                    return `${context.parsed.y} đơn hàng`;
+                                }
+                            }
                         }
                     },
                     scales: {
                         x: {
                             grid: {
                                 display: false
+                            },
+                            ticks: {
+                                font: {
+                                    size: 12
+                                },
+                                color: '#666'
                             }
                         },
                         y: {
                             beginAtZero: true,
                             grid: {
                                 color: 'rgba(0, 0, 0, 0.05)'
+                            },
+                            ticks: {
+                                font: {
+                                    size: 12
+                                },
+                                color: '#666'
                             }
                         }
+                    },
+                    animation: {
+                        duration: 1000,
+                        easing: 'easeOutQuart'
+                    }
+                }
+            });
+
+            // Customer Satisfaction Chart
+            const satisfactionCtx = document.getElementById('satisfactionChart').getContext('2d');
+            new Chart(satisfactionCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Rất hài lòng', 'Hài lòng', 'Bình thường', 'Không hài lòng'],
+                    datasets: [{
+                        data: [45, 35, 15, 5],
+                        backgroundColor: [
+                            '#27ae60',
+                            '#f39c12',
+                            '#667eea',
+                            '#e74c3c'
+                        ],
+                        borderWidth: 0,
+                        cutout: '60%'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                padding: 15,
+                                usePointStyle: true,
+                                font: {
+                                    size: 11
+                                }
+                            }
+                        },
+                        tooltip: {
+                            backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                            titleColor: '#ffffff',
+                            bodyColor: '#ffffff',
+                            borderColor: '#f39c12',
+                            borderWidth: 1,
+                            cornerRadius: 8,
+                            callbacks: {
+                                label: function(context) {
+                                    return `${context.parsed}% khách hàng`;
+                                }
+                            }
+                        }
+                    },
+                    animation: {
+                        duration: 1500,
+                        easing: 'easeOutBounce'
                     }
                 }
             });
 
             // Top Tours Chart
             const topToursCtx = document.getElementById('topToursChart').getContext('2d');
-            new Chart(topToursCtx, {
+            window.topToursChart = new Chart(topToursCtx, {
                 type: 'doughnut',
                 data: {
-                    labels: ['Hạ Long', 'Sapa', 'Đà Nẵng', 'Phú Quốc', 'Khác'],
+                    labels: ['Hạ Long Premium', 'Sapa Cổ Tích', 'Đà Nẵng Resort', 'Phú Quốc Paradise', 'Nha Trang Beach'],
                     datasets: [{
                         data: [234, 156, 98, 87, 145],
                         backgroundColor: [
@@ -828,7 +1110,9 @@
                             '#e74c3c',
                             '#9b59b6'
                         ],
-                        borderWidth: 0
+                        borderWidth: 3,
+                        borderColor: '#ffffff',
+                        cutout: '50%'
                     }]
                 },
                 options: {
@@ -838,20 +1122,40 @@
                         legend: {
                             position: 'bottom',
                             labels: {
-                                padding: 20,
-                                usePointStyle: true
+                                padding: 12,
+                                usePointStyle: true,
+                                font: {
+                                    size: 10
+                                }
+                            }
+                        },
+                        tooltip: {
+                            backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                            titleColor: '#ffffff',
+                            bodyColor: '#ffffff',
+                            borderColor: '#667eea',
+                            borderWidth: 1,
+                            cornerRadius: 8,
+                            callbacks: {
+                                label: function(context) {
+                                    return `${context.parsed} tour đã bán`;
+                                }
                             }
                         }
+                    },
+                    animation: {
+                        duration: 2000,
+                        easing: 'easeOutElastic'
                     }
                 }
             });
 
             // Demographics Chart
             const demographicsCtx = document.getElementById('demographicsChart').getContext('2d');
-            new Chart(demographicsCtx, {
+            window.demographicsChart = new Chart(demographicsCtx, {
                 type: 'pie',
                 data: {
-                    labels: ['18-25', '26-35', '36-45', '46-55', '55+'],
+                    labels: ['18-25 tuổi', '26-35 tuổi', '36-45 tuổi', '46-55 tuổi', '55+ tuổi'],
                     datasets: [{
                         data: [15, 35, 28, 15, 7],
                         backgroundColor: [
@@ -861,7 +1165,8 @@
                             '#e74c3c',
                             '#9b59b6'
                         ],
-                        borderWidth: 0
+                        borderWidth: 2,
+                        borderColor: '#ffffff'
                     }]
                 },
                 options: {
@@ -871,10 +1176,84 @@
                         legend: {
                             position: 'bottom',
                             labels: {
-                                padding: 20,
-                                usePointStyle: true
+                                padding: 12,
+                                usePointStyle: true,
+                                font: {
+                                    size: 10
+                                }
+                            }
+                        },
+                        tooltip: {
+                            backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                            titleColor: '#ffffff',
+                            bodyColor: '#ffffff',
+                            borderColor: '#9b59b6',
+                            borderWidth: 1,
+                            cornerRadius: 8,
+                            callbacks: {
+                                label: function(context) {
+                                    return `${context.parsed}% khách hàng`;
+                                }
                             }
                         }
+                    },
+                    animation: {
+                        duration: 1800,
+                        easing: 'easeOutQuart'
+                    }
+                }
+            });
+
+            // Regional Performance Chart
+            const regionalCtx = document.getElementById('regionalChart').getContext('2d');
+            window.regionalChart = new Chart(regionalCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Miền Bắc', 'Miền Trung', 'Miền Nam'],
+                    datasets: [{
+                        data: [40, 35, 25],
+                        backgroundColor: [
+                            '#667eea',
+                            '#27ae60',
+                            '#f39c12'
+                        ],
+                        borderWidth: 3,
+                        borderColor: '#ffffff',
+                        cutout: '60%'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                padding: 12,
+                                usePointStyle: true,
+                                font: {
+                                    size: 11
+                                }
+                            }
+                        },
+                        tooltip: {
+                            backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                            titleColor: '#ffffff',
+                            bodyColor: '#ffffff',
+                            borderColor: '#e74c3c',
+                            borderWidth: 1,
+                            cornerRadius: 8,
+                            callbacks: {
+                                label: function(context) {
+                                    const values = ['7.3 tỷ VNĐ', '6.4 tỷ VNĐ', '4.5 tỷ VNĐ'];
+                                    return `${context.parsed}% (${values[context.dataIndex]})`;
+                                }
+                            }
+                        }
+                    },
+                    animation: {
+                        duration: 1500,
+                        easing: 'easeOutBounce'
                     }
                 }
             });
@@ -883,6 +1262,240 @@
         function updateCharts() {
             const period = document.getElementById('timePeriod').value;
             switchTimePeriod(period);
+        }
+
+        // Interactive Chart Functions
+        function toggleOrdersChart(type) {
+            const ctx = document.getElementById('ordersChart').getContext('2d');
+            if (window.ordersChart) {
+                window.ordersChart.destroy();
+            }
+            
+            // Update button states
+            document.getElementById('ordersBarBtn').style.background = type === 'bar' ? '#27ae60' : '#e9ecef';
+            document.getElementById('ordersBarBtn').style.color = type === 'bar' ? 'white' : '#666';
+            document.getElementById('ordersLineBtn').style.background = type === 'line' ? '#27ae60' : '#e9ecef';
+            document.getElementById('ordersLineBtn').style.color = type === 'line' ? 'white' : '#666';
+            
+            window.ordersChart = new Chart(ctx, {
+                type: type,
+                data: {
+                    labels: ['CN', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7'],
+                    datasets: [{
+                        label: 'Đơn hàng',
+                        data: [45, 78, 65, 89, 72, 95, 68],
+                        backgroundColor: type === 'bar' ? 'rgba(39, 174, 96, 0.8)' : 'rgba(39, 174, 96, 0.1)',
+                        borderColor: '#27ae60',
+                        borderWidth: type === 'bar' ? 2 : 3,
+                        borderRadius: type === 'bar' ? 8 : 0,
+                        fill: type === 'line',
+                        tension: type === 'line' ? 0.4 : 0,
+                        pointBackgroundColor: type === 'line' ? '#27ae60' : undefined,
+                        pointBorderColor: type === 'line' ? '#ffffff' : undefined,
+                        pointBorderWidth: type === 'line' ? 2 : undefined,
+                        pointRadius: type === 'line' ? 6 : undefined
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                            titleColor: '#ffffff',
+                            bodyColor: '#ffffff',
+                            borderColor: '#27ae60',
+                            borderWidth: 1,
+                            cornerRadius: 8,
+                            callbacks: {
+                                label: function(context) {
+                                    return `${context.parsed.y} đơn hàng`;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            grid: { display: false },
+                            ticks: { font: { size: 12 }, color: '#666' }
+                        },
+                        y: {
+                            beginAtZero: true,
+                            grid: { color: 'rgba(0, 0, 0, 0.05)' },
+                            ticks: { font: { size: 12 }, color: '#666' }
+                        }
+                    },
+                    animation: {
+                        duration: 800,
+                        easing: 'easeOutQuart'
+                    }
+                }
+            });
+        }
+
+        function toggleDemographicsView() {
+            const ctx = document.getElementById('demographicsChart').getContext('2d');
+            const currentType = window.demographicsChart.config.type;
+            const newType = currentType === 'pie' ? 'doughnut' : 'pie';
+            
+            if (window.demographicsChart) {
+                window.demographicsChart.destroy();
+            }
+            
+            // Update button icon
+            const btn = document.getElementById('demographicsToggle');
+            btn.innerHTML = newType === 'pie' ? '<i class="fas fa-chart-pie"></i>' : '<i class="fas fa-chart-doughnut"></i>';
+            
+            window.demographicsChart = new Chart(ctx, {
+                type: newType,
+                data: {
+                    labels: ['18-25 tuổi', '26-35 tuổi', '36-45 tuổi', '46-55 tuổi', '55+ tuổi'],
+                    datasets: [{
+                        data: [15, 35, 28, 15, 7],
+                        backgroundColor: ['#667eea', '#27ae60', '#f39c12', '#e74c3c', '#9b59b6'],
+                        borderWidth: 2,
+                        borderColor: '#ffffff',
+                        cutout: newType === 'doughnut' ? '50%' : '0%'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                padding: 12,
+                                usePointStyle: true,
+                                font: { size: 10 }
+                            }
+                        },
+                        tooltip: {
+                            backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                            titleColor: '#ffffff',
+                            bodyColor: '#ffffff',
+                            borderColor: '#9b59b6',
+                            borderWidth: 1,
+                            cornerRadius: 8,
+                            callbacks: {
+                                label: function(context) {
+                                    return `${context.parsed}% khách hàng`;
+                                }
+                            }
+                        }
+                    },
+                    animation: {
+                        duration: 1000,
+                        easing: 'easeOutBounce'
+                    }
+                }
+            });
+        }
+
+        function toggleRegionalChart(type) {
+            const ctx = document.getElementById('regionalChart').getContext('2d');
+            if (window.regionalChart) {
+                window.regionalChart.destroy();
+            }
+            
+            // Update button states
+            document.getElementById('regionalDoughnutBtn').style.background = type === 'doughnut' ? '#e74c3c' : '#e9ecef';
+            document.getElementById('regionalDoughnutBtn').style.color = type === 'doughnut' ? 'white' : '#666';
+            document.getElementById('regionalBarBtn').style.background = type === 'bar' ? '#e74c3c' : '#e9ecef';
+            document.getElementById('regionalBarBtn').style.color = type === 'bar' ? 'white' : '#666';
+            
+            const data = {
+                labels: ['Miền Bắc', 'Miền Trung', 'Miền Nam'],
+                datasets: [{
+                    data: [40, 35, 25],
+                    backgroundColor: ['#667eea', '#27ae60', '#f39c12'],
+                    borderWidth: type === 'doughnut' ? 3 : 2,
+                    borderColor: '#ffffff'
+                }]
+            };
+            
+            if (type === 'doughnut') {
+                data.datasets[0].cutout = '60%';
+            }
+            
+            window.regionalChart = new Chart(ctx, {
+                type: type,
+                data: data,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                padding: 12,
+                                usePointStyle: true,
+                                font: { size: 11 }
+                            }
+                        },
+                        tooltip: {
+                            backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                            titleColor: '#ffffff',
+                            bodyColor: '#ffffff',
+                            borderColor: '#e74c3c',
+                            borderWidth: 1,
+                            cornerRadius: 8,
+                            callbacks: {
+                                label: function(context) {
+                                    const values = ['7.3 tỷ VNĐ', '6.4 tỷ VNĐ', '4.5 tỷ VNĐ'];
+                                    return `${context.parsed}% (${values[context.dataIndex]})`;
+                                }
+                            }
+                        }
+                    },
+                    scales: type === 'bar' ? {
+                        x: {
+                            grid: { display: false },
+                            ticks: { font: { size: 12 }, color: '#666' }
+                        },
+                        y: {
+                            beginAtZero: true,
+                            grid: { color: 'rgba(0, 0, 0, 0.05)' },
+                            ticks: { font: { size: 12 }, color: '#666' }
+                        }
+                    } : {},
+                    animation: {
+                        duration: 1000,
+                        easing: 'easeOutQuart'
+                    }
+                }
+            });
+        }
+
+        function exportChart(chartName) {
+            let chart;
+            let filename;
+            
+            switch(chartName) {
+                case 'topTours':
+                    chart = window.topToursChart;
+                    filename = 'top-tours';
+                    break;
+                case 'demographics':
+                    chart = window.demographicsChart;
+                    filename = 'demographics';
+                    break;
+                case 'regional':
+                    chart = window.regionalChart;
+                    filename = 'regional';
+                    break;
+                default:
+                    return;
+            }
+            
+            if (chart) {
+                const link = document.createElement('a');
+                link.download = `${filename}-${new Date().toISOString().split('T')[0]}.png`;
+                link.href = chart.toBase64Image();
+                link.click();
+                showNotification(`📊 Đã xuất biểu đồ ${filename} thành công!`, 'success');
+            }
         }
 
         function exportReport(format) {

@@ -51,11 +51,6 @@
                     <strong>Hotline 24/7</strong><br>
                     <small>1900.1234</small>
                 </button>
-                <button class="btn" style="background: rgba(255,255,255,0.2); color: white; border: 1px solid rgba(255,255,255,0.3); padding: 15px;" onclick="openLiveChat()">
-                    <i class="fas fa-comments" style="font-size: 20px; margin-bottom: 10px; display: block;"></i>
-                    <strong>Live Chat</strong><br>
-                    <small>Phản hồi < 1 phút</small>
-                </button>
                 <button class="btn" style="background: rgba(255,255,255,0.2); color: white; border: 1px solid rgba(255,255,255,0.3); padding: 15px;" onclick="sendEmail()">
                     <i class="fas fa-envelope" style="font-size: 20px; margin-bottom: 10px; display: block;"></i>
                     <strong>Email</strong><br>
@@ -268,52 +263,6 @@
 
             <!-- Right Column - Support Info -->
             <div class="fade-in" style="animation-delay: 0.2s;">
-                <!-- Support Status -->
-                <div style="background: white; padding: 20px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); margin-bottom: 20px; position: sticky; top: 20px;">
-                    <h4 style="margin: 0 0 15px 0; color: #333;">
-                        📊 TRẠNG THÁI HỖ TRỢ
-                    </h4>
-                    
-                    <div style="display: grid; gap: 15px;">
-                        <div style="display: flex; justify-content: space-between; align-items: center;">
-                            <span style="color: #666;">Thời gian phản hồi:</span>
-                            <span style="font-weight: bold; color: #27ae60;">< 2 giờ</span>
-                        </div>
-                        <div style="display: flex; justify-content: space-between; align-items: center;">
-                            <span style="color: #666;">Tư vấn viên online:</span>
-                            <span style="font-weight: bold; color: #27ae60;">15/20</span>
-                        </div>
-                        <div style="display: flex; justify-content: space-between; align-items: center;">
-                            <span style="color: #666;">Tickets hôm nay:</span>
-                            <span style="font-weight: bold; color: #333;">47</span>
-                        </div>
-                        <div style="display: flex; justify-content: space-between; align-items: center;">
-                            <span style="color: #666;">Tỷ lệ giải quyết:</span>
-                            <span style="font-weight: bold; color: #27ae60;">98.5%</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Live Chat Widget -->
-                <div id="liveChatWidget" style="background: linear-gradient(135deg, #27ae60, #2ecc71); color: white; padding: 20px; border-radius: 15px; margin-bottom: 20px;">
-                    <h4 style="margin: 0 0 15px 0;">
-                        💬 LIVE CHAT
-                    </h4>
-                    
-                    <div style="background: rgba(255,255,255,0.1); padding: 15px; border-radius: 10px; margin-bottom: 15px;">
-                        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
-                            <div style="width: 8px; height: 8px; background: #fff; border-radius: 50%; animation: pulse 2s infinite;"></div>
-                            <span style="font-weight: bold;">Tư vấn viên: Mai Anh</span>
-                        </div>
-                        <div style="font-size: 14px; opacity: 0.9;">
-                            "Chào bạn! Tôi có thể hỗ trợ gì cho bạn hôm nay?"
-                        </div>
-                    </div>
-                    
-                    <button class="btn" style="background: rgba(255,255,255,0.2); color: white; border: 1px solid rgba(255,255,255,0.3); width: 100%;" onclick="startLiveChat()">
-                        <i class="fas fa-comments"></i> Bắt đầu chat ngay
-                    </button>
-                </div>
 
                 <!-- Contact Hours -->
                 <div style="background: white; padding: 20px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); margin-bottom: 20px;">
@@ -324,10 +273,6 @@
                     <div style="display: grid; gap: 10px; font-size: 14px;">
                         <div style="display: flex; justify-content: space-between;">
                             <span style="color: #666;">Hotline:</span>
-                            <span style="color: #27ae60; font-weight: bold;">24/7</span>
-                        </div>
-                        <div style="display: flex; justify-content: space-between;">
-                            <span style="color: #666;">Live Chat:</span>
                             <span style="color: #27ae60; font-weight: bold;">24/7</span>
                         </div>
                         <div style="display: flex; justify-content: space-between;">
@@ -400,8 +345,10 @@
 
         <div style="margin-bottom: 15px;">
             <h4 style="margin: 0 0 8px 0; color: #4CAF50; font-size: 13px; font-weight: bold;">🛠️ Admin Panel</h4>
-            <div style="display: grid; grid-template-columns: 1fr; gap: 5px; margin-bottom: 10px;">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 5px; margin-bottom: 10px;">
                 <a href="13-admin-dashboard.html" style="text-decoration: none; color: #4CAF50; font-size: 11px; padding: 4px 8px; border: 1px solid #4CAF50; border-radius: 4px; text-align: center; transition: all 0.2s;">13-Dashboard</a>
+                <a href="20-admin-tour-approval.html" style="text-decoration: none; color: #4CAF50; font-size: 11px; padding: 4px 8px; border: 1px solid #4CAF50; border-radius: 4px; text-align: center; transition: all 0.2s;">20-Approval</a>
+                <a href="21-admin-flash-sale.html" style="text-decoration: none; color: #4CAF50; font-size: 11px; padding: 4px 8px; border: 1px solid #4CAF50; border-radius: 4px; text-align: center; transition: all 0.2s;">21-FlashSale</a>
             </div>
         </div>
 
@@ -413,7 +360,6 @@
                 <a href="16-user-profile.html" style="text-decoration: none; color: #9C27B0; font-size: 11px; padding: 4px 8px; border: 1px solid #9C27B0; border-radius: 4px; text-align: center; transition: all 0.2s;">16-Profile</a>
                 <a href="17-reviews-ratings.html" style="text-decoration: none; color: #9C27B0; font-size: 11px; padding: 4px 8px; border: 1px solid #9C27B0; border-radius: 4px; text-align: center; transition: all 0.2s;">17-Reviews</a>
                 <a href="18-error-pages.html" style="text-decoration: none; color: #9C27B0; font-size: 11px; padding: 4px 8px; border: 1px solid #9C27B0; border-radius: 4px; text-align: center; transition: all 0.2s;">18-Errors</a>
-                <a href="19-mobile-responsive.html" style="text-decoration: none; color: #9C27B0; font-size: 11px; padding: 4px 8px; border: 1px solid #9C27B0; border-radius: 4px; text-align: center; transition: all 0.2s;">19-Mobile</a>
             </div>
         </div>
     </div>
@@ -421,10 +367,6 @@
     <script>
         function callHotline() {
             alert('📞 Đang kết nối hotline 1900.1234...\n⏱️ Thời gian chờ: < 30 giây\n🎯 Tư vấn viên chuyên nghiệp sẵn sàng hỗ trợ');
-        }
-
-        function openLiveChat() {
-            alert('💬 Mở cửa sổ Live Chat...\n👤 Tư vấn viên: Mai Anh\n✅ Đang online\n⚡ Phản hồi ngay lập tức');
         }
 
         function sendEmail() {
@@ -478,10 +420,6 @@
         function submitSupportRequest(event) {
             event.preventDefault();
             alert('📧 Yêu cầu hỗ trợ đã được gửi!\n\n✅ Mã ticket: #TK2025080001\n⏱️ Thời gian phản hồi: 2-4 giờ\n📧 Email xác nhận đã được gửi\n\n💬 Bạn có thể chat trực tiếp để được hỗ trợ nhanh hơn!');
-        }
-
-        function startLiveChat() {
-            alert('💬 Bắt đầu Live Chat...\n\n👤 Mai Anh: "Chào bạn! Tôi có thể hỗ trợ gì cho bạn hôm nay?"\n\n✨ Hệ thống chat đã sẵn sàng\n⚡ Phản hồi ngay lập tức');
         }
 
         function toggleMenu() {
