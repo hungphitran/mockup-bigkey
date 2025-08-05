@@ -1,0 +1,182 @@
+/* Unified Management Header Styles */
+.management-header {
+    background: linear-gradient(135deg, #1A365D 0%, #2D3748 100%);
+    color: white;
+    padding: 0;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.management-header-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 70px;
+}
+
+.management-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.management-logo i {
+    color: #DC2626;
+    font-size: 24px;
+}
+
+.management-badge {
+    background: #DC2626;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 10px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.management-nav-menu {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+}
+
+.management-nav-menu a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    position: relative;
+}
+
+.management-nav-menu a:hover {
+    background: rgba(255,255,255,0.1);
+    transform: translateY(-1px);
+}
+
+.management-nav-menu a.active {
+    background: #DC2626;
+    color: white;
+}
+
+.management-auth-section {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.management-auth-section select {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 6px;
+    background: rgba(255,255,255,0.1);
+    color: white;
+    font-size: 14px;
+}
+
+.management-auth-section select option {
+    background: #2D3748;
+    color: white;
+}
+
+.management-user-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.management-user-avatar {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background: #DC2626;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.management-user-details {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.management-user-name {
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.management-user-role {
+    font-size: 11px;
+    opacity: 0.8;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.management-logout-btn {
+    background: rgba(220, 38, 38, 0.8);
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.management-logout-btn:hover {
+    background: #DC2626;
+    transform: translateY(-1px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .management-header-content {
+        padding: 0 15px;
+        height: 60px;
+    }
+    
+    .management-logo {
+        font-size: 18px;
+    }
+    
+    .management-nav-menu {
+        gap: 15px;
+    }
+    
+    .management-nav-menu a {
+        padding: 8px 12px;
+        font-size: 14px;
+    }
+    
+    .management-auth-section {
+        gap: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .management-nav-menu {
+        display: none;
+    }
+    
+    .management-logo {
+        font-size: 16px;
+    }
+    
+    .management-badge {
+        font-size: 9px;
+        padding: 3px 6px;
+    }
+} 

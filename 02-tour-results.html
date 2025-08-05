@@ -1,0 +1,921 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BigKey Tour - Kết quả tìm kiếm Tour</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Force grid layout with highest priority */
+        #main-filter-results {
+            display: grid !important;
+            grid-template-columns: 25% 75% !important;
+            gap: 25px !important;
+            margin-top: 20px !important;
+            width: 100% !important;
+        }
+        
+        #main-filter-results > .filter-sidebar {
+            grid-column: 1 !important;
+            grid-row: 1 !important;
+        }
+        
+        #main-filter-results > .results-section {
+            grid-column: 2 !important;
+            grid-row: 1 !important;
+        }
+        
+        @media (max-width: 768px) {
+            #main-filter-results {
+                grid-template-columns: 30% 70% !important;
+                gap: 15px !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <i class="fas fa-key" style="color: #DC2626;"></i> 
+                <span style="color: white; font-weight: bold;">BigKey Tour</span>
+            </div>
+            <nav class="nav-menu">
+                <a href="01-search-integrated.html">Trang chủ</a>
+                <a href="03-tour-details.html">Tours</a>
+                <a href="06-flight-details.html">Vé máy bay</a>
+                <a href="07-hotel-details.html">Khách sạn</a>
+                <a href="05-combo-details.html">Combo</a>
+                <div class="nav-dropdown" style="position: relative; display: inline-block;">
+                    <a href="#" onclick="toggleSystemMenu()" style="display: flex; align-items: center; gap: 5px;">
+                        Hệ thống <i class="fas fa-chevron-down" style="font-size: 12px;"></i>
+                    </a>
+                    <div id="systemDropdown" class="system-dropdown" style="display: none; position: absolute; top: 100%; left: 0; background: white; border: 1px solid #ddd; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); min-width: 180px; z-index: 1000; margin-top: 5px;">
+                        <a href="11-partner-management.html" style="display: block; padding: 12px 16px; color: #333; text-decoration: none; border-bottom: 1px solid #eee;">
+                            <i class="fas fa-handshake" style="color: #2563EB;"></i> Quản lý Đối tác
+                        </a>
+                        <a href="13-admin-dashboard.html" style="display: block; padding: 12px 16px; color: #333; text-decoration: none;">
+                            <i class="fas fa-cog" style="color: #DC2626;"></i> Quản trị viên
+                        </a>
+                    </div>
+                </div>
+            </nav>
+            <div class="auth-section">
+                <select style="padding: 8px; border-radius: 5px; border: 1px solid #ddd; background: white;">
+                    <option>🇻🇳 Tiếng Việt</option>
+                    <option>🇺🇸 English</option>
+                    <option>🇷🇺 Русский</option>
+                    <option>🇰🇿 Қазақша</option>
+                </select>
+                <div class="user-menu" style="position: relative; display: inline-block;">
+                    <button class="btn btn-primary" onclick="toggleUserMenu()" style="display: flex; align-items: center; gap: 8px;">
+                        <i class="fas fa-user-circle"></i>
+                        <span>Đăng nhập</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div id="userDropdown" class="user-dropdown" style="display: none; position: absolute; right: 0; top: 100%; background: white; border: 1px solid #ddd; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); min-width: 200px; z-index: 1000; margin-top: 5px;">
+                        <a href="09-user-orders.html" style="display: block; padding: 12px 16px; color: #333; text-decoration: none; border-bottom: 1px solid #eee;">
+                            <i class="fas fa-shopping-bag"></i> Đơn hàng của tôi
+                        </a>
+                        <a href="16-user-profile.html" style="display: block; padding: 12px 16px; color: #333; text-decoration: none; border-bottom: 1px solid #eee;">
+                            <i class="fas fa-user"></i> Hồ sơ cá nhân
+                        </a>
+                        <a href="11-partner-management.html" style="display: block; padding: 12px 16px; color: #333; text-decoration: none; border-bottom: 1px solid #eee;">
+                            <i class="fas fa-handshake"></i> Trang đối tác
+                        </a>
+                        <a href="13-admin-dashboard.html" style="display: block; padding: 12px 16px; color: #333; text-decoration: none;">
+                            <i class="fas fa-cog"></i> Quản lý hệ thống
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Breadcrumb -->
+        <div style="margin: 20px 0; padding: 15px; background: #f8f9fa; border-radius: 8px;">
+            <nav style="color: #666;">
+                <a href="01-search-integrated.html" style="color: #1A365D; text-decoration: none;">Trang chủ</a> 
+                <span style="margin: 0 10px;">></span>
+                <a href="#" style="color: #1A365D; text-decoration: none;">Tour</a>
+                <span style="margin: 0 10px;">></span>
+                <span style="color: #DC2626; font-weight: bold;">Miền Nam</span>
+                <span style="margin: 0 10px;">></span>
+                <span>Phú Quốc</span>
+            </nav>
+        </div>
+
+        <!-- Search Summary -->
+        <div id="search-summary" style="margin: 20px 0; padding: 20px; background: linear-gradient(135deg, #1A365D, #2563EB); color: white; border-radius: 10px;">
+            <!-- Tour Search Summary -->
+            <div id="tour-summary" style="display: block;">
+                <h2 style="margin: 0 0 10px 0; font-size: 24px;">
+                    <i class="fas fa-route"></i> Kết quả tìm kiếm Tour: "Điểm đến không xác định, 20/08 - 23/08/2025, 2 người lớn"
+                </h2>
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <div style="font-size: 16px;">
+                        Tìm thấy <strong>45 tour</strong> phù hợp với yêu cầu của bạn
+                    </div>
+                    <button onclick="window.location.href='01-search-integrated.html'" style="background: #DC2626; color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer;">
+                        <i class="fas fa-edit"></i> Sửa tìm kiếm
+                    </button>
+                </div>
+            </div>
+
+            <!-- Flight Search Summary -->
+            <div id="flight-summary" style="display: none;">
+                <h2 style="margin: 0 0 10px 0; font-size: 24px;">
+                    <i class="fas fa-plane"></i> Kết quả tìm kiếm Vé máy bay: "TP.HCM → Phú Quốc, 20/08/2025"
+                </h2>
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <div style="font-size: 16px;">
+                        Tìm thấy <strong>12 chuyến bay</strong> phù hợp với yêu cầu của bạn
+                    </div>
+                    <button style="background: #DC2626; color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer;">
+                        <i class="fas fa-edit"></i> Sửa tìm kiếm
+                    </button>
+                </div>
+            </div>
+
+            <!-- Hotel Search Summary -->
+            <div id="hotel-summary" style="display: none;">
+                <h2 style="margin: 0 0 10px 0; font-size: 24px;">
+                    <i class="fas fa-hotel"></i> Kết quả tìm kiếm Khách sạn: "Phú Quốc, 20/08 - 23/08/2025"
+                </h2>
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <div style="font-size: 16px;">
+                        Tìm thấy <strong>28 khách sạn</strong> phù hợp với yêu cầu của bạn
+                    </div>
+                    <button style="background: #DC2626; color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer;">
+                        <i class="fas fa-edit"></i> Sửa tìm kiếm
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content Layout (25% Filter + 75% Results) -->
+        <div id="main-filter-results" class="filter-results-container">
+            
+            <!-- Left Sidebar - Filters (25%) -->
+            <div class="filter-sidebar" style="background: white; border-radius: 10px; padding: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                <h3 style="color: #1A365D; margin-bottom: 20px; border-bottom: 2px solid #e0e0e0; padding-bottom: 10px;">
+                    <i class="fas fa-sliders-h"></i> BỘ LỌC
+                </h3>
+
+                <!-- Common filters for all services -->
+                <!-- Price Range Filter -->
+                <div style="margin-bottom: 25px;">
+                    <h4 style="color: #333; margin-bottom: 15px; font-size: 16px;">Khoảng giá</h4>
+                    <div style="padding: 15px; background: #f8f9fa; border-radius: 8px;">
+                        <input type="range" min="500000" max="50000000" value="25000000" style="width: 100%; margin-bottom: 10px;">
+                        <div style="display: flex; justify-content: space-between; font-size: 14px; color: #666;">
+                            <span>500k</span>
+                            <span style="color: #DC2626; font-weight: bold;">25tr</span>
+                            <span>50tr</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Rating Filter -->
+                <div style="margin-bottom: 25px;">
+                    <h4 style="color: #333; margin-bottom: 15px; font-size: 16px;">Đánh giá</h4>
+                    <div style="display: flex; flex-direction: column; gap: 8px;">
+                        <label style="display: flex; align-items: center; cursor: pointer;">
+                            <input type="checkbox" style="margin-right: 10px;">
+                            <span>⭐⭐⭐⭐⭐ 5 sao</span>
+                        </label>
+                        <label style="display: flex; align-items: center; cursor: pointer;">
+                            <input type="checkbox" checked style="margin-right: 10px;">
+                            <span style="color: #DC2626; font-weight: bold;">⭐⭐⭐⭐☆ 4+ sao</span>
+                        </label>
+                        <label style="display: flex; align-items: center; cursor: pointer;">
+                            <input type="checkbox" style="margin-right: 10px;">
+                            <span>⭐⭐⭐☆☆ 3+ sao</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Tour specific filters -->
+                <div id="tour-filters-sidebar">
+                    <!-- Duration Filter -->
+                    <div style="margin-bottom: 25px;">
+                        <h4 style="color: #333; margin-bottom: 15px; font-size: 16px;">Thời gian</h4>
+                        <div style="display: flex; flex-direction: column; gap: 8px;">
+                            <label style="display: flex; align-items: center; cursor: pointer;">
+                                <input type="checkbox" style="margin-right: 10px;">
+                                <span>1 ngày</span>
+                            </label>
+                            <label style="display: flex; align-items: center; cursor: pointer;">
+                                <input type="checkbox" checked style="margin-right: 10px;">
+                                <span style="color: #DC2626; font-weight: bold;">2-3 ngày</span>
+                            </label>
+                            <label style="display: flex; align-items: center; cursor: pointer;">
+                                <input type="checkbox" style="margin-right: 10px;">
+                                <span>4-7 ngày</span>
+                            </label>
+                            <label style="display: flex; align-items: center; cursor: pointer;">
+                                <input type="checkbox" style="margin-right: 10px;">
+                                <span>Trên 7 ngày</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Tour Type Filter -->
+                    <div style="margin-bottom: 25px;">
+                        <h4 style="color: #333; margin-bottom: 15px; font-size: 16px;">Loại tour</h4>
+                        <div style="display: flex; flex-direction: column; gap: 8px;">
+                            <label style="display: flex; align-items: center; cursor: pointer;">
+                                <input type="checkbox" checked style="margin-right: 10px;">
+                                <span style="color: #DC2626; font-weight: bold;">Trong nước</span>
+                            </label>
+                            <label style="display: flex; align-items: center; cursor: pointer;">
+                                <input type="checkbox" style="margin-right: 10px;">
+                                <span>Nước ngoài</span>
+                            </label>
+                            <label style="display: flex; align-items: center; cursor: pointer;">
+                                <input type="checkbox" style="margin-right: 10px;">
+                                <span>Tour luxury</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Transportation Filter -->
+                    <div style="margin-bottom: 25px;">
+                        <h4 style="color: #333; margin-bottom: 15px; font-size: 16px;">Phương tiện</h4>
+                        <div style="display: flex; flex-direction: column; gap: 8px;">
+                            <label style="display: flex; align-items: center; cursor: pointer;">
+                                <input type="checkbox" checked style="margin-right: 10px;">
+                                <span style="color: #DC2626; font-weight: bold;">✈️ Máy bay</span>
+                            </label>
+                            <label style="display: flex; align-items: center; cursor: pointer;">
+                                <input type="checkbox" style="margin-right: 10px;">
+                                <span>🚌 Xe khách</span>
+                            </label>
+                            <label style="display: flex; align-items: center; cursor: pointer;">
+                                <input type="checkbox" style="margin-right: 10px;">
+                                <span>🚂 Tàu hỏa</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Departure Point Filter -->
+                    <div style="margin-bottom: 25px;">
+                        <h4 style="color: #333; margin-bottom: 15px; font-size: 16px;">Điểm khởi hành</h4>
+                        <div style="display: flex; flex-direction: column; gap: 8px;">
+                            <label style="display: flex; align-items: center; cursor: pointer;">
+                                <input type="checkbox" checked style="margin-right: 10px;">
+                                <span style="color: #DC2626; font-weight: bold;">TP.HCM</span>
+                            </label>
+                            <label style="display: flex; align-items: center; cursor: pointer;">
+                                <input type="checkbox" style="margin-right: 10px;">
+                                <span>Hà Nội</span>
+                            </label>
+                            <label style="display: flex; align-items: center; cursor: pointer;">
+                                <input type="checkbox" style="margin-right: 10px;">
+                                <span>Đà Nẵng</span>
+                            </label>
+                            <label style="display: flex; align-items: center; cursor: pointer;">
+                                <input type="checkbox" style="margin-right: 10px;">
+                                <span>Cần Thơ</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Flight specific filters -->
+                <div id="flight-filters-sidebar" style="display: none;">
+                    <!-- Airlines Filter -->
+                    <div style="margin-bottom: 25px;">
+                        <h4 style="color: #333; margin-bottom: 15px; font-size: 16px;">Hãng hàng không</h4>
+                        <div style="display: flex; flex-direction: column; gap: 8px;">
+                            <label style="display: flex; align-items: center; cursor: pointer;">
+                                <input type="checkbox" style="margin-right: 10px;">
+                                <span>Vietnam Airlines</span>
+                            </label>
+                            <label style="display: flex; align-items: center; cursor: pointer;">
+                                <input type="checkbox" checked style="margin-right: 10px;">
+                                <span style="color: #DC2626; font-weight: bold;">VietJet Air</span>
+                            </label>
+                            <label style="display: flex; align-items: center; cursor: pointer;">
+                                <input type="checkbox" style="margin-right: 10px;">
+                                <span>Bamboo Airways</span>
+                            </label>
+                            <label style="display: flex; align-items: center; cursor: pointer;">
+                                <input type="checkbox" style="margin-right: 10px;">
+                                <span>Jetstar</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Flight Time Filter -->
+                    <div style="margin-bottom: 25px;">
+                        <h4 style="color: #333; margin-bottom: 15px; font-size: 16px;">Giờ bay</h4>
+                        <div style="display: flex; flex-direction: column; gap: 8px;">
+                            <label style="display: flex; align-items: center; cursor: pointer;">
+                                <input type="checkbox" style="margin-right: 10px;">
+                                <span>🌅 Sáng sớm (6-9h)</span>
+                            </label>
+                            <label style="display: flex; align-items: center; cursor: pointer;">
+                                <input type="checkbox" checked style="margin-right: 10px;">
+                                <span style="color: #DC2626; font-weight: bold;">☀️ Buổi sáng (9-12h)</span>
+                            </label>
+                            <label style="display: flex; align-items: center; cursor: pointer;">
+                                <input type="checkbox" style="margin-right: 10px;">
+                                <span>🌤️ Chiều (12-18h)</span>
+                            </label>
+                            <label style="display: flex; align-items: center; cursor: pointer;">
+                                <input type="checkbox" style="margin-right: 10px;">
+                                <span>🌙 Tối (18-24h)</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Flight Type Filter -->
+                    <div style="margin-bottom: 25px;">
+                        <h4 style="color: #333; margin-bottom: 15px; font-size: 16px;">Số chặng</h4>
+                        <div style="display: flex; flex-direction: column; gap: 8px;">
+                            <label style="display: flex; align-items: center; cursor: pointer;">
+                                <input type="checkbox" checked style="margin-right: 10px;">
+                                <span style="color: #DC2626; font-weight: bold;">Bay thẳng</span>
+                            </label>
+                            <label style="display: flex; align-items: center; cursor: pointer;">
+                                <input type="checkbox" style="margin-right: 10px;">
+                                <span>1 chặng dừng</span>
+                            </label>
+                            <label style="display: flex; align-items: center; cursor: pointer;">
+                                <input type="checkbox" style="margin-right: 10px;">
+                                <span>2+ chặng dừng</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Baggage Filter -->
+                    <div style="margin-bottom: 25px;">
+                        <h4 style="color: #333; margin-bottom: 15px; font-size: 16px;">Hành lý</h4>
+                        <div style="display: flex; flex-direction: column; gap: 8px;">
+                            <label style="display: flex; align-items: center; cursor: pointer;">
+                                <input type="checkbox" style="margin-right: 10px;">
+                                <span>🎒 Chỉ hành lý xách tay</span>
+                            </label>
+                            <label style="display: flex; align-items: center; cursor: pointer;">
+                                <input type="checkbox" checked style="margin-right: 10px;">
+                                <span style="color: #DC2626; font-weight: bold;">🧳 Bao gồm hành lý ký gửi</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hotel specific filters -->
+                <div id="hotel-filters-sidebar" style="display: none;">
+                    <!-- Hotel Type Filter -->
+                    <div style="margin-bottom: 25px;">
+                        <h4 style="color: #333; margin-bottom: 15px; font-size: 16px;">Loại hình</h4>
+                        <div style="display: flex; flex-direction: column; gap: 8px;">
+                            <label style="display: flex; align-items: center; cursor: pointer;">
+                                <input type="checkbox" checked style="margin-right: 10px;">
+                                <span style="color: #DC2626; font-weight: bold;">🏨 Khách sạn</span>
+                            </label>
+                            <label style="display: flex; align-items: center; cursor: pointer;">
+                                <input type="checkbox" style="margin-right: 10px;">
+                                <span>🏖️ Resort</span>
+                            </label>
+                            <label style="display: flex; align-items: center; cursor: pointer;">
+                                <input type="checkbox" style="margin-right: 10px;">
+                                <span>🏠 Homestay</span>
+                            </label>
+                            <label style="display: flex; align-items: center; cursor: pointer;">
+                                <input type="checkbox" style="margin-right: 10px;">
+                                <span>🏛️ Villa</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Star Rating Filter -->
+                    <div style="margin-bottom: 25px;">
+                        <h4 style="color: #333; margin-bottom: 15px; font-size: 16px;">Hạng sao</h4>
+                        <div style="display: flex; flex-direction: column; gap: 8px;">
+                            <label style="display: flex; align-items: center; cursor: pointer;">
+                                <input type="checkbox" style="margin-right: 10px;">
+                                <span>⭐⭐⭐ 3 sao</span>
+                            </label>
+                            <label style="display: flex; align-items: center; cursor: pointer;">
+                                <input type="checkbox" checked style="margin-right: 10px;">
+                                <span style="color: #DC2626; font-weight: bold;">⭐⭐⭐⭐ 4 sao</span>
+                            </label>
+                            <label style="display: flex; align-items: center; cursor: pointer;">
+                                <input type="checkbox" style="margin-right: 10px;">
+                                <span>⭐⭐⭐⭐⭐ 5 sao</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Amenities Filter -->
+                    <div style="margin-bottom: 25px;">
+                        <h4 style="color: #333; margin-bottom: 15px; font-size: 16px;">Tiện ích</h4>
+                        <div style="display: flex; flex-direction: column; gap: 8px;">
+                            <label style="display: flex; align-items: center; cursor: pointer;">
+                                <input type="checkbox" checked style="margin-right: 10px;">
+                                <span style="color: #DC2626; font-weight: bold;">📶 Wifi miễn phí</span>
+                            </label>
+                            <label style="display: flex; align-items: center; cursor: pointer;">
+                                <input type="checkbox" style="margin-right: 10px;">
+                                <span>🏊 Hồ bơi</span>
+                            </label>
+                            <label style="display: flex; align-items: center; cursor: pointer;">
+                                <input type="checkbox" style="margin-right: 10px;">
+                                <span>🥞 Bữa sáng</span>
+                            </label>
+                            <label style="display: flex; align-items: center; cursor: pointer;">
+                                <input type="checkbox" style="margin-right: 10px;">
+                                <span>💪 Gym</span>
+                            </label>
+                            <label style="display: flex; align-items: center; cursor: pointer;">
+                                <input type="checkbox" style="margin-right: 10px;">
+                                <span>🛁 Spa</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- District Filter -->
+                    <div style="margin-bottom: 25px;">
+                        <h4 style="color: #333; margin-bottom: 15px; font-size: 16px;">Khu vực</h4>
+                        <div style="display: flex; flex-direction: column; gap: 8px;">
+                            <label style="display: flex; align-items: center; cursor: pointer;">
+                                <input type="checkbox" checked style="margin-right: 10px;">
+                                <span style="color: #DC2626; font-weight: bold;">🏙️ Trung tâm</span>
+                            </label>
+                            <label style="display: flex; align-items: center; cursor: pointer;">
+                                <input type="checkbox" style="margin-right: 10px;">
+                                <span>🏖️ Gần bãi biển</span>
+                            </label>
+                            <label style="display: flex; align-items: center; cursor: pointer;">
+                                <input type="checkbox" style="margin-right: 10px;">
+                                <span>✈️ Gần sân bay</span>
+                            </label>
+                            <label style="display: flex; align-items: center; cursor: pointer;">
+                                <input type="checkbox" style="margin-right: 10px;">
+                                <span>🛍️ Gần chợ/mua sắm</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Filter Action Buttons -->
+                <div style="margin-top: 30px; text-align: center; border-top: 2px solid #e0e0e0; padding-top: 20px;">
+                    <button style="background: #1A365D; color: white; border: none; padding: 12px 20px; border-radius: 8px; font-weight: bold; margin-right: 10px; cursor: pointer;">
+                        <i class="fas fa-check"></i> Áp dụng bộ lọc
+                    </button>
+                    <button style="background: #6B7280; color: white; border: none; padding: 12px 20px; border-radius: 8px; font-weight: bold; cursor: pointer;">
+                        <i class="fas fa-times"></i> Xóa bộ lọc
+                    </button>
+                </div>
+            </div>
+
+            <!-- Right Content - Results (75%) -->
+            <div class="results-section">
+                <!-- Sort Options -->
+                <div style="display: flex; justify-content: between; align-items: center; margin-bottom: 20px; padding: 15px; background: white; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                    <div style="font-weight: bold; color: #1A365D;">
+                        Sắp xếp theo:
+                    </div>
+                    <div style="display: flex; gap: 10px; margin-left: 20px;">
+                        <select style="padding: 8px 15px; border: 2px solid #e0e0e0; border-radius: 8px; background: white;">
+                            <option>Giá thấp → cao</option>
+                            <option>Giá cao → thấp</option>
+                            <option>Đánh giá cao nhất</option>
+                            <option>Thời gian ngắn nhất</option>
+                            <option>Phổ biến nhất</option>
+                        </select>
+                    </div>
+                    <div style="margin-left: auto; font-size: 14px; color: #666;">
+                        <strong>45</strong> tour được tìm thấy
+                    </div>
+                </div>
+                <!-- Tour Cards List -->
+                <div style="display: flex; flex-direction: column; gap: 20px;">
+                    
+                    <!-- Tour Card 1 -->
+                    <div style="background: white; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); overflow: hidden; display: grid; grid-template-columns: 300px 1fr; transition: transform 0.3s;">
+                        <div style="position: relative;">
+                            <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=300&h=200&fit=crop" 
+                                 style="width: 100%; height: 200px; object-fit: cover;" alt="Tour Phú Quốc">
+                            <div style="position: absolute; top: 10px; left: 10px; background: #DC2626; color: white; padding: 5px 10px; border-radius: 15px; font-size: 12px; font-weight: bold;">
+                                🔥 HOT
+                            </div>
+                            <div style="position: absolute; top: 10px; right: 10px; background: rgba(0,0,0,0.7); color: white; padding: 5px 8px; border-radius: 15px; font-size: 12px;">
+                                📸 8 ảnh
+                            </div>
+                            <div style="position: absolute; bottom: 10px; right: 10px;">
+                                <button style="background: rgba(255,255,255,0.9); border: none; padding: 8px; border-radius: 50%; cursor: pointer;">
+                                    <i class="fas fa-heart" style="color: #DC2626;"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div style="padding: 20px;">
+                            <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 10px;">
+                                <h3 style="margin: 0; color: #1A365D; font-size: 18px; line-height: 1.3;">
+                                    Tour Phú Quốc 3N2Đ - Vinpearl Safari & Cable Car
+                                </h3>
+                                <div style="display: flex; align-items: center; gap: 5px;">
+                                    <span style="color: #ffa500; font-size: 14px;">⭐⭐⭐⭐☆</span>
+                                    <span style="font-weight: bold; color: #1A365D;">4.2</span>
+                                    <span style="color: #666; font-size: 13px;">(124 đánh giá)</span>
+                                </div>
+                            </div>
+                            <div style="margin-bottom: 15px;">
+                                <div style="color: #666; margin-bottom: 5px; font-size: 14px;">
+                                    <i class="fas fa-clock" style="color: #1A365D;"></i> Thời gian: <strong>3N2Đ</strong> | 
+                                    <i class="fas fa-map-marker-alt" style="color: #DC2626; margin-left: 10px;"></i> Khởi hành: <strong>TP.HCM</strong>
+                                </div>
+                                <div style="color: #666; font-size: 14px;">
+                                    <i class="fas fa-route" style="color: #059669;"></i> Điểm đến: Phú Quốc - Vinpearl Safari - Cáp treo Hòn Thơm
+                                </div>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <div style="display: flex; flex-direction: column;">
+                                    <div style="display: flex; align-items: center; gap: 10px;">
+                                        <span style="color: #666; font-size: 14px;">Từ:</span>
+                                        <span style="color: #DC2626; font-size: 20px; font-weight: bold;">2.890.000đ</span>
+                                        <span style="color: #666; font-size: 14px;">/khách</span>
+                                    </div>
+                                    <div style="color: #059669; font-size: 13px; font-weight: bold;">
+                                        <i class="fas fa-check-circle"></i> Còn 5 chỗ
+                                    </div>
+                                </div>
+                                <div style="display: flex; gap: 10px;">
+                                    <button style="background: #f8f9fa; color: #1A365D; border: 1px solid #e0e0e0; padding: 8px 15px; border-radius: 8px; cursor: pointer; font-weight: bold;">
+                                        <i class="fas fa-heart"></i> Yêu thích
+                                    </button>
+                                    <a href="03-tour-details.html" style="background: #1A365D; color: white; border: none; padding: 12px 20px; border-radius: 8px; cursor: pointer; font-weight: bold; text-decoration: none; display: inline-block;">
+                                        <i class="fas fa-eye"></i> Xem chi tiết
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tour Card 2 -->
+                    <div style="background: white; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); overflow: hidden; display: grid; grid-template-columns: 300px 1fr; transition: transform 0.3s;">
+                        <div style="position: relative;">
+                            <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=300&h=200&fit=crop" 
+                                 style="width: 100%; height: 200px; object-fit: cover;" alt="Tour Đà Nẵng">
+                            <div style="position: absolute; top: 10px; left: 10px; background: #059669; color: white; padding: 5px 10px; border-radius: 15px; font-size: 12px; font-weight: bold;">
+                                💥 SALE
+                            </div>
+                            <div style="position: absolute; top: 10px; right: 10px; background: rgba(0,0,0,0.7); color: white; padding: 5px 8px; border-radius: 15px; font-size: 12px;">
+                                📸 12 ảnh
+                            </div>
+                        </div>
+                        <div style="padding: 20px;">
+                            <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 10px;">
+                                <h3 style="margin: 0; color: #1A365D; font-size: 18px; line-height: 1.3;">
+                                    Tour Đà Nẵng - Hội An - Bà Nà Hills 4N3Đ
+                                </h3>
+                                <div style="display: flex; align-items: center; gap: 5px;">
+                                    <span style="color: #ffa500; font-size: 14px;">⭐⭐⭐⭐⭐</span>
+                                    <span style="font-weight: bold; color: #1A365D;">4.6</span>
+                                    <span style="color: #666; font-size: 13px;">(89 đánh giá)</span>
+                                </div>
+                            </div>
+                            <div style="margin-bottom: 15px;">
+                                <div style="color: #666; margin-bottom: 5px; font-size: 14px;">
+                                    <i class="fas fa-clock" style="color: #1A365D;"></i> Thời gian: <strong>4N3Đ</strong> | 
+                                    <i class="fas fa-map-marker-alt" style="color: #DC2626; margin-left: 10px;"></i> Khởi hành: <strong>Hà Nội</strong>
+                                </div>
+                                <div style="color: #666; font-size: 14px;">
+                                    <i class="fas fa-route" style="color: #059669;"></i> Điểm đến: Đà Nẵng - Hội An - Bà Nà Hills - Cầu Vàng
+                                </div>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <div style="display: flex; flex-direction: column;">
+                                    <div style="display: flex; align-items: center; gap: 10px;">
+                                        <span style="color: #666; text-decoration: line-through; font-size: 14px;">4.200.000đ</span>
+                                        <span style="color: #DC2626; font-size: 20px; font-weight: bold;">3.590.000đ</span>
+                                        <span style="color: #666; font-size: 14px;">/khách</span>
+                                    </div>
+                                    <div style="color: #DC2626; font-size: 13px; font-weight: bold;">
+                                        <i class="fas fa-fire"></i> Sắp hết chỗ - 2 chỗ cuối
+                                    </div>
+                                </div>
+                                <div style="display: flex; gap: 10px;">
+                                    <button style="background: #f8f9fa; color: #1A365D; border: 1px solid #e0e0e0; padding: 8px 15px; border-radius: 8px; cursor: pointer; font-weight: bold;">
+                                        <i class="fas fa-heart"></i> Yêu thích
+                                    </button>
+                                    <a href="03-tour-details.html" style="background: #1A365D; color: white; border: none; padding: 12px 20px; border-radius: 8px; cursor: pointer; font-weight: bold; text-decoration: none; display: inline-block;">
+                                        <i class="fas fa-eye"></i> Xem chi tiết
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tour Card 3 -->
+                    <div style="background: white; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); overflow: hidden; display: grid; grid-template-columns: 300px 1fr; transition: transform 0.3s;">
+                        <div style="position: relative;">
+                            <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=300&h=200&fit=crop" 
+                                 style="width: 100%; height: 200px; object-fit: cover;" alt="Tour Hạ Long">
+                            <div style="position: absolute; top: 10px; left: 10px; background: #7C3AED; color: white; padding: 5px 10px; border-radius: 15px; font-size: 12px; font-weight: bold;">
+                                ⭐ TOP
+                            </div>
+                        </div>
+                        <div style="padding: 20px;">
+                            <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 10px;">
+                                <h3 style="margin: 0; color: #1A365D; font-size: 18px; line-height: 1.3;">
+                                    Tour Hạ Long - Sapa 5N4Đ Luxury
+                                </h3>
+                                <div style="display: flex; align-items: center; gap: 5px;">
+                                    <span style="color: #ffa500; font-size: 14px;">⭐⭐⭐⭐⭐</span>
+                                    <span style="font-weight: bold; color: #1A365D;">4.8</span>
+                                    <span style="color: #666; font-size: 13px;">(156 đánh giá)</span>
+                                </div>
+                            </div>
+                            <div style="margin-bottom: 15px;">
+                                <div style="color: #666; margin-bottom: 5px; font-size: 14px;">
+                                    <i class="fas fa-clock" style="color: #1A365D;"></i> Thời gian: <strong>5N4Đ</strong> | 
+                                    <i class="fas fa-map-marker-alt" style="color: #DC2626; margin-left: 10px;"></i> Khởi hành: <strong>Hà Nội</strong>
+                                </div>
+                                <div style="color: #666; font-size: 14px;">
+                                    <i class="fas fa-route" style="color: #059669;"></i> Điểm đến: Hạ Long - Sapa - Fansipan - Thung lũng Mường Hoa
+                                </div>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <div style="display: flex; flex-direction: column;">
+                                    <div style="display: flex; align-items: center; gap: 10px;">
+                                        <span style="color: #666; font-size: 14px;">Từ:</span>
+                                        <span style="color: #DC2626; font-size: 20px; font-weight: bold;">6.890.000đ</span>
+                                        <span style="color: #666; font-size: 14px;">/khách</span>
+                                    </div>
+                                    <div style="color: #059669; font-size: 13px; font-weight: bold;">
+                                        <i class="fas fa-check-circle"></i> Còn 12 chỗ
+                                    </div>
+                                </div>
+                                <div style="display: flex; gap: 10px;">
+                                    <button style="background: #f8f9fa; color: #1A365D; border: 1px solid #e0e0e0; padding: 8px 15px; border-radius: 8px; cursor: pointer; font-weight: bold;">
+                                        <i class="fas fa-heart"></i> Yêu thích
+                                    </button>
+                                    <button style="background: #1A365D; color: white; border: none; padding: 12px 20px; border-radius: 8px; cursor: pointer; font-weight: bold;">
+                                        <i class="fas fa-eye"></i> Xem chi tiết
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pagination -->
+                <div style="display: flex; justify-content: center; align-items: center; margin-top: 40px; gap: 10px;">
+                    <button style="padding: 10px 15px; border: 1px solid #e0e0e0; background: white; border-radius: 8px; cursor: pointer;">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button style="padding: 10px 15px; border: 2px solid #1A365D; background: #1A365D; color: white; border-radius: 8px; font-weight: bold;">1</button>
+                    <button style="padding: 10px 15px; border: 1px solid #e0e0e0; background: white; border-radius: 8px; cursor: pointer;">2</button>
+                    <button style="padding: 10px 15px; border: 1px solid #e0e0e0; background: white; border-radius: 8px; cursor: pointer;">3</button>
+                    <span style="padding: 10px;">...</span>
+                    <button style="padding: 10px 15px; border: 1px solid #e0e0e0; background: white; border-radius: 8px; cursor: pointer;">15</button>
+                    <button style="padding: 10px 15px; border: 1px solid #e0e0e0; background: white; border-radius: 8px; cursor: pointer;">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer style="background: #1A365D; color: white; padding: 40px 0; margin-top: 60px;">
+        <div class="container">
+            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px;">
+                <div>
+                    <h3 style="color: white; margin-bottom: 20px;">BigKey Tour</h3>
+                    <p style="color: rgba(255,255,255,0.8); line-height: 1.6;">
+                        Nền tảng du lịch toàn diện - Tour, Vé máy bay, Khách sạn
+                    </p>
+                    <div style="margin-top: 20px;">
+                        <i class="fas fa-phone" style="color: #DC2626;"></i> 
+                        <span style="margin-left: 8px;">1900 1234</span>
+                    </div>
+                </div>
+                <div>
+                    <h4 style="color: white; margin-bottom: 15px;">Dịch vụ</h4>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="margin-bottom: 8px;"><a href="#" style="color: rgba(255,255,255,0.8); text-decoration: none;">Tour trong nước</a></li>
+                        <li style="margin-bottom: 8px;"><a href="#" style="color: rgba(255,255,255,0.8); text-decoration: none;">Tour quốc tế</a></li>
+                        <li style="margin-bottom: 8px;"><a href="#" style="color: rgba(255,255,255,0.8); text-decoration: none;">Vé máy bay</a></li>
+                        <li style="margin-bottom: 8px;"><a href="#" style="color: rgba(255,255,255,0.8); text-decoration: none;">Khách sạn</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 style="color: white; margin-bottom: 15px;">Hỗ trợ</h4>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="margin-bottom: 8px;"><a href="#" style="color: rgba(255,255,255,0.8); text-decoration: none;">Liên hệ</a></li>
+                        <li style="margin-bottom: 8px;"><a href="#" style="color: rgba(255,255,255,0.8); text-decoration: none;">FAQ</a></li>
+                        <li style="margin-bottom: 8px;"><a href="#" style="color: rgba(255,255,255,0.8); text-decoration: none;">Chính sách</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 style="color: white; margin-bottom: 15px;">Kết nối</h4>
+                    <div style="display: flex; gap: 15px;">
+                        <i class="fab fa-facebook" style="font-size: 24px; color: #4267B2;"></i>
+                        <i class="fab fa-instagram" style="font-size: 24px; color: #E4405F;"></i>
+                        <i class="fab fa-youtube" style="font-size: 24px; color: #FF0000;"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Price range slider
+        const priceRange = document.getElementById('priceRange');
+        const priceValue = document.getElementById('priceValue');
+
+        priceRange.addEventListener('input', function() {
+            const value = this.value;
+            priceValue.textContent = new Intl.NumberFormat('vi-VN').format(value * 1000) + ' VNĐ';
+        });
+
+        // Service tab functionality
+        document.querySelectorAll('.service-tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                document.querySelectorAll('.service-tab').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Show/hide relevant filters
+                const activeTab = this.textContent.trim();
+                showRelevantFilters(activeTab);
+            });
+        });
+
+        function showRelevantFilters(activeTab) {
+            const tourFilters = document.getElementById('tourFilters');
+            const flightFilters = document.getElementById('flightFilters');
+            const hotelFilters = document.getElementById('hotelFilters');
+            const comboFilters = document.getElementById('comboFilters');
+
+            // Hide all first
+            [tourFilters, flightFilters, hotelFilters, comboFilters].forEach(filter => {
+                filter.style.display = 'none';
+            });
+
+            // Show relevant filters
+            if (activeTab.includes('Tất cả')) {
+                [tourFilters, flightFilters, hotelFilters, comboFilters].forEach(filter => {
+                    filter.style.display = 'block';
+                });
+            } else if (activeTab.includes('Tour')) {
+                tourFilters.style.display = 'block';
+            } else if (activeTab.includes('máy bay')) {
+                flightFilters.style.display = 'block';
+            } else if (activeTab.includes('Khách sạn')) {
+                hotelFilters.style.display = 'block';
+            } else if (activeTab.includes('Combo')) {
+                comboFilters.style.display = 'block';
+            }
+        }
+
+        function applyFilters() {
+            // Simulate filter application
+            const checkedFilters = document.querySelectorAll('input[type="checkbox"]:checked').length;
+            alert(`✅ Đã áp dụng ${checkedFilters} bộ lọc! Chuyển đến trang kết quả...`);
+            setTimeout(() => {
+                window.location.href = '01-search-integrated.html';
+            }, 1000);
+        }
+
+        function clearFilters() {
+            // Clear all checkboxes
+            document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+                checkbox.checked = false;
+            });
+            
+            // Reset price range
+            priceRange.value = 3000;
+            priceValue.textContent = '3.000.000 VNĐ';
+            
+            alert('🧹 Đã xóa tất cả bộ lọc!');
+        }
+
+        function saveSearch() {
+            const checkedFilters = document.querySelectorAll('input[type="checkbox"]:checked').length;
+            alert(`📖 Đã lưu tìm kiếm với ${checkedFilters} bộ lọc vào danh sách yêu thích!`);
+        }
+
+        // Initialize - show all filters by default
+        showRelevantFilters('Tất cả');
+    </script>
+
+    <script>
+        // Function to handle service type switching
+        function switchServiceType(serviceType) {
+            // Hide all filter sections
+            const tourFilters = document.getElementById('tour-filters-sidebar');
+            const flightFilters = document.getElementById('flight-filters-sidebar');
+            const hotelFilters = document.getElementById('hotel-filters-sidebar');
+            
+            // Hide all summary sections
+            const tourSummary = document.getElementById('tour-summary');
+            const flightSummary = document.getElementById('flight-summary');
+            const hotelSummary = document.getElementById('hotel-summary');
+            
+            if (tourFilters) tourFilters.style.display = 'none';
+            if (flightFilters) flightFilters.style.display = 'none';
+            if (hotelFilters) hotelFilters.style.display = 'none';
+            
+            if (tourSummary) tourSummary.style.display = 'none';
+            if (flightSummary) flightSummary.style.display = 'none';
+            if (hotelSummary) hotelSummary.style.display = 'none';
+            
+            // Show the relevant sections based on service type
+            switch(serviceType) {
+                case 'tour':
+                    if (tourFilters) tourFilters.style.display = 'block';
+                    if (tourSummary) tourSummary.style.display = 'block';
+                    break;
+                case 'flight':
+                    if (flightFilters) flightFilters.style.display = 'block';
+                    if (flightSummary) flightSummary.style.display = 'block';
+                    break;
+                case 'hotel':
+                    if (hotelFilters) hotelFilters.style.display = 'block';
+                    if (hotelSummary) hotelSummary.style.display = 'block';
+                    break;
+                default:
+                    if (tourFilters) tourFilters.style.display = 'block';
+                    if (tourSummary) tourSummary.style.display = 'block';
+            }
+        }
+        
+        // Function to get URL parameters
+        function getUrlParams() {
+            const params = new URLSearchParams(window.location.search);
+            return {
+                service_type: params.get('service_type') || 'tour',
+                destination: params.get('destination') || '',
+                departure_date: params.get('departure_date') || '2025-08-20',
+                return_date: params.get('return_date') || '2025-08-23',
+                adults: params.get('adults') || '2',
+                children: params.get('children') || '0'
+            };
+        }
+
+        // Update search summary based on URL params
+        function updateSearchSummary() {
+            const params = getUrlParams();
+            const tourSummary = document.getElementById('tour-summary');
+            
+            if (tourSummary) {
+                const title = tourSummary.querySelector('h2');
+                const searchText = params.destination ? `"${params.destination}"` : 'Điểm đến không xác định';
+                
+                // Format dates
+                const depDate = new Date(params.departure_date).toLocaleDateString('vi-VN');
+                const retDate = new Date(params.return_date).toLocaleDateString('vi-VN');
+                
+                const guestText = `${params.adults} người lớn` + (params.children !== '0' ? `, ${params.children} trẻ em` : '');
+                
+                title.innerHTML = `
+                    <i class="fas fa-route"></i> Kết quả tìm kiếm Tour: ${searchText}, ${depDate} - ${retDate}, ${guestText}
+                `;
+            }
+        }
+
+        // Initialize the page based on URL parameters
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const serviceType = urlParams.get('service_type') || 'tour';
+            switchServiceType(serviceType);
+            updateSearchSummary();
+        });
+    </script>
+
+    <script>
+        // Dropdown menu functions
+        function toggleUserMenu() {
+            const dropdown = document.getElementById('userDropdown');
+            dropdown.style.display = dropdown.style.display === 'none' ? 'block' : 'none';
+        }
+
+        function toggleSystemMenu() {
+            const dropdown = document.getElementById('systemDropdown');
+            dropdown.style.display = dropdown.style.display === 'none' ? 'block' : 'none';
+        }
+
+        // Close dropdowns when clicking outside
+        document.addEventListener('click', function(event) {
+            const userMenu = document.querySelector('.user-menu');
+            const systemMenu = document.querySelector('.nav-dropdown');
+            
+            if (!userMenu.contains(event.target)) {
+                document.getElementById('userDropdown').style.display = 'none';
+            }
+            
+            if (!systemMenu.contains(event.target)) {
+                document.getElementById('systemDropdown').style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
+

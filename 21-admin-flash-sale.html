@@ -1,12 +1,152 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Flash Sale & Hoa Hồng - BigKey Admin</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="admin-header.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
+        /* Header size adjustments for this page */
+        .management-header-content {
+            max-width: 100% !important;
+            height: 56px !important;
+            padding: 0 10px !important;
+        }
+        .management-logo {
+            font-size: 16px !important;
+            gap: 6px !important;
+        }
+        .management-logo i {
+            font-size: 18px !important;
+        }
+        .management-badge {
+            font-size: 9px !important;
+            padding: 2px 5px !important;
+        }
+        .management-nav-menu {
+            gap: 16px !important;
+        }
+        .management-nav-menu a {
+            padding: 6px 10px !important;
+            font-size: 13px !important;
+        }
+        .management-auth-section {
+            gap: 10px !important;
+        }
+        .management-user-avatar {
+            width: 28px !important;
+            height: 28px !important;
+            font-size: 13px !important;
+        }
+        .management-user-name {
+            font-size: 12px !important;
+        }
+        .management-user-role {
+            font-size: 10px !important;
+        }
+        .management-logout-btn {
+            padding: 6px 10px !important;
+            font-size: 12px !important;
+        }
+        
+        .admin-notification {
+            position: relative;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 6px;
+            transition: background 0.3s;
+        }
+        
+        .admin-notification:hover {
+            background: rgba(255,255,255,0.1);
+        }
+        
+        .notification-badge {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: #DC2626;
+            color: white;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            font-size: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        
+        .admin-status {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+        }
+        
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: #059669;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+        
+        .admin-user-info {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        .admin-logout-btn {
+            background: #DC2626;
+            color: white;
+            border: none;
+            padding: 10px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .admin-logout-btn:hover {
+            background: #B91C1C;
+            transform: translateY(-1px);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .admin-header-content {
+                flex-direction: column;
+                height: auto;
+                padding: 15px 20px;
+                gap: 15px;
+            }
+            
+            .admin-nav-menu {
+                flex-wrap: wrap;
+                gap: 15px;
+            }
+            
+            .admin-auth-section {
+                flex-wrap: wrap;
+                gap: 15px;
+            }
+        }
+        
         .flash-sale-container {
             max-width: 1400px;
             margin: 0 auto;
@@ -388,23 +528,77 @@
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header class="header">
-        <div class="header-content">
-            <div class="logo">
-                <i class="fas fa-bolt"></i> BigKey Admin - Flash Sale & Hoa Hồng
+    <!-- Unified Management Header -->
+    <header class="management-header">
+        <div class="management-header-content">
+            <!-- Logo Section -->
+            <div class="management-logo">
+                <i class="fas fa-key"></i>
+                <span>BigKey Tour</span>
+                <span class="management-badge" id="role-badge">PARTNER</span>
             </div>
-            <nav class="nav-menu">
-                <a href="13-admin-dashboard.html">Dashboard</a>
-                <a href="20-admin-tour-approval.html">Kiểm duyệt Tour</a>
-                <a href="21-admin-flash-sale.html" style="background-color: rgba(255,255,255,0.2);">Flash Sale</a>
-                <a href="11-partner-management.html">Đối tác</a>
+            
+            <!-- Navigation Menu -->
+            <nav class="management-nav-menu">
+                <a href="13-admin-dashboard.html" id="nav-dashboard">
+                    <i class="fas fa-tachometer-alt"></i>
+                    Dashboard
+                </a>
+                <a href="11-partner-management.html" id="nav-partners">
+                    <i class="fas fa-handshake"></i>
+                    Đối tác
+                </a>
+                <a href="20-admin-tour-approval.html" id="nav-approval">
+                    <i class="fas fa-check-circle"></i>
+                    Duyệt tour
+                </a>
+                <a href="21-admin-flash-sale.html" id="nav-flashsale">
+                    <i class="fas fa-bolt"></i>
+                    Flash Sale
+                </a>
+                <a href="23-tour-management.html" id="nav-tours">
+                    <i class="fas fa-map-marked-alt"></i>
+                    Quản lý tour
+                </a>
+                <a href="partner-orders.html" id="nav-orders">
+                    <i class="fas fa-shopping-cart"></i>
+                    Đơn hàng
+                </a>
+                <a href="12-partner-analytics.html" id="nav-analytics">
+                    <i class="fas fa-chart-bar"></i>
+                    Thống kê
+                </a>
+                <a href="partner-settings.html" id="nav-settings">
+                    <i class="fas fa-cog"></i>
+                    Cài đặt
+                </a>
             </nav>
-            <div class="auth-section">
-                <div style="display: flex; align-items: center; gap: 15px;">
-                    <span style="color: white;">Admin: Nguyễn ABC</span>
-                    <button class="btn btn-secondary">Đăng xuất</button>
+            
+            <!-- Auth Section -->
+            <div class="management-auth-section">
+                <!-- Language Selector -->
+                <select id="language-selector">
+                    <option value="vi">Tiếng Việt</option>
+                    <option value="en">English</option>
+                    <option value="zh">中文</option>
+                </select>
+                
+                <!-- User Info -->
+                <div class="management-user-info">
+                    <div class="management-user-avatar" id="user-avatar">
+                        S
+                    </div>
+                    <div class="management-user-details">
+                        <div class="management-user-name" id="user-name">Saigon Tourist</div>
+                        <div class="management-user-role" id="user-role">Đối tác</div>
+                    </div>
                 </div>
+                
+                <!-- Logout Button -->
+                <button class="management-logout-btn" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Đăng xuất
+                </button>
             </div>
         </div>
     </header>
@@ -860,175 +1054,60 @@
         </div>
     </div>
 
-    <!-- Navigation Menu -->
-    <div id="wireframeMenu" style="position: fixed; bottom: 20px; right: 20px; background: white; padding: 20px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.2); max-height: 80vh; overflow-y: auto; z-index: 1000; transition: all 0.3s ease;">
-        <button onclick="toggleMenu()" style="position: absolute; top: 10px; right: 10px; background: #ff6b6b; color: white; border: none; border-radius: 50%; width: 25px; height: 25px; cursor: pointer; font-size: 14px;">×</button>
-        
-        <h3 style="margin: 0 0 15px 0; color: #333; font-size: 16px; border-bottom: 2px solid #eee; padding-bottom: 8px;">🗺️ Wireframe Menu</h3>
-        
-        <div style="margin-bottom: 15px;">
-            <h4 style="margin: 0 0 8px 0; color: #2196F3; font-size: 13px; font-weight: bold;">📱 User Interface</h4>
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 5px; margin-bottom: 10px;">
-                <a href="01-search-integrated.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">01-Search</a>
-                <a href="02-filter-advanced.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">02-Filter</a>
-                <a href="03-tour-details.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">03-Tour</a>
-                <a href="04-booking-payment.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">04-Booking</a>
-                <a href="05-combo-details.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">05-Combo</a>
-                <a href="06-flight-details.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">06-Flight</a>
-                <a href="07-hotel-details.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">07-Hotel</a>
-                <a href="08-booking-success.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">08-Success</a>
-                <a href="09-user-orders.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">09-Orders</a>
-                <a href="10-order-details.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">10-Details</a>
-            </div>
-        </div>
-
-        <div style="margin-bottom: 15px;">
-            <h4 style="margin: 0 0 8px 0; color: #f44336; font-size: 13px; font-weight: bold;">🤝 Partner Panel</h4>
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 5px; margin-bottom: 10px;">
-                <a href="11-partner-management.html" style="text-decoration: none; color: #f44336; font-size: 11px; padding: 4px 8px; border: 1px solid #f44336; border-radius: 4px; text-align: center; transition: all 0.2s;">11-Mgmt</a>
-                <a href="12-partner-analytics.html" style="text-decoration: none; color: #f44336; font-size: 11px; padding: 4px 8px; border: 1px solid #f44336; border-radius: 4px; text-align: center; transition: all 0.2s;">12-Analytics</a>
-            </div>
-        </div>
-
-        <div style="margin-bottom: 15px;">
-            <h4 style="margin: 0 0 8px 0; color: #4CAF50; font-size: 13px; font-weight: bold;">🛠️ Admin Panel</h4>
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 5px; margin-bottom: 10px;">
-                <a href="13-admin-dashboard.html" style="text-decoration: none; color: #4CAF50; font-size: 11px; padding: 4px 8px; border: 1px solid #4CAF50; border-radius: 4px; text-align: center; transition: all 0.2s;">13-Dashboard</a>
-                <a href="20-admin-tour-approval.html" style="text-decoration: none; color: #4CAF50; font-size: 11px; padding: 4px 8px; border: 1px solid #4CAF50; border-radius: 4px; text-align: center; transition: all 0.2s;">20-Approval</a>
-                <a href="21-admin-flash-sale.html" style="text-decoration: none; color: #4CAF50; font-size: 11px; padding: 4px 8px; border: 1px solid #4CAF50; border-radius: 4px; text-align: center; transition: all 0.2s; background: #4CAF50; color: white;">21-FlashSale</a>
-            </div>
-        </div>
-
-        <div>
-            <h4 style="margin: 0 0 8px 0; color: #9C27B0; font-size: 13px; font-weight: bold;">⚙️ System Features</h4>
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 5px;">
-                <a href="14-notification-center.html" style="text-decoration: none; color: #9C27B0; font-size: 11px; padding: 4px 8px; border: 1px solid #9C27B0; border-radius: 4px; text-align: center; transition: all 0.2s;">14-Notify</a>
-                <a href="15-help-support.html" style="text-decoration: none; color: #9C27B0; font-size: 11px; padding: 4px 8px; border: 1px solid #9C27B0; border-radius: 4px; text-align: center; transition: all 0.2s;">15-Support</a>
-                <a href="16-user-profile.html" style="text-decoration: none; color: #9C27B0; font-size: 11px; padding: 4px 8px; border: 1px solid #9C27B0; border-radius: 4px; text-align: center; transition: all 0.2s;">16-Profile</a>
-                <a href="17-reviews-ratings.html" style="text-decoration: none; color: #9C27B0; font-size: 11px; padding: 4px 8px; border: 1px solid #9C27B0; border-radius: 4px; text-align: center; transition: all 0.2s;">17-Reviews</a>
-                <a href="18-error-pages.html" style="text-decoration: none; color: #9C27B0; font-size: 11px; padding: 4px 8px; border: 1px solid #9C27B0; border-radius: 4px; text-align: center; transition: all 0.2s;">18-Errors</a>
-            </div>
-        </div>
-    </div>
-
+    <!-- Header Management Functions -->
     <script>
-        function toggleMenu() {
-            const menu = document.getElementById('wireframeMenu');
-            menu.style.display = menu.style.display === 'none' ? 'block' : 'none';
+        // Function to set active navigation based on current page
+        function setActiveNavigation() {
+            const currentPage = window.location.pathname.split('/').pop();
+            const navLinks = document.querySelectorAll('.management-nav-menu a');
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === currentPage) {
+                    link.classList.add('active');
+                }
+            });
         }
 
-        // Add hover effects
-        document.querySelectorAll('#wireframeMenu a').forEach(link => {
-            link.addEventListener('mouseenter', function() {
-                if (this.style.background !== 'rgb(33, 150, 243)' && this.style.background !== 'rgb(244, 67, 54)' && this.style.background !== 'rgb(76, 175, 80)' && this.style.background !== 'rgb(156, 39, 176)') {
-                    this.style.background = this.style.borderColor;
-                    this.style.color = 'white';
-                }
-            });
-            link.addEventListener('mouseleave', function() {
-                if (this.style.background !== 'rgb(33, 150, 243)' && this.style.background !== 'rgb(244, 67, 54)' && this.style.background !== 'rgb(76, 175, 80)' && this.style.background !== 'rgb(156, 39, 176)') {
-                    this.style.background = 'transparent';
-                    this.style.color = this.style.borderColor;
-                }
-            });
-        });
-
-        // Flash Sale creation
-        document.querySelector('.btn-create-sale').addEventListener('click', function() {
-            const campaignName = document.getElementById('campaign-name').value;
-            const discountValue = document.getElementById('discount-value').value;
+        // Function to set user role and update badge
+        function setUserRole(role, userName) {
+            const roleBadge = document.getElementById('role-badge');
+            const userRole = document.getElementById('user-role');
+            const userNameElement = document.getElementById('user-name');
+            const userAvatar = document.getElementById('user-avatar');
             
-            if (!campaignName || !discountValue) {
-                alert('Vui lòng điền đầy đủ thông tin campaign!');
-                return;
+            // Set role badge
+            roleBadge.textContent = role.toUpperCase();
+            
+            // Set user role text
+            const roleTexts = {
+                'admin': 'Administrator',
+                'partner': 'Đối tác',
+                'manager': 'Quản lý'
+            };
+            userRole.textContent = roleTexts[role] || role;
+            
+            // Set user name
+            if (userName) {
+                userNameElement.textContent = userName;
+                userAvatar.textContent = userName.charAt(0).toUpperCase();
             }
-            
-            if (confirm(`Bạn có chắc muốn tạo flash sale "${campaignName}" với giảm giá ${discountValue}%?`)) {
-                alert('Flash sale đã được tạo thành công!');
-                // Handle flash sale creation logic here
+        }
+
+        // Function to handle logout
+        function logout() {
+            if (confirm('Bạn có chắc chắn muốn đăng xuất?')) {
+                // Add logout logic here
+                window.location.href = '01-search-integrated.html';
             }
-        });
-
-        // Commission rate updates
-        document.querySelectorAll('.btn-update').forEach(btn => {
-            btn.addEventListener('click', function() {
-                const row = this.closest('tr');
-                const category = row.querySelector('td').textContent.trim();
-                const rate = row.querySelector('.commission-input').value;
-                
-                if (confirm(`Cập nhật hoa hồng cho "${category}" thành ${rate}%?`)) {
-                    alert('Hoa hồng đã được cập nhật!');
-                    // Handle commission update logic here
-                }
-            });
-        });
-
-        // Campaign actions
-        document.querySelectorAll('.btn-stop').forEach(btn => {
-            btn.addEventListener('click', function() {
-                if (confirm('Bạn có chắc muốn dừng campaign này?')) {
-                    alert('Campaign đã được dừng!');
-                    // Handle stop campaign logic here
-                }
-            });
-        });
-
-        document.querySelectorAll('.btn-extend').forEach(btn => {
-            btn.addEventListener('click', function() {
-                const extension = prompt('Gia hạn thêm bao nhiêu ngày?', '7');
-                if (extension) {
-                    alert(`Campaign đã được gia hạn thêm ${extension} ngày!`);
-                    // Handle extend campaign logic here
-                }
-            });
-        });
-
-        // Real-time impact calculation
-        function updateImpactPreview() {
-            const discountValue = document.getElementById('discount-value').value || 0;
-            const maxDiscount = document.getElementById('max-discount').value || 0;
-            
-            // Simulate impact calculation
-            const toursAffected = Math.floor(45 * (discountValue / 20));
-            const revenueLoss = (maxDiscount * toursAffected) / 1000000;
-            const bookingIncrease = Math.floor(35 * (discountValue / 20));
-            const netGain = (revenueLoss * 0.57); // Simplified calculation
-            
-            document.querySelector('.impact-grid').innerHTML = `
-                <div class="impact-item">
-                    <div class="impact-value">${toursAffected}</div>
-                    <div class="impact-label">Tours Affected</div>
-                </div>
-                <div class="impact-item">
-                    <div class="impact-value">-${revenueLoss.toFixed(1)}M</div>
-                    <div class="impact-label">Revenue Loss</div>
-                </div>
-                <div class="impact-item">
-                    <div class="impact-value">+${bookingIncrease}%</div>
-                    <div class="impact-label">Booking Increase</div>
-                </div>
-                <div class="impact-item">
-                    <div class="impact-value">+${netGain.toFixed(1)}M</div>
-                    <div class="impact-label">Net Gain</div>
-                </div>
-            `;
         }
 
-        // Update impact preview on input change
-        document.getElementById('discount-value').addEventListener('input', updateImpactPreview);
-        document.getElementById('max-discount').addEventListener('input', updateImpactPreview);
-
-        // Initialize countdown timers
-        function updateCountdowns() {
-            document.querySelectorAll('.countdown-timer').forEach(timer => {
-                // Simulate countdown update
-                const currentText = timer.textContent;
-                // In real implementation, calculate actual time difference
-            });
-        }
-
-        // Update countdowns every second
-        setInterval(updateCountdowns, 1000);
+        // Initialize header when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            setActiveNavigation();
+            setUserRole('admin', 'Super Admin');
+        });
     </script>
 </body>
 </html>
+

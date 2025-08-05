@@ -1,0 +1,344 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yêu cầu Hủy Tour - BigKey Tour Partner</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="partner-header.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Partner Tour Cancellation Header -->
+    <header class="partner-header">
+        <div class="partner-header-content">
+            <!-- Logo Section -->
+            <div class="partner-logo">
+                <i class="fas fa-key"></i>
+                <span>BigKey Tour</span>
+                <span class="partner-badge" id="role-badge">PARTNER</span>
+            </div>
+            
+            <!-- Navigation Menu -->
+            <nav class="partner-nav-menu">
+                <a href="11-partner-management.html" id="nav-dashboard">
+                    <i class="fas fa-tachometer-alt"></i>
+                    Dashboard
+                </a>
+                <a href="23-tour-management.html" id="nav-tours">
+                    <i class="fas fa-map-marked-alt"></i>
+                    Quản lý tour
+                </a>
+                <a href="partner-orders.html" id="nav-orders">
+                    <i class="fas fa-shopping-cart"></i>
+                    Đơn hàng
+                </a>
+                <a href="12-partner-analytics.html" id="nav-analytics">
+                    <i class="fas fa-chart-bar"></i>
+                    Thống kê
+                </a>
+                <a href="24-tour-cancellation.html" class="active" id="nav-cancellation">
+                    <i class="fas fa-times-circle"></i>
+                    Hủy tour
+                </a>
+                <a href="partner-settings.html" id="nav-settings">
+                    <i class="fas fa-cog"></i>
+                    Cài đặt
+                </a>
+            </nav>
+            
+            <!-- Auth Section -->
+            <div class="partner-auth-section">
+                <!-- Partner Status -->
+                <div class="partner-status">
+                    <div class="partner-status-dot"></div>
+                    <span>Hoạt động</span>
+                </div>
+                
+                <!-- Notification -->
+                <div class="partner-notification">
+                    <i class="fas fa-bell"></i>
+                    <span class="partner-notification-badge">4</span>
+                </div>
+                
+                <!-- Language Selector -->
+                <select id="language-selector">
+                    <option value="vi">Tiếng Việt</option>
+                    <option value="en">English</option>
+                    <option value="ru">Русский</option>
+                    <option value="kz">Қазақша</option>
+                </select>
+                
+                <!-- User Info -->
+                <div class="partner-user-info">
+                    <div class="partner-user-avatar" id="user-avatar">
+                        S
+                    </div>
+                    <div class="partner-user-details">
+                        <div class="partner-user-name" id="user-name">Saigon Tourist</div>
+                        <div class="partner-user-role" id="user-role">Đối tác Du lịch</div>
+                    </div>
+                </div>
+                
+                <!-- Logout Button -->
+                <button class="partner-logout-btn" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Đăng xuất
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div style="margin: 20px 0;">
+            <a href="23-tour-management.html" style="color: #667eea; text-decoration: none;">
+                <i class="fas fa-arrow-left"></i> Quay lại quản lý tour
+            </a>
+        </div>
+
+        <h1 style="text-align: center; color: #333; margin-bottom: 30px;">
+            <i class="fas fa-times-circle" style="color: #f44336;"></i> YÊU CẦU HỦY TOUR
+        </h1>
+
+        <div class="dashboard">
+            <!-- Main Content -->
+            <div style="max-width: 800px; margin: 0 auto;">
+                <!-- Tour Information -->
+                <div class="metric-card fade-in" style="margin-bottom: 30px;">
+                    <h2 style="color: #333; margin-bottom: 20px;">
+                        <i class="fas fa-info-circle"></i> Thông tin tour cần hủy
+                    </h2>
+                    
+                    <div style="display: grid; grid-template-columns: 200px 1fr; gap: 20px;">
+                        <div class="card-image" style="border-radius: 10px; height: 150px;">
+                            <i class="fas fa-mountain" style="font-size: 36px;"></i>
+                            <div style="margin-top: 10px; font-size: 12px;">Hạ Long Bay</div>
+                        </div>
+                        
+                        <div>
+                            <h3 style="margin: 0 0 15px 0; color: #333;">Tour Hạ Long 3N2Đ – Vịnh đẹp nhất miền Bắc</h3>
+                            
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; color: #666;">
+                                <div>
+                                    <strong>Mã đặt tour:</strong> BK-20250720-A123<br>
+                                    <strong>Ngày đặt:</strong> 15/07/2025<br>
+                                    <strong>Ngày khởi hành:</strong> 25/08/2025<br>
+                                    <strong>Số ngày còn lại:</strong> <span style="color: #f44336; font-weight: bold;">6 ngày</span>
+                                </div>
+                                <div>
+                                    <strong>Số người:</strong> 2 người lớn<br>
+                                    <strong>Tổng thanh toán:</strong> 7.000.000 VNĐ<br>
+                                    <strong>Trạng thái:</strong> <span style="color: #4caf50;">Đã xác nhận</span><br>
+                                    <strong>Nhà cung cấp:</strong> ABC Travel
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cancellation Policy -->
+                <div class="metric-card fade-in" style="margin-bottom: 30px; background: #fff8e1;">
+                    <h2 style="color: #f57c00; margin-bottom: 20px;">
+                        <i class="fas fa-exclamation-triangle"></i> Chính sách hủy tour
+                    </h2>
+                    
+                    <div style="margin-bottom: 20px;">
+                        <table style="width: 100%; border-collapse: collapse;">
+                            <thead>
+                                <tr style="background: #f5f5f5;">
+                                    <th style="padding: 12px; border: 1px solid #ddd; text-align: left;">Thời gian hủy</th>
+                                    <th style="padding: 12px; border: 1px solid #ddd; text-align: center;">Phí hủy</th>
+                                    <th style="padding: 12px; border: 1px solid #ddd; text-align: center;">Số tiền hoàn lại</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td style="padding: 12px; border: 1px solid #ddd;">Trước 15 ngày</td>
+                                    <td style="padding: 12px; border: 1px solid #ddd; text-align: center; color: #4caf50;">Miễn phí</td>
+                                    <td style="padding: 12px; border: 1px solid #ddd; text-align: center; color: #4caf50;">7.000.000 VNĐ</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 12px; border: 1px solid #ddd;">7-14 ngày trước</td>
+                                    <td style="padding: 12px; border: 1px solid #ddd; text-align: center; color: #ff9800;">10%</td>
+                                    <td style="padding: 12px; border: 1px solid #ddd; text-align: center; color: #ff9800;">6.300.000 VNĐ</td>
+                                </tr>
+                                <tr style="background: #ffebee;">
+                                    <td style="padding: 12px; border: 1px solid #ddd; font-weight: bold;">3-6 ngày trước (Hiện tại)</td>
+                                    <td style="padding: 12px; border: 1px solid #ddd; text-align: center; color: #f44336; font-weight: bold;">30%</td>
+                                    <td style="padding: 12px; border: 1px solid #ddd; text-align: center; color: #f44336; font-weight: bold;">4.900.000 VNĐ</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 12px; border: 1px solid #ddd;">1-2 ngày trước</td>
+                                    <td style="padding: 12px; border: 1px solid #ddd; text-align: center; color: #f44336;">50%</td>
+                                    <td style="padding: 12px; border: 1px solid #ddd; text-align: center; color: #f44336;">3.500.000 VNĐ</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 12px; border: 1px solid #ddd;">Trong ngày khởi hành</td>
+                                    <td style="padding: 12px; border: 1px solid #ddd; text-align: center; color: #f44336;">100%</td>
+                                    <td style="padding: 12px; border: 1px solid #ddd; text-align: center; color: #f44336;">0 VNĐ</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div style="background: #f44336; color: white; padding: 15px; border-radius: 8px; text-align: center;">
+                        <strong>Ước tính hoàn tiền của bạn: 4.900.000 VNĐ</strong><br>
+                        <small>Phí hủy: 2.100.000 VNĐ (30% tổng giá tour)</small>
+                    </div>
+                </div>
+
+                <!-- Cancellation Form -->
+                <div class="booking-form fade-in" style="margin-bottom: 30px;">
+                    <div class="form-section">
+                        <h2><i class="fas fa-edit"></i> Form yêu cầu hủy tour</h2>
+                        
+                        <div style="margin-bottom: 20px;">
+                            <label style="display: block; margin-bottom: 8px; font-weight: bold; color: #333;">
+                                Lý do hủy tour * <span style="color: #f44336;">(Bắt buộc)</span>
+                            </label>
+                            <select style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 5px; margin-bottom: 10px;">
+                                <option value="">-- Chọn lý do hủy tour --</option>
+                                <option value="personal">Thay đổi kế hoạch cá nhân</option>
+                                <option value="health">Lý do sức khỏe</option>
+                                <option value="work">Công việc đột xuất</option>
+                                <option value="financial">Vấn đề tài chính</option>
+                                <option value="weather">Lo ngại thời tiết</option>
+                                <option value="covid">Ảnh hưởng của COVID-19</option>
+                                <option value="other">Lý do khác</option>
+                            </select>
+                        </div>
+
+                        <div style="margin-bottom: 20px;">
+                            <label style="display: block; margin-bottom: 8px; font-weight: bold; color: #333;">
+                                Mô tả chi tiết lý do hủy
+                            </label>
+                            <textarea placeholder="Vui lòng mô tả chi tiết lý do hủy tour để chúng tôi có thể hỗ trợ bạn tốt hất..." 
+                                      style="width: 100%; height: 100px; padding: 12px; border: 1px solid #ddd; border-radius: 5px; resize: vertical;"></textarea>
+                        </div>
+
+                        <div style="margin-bottom: 20px;">
+                            <label style="display: block; margin-bottom: 8px; font-weight: bold; color: #333;">
+                                Phương thức hoàn tiền mong muốn
+                            </label>
+                            <div style="margin-bottom: 10px;">
+                                <label style="display: flex; align-items: center; margin-bottom: 8px; font-weight: normal;">
+                                    <input type="radio" name="refund_method" value="original" style="margin-right: 8px;" checked>
+                                    Hoàn về phương thức thanh toán gốc (3-7 ngày làm việc)
+                                </label>
+                                <label style="display: flex; align-items: center; margin-bottom: 8px; font-weight: normal;">
+                                    <input type="radio" name="refund_method" value="bank" style="margin-right: 8px;">
+                                    Chuyển khoản ngân hàng (1-2 ngày làm việc)
+                                </label>
+                                <label style="display: flex; align-items: center; font-weight: normal;">
+                                    <input type="radio" name="refund_method" value="credit" style="margin-right: 8px;">
+                                    Chuyển thành tín dụng tài khoản BigKey (tức thì)
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Bank Information (Hidden by default) -->
+                        <div id="bankInfo" style="display: none; margin-bottom: 20px; padding: 15px; background: #f8f9ff; border-radius: 8px;">
+                            <h4 style="color: #333; margin-bottom: 15px;">Thông tin tài khoản ngân hàng</h4>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                                <div>
+                                    <label style="display: block; margin-bottom: 5px; font-weight: bold;">Tên ngân hàng</label>
+                                    <input type="text" placeholder="VD: Vietcombank" style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 5px;">
+                                </div>
+                                <div>
+                                    <label style="display: block; margin-bottom: 5px; font-weight: bold;">Số tài khoản</label>
+                                    <input type="text" placeholder="Nhập số tài khoản" style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 5px;">
+                                </div>
+                                <div style="grid-column: 1 / -1;">
+                                    <label style="display: block; margin-bottom: 5px; font-weight: bold;">Tên chủ tài khoản</label>
+                                    <input type="text" placeholder="Tên đầy đủ trên tài khoản" style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 5px;">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div style="margin-bottom: 20px;">
+                            <label style="display: block; margin-bottom: 8px; font-weight: bold; color: #333;">
+                                Thông tin liên hệ xác nhận
+                            </label>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                                <div>
+                                    <input type="email" placeholder="Email xác nhận" value="nguyenvana@email.com" 
+                                           style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 5px;">
+                                </div>
+                                <div>
+                                    <input type="tel" placeholder="Số điện thoại" value="0987654321" 
+                                           style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 5px;">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Important Notes -->
+                        <div style="background: #fff3cd; border: 1px solid #ffeaa7; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+                            <h4 style="color: #856404; margin-bottom: 10px;">
+                                <i class="fas fa-info-circle"></i> Lưu ý quan trọng
+                            </h4>
+                            <ul style="color: #856404; margin: 0; padding-left: 20px; font-size: 14px;">
+                                <li>Yêu cầu hủy tour sẽ được xử lý trong vòng 24-48 giờ làm việc</li>
+                                <li>Chúng tôi sẽ liên hệ với đối tác để xác nhận điều kiện hủy</li>
+                                <li>Thời gian hoàn tiền tùy thuộc vào phương thức hoàn tiền được chọn</li>
+                                <li>Trong một số trường hợp đặc biệt, phí hủy có thể được điều chỉnh</li>
+                                <li>Bạn sẽ nhận được email xác nhận sau khi gửi yêu cầu</li>
+                            </ul>
+                        </div>
+
+                        <!-- Agreement Checkbox -->
+                        <div style="margin-bottom: 25px; padding: 15px; background: #ffebee; border: 1px solid #ffcdd2; border-radius: 8px;">
+                            <label style="display: flex; align-items: flex-start; font-weight: normal; color: #333;">
+                                <input type="checkbox" required style="margin-right: 10px; margin-top: 3px;">
+                                <span>
+                                    Tôi đã đọc và đồng ý với <strong>chính sách hủy tour</strong> được áp dụng. 
+                                    Tôi hiểu rằng việc hủy tour có thể phát sinh phí hủy theo quy định, 
+                                    và số tiền hoàn lại sẽ được tính theo thời điểm gửi yêu cầu hủy này.
+                                    <br><br>
+                                    Tôi cam kết rằng thông tin cung cấp là chính xác và chấp nhận các điều kiện xử lý của BigKey Travel.
+                                </span>
+                            </label>
+                        </div>
+
+                        <!-- Action Buttons -->
+                        <div style="display: flex; gap: 15px; justify-content: center;">
+                            <button type="button" class="btn btn-secondary" style="padding: 12px 30px;" onclick="history.back()">
+                                <i class="fas fa-arrow-left"></i> Quay lại
+                            </button>
+                            
+                            <button type="submit" class="btn btn-danger" style="padding: 12px 30px;">
+                                <i class="fas fa-paper-plane"></i> Gửi yêu cầu hủy tour
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Information -->
+                <div class="metric-card fade-in" style="background: #f0f8f0;">
+                    <h3 style="color: #4caf50; margin-bottom: 15px;">
+                        <i class="fas fa-headset"></i> Cần hỗ trợ thêm?
+                    </h3>
+                    
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; color: #333;">
+                        <div>
+                            <h4 style="color: #4caf50; margin-bottom: 10px;">Liên hệ trực tiếp</h4>
+                            <p style="margin: 5px 0;"><strong>Hotline:</strong> 1900-1234 (24/7)</p>
+                            <p style="margin: 5px 0;"><strong>Email:</strong> support@bigkey.com</p>
+                            <p style="margin: 5px 0;"><strong>Live Chat:</strong> Trên website</p>
+                        </div>
+                        
+                        <div>
+                            <h4 style="color: #4caf50; margin-bottom: 10px;">Thời gian xử lý</h4>
+                            <p style="margin: 5px 0;">• Xác nhận yêu cầu: 2-4 giờ</p>
+                            <p style="margin: 5px 0;">• Xử lý hủy tour: 24-48 giờ</p>
+                            <p style="margin: 5px 0;">• Hoàn tiền: 3-7 ngày làm việc</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Wireframe Menu -->
+</body>
+</html>
+

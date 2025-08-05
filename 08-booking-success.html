@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
@@ -157,14 +157,14 @@
 
                 <!-- Action Buttons -->
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
-                    <button class="btn btn-primary" onclick="downloadVoucher()">
+                    <a href="09-user-orders.html" class="btn btn-primary" style="text-decoration: none; text-align: center; display: inline-block;">
+                        <i class="fas fa-list"></i> Xem đơn hàng của tôi
+                    </a>
+                    <button class="btn btn-secondary" onclick="downloadVoucher()">
                         <i class="fas fa-download"></i> Tải voucher PDF
                     </button>
                     <button class="btn btn-secondary" onclick="viewItinerary()">
                         <i class="fas fa-route"></i> Xem lịch trình chi tiết
-                    </button>
-                    <button class="btn btn-secondary" onclick="contactGuide()">
-                        <i class="fas fa-phone"></i> Liên hệ hướng dẫn viên
                     </button>
                     <button class="btn btn-secondary" onclick="addToCalendar()">
                         <i class="fas fa-calendar-plus"></i> Thêm vào lịch
@@ -270,80 +270,6 @@
         </div>
     </div>
 
-    <!-- Navigation Menu -->
-    <div id="wireframeMenu" style="position: fixed; bottom: 20px; right: 20px; background: white; padding: 20px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.2); max-height: 80vh; overflow-y: auto; z-index: 1000; transition: all 0.3s ease;">
-        <button onclick="toggleMenu()" style="position: absolute; top: 10px; right: 10px; background: #ff6b6b; color: white; border: none; border-radius: 50%; width: 25px; height: 25px; cursor: pointer; font-size: 14px;">×</button>
-        
-        <h3 style="margin: 0 0 15px 0; color: #333; font-size: 16px; border-bottom: 2px solid #eee; padding-bottom: 8px;">🗺️ Wireframe Menu</h3>
-        
-        <div style="margin-bottom: 15px;">
-            <h4 style="margin: 0 0 8px 0; color: #2196F3; font-size: 13px; font-weight: bold;">📱 User Interface</h4>
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 5px; margin-bottom: 10px;">
-                <a href="01-search-integrated.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">01-Search</a>
-                <a href="02-filter-advanced.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">02-Filter</a>
-                <a href="03-tour-details.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">03-Tour</a>
-                <a href="04-booking-payment.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">04-Booking</a>
-                <a href="05-combo-details.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">05-Combo</a>
-                <a href="06-flight-details.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">06-Flight</a>
-                <a href="07-hotel-details.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">07-Hotel</a>
-                <a href="08-booking-success.html" style="text-decoration: none; color: white; background: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">08-Success</a>
-                <a href="09-user-orders.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">09-Orders</a>
-                <a href="10-order-details.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">10-Details</a>
-            </div>
-        </div>
-
-        <div style="margin-bottom: 15px;">
-            <h4 style="margin: 0 0 8px 0; color: #f44336; font-size: 13px; font-weight: bold;">🤝 Partner Panel</h4>
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 5px; margin-bottom: 10px;">
-                <a href="11-partner-management.html" style="text-decoration: none; color: #f44336; font-size: 11px; padding: 4px 8px; border: 1px solid #f44336; border-radius: 4px; text-align: center; transition: all 0.2s;">11-Mgmt</a>
-                <a href="12-partner-analytics.html" style="text-decoration: none; color: #f44336; font-size: 11px; padding: 4px 8px; border: 1px solid #f44336; border-radius: 4px; text-align: center; transition: all 0.2s;">12-Analytics</a>
-            </div>
-        </div>
-
-        <div style="margin-bottom: 15px;">
-            <h4 style="margin: 0 0 8px 0; color: #4CAF50; font-size: 13px; font-weight: bold;">🛠️ Admin Panel</h4>
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 5px; margin-bottom: 10px;">
-                <a href="13-admin-dashboard.html" style="text-decoration: none; color: #4CAF50; font-size: 11px; padding: 4px 8px; border: 1px solid #4CAF50; border-radius: 4px; text-align: center; transition: all 0.2s;">13-Dashboard</a>
-                <a href="20-admin-tour-approval.html" style="text-decoration: none; color: #4CAF50; font-size: 11px; padding: 4px 8px; border: 1px solid #4CAF50; border-radius: 4px; text-align: center; transition: all 0.2s;">20-Approval</a>
-                <a href="21-admin-flash-sale.html" style="text-decoration: none; color: #4CAF50; font-size: 11px; padding: 4px 8px; border: 1px solid #4CAF50; border-radius: 4px; text-align: center; transition: all 0.2s;">21-FlashSale</a>
-            </div>
-        </div>
-
-        <div>
-            <h4 style="margin: 0 0 8px 0; color: #9C27B0; font-size: 13px; font-weight: bold;">⚙️ System Features</h4>
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 5px;">
-                <a href="14-notification-center.html" style="text-decoration: none; color: #9C27B0; font-size: 11px; padding: 4px 8px; border: 1px solid #9C27B0; border-radius: 4px; text-align: center; transition: all 0.2s;">14-Notify</a>
-                <a href="15-help-support.html" style="text-decoration: none; color: #9C27B0; font-size: 11px; padding: 4px 8px; border: 1px solid #9C27B0; border-radius: 4px; text-align: center; transition: all 0.2s;">15-Support</a>
-                <a href="16-user-profile.html" style="text-decoration: none; color: #9C27B0; font-size: 11px; padding: 4px 8px; border: 1px solid #9C27B0; border-radius: 4px; text-align: center; transition: all 0.2s;">16-Profile</a>
-                <a href="17-reviews-ratings.html" style="text-decoration: none; color: #9C27B0; font-size: 11px; padding: 4px 8px; border: 1px solid #9C27B0; border-radius: 4px; text-align: center; transition: all 0.2s;">17-Reviews</a>
-                <a href="18-error-pages.html" style="text-decoration: none; color: #9C27B0; font-size: 11px; padding: 4px 8px; border: 1px solid #9C27B0; border-radius: 4px; text-align: center; transition: all 0.2s;">18-Errors</a>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        function toggleMenu() {
-            const menu = document.getElementById('wireframeMenu');
-            menu.style.display = menu.style.display === 'none' ? 'block' : 'none';
-        }
-
-        // Add hover effects
-        document.querySelectorAll('#wireframeMenu a').forEach(link => {
-            link.addEventListener('mouseenter', function() {
-                if (this.style.background !== 'rgb(33, 150, 243)' && this.style.background !== 'rgb(244, 67, 54)' && this.style.background !== 'rgb(76, 175, 80)' && this.style.background !== 'rgb(156, 39, 176)') {
-                    this.style.background = this.style.borderColor;
-                    this.style.color = 'white';
-                }
-            });
-            link.addEventListener('mouseleave', function() {
-                if (this.style.background !== 'rgb(33, 150, 243)' && this.style.background !== 'rgb(244, 67, 54)' && this.style.background !== 'rgb(76, 175, 80)' && this.style.background !== 'rgb(156, 39, 176)') {
-                    this.style.background = 'transparent';
-                    this.style.color = this.style.borderColor;
-                }
-            });
-        });
-    </script>
-
     <script>
         // Success animation
         document.addEventListener('DOMContentLoaded', function() {
@@ -443,6 +369,5 @@
             alert('📧 Gửi email hỗ trợ:\n\nĐịa chỉ: support@bigkey.vn\nThời gian phản hồi: < 2 giờ\n\n✅ Đã mở ứng dụng email mặc định');
         }
     </script>
-
 </body>
 </html>

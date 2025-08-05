@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quản lý Đối tác - BigKey Tour Partner</title>
+    <title>Quản lý Tour - BigKey Tour</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="partner-header.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -79,14 +79,14 @@
             font-weight: bold;
         }
         
-        .partner-status {
+        .admin-status {
             display: flex;
             align-items: center;
             gap: 8px;
             font-size: 14px;
         }
         
-        .partner-status-dot {
+        .status-dot {
             width: 8px;
             height: 8px;
             background: #059669;
@@ -94,13 +94,13 @@
             animation: pulse 2s infinite;
         }
         
-        @keyframes partnerPulse {
+        @keyframes pulse {
             0% { opacity: 1; }
             50% { opacity: 0.5; }
             100% { opacity: 1; }
         }
         
-        .partner-user-info {
+        .admin-user-info {
             display: flex;
             align-items: center;
             gap: 8px;
@@ -108,7 +108,7 @@
             font-weight: 500;
         }
         
-        .partner-logout-btn {
+        .admin-logout-btn {
             background: #DC2626;
             color: white;
             border: none;
@@ -122,34 +122,35 @@
             gap: 8px;
         }
         
-        .partner-logout-btn:hover {
+        .admin-logout-btn:hover {
             background: #B91C1C;
             transform: translateY(-1px);
         }
         
         /* Responsive */
         @media (max-width: 768px) {
-            .partner-header-content {
+            .admin-header-content {
                 flex-direction: column;
                 height: auto;
                 padding: 15px 20px;
                 gap: 15px;
             }
             
-            .partner-nav-menu {
+            .admin-nav-menu {
                 flex-wrap: wrap;
                 gap: 15px;
             }
             
-            .partner-auth-section {
+            .admin-auth-section {
                 flex-wrap: wrap;
                 gap: 15px;
             }
         }
     </style>
+    
 </head>
 <body>
-    <!-- Partner Management Header -->
+    <!-- Partner Tour Management Header -->
     <header class="partner-header">
         <div class="partner-header-content">
             <!-- Logo Section -->
@@ -161,11 +162,11 @@
             
             <!-- Navigation Menu -->
             <nav class="partner-nav-menu">
-                <a href="11-partner-management.html" class="active" id="nav-dashboard">
+                <a href="11-partner-management.html" id="nav-dashboard">
                     <i class="fas fa-tachometer-alt"></i>
                     Dashboard
                 </a>
-                <a href="23-tour-management.html" id="nav-tours">
+                <a href="23-tour-management.html" class="active" id="nav-tours">
                     <i class="fas fa-map-marked-alt"></i>
                     Quản lý tour
                 </a>
@@ -198,7 +199,7 @@
                 <!-- Notification -->
                 <div class="partner-notification">
                     <i class="fas fa-bell"></i>
-                    <span class="partner-notification-badge">3</span>
+                    <span class="partner-notification-badge">2</span>
                 </div>
                 
                 <!-- Language Selector -->
@@ -228,81 +229,98 @@
             </div>
         </div>
     </header>
+                        S
+                    </div>
+                    <div class="management-user-details">
+                        <div class="management-user-name" id="user-name">Saigon Tourist</div>
+                        <div class="management-user-role" id="user-role">Đối tác</div>
+                    </div>
+                </div>
+                
+                <!-- Logout Button -->
+                <button class="management-logout-btn" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Đăng xuất
+                </button>
+            </div>
+        </div>
+    </header>
 
     <div class="container">
         
-        <!-- Page Header -->
+        <!-- Welcome & Quick Stats -->
         <div style="margin: 30px 0;">
-            <div style="background: linear-gradient(135deg, #DC2626, #B91C1C); color: white; padding: 30px; border-radius: 15px; margin-bottom: 30px;">
+            <div style="background: linear-gradient(135deg, #1A365D, #2563EB); color: white; padding: 30px; border-radius: 15px; margin-bottom: 30px;">
                 <div style="display: flex; justify-content: space-between; align-items: center;">
                     <div>
                         <h1 style="margin: 0 0 10px 0; font-size: 28px;">
-                            <i class="fas fa-users-cog"></i> Quản lý Đối tác
+                            <i class="fas fa-clipboard-list"></i> Quản lý Tour - Saigon Tourist
                         </h1>
                         <p style="margin: 0; opacity: 0.9; font-size: 16px;">
-                            Quản lý và giám sát tất cả đối tác trên hệ thống BigKey Tour
+                            Theo dõi và quản lý tất cả tour của bạn trên BigKey Tour
                         </p>
                     </div>
                     <div style="text-align: right;">
                         <div style="background: rgba(255,255,255,0.1); padding: 15px; border-radius: 10px;">
-                            <div style="font-size: 14px; opacity: 0.8;">Tổng đối tác</div>
-                            <div style="font-size: 24px; font-weight: bold;">247</div>
-                            <div style="font-size: 14px; opacity: 0.8;">+12 tháng này</div>
+                            <div style="font-size: 14px; opacity: 0.8;">Hôm nay</div>
+                            <div style="font-size: 24px; font-weight: bold;">8 tour mới</div>
+                            <div style="font-size: 14px; opacity: 0.8;">+15.200.000đ</div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Partner Statistics -->
+            <!-- Khung tổng quan -->
             <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-bottom: 30px;">
                 <div style="background: white; padding: 25px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border-left: 5px solid #059669;">
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
                         <div style="background: #e6f7ff; padding: 12px; border-radius: 10px;">
-                            <i class="fas fa-check-circle" style="font-size: 24px; color: #059669;"></i>
+                            <i class="fas fa-clipboard-list" style="font-size: 24px; color: #059669;"></i>
                         </div>
                         <span style="background: #e6f7ff; color: #059669; padding: 4px 8px; border-radius: 15px; font-size: 12px; font-weight: bold;">+8%</span>
                     </div>
-                    <div style="color: #666; font-size: 14px; margin-bottom: 5px;">Đối tác hoạt động</div>
-                    <div style="font-size: 32px; font-weight: bold; color: #1A365D; margin-bottom: 5px;">198</div>
+                    <div style="color: #666; font-size: 14px; margin-bottom: 5px;">Tổng tour</div>
+                    <div style="font-size: 32px; font-weight: bold; color: #1A365D; margin-bottom: 5px;">156</div>
                     <div style="font-size: 12px; color: #666;">
-                        <span style="color: #059669;">80.2% tổng số</span>
+                        <span style="color: #059669;">Hoạt động: 142</span> | 
+                        <span style="color: #f39c12;">Chờ duyệt: 14</span>
                     </div>
                 </div>
 
-                <div style="background: white; padding: 25px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border-left: 5px solid #f39c12;">
+                <div style="background: white; padding: 25px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border-left: 5px solid #1A365D;">
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
-                        <div style="background: #fffaeb; padding: 12px; border-radius: 10px;">
-                            <i class="fas fa-clock" style="font-size: 24px; color: #f39c12;"></i>
+                        <div style="background: #e6f3ff; padding: 12px; border-radius: 10px;">
+                            <i class="fas fa-users" style="font-size: 24px; color: #1A365D;"></i>
                         </div>
-                        <span style="background: #fffaeb; color: #f39c12; padding: 4px 8px; border-radius: 15px; font-size: 12px; font-weight: bold;">+5</span>
+                        <span style="background: #e6f3ff; color: #1A365D; padding: 4px 8px; border-radius: 15px; font-size: 12px; font-weight: bold;">+12%</span>
                     </div>
-                    <div style="color: #666; font-size: 14px; margin-bottom: 5px;">Chờ duyệt</div>
-                    <div style="font-size: 32px; font-weight: bold; color: #1A365D; margin-bottom: 5px;">23</div>
-                    <div style="font-size: 12px; color: #666;">Đăng ký mới</div>
+                    <div style="color: #666; font-size: 14px; margin-bottom: 5px;">Khách hàng tháng này</div>
+                    <div style="font-size: 32px; font-weight: bold; color: #1A365D; margin-bottom: 5px;">2,847</div>
+                    <div style="font-size: 12px; color: #666;">So với tháng trước</div>
                 </div>
 
                 <div style="background: white; padding: 25px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border-left: 5px solid #DC2626;">
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
                         <div style="background: #fef2f2; padding: 12px; border-radius: 10px;">
-                            <i class="fas fa-pause-circle" style="font-size: 24px; color: #DC2626;"></i>
+                            <i class="fas fa-dollar-sign" style="font-size: 24px; color: #DC2626;"></i>
                         </div>
-                        <span style="background: #fef2f2; color: #DC2626; padding: 4px 8px; border-radius: 15px; font-size: 12px; font-weight: bold;">-2</span>
+                        <span style="background: #fef2f2; color: #DC2626; padding: 4px 8px; border-radius: 15px; font-size: 12px; font-weight: bold;">+15%</span>
                     </div>
-                    <div style="color: #666; font-size: 14px; margin-bottom: 5px;">Tạm dừng</div>
-                    <div style="font-size: 32px; font-weight: bold; color: #DC2626; margin-bottom: 5px;">18</div>
-                    <div style="font-size: 12px; color: #666;">Vi phạm chính sách</div>
+                    <div style="color: #666; font-size: 14px; margin-bottom: 5px;">Doanh thu tour</div>
+                    <div style="font-size: 28px; font-weight: bold; color: #DC2626; margin-bottom: 5px;">850M</div>
+                    <div style="font-size: 12px; color: #666;">VNĐ tháng này</div>
                 </div>
 
-                <div style="background: white; padding: 25px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border-left: 5px solid #7C3AED;">
+                <div style="background: white; padding: 25px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border-left: 5px solid #f39c12;">
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
-                        <div style="background: #f3f4f6; padding: 12px; border-radius: 10px;">
-                            <i class="fas fa-star" style="font-size: 24px; color: #7C3AED;"></i>
+                        <div style="background: #fffaeb; padding: 12px; border-radius: 10px;">
+                            <i class="fas fa-star" style="font-size: 24px; color: #f39c12;"></i>
                         </div>
-                        <span style="background: #f3f4f6; color: #7C3AED; padding: 4px 8px; border-radius: 15px; font-size: 12px; font-weight: bold;">+12%</span>
+                        <span style="background: #fffaeb; color: #f39c12; padding: 4px 8px; border-radius: 15px; font-size: 12px; font-weight: bold;">+0.2</span>
                     </div>
-                    <div style="color: #666; font-size: 14px; margin-bottom: 5px;">Đối tác Vàng</div>
-                    <div style="font-size: 32px; font-weight: bold; color: #7C3AED; margin-bottom: 5px;">45</div>
-                    <div style="font-size: 12px; color: #666;">Hiệu suất cao</div>
+                    <div style="color: #666; font-size: 14px; margin-bottom: 5px;">Đánh giá trung bình</div>
+                    <div style="font-size: 32px; font-weight: bold; color: #f39c12; margin-bottom: 5px;">4.5</div>
+                    <div style="font-size: 12px; color: #666;">⭐⭐⭐⭐⭐ (1,247 đánh giá)</div>
                 </div>
             </div>
         </div>
@@ -313,77 +331,76 @@
                 <i class="fas fa-bolt"></i> Hành động nhanh
             </h3>
             <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px;">
-                <button onclick="window.location.href='partner-registration.html'" style="padding: 20px; background: linear-gradient(135deg, #059669, #10B981); color: white; border: none; border-radius: 10px; cursor: pointer; transition: transform 0.3s;">
-                    <i class="fas fa-user-plus" style="font-size: 24px; margin-bottom: 10px; display: block;"></i>
-                    <div style="font-weight: bold;">Duyệt đăng ký</div>
+                <button style="padding: 20px; background: linear-gradient(135deg, #059669, #10B981); color: white; border: none; border-radius: 10px; cursor: pointer; transition: transform 0.3s;">
+                    <i class="fas fa-plus-circle" style="font-size: 24px; margin-bottom: 10px; display: block;"></i>
+                    <div style="font-weight: bold;">Tạo tour mới</div>
                 </button>
-                <button onclick="window.location.href='12-partner-analytics.html'" style="padding: 20px; background: linear-gradient(135deg, #1A365D, #2563EB); color: white; border: none; border-radius: 10px; cursor: pointer; transition: transform 0.3s;">
+                <button style="padding: 20px; background: linear-gradient(135deg, #1A365D, #2563EB); color: white; border: none; border-radius: 10px; cursor: pointer; transition: transform 0.3s;">
                     <i class="fas fa-chart-bar" style="font-size: 24px; margin-bottom: 10px; display: block;"></i>
-                    <div style="font-weight: bold;">Báo cáo tổng hợp</div>
+                    <div style="font-weight: bold;">Xem báo cáo</div>
                 </button>
-                <button onclick="window.location.href='20-admin-tour-approval.html'" style="padding: 20px; background: linear-gradient(135deg, #DC2626, #991B1B); color: white; border: none; border-radius: 10px; cursor: pointer; transition: transform 0.3s;">
-                    <i class="fas fa-clipboard-check" style="font-size: 24px; margin-bottom: 10px; display: block;"></i>
-                    <div style="font-weight: bold;">Duyệt Tour</div>
+                <button style="padding: 20px; background: linear-gradient(135deg, #DC2626, #991B1B); color: white; border: none; border-radius: 10px; cursor: pointer; transition: transform 0.3s;">
+                    <i class="fas fa-comments" style="font-size: 24px; margin-bottom: 10px; display: block;"></i>
+                    <div style="font-weight: bold;">Tin nhắn khách</div>
                 </button>
-                <button onclick="window.location.href='21-admin-flash-sale.html'" style="padding: 20px; background: linear-gradient(135deg, #7C3AED, #8B5CF6); color: white; border: none; border-radius: 10px; cursor: pointer; transition: transform 0.3s;">
-                    <i class="fas fa-fire" style="font-size: 24px; margin-bottom: 10px; display: block;"></i>
-                    <div style="font-weight: bold;">Flash Sale</div>
+                <button style="padding: 20px; background: linear-gradient(135deg, #7C3AED, #8B5CF6); color: white; border: none; border-radius: 10px; cursor: pointer; transition: transform 0.3s;">
+                    <i class="fas fa-cog" style="font-size: 24px; margin-bottom: 10px; display: block;"></i>
+                    <div style="font-weight: bold;">Cài đặt</div>
                 </button>
             </div>
         </div>
 
-        <!-- Main Content -->
+        <!-- Main Dashboard Content -->
         <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 30px;">
             
-            <!-- Left Column - Partner Management -->
+            <!-- Left Column -->
             <div>
-                <div style="background: white; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); padding: 25px; margin-bottom: 30px;">
+                <!-- Tour Management -->
+                <div id="tours-section" style="background: white; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); padding: 25px; margin-bottom: 30px;">
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
                         <h3 style="color: #1A365D; margin: 0; font-size: 20px;">
-                            <i class="fas fa-users"></i> Danh sách đối tác
+                            <i class="fas fa-clipboard-list"></i> Quản lý Tour
                         </h3>
                         <button style="background: #059669; color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: bold;">
-                            <i class="fas fa-download"></i> Xuất Excel
+                            <i class="fas fa-plus"></i> Thêm mới
                         </button>
                     </div>
 
                     <!-- Filters -->
                     <div style="display: flex; gap: 15px; margin-bottom: 20px; align-items: center;">
                         <select style="padding: 8px 12px; border: 1px solid #ddd; border-radius: 6px;">
-                            <option>Tất cả đối tác</option>
-                            <option>Đối tác Vàng</option>
-                            <option>Đối tác Bạc</option>
-                            <option>Đối tác Đồng</option>
+                            <option>Tất cả tour</option>
+                            <option>Tour trong nước</option>
+                            <option>Tour quốc tế</option>
+                            <option>Tour combo</option>
                         </select>
                         <select style="padding: 8px 12px; border: 1px solid #ddd; border-radius: 6px;">
-                            <option>Tất cả trạng thái</option>
                             <option>Hoạt động</option>
-                            <option>Chờ duyệt</option>
                             <option>Tạm dừng</option>
-                            <option>Đã khóa</option>
+                            <option>Chờ duyệt</option>
                         </select>
                         <select style="padding: 8px 12px; border: 1px solid #ddd; border-radius: 6px;">
-                            <option>Sắp xếp theo tên</option>
-                            <option>Sắp xếp theo doanh thu</option>
-                            <option>Sắp xếp theo ngày tham gia</option>
+                            <option>Sắp xếp theo giá</option>
+                            <option>Sắp xếp theo ngày tạo</option>
                             <option>Sắp xếp theo đánh giá</option>
                         </select>
-                        <input type="text" placeholder="Tìm kiếm đối tác..." style="padding: 8px 12px; border: 1px solid #ddd; border-radius: 6px; flex: 1;">
+                        <input type="text" placeholder="Tìm kiếm tour..." style="padding: 8px 12px; border: 1px solid #ddd; border-radius: 6px; flex: 1;">
                         <button style="background: #1A365D; color: white; border: none; padding: 8px 15px; border-radius: 6px; cursor: pointer;">
                             <i class="fas fa-search"></i>
                         </button>
                     </div>
 
-                    <!-- Partner List -->
+                    <!-- Tour List -->
                     <div style="overflow-x: auto;">
                         <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
                             <thead>
                                 <tr style="background: #f8f9fa;">
-                                    <th style="padding: 12px; text-align: left; border-bottom: 2px solid #e0e0e0; color: #1A365D; font-weight: bold;">Đối tác</th>
+                                    <th style="padding: 12px; text-align: left; border-bottom: 2px solid #e0e0e0; color: #1A365D; font-weight: bold;">Tour</th>
                                     <th style="padding: 12px; text-align: left; border-bottom: 2px solid #e0e0e0; color: #1A365D; font-weight: bold;">Loại</th>
+                                    <th style="padding: 12px; text-align: left; border-bottom: 2px solid #e0e0e0; color: #1A365D; font-weight: bold;">Giá</th>
                                     <th style="padding: 12px; text-align: left; border-bottom: 2px solid #e0e0e0; color: #1A365D; font-weight: bold;">Trạng thái</th>
-                                    <th style="padding: 12px; text-align: left; border-bottom: 2px solid #e0e0e0; color: #1A365D; font-weight: bold;">Doanh thu</th>
-                                    <th style="padding: 12px; text-align: left; border-bottom: 2px solid #e0e0e0; color: #1A365D; font-weight: bold;">Đánh giá</th>
+                                    <th style="padding: 12px; text-align: left; border-bottom: 2px solid #e0e0e0; color: #1A365D; font-weight: bold;">Đặt chỗ</th>
+                                    <th style="padding: 12px; text-align: left; border-bottom: 2px solid #e0e0e0; color: #1A365D; font-weight: bold;">Xếp hạng</th>
                                     <th style="padding: 12px; text-align: left; border-bottom: 2px solid #e0e0e0; color: #1A365D; font-weight: bold;">Thao tác</th>
                                 </tr>
                             </thead>
@@ -391,36 +408,37 @@
                                 <tr style="border-bottom: 1px solid #f0f0f0;">
                                     <td style="padding: 12px;">
                                         <div style="display: flex; align-items: center; gap: 10px;">
-                                            <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=40&h=40&fit=crop" alt="Saigon Tourist Logo" style="width: 40px; height: 40px; border-radius: 6px; object-fit: cover;">
+                                            <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=40&h=40&fit=crop" alt="Ha Long Tour" style="width: 40px; height: 40px; border-radius: 6px; object-fit: cover;">
                                             <div>
-                                                <div style="font-weight: bold; color: #1A365D;">Saigon Tourist</div>
-                                                <div style="font-size: 12px; color: #666;">Nguyễn Văn A • 0987654321</div>
+                                                <div style="font-weight: bold; color: #1A365D;">Tour Hạ Long 3N2Đ</div>
+                                                <div style="font-size: 12px; color: #666;">Vịnh Hạ Long & Cát Bà</div>
                                             </div>
                                         </div>
                                     </td>
                                     <td style="padding: 12px;">
-                                        <span style="background: #fef3c7; color: #d97706; padding: 4px 8px; border-radius: 12px; font-size: 12px; font-weight: bold;">Vàng</span>
+                                        <span style="background: #e6f7ff; color: #1A365D; padding: 4px 8px; border-radius: 12px; font-size: 12px; font-weight: bold;">Trong nước</span>
                                     </td>
+                                    <td style="padding: 12px; font-weight: bold; color: #DC2626;">3.890k</td>
                                     <td style="padding: 12px;">
                                         <span style="background: #e6f7ff; color: #059669; padding: 4px 8px; border-radius: 12px; font-size: 12px; font-weight: bold;">Hoạt động</span>
                                     </td>
-                                    <td style="padding: 12px; font-weight: bold; color: #DC2626;">2.5 tỷ</td>
+                                    <td style="padding: 12px; font-weight: bold;">67</td>
                                     <td style="padding: 12px;">
                                         <div style="display: flex; align-items: center; gap: 5px;">
                                             <span style="color: #f39c12;">⭐</span>
-                                            <span style="font-weight: bold;">4.8</span>
+                                            <span style="font-weight: bold;">4.5</span>
                                         </div>
                                     </td>
                                     <td style="padding: 12px;">
                                         <div style="display: flex; gap: 8px;">
                                             <button style="background: #059669; color: white; border: none; padding: 6px 10px; border-radius: 4px; cursor: pointer; font-size: 12px;">
-                                                <i class="fas fa-eye"></i>
-                                            </button>
-                                            <button style="background: #1A365D; color: white; border: none; padding: 6px 10px; border-radius: 4px; cursor: pointer; font-size: 12px;">
                                                 <i class="fas fa-edit"></i>
                                             </button>
+                                            <button style="background: #1A365D; color: white; border: none; padding: 6px 10px; border-radius: 4px; cursor: pointer; font-size: 12px;">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
                                             <button style="background: #DC2626; color: white; border: none; padding: 6px 10px; border-radius: 4px; cursor: pointer; font-size: 12px;">
-                                                <i class="fas fa-pause"></i>
+                                                <i class="fas fa-chart-line"></i>
                                             </button>
                                         </div>
                                     </td>
@@ -428,36 +446,37 @@
                                 <tr style="border-bottom: 1px solid #f0f0f0;">
                                     <td style="padding: 12px;">
                                         <div style="display: flex; align-items: center; gap: 10px;">
-                                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Vietnam_Airlines_logo.svg/1200px-Vietnam_Airlines_logo.svg.png" alt="Vietnam Airlines Logo" style="width: 40px; height: 40px; border-radius: 6px; object-fit: contain; background: white; padding: 2px;">
+                                            <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=40&h=40&fit=crop" alt="Phu Quoc Tour" style="width: 40px; height: 40px; border-radius: 6px; object-fit: cover;">
                                             <div>
-                                                <div style="font-weight: bold; color: #1A365D;">Vietnam Airlines</div>
-                                                <div style="font-size: 12px; color: #666;">Trần Thị B • 0123456789</div>
+                                                <div style="font-weight: bold; color: #1A365D;">Tour Phú Quốc 4N3Đ</div>
+                                                <div style="font-size: 12px; color: #666;">Vinpearl Safari & Cáp treo</div>
                                             </div>
                                         </div>
                                     </td>
                                     <td style="padding: 12px;">
-                                        <span style="background: #e5e7eb; color: #6b7280; padding: 4px 8px; border-radius: 12px; font-size: 12px; font-weight: bold;">Bạc</span>
+                                        <span style="background: #fef2f2; color: #DC2626; padding: 4px 8px; border-radius: 12px; font-size: 12px; font-weight: bold;">Combo</span>
                                     </td>
+                                    <td style="padding: 12px; font-weight: bold; color: #DC2626;">5.890k</td>
                                     <td style="padding: 12px;">
-                                        <span style="background: #fff9f9; color: #f39c12; padding: 4px 8px; border-radius: 12px; font-size: 12px; font-weight: bold;">Chờ duyệt</span>
+                                        <span style="background: #fff9f9; color: #f39c12; padding: 4px 8px; border-radius: 12px; font-size: 12px; font-weight: bold;">Tạm dừng</span>
                                     </td>
-                                    <td style="padding: 12px; font-weight: bold; color: #DC2626;">1.8 tỷ</td>
+                                    <td style="padding: 12px; font-weight: bold;">23</td>
                                     <td style="padding: 12px;">
                                         <div style="display: flex; align-items: center; gap: 5px;">
                                             <span style="color: #f39c12;">⭐</span>
-                                            <span style="font-weight: bold;">4.2</span>
+                                            <span style="font-weight: bold;">4.3</span>
                                         </div>
                                     </td>
                                     <td style="padding: 12px;">
                                         <div style="display: flex; gap: 8px;">
                                             <button style="background: #059669; color: white; border: none; padding: 6px 10px; border-radius: 4px; cursor: pointer; font-size: 12px;">
-                                                <i class="fas fa-check"></i>
+                                                <i class="fas fa-edit"></i>
                                             </button>
                                             <button style="background: #1A365D; color: white; border: none; padding: 6px 10px; border-radius: 4px; cursor: pointer; font-size: 12px;">
                                                 <i class="fas fa-eye"></i>
                                             </button>
                                             <button style="background: #DC2626; color: white; border: none; padding: 6px 10px; border-radius: 4px; cursor: pointer; font-size: 12px;">
-                                                <i class="fas fa-times"></i>
+                                                <i class="fas fa-chart-line"></i>
                                             </button>
                                         </div>
                                     </td>
@@ -465,36 +484,37 @@
                                 <tr style="border-bottom: 1px solid #f0f0f0;">
                                     <td style="padding: 12px;">
                                         <div style="display: flex; align-items: center; gap: 10px;">
-                                            <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=40&h=40&fit=crop" alt="Hotel Nikko Saigon" style="width: 40px; height: 40px; border-radius: 6px; object-fit: cover;">
+                                            <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=40&h=40&fit=crop" alt="Thailand Tour" style="width: 40px; height: 40px; border-radius: 6px; object-fit: cover;">
                                             <div>
-                                                <div style="font-weight: bold; color: #1A365D;">Hotel Nikko Saigon</div>
-                                                <div style="font-size: 12px; color: #666;">Lê Văn C • 0369852147</div>
+                                                <div style="font-weight: bold; color: #1A365D;">Tour Thái Lan 5N4Đ</div>
+                                                <div style="font-size: 12px; color: #666;">Bangkok & Pattaya</div>
                                             </div>
                                         </div>
                                     </td>
                                     <td style="padding: 12px;">
-                                        <span style="background: #fef3c7; color: #d97706; padding: 4px 8px; border-radius: 12px; font-size: 12px; font-weight: bold;">Vàng</span>
+                                        <span style="background: #f0fdf4; color: #059669; padding: 4px 8px; border-radius: 12px; font-size: 12px; font-weight: bold;">Quốc tế</span>
                                     </td>
+                                    <td style="padding: 12px; font-weight: bold; color: #DC2626;">8.200k</td>
                                     <td style="padding: 12px;">
-                                        <span style="background: #fef2f2; color: #DC2626; padding: 4px 8px; border-radius: 12px; font-size: 12px; font-weight: bold;">Tạm dừng</span>
+                                        <span style="background: #e6f7ff; color: #059669; padding: 4px 8px; border-radius: 12px; font-size: 12px; font-weight: bold;">Hoạt động</span>
                                     </td>
-                                    <td style="padding: 12px; font-weight: bold; color: #DC2626;">3.2 tỷ</td>
+                                    <td style="padding: 12px; font-weight: bold;">45</td>
                                     <td style="padding: 12px;">
                                         <div style="display: flex; align-items: center; gap: 5px;">
                                             <span style="color: #f39c12;">⭐</span>
-                                            <span style="font-weight: bold;">4.6</span>
+                                            <span style="font-weight: bold;">4.7</span>
                                         </div>
                                     </td>
                                     <td style="padding: 12px;">
                                         <div style="display: flex; gap: 8px;">
                                             <button style="background: #059669; color: white; border: none; padding: 6px 10px; border-radius: 4px; cursor: pointer; font-size: 12px;">
-                                                <i class="fas fa-play"></i>
+                                                <i class="fas fa-edit"></i>
                                             </button>
                                             <button style="background: #1A365D; color: white; border: none; padding: 6px 10px; border-radius: 4px; cursor: pointer; font-size: 12px;">
                                                 <i class="fas fa-eye"></i>
                                             </button>
                                             <button style="background: #DC2626; color: white; border: none; padding: 6px 10px; border-radius: 4px; cursor: pointer; font-size: 12px;">
-                                                <i class="fas fa-ban"></i>
+                                                <i class="fas fa-chart-line"></i>
                                             </button>
                                         </div>
                                     </td>
@@ -508,7 +528,7 @@
                         <button style="padding: 8px 12px; border: 1px solid #e0e0e0; background: white; border-radius: 6px; cursor: pointer;">
                             <i class="fas fa-chevron-left"></i>
                         </button>
-                        <button style="padding: 8px 12px; border: 2px solid #DC2626; background: #DC2626; color: white; border-radius: 6px; font-weight: bold;">1</button>
+                        <button style="padding: 8px 12px; border: 2px solid #1A365D; background: #1A365D; color: white; border-radius: 6px; font-weight: bold;">1</button>
                         <button style="padding: 8px 12px; border: 1px solid #e0e0e0; background: white; border-radius: 6px; cursor: pointer;">2</button>
                         <button style="padding: 8px 12px; border: 1px solid #e0e0e0; background: white; border-radius: 6px; cursor: pointer;">3</button>
                         <button style="padding: 8px 12px; border: 1px solid #e0e0e0; background: white; border-radius: 6px; cursor: pointer;">
@@ -520,142 +540,155 @@
 
             <!-- Right Column -->
             <div>
-                <!-- Recent Activities -->
+                <!-- Recent Bookings -->
                 <div style="background: white; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); padding: 25px; margin-bottom: 30px;">
                     <h3 style="color: #1A365D; margin-bottom: 20px; font-size: 18px;">
-                        <i class="fas fa-history"></i> Hoạt động gần đây
+                        <i class="fas fa-calendar-check"></i> Đặt chỗ gần đây
                     </h3>
                     <div style="display: flex; flex-direction: column; gap: 15px;">
                         
-                        <!-- Activity 1 -->
+                        <!-- Booking 1 -->
                         <div style="padding: 15px; border: 1px solid #e0e0e0; border-radius: 8px;">
                             <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 10px;">
                                 <div>
-                                    <div style="font-weight: bold; color: #1A365D; font-size: 14px;">Đăng ký mới</div>
-                                    <div style="color: #666; font-size: 12px;">Vietnam Airlines</div>
+                                    <div style="font-weight: bold; color: #1A365D; font-size: 14px;">#BK2025080501</div>
+                                    <div style="color: #666; font-size: 12px;">Nguyễn Văn A</div>
                                 </div>
-                                <span style="background: #fff9f9; color: #f39c12; padding: 4px 8px; border-radius: 12px; font-size: 11px; font-weight: bold;">Chờ duyệt</span>
+                                <span style="background: #e6f7ff; color: #059669; padding: 4px 8px; border-radius: 12px; font-size: 11px; font-weight: bold;">Đã xác nhận</span>
                             </div>
                             <div style="color: #666; font-size: 13px; margin-bottom: 8px;">
-                                Đối tác mới đăng ký cần phê duyệt
+                                Tour Hạ Long 3N2Đ • 2 khách
                             </div>
                             <div style="display: flex; justify-content: space-between; align-items: center;">
-                                <span style="color: #666; font-size: 11px;">2 giờ trước</span>
-                                <button style="background: #059669; color: white; border: none; padding: 4px 8px; border-radius: 4px; cursor: pointer; font-size: 11px;">
-                                    Duyệt ngay
-                                </button>
+                                <span style="color: #DC2626; font-weight: bold; font-size: 14px;">7.780.000đ</span>
+                                <span style="color: #666; font-size: 11px;">25/08/2025</span>
                             </div>
                         </div>
 
-                        <!-- Activity 2 -->
+                        <!-- Booking 2 -->
                         <div style="padding: 15px; border: 1px solid #e0e0e0; border-radius: 8px;">
                             <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 10px;">
                                 <div>
-                                    <div style="font-weight: bold; color: #1A365D; font-size: 14px;">Vi phạm chính sách</div>
-                                    <div style="color: #666; font-size: 12px;">Hotel Nikko Saigon</div>
+                                    <div style="font-weight: bold; color: #1A365D; font-size: 14px;">#BK2025080502</div>
+                                    <div style="color: #666; font-size: 12px;">Trần Thị B</div>
                                 </div>
-                                <span style="background: #fef2f2; color: #DC2626; padding: 4px 8px; border-radius: 12px; font-size: 11px; font-weight: bold;">Tạm dừng</span>
+                                <span style="background: #fff9f9; color: #f39c12; padding: 4px 8px; border-radius: 12px; font-size: 11px; font-weight: bold;">Chờ thanh toán</span>
                             </div>
                             <div style="color: #666; font-size: 13px; margin-bottom: 8px;">
-                                Vi phạm chính sách giá - đã tạm dừng
+                                Tour Phú Quốc 4N3Đ • 3 khách
                             </div>
                             <div style="display: flex; justify-content: space-between; align-items: center;">
-                                <span style="color: #666; font-size: 11px;">1 ngày trước</span>
-                                <button style="background: #1A365D; color: white; border: none; padding: 4px 8px; border-radius: 4px; cursor: pointer; font-size: 11px;">
-                                    Xem chi tiết
-                                </button>
+                                <span style="color: #DC2626; font-weight: bold; font-size: 14px;">17.670.000đ</span>
+                                <span style="color: #666; font-size: 11px;">28/08/2025</span>
                             </div>
                         </div>
 
-                        <!-- Activity 3 -->
+                        <!-- Booking 3 -->
                         <div style="padding: 15px; border: 1px solid #e0e0e0; border-radius: 8px;">
                             <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 10px;">
                                 <div>
-                                    <div style="font-weight: bold; color: #1A365D; font-size: 14px;">Nâng cấp đối tác</div>
-                                    <div style="color: #666; font-size: 12px;">Saigon Tourist</div>
+                                    <div style="font-weight: bold; color: #1A365D; font-size: 14px;">#BK2025080503</div>
+                                    <div style="color: #666; font-size: 12px;">Lê Văn C</div>
                                 </div>
-                                <span style="background: #e6f7ff; color: #059669; padding: 4px 8px; border-radius: 12px; font-size: 11px; font-weight: bold;">Thành công</span>
+                                <span style="background: #f0fdf4; color: #059669; padding: 4px 8px; border-radius: 12px; font-size: 11px; font-weight: bold;">Hoàn thành</span>
                             </div>
                             <div style="color: #666; font-size: 13px; margin-bottom: 8px;">
-                                Nâng cấp lên Đối tác Vàng
+                                Tour Thái Lan 5N4Đ • 2 khách
                             </div>
                             <div style="display: flex; justify-content: space-between; align-items: center;">
-                                <span style="color: #666; font-size: 11px;">3 ngày trước</span>
-                                <button style="background: #1A365D; color: white; border: none; padding: 4px 8px; border-radius: 4px; cursor: pointer; font-size: 11px;">
-                                    Xem chi tiết
-                                </button>
+                                <span style="color: #DC2626; font-weight: bold; font-size: 14px;">16.400.000đ</span>
+                                <span style="color: #666; font-size: 11px;">20/07/2025</span>
                             </div>
                         </div>
                     </div>
                     <div style="text-align: center; margin-top: 15px;">
                         <button style="background: #1A365D; color: white; border: none; padding: 8px 15px; border-radius: 6px; cursor: pointer; font-size: 14px;">
-                            Xem tất cả hoạt động
+                            Xem tất cả đặt chỗ
                         </button>
                     </div>
                 </div>
 
-                <!-- Partner Performance -->
+                <!-- Tour Performance Metrics -->
                 <div style="background: white; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); padding: 25px; margin-bottom: 30px;">
                     <h3 style="color: #1A365D; margin-bottom: 20px; font-size: 18px;">
-                        <i class="fas fa-trophy"></i> Top Đối tác
+                        <i class="fas fa-tachometer-alt"></i> Hiệu suất Tour
                     </h3>
                     
-                    <!-- Top Partners -->
+                    <!-- Performance Items -->
                     <div style="display: flex; flex-direction: column; gap: 15px;">
-                        <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px; background: #fef3c7; border-radius: 8px;">
-                            <div style="display: flex; align-items: center; gap: 10px;">
-                                <span style="background: #d97706; color: white; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: bold;">1</span>
-                                <div>
-                                    <div style="color: #1A365D; font-weight: bold; font-size: 14px;">Saigon Tourist</div>
-                                    <div style="color: #666; font-size: 12px;">2.5 tỷ VNĐ</div>
-                                </div>
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <div>
+                                <div style="color: #1A365D; font-weight: bold; font-size: 14px;">Tỷ lệ đặt chỗ</div>
+                                <div style="color: #666; font-size: 12px;">Trung bình 78%</div>
                             </div>
-                            <span style="color: #d97706; font-weight: bold;">🥇</span>
+                            <div style="display: flex; align-items: center; gap: 8px;">
+                                <div style="width: 60px; height: 6px; background: #e0e0e0; border-radius: 3px; position: relative;">
+                                    <div style="width: 78%; height: 100%; background: #059669; border-radius: 3px;"></div>
+                                </div>
+                                <span style="color: #059669; font-weight: bold; font-size: 14px;">78%</span>
+                            </div>
                         </div>
 
-                        <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px; background: #f3f4f6; border-radius: 8px;">
-                            <div style="display: flex; align-items: center; gap: 10px;">
-                                <span style="background: #6b7280; color: white; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: bold;">2</span>
-                                <div>
-                                    <div style="color: #1A365D; font-weight: bold; font-size: 14px;">Hotel Nikko Saigon</div>
-                                    <div style="color: #666; font-size: 12px;">3.2 tỷ VNĐ</div>
-                                </div>
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <div>
+                                <div style="color: #1A365D; font-weight: bold; font-size: 14px;">Đánh giá khách hàng</div>
+                                <div style="color: #666; font-size: 12px;">⭐⭐⭐⭐⭐ 4.5/5</div>
                             </div>
-                            <span style="color: #6b7280; font-weight: bold;">🥈</span>
+                            <div style="display: flex; align-items: center; gap: 8px;">
+                                <div style="width: 60px; height: 6px; background: #e0e0e0; border-radius: 3px; position: relative;">
+                                    <div style="width: 90%; height: 100%; background: #f39c12; border-radius: 3px;"></div>
+                                </div>
+                                <span style="color: #f39c12; font-weight: bold; font-size: 14px;">90%</span>
+                            </div>
                         </div>
 
-                        <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px; background: #fef2f2; border-radius: 8px;">
-                            <div style="display: flex; align-items: center; gap: 10px;">
-                                <span style="background: #dc2626; color: white; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: bold;">3</span>
-                                <div>
-                                    <div style="color: #1A365D; font-weight: bold; font-size: 14px;">Vietnam Airlines</div>
-                                    <div style="color: #666; font-size: 12px;">1.8 tỷ VNĐ</div>
-                                </div>
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <div>
+                                <div style="color: #1A365D; font-weight: bold; font-size: 14px;">Tỷ lệ hủy</div>
+                                <div style="color: #666; font-size: 12px;">2.8% (< 5% mục tiêu)</div>
                             </div>
-                            <span style="color: #dc2626; font-weight: bold;">🥉</span>
+                            <div style="display: flex; align-items: center; gap: 8px;">
+                                <div style="width: 60px; height: 6px; background: #e0e0e0; border-radius: 3px; position: relative;">
+                                    <div style="width: 94%; height: 100%; background: #059669; border-radius: 3px;"></div>
+                                </div>
+                                <span style="color: #059669; font-weight: bold; font-size: 14px;">94%</span>
+                            </div>
+                        </div>
+
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <div>
+                                <div style="color: #1A365D; font-weight: bold; font-size: 14px;">Doanh thu trung bình</div>
+                                <div style="color: #666; font-size: 12px;">5.4M VNĐ/tour</div>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 8px;">
+                                <div style="width: 60px; height: 6px; background: #e0e0e0; border-radius: 3px; position: relative;">
+                                    <div style="width: 88%; height: 100%; background: #DC2626; border-radius: 3px;"></div>
+                                </div>
+                                <span style="color: #DC2626; font-weight: bold; font-size: 14px;">88%</span>
+                            </div>
                         </div>
                     </div>
 
                     <div style="background: #f0f9ff; padding: 15px; border-radius: 8px; margin-top: 15px; border-left: 4px solid #059669;">
                         <div style="color: #059669; font-weight: bold; margin-bottom: 5px;">
-                            <i class="fas fa-chart-line"></i> Tăng trưởng 15%
+                            <i class="fas fa-trophy"></i> Trạng thái: Đối tác Vàng
                         </div>
                         <div style="color: #666; font-size: 13px;">
-                            Doanh thu tổng thể tăng so với tháng trước
+                            Hiệu suất tour tuyệt vời! Bạn đang đạt tất cả tiêu chuẩn chất lượng.
                         </div>
                     </div>
                 </div>
 
                 <!-- Quick Tips -->
-                <div style="background: linear-gradient(135deg, #DC2626, #B91C1C); color: white; border-radius: 15px; padding: 25px;">
+                <div style="background: linear-gradient(135deg, #667eea, #764ba2); color: white; border-radius: 15px; padding: 25px;">
                     <h3 style="margin-bottom: 15px; font-size: 18px;">
-                        <i class="fas fa-lightbulb"></i> Quản lý hiệu quả
+                        <i class="fas fa-lightbulb"></i> Mẹo quản lý tour hiệu quả
                     </h3>
                     <ul style="margin: 0; padding-left: 20px; font-size: 14px; line-height: 1.6;">
-                        <li style="margin-bottom: 8px;">Kiểm tra đối tác mới trong vòng 24h</li>
-                        <li style="margin-bottom: 8px;">Theo dõi vi phạm chính sách thường xuyên</li>
-                        <li style="margin-bottom: 8px;">Đánh giá hiệu suất đối tác hàng tháng</li>
-                        <li>Hỗ trợ đối tác gặp khó khăn kịp thời</li>
+                        <li style="margin-bottom: 8px;">Cập nhật thông tin tour thường xuyên</li>
+                        <li style="margin-bottom: 8px;">Phản hồi đánh giá khách hàng trong 24h</li>
+                        <li style="margin-bottom: 8px;">Tối ưu giá tour theo mùa</li>
+                        <li>Tạo combo tour để tăng doanh thu</li>
                     </ul>
                 </div>
             </div>
@@ -668,10 +701,10 @@
             <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px;">
                 <div>
                     <h3 style="color: white; margin-bottom: 20px;">
-                        <i class="fas fa-compass" style="color: #DC2626;"></i> BigKey Tour
+                        <i class="fas fa-key" style="color: #DC2626;"></i> BigKey Tour
                     </h3>
                     <p style="color: rgba(255,255,255,0.8); line-height: 1.6;">
-                        Hệ thống quản lý đối tác và du lịch hàng đầu Việt Nam
+                        Nền tảng kết nối đối tác và khách hàng du lịch hàng đầu Việt Nam
                     </p>
                     <div style="margin-top: 20px;">
                         <i class="fas fa-phone" style="color: #DC2626;"></i> 
@@ -679,12 +712,12 @@
                     </div>
                 </div>
                 <div>
-                    <h4 style="color: white; margin-bottom: 15px;">Quản lý</h4>
+                    <h4 style="color: white; margin-bottom: 15px;">Đối tác</h4>
                     <ul style="list-style: none; padding: 0;">
-                        <li style="margin-bottom: 8px;"><a href="#" style="color: rgba(255,255,255,0.8); text-decoration: none;">Quản lý đối tác</a></li>
-                        <li style="margin-bottom: 8px;"><a href="#" style="color: rgba(255,255,255,0.8); text-decoration: none;">Duyệt tour</a></li>
-                        <li style="margin-bottom: 8px;"><a href="#" style="color: rgba(255,255,255,0.8); text-decoration: none;">Flash sale</a></li>
-                        <li style="margin-bottom: 8px;"><a href="#" style="color: rgba(255,255,255,0.8); text-decoration: none;">Báo cáo hệ thống</a></li>
+                        <li style="margin-bottom: 8px;"><a href="#" style="color: rgba(255,255,255,0.8); text-decoration: none;">Đăng ký đối tác</a></li>
+                        <li style="margin-bottom: 8px;"><a href="#" style="color: rgba(255,255,255,0.8); text-decoration: none;">Hướng dẫn sử dụng</a></li>
+                        <li style="margin-bottom: 8px;"><a href="#" style="color: rgba(255,255,255,0.8); text-decoration: none;">Chính sách hoa hồng</a></li>
+                        <li style="margin-bottom: 8px;"><a href="#" style="color: rgba(255,255,255,0.8); text-decoration: none;">Báo cáo & Thống kê</a></li>
                     </ul>
                 </div>
                 <div>
@@ -704,16 +737,17 @@
                         <i class="fab fa-youtube" style="font-size: 24px; color: #FF0000; cursor: pointer;"></i>
                     </div>
                     <div style="color: rgba(255,255,255,0.8); font-size: 14px;">
-                        <div>📧 admin@bigkeytour.vn</div>
-                        <div>🏢 Hotline admin: 1900 5678</div>
+                        <div>📧 partner@bigkeytour.vn</div>
+                        <div>🏢 Hotline đối tác: 1900 5678</div>
                     </div>
                 </div>
             </div>
         </div>
     </footer>
 
+    <!-- Header Management Functions -->
     <script>
-        // Header Management Functions
+        // Function to set active navigation based on current page
         function setActiveNavigation() {
             const currentPage = window.location.pathname.split('/').pop();
             const navLinks = document.querySelectorAll('.management-nav-menu a');
@@ -726,6 +760,7 @@
             });
         }
 
+        // Function to set user role and update badge
         function setUserRole(role, userName) {
             const roleBadge = document.getElementById('role-badge');
             const userRole = document.getElementById('user-role');
@@ -750,8 +785,10 @@
             }
         }
 
+        // Function to handle logout
         function logout() {
             if (confirm('Bạn có chắc chắn muốn đăng xuất?')) {
+                // Add logout logic here
                 window.location.href = '01-search-integrated.html';
             }
         }
@@ -759,7 +796,7 @@
         // Initialize header when page loads
         document.addEventListener('DOMContentLoaded', function() {
             setActiveNavigation();
-            setUserRole('admin', 'Super Admin');
+            setUserRole('partner', 'Saigon Tourist');
         });
     </script>
 </body>

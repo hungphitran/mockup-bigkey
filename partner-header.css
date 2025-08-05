@@ -1,0 +1,324 @@
+/* Partner Header Styles - Distinctive from Admin */
+.partner-header {
+    background: linear-gradient(135deg, #059669 0%, #047857 100%);
+    color: white;
+    padding: 0;
+    box-shadow: 0 4px 12px rgba(5, 150, 105, 0.3);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 3px solid #10B981;
+}
+
+.partner-header-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 70px;
+}
+
+.partner-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.partner-logo i {
+    color: #F59E0B;
+    font-size: 24px;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+}
+
+.partner-badge {
+    background: linear-gradient(135deg, #F59E0B, #EAB308);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 10px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 4px rgba(245, 158, 11, 0.3);
+}
+
+.partner-nav-menu {
+    display: flex;
+    gap: 25px;
+    align-items: center;
+}
+
+.partner-nav-menu a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    position: relative;
+    border: 1px solid transparent;
+}
+
+.partner-nav-menu a:hover {
+    background: rgba(255,255,255,0.15);
+    transform: translateY(-1px);
+    border-color: rgba(255,255,255,0.2);
+}
+
+.partner-nav-menu a.active {
+    background: #F59E0B;
+    color: white;
+    box-shadow: 0 2px 8px rgba(245, 158, 11, 0.4);
+}
+
+.partner-nav-menu a i {
+    margin-right: 6px;
+    font-size: 14px;
+}
+
+.partner-auth-section {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.partner-auth-section select {
+    padding: 8px 12px;
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 6px;
+    background: rgba(255,255,255,0.1);
+    color: white;
+    font-size: 14px;
+    backdrop-filter: blur(10px);
+}
+
+.partner-auth-section select option {
+    background: #047857;
+    color: white;
+}
+
+.partner-user-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.partner-user-avatar {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #F59E0B, #EAB308);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    box-shadow: 0 2px 8px rgba(245, 158, 11, 0.3);
+    border: 2px solid rgba(255,255,255,0.2);
+}
+
+.partner-user-details {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.partner-user-name {
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.partner-user-role {
+    font-size: 11px;
+    opacity: 0.8;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #A7F3D0;
+}
+
+.partner-logout-btn {
+    background: linear-gradient(135deg, #EF4444, #DC2626);
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 14px;
+    font-weight: 500;
+    box-shadow: 0 2px 4px rgba(239, 68, 68, 0.3);
+}
+
+.partner-logout-btn:hover {
+    background: linear-gradient(135deg, #DC2626, #B91C1C);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(239, 68, 68, 0.4);
+}
+
+.partner-logout-btn i {
+    margin-right: 6px;
+}
+
+/* Notification Bell for Partners */
+.partner-notification {
+    position: relative;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 6px;
+    transition: background 0.3s;
+}
+
+.partner-notification:hover {
+    background: rgba(255,255,255,0.1);
+}
+
+.partner-notification-badge {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    background: #EF4444;
+    color: white;
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    font-size: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+/* Partner Status Indicator */
+.partner-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    background: rgba(255,255,255,0.1);
+    padding: 4px 8px;
+    border-radius: 12px;
+}
+
+.partner-status-dot {
+    width: 8px;
+    height: 8px;
+    background: #10B981;
+    border-radius: 50%;
+    animation: partnerPulse 2s infinite;
+}
+
+@keyframes partnerPulse {
+    0% { opacity: 1; box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+    50% { opacity: 0.8; box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.3); }
+    100% { opacity: 1; box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+}
+
+/* Quick Actions for Partners */
+.partner-quick-actions {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.partner-quick-btn {
+    background: rgba(255,255,255,0.1);
+    color: white;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 12px;
+    backdrop-filter: blur(10px);
+}
+
+.partner-quick-btn:hover {
+    background: rgba(255,255,255,0.2);
+    transform: scale(1.05);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .partner-header-content {
+        padding: 0 15px;
+        height: 60px;
+    }
+    
+    .partner-logo {
+        font-size: 18px;
+    }
+    
+    .partner-nav-menu {
+        gap: 15px;
+    }
+    
+    .partner-nav-menu a {
+        padding: 8px 12px;
+        font-size: 14px;
+    }
+    
+    .partner-auth-section {
+        gap: 15px;
+    }
+    
+    .partner-quick-actions {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .partner-nav-menu {
+        display: none;
+    }
+    
+    .partner-logo {
+        font-size: 16px;
+    }
+    
+    .partner-badge {
+        font-size: 9px;
+        padding: 3px 6px;
+    }
+    
+    .partner-header-content {
+        height: 55px;
+    }
+}
+
+/* Mobile Menu Toggle for Partners */
+.partner-mobile-menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 8px;
+}
+
+@media (max-width: 480px) {
+    .partner-mobile-menu-toggle {
+        display: block;
+    }
+}
+
+/* Enhanced hover effects for partner navigation */
+.partner-nav-menu a::before {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: #F59E0B;
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.partner-nav-menu a:hover::before,
+.partner-nav-menu a.active::before {
+    width: 80%;
+}

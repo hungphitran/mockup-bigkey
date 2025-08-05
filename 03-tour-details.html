@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tour Hạ Long 3N2Đ - BigKey Travel</title>
+    <title>Tour Phú Quốc 3N2Đ - Vinpearl Safari - BigKey Tour</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
@@ -12,31 +12,89 @@
     <header class="header">
         <div class="header-content">
             <div class="logo">
-                <i class="fas fa-compass"></i> BigKey Travel
+                <i class="fas fa-key" style="color: #DC2626;"></i> 
+                <span style="color: #1A365D; font-weight: bold;">BigKey Tour</span>
             </div>
             <nav class="nav-menu">
-                <a href="01-search-integrated.html">Tìm kiếm</a>
+                <a href="01-search-integrated.html">Trang chủ</a>
                 <a href="03-tour-details.html" style="background-color: rgba(255,255,255,0.2);">Tours</a>
                 <a href="06-flight-details.html">Vé máy bay</a>
                 <a href="07-hotel-details.html">Khách sạn</a>
                 <a href="05-combo-details.html">Combo</a>
+                <div class="nav-dropdown" style="position: relative; display: inline-block;">
+                    <a href="#" onclick="toggleSystemMenu()" style="display: flex; align-items: center; gap: 5px;">
+                        Hệ thống <i class="fas fa-chevron-down" style="font-size: 12px;"></i>
+                    </a>
+                    <div id="systemDropdown" class="system-dropdown" style="display: none; position: absolute; top: 100%; left: 0; background: white; border: 1px solid #ddd; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); min-width: 180px; z-index: 1000; margin-top: 5px;">
+                        <a href="11-partner-management.html" style="display: block; padding: 12px 16px; color: #333; text-decoration: none; border-bottom: 1px solid #eee;">
+                            <i class="fas fa-handshake" style="color: #2563EB;"></i> Quản lý Đối tác
+                        </a>
+                        <a href="13-admin-dashboard.html" style="display: block; padding: 12px 16px; color: #333; text-decoration: none;">
+                            <i class="fas fa-cog" style="color: #DC2626;"></i> Quản trị viên
+                        </a>
+                    </div>
+                </div>
             </nav>
             <div class="auth-section">
-                <select style="padding: 5px; border-radius: 5px; border: none;">
+                <select style="padding: 8px; border-radius: 5px; border: 1px solid #ddd; background: white;">
                     <option>🇻🇳 Tiếng Việt</option>
                     <option>🇺🇸 English</option>
                     <option>🇷🇺 Русский</option>
+                    <option>🇰🇿 Қазақша</option>
                 </select>
-                <a href="09-user-orders.html" class="btn btn-secondary">Đăng nhập</a>
+                <div class="user-menu" style="position: relative; display: inline-block;">
+                    <button class="btn btn-primary" onclick="toggleUserMenu()" style="display: flex; align-items: center; gap: 8px;">
+                        <i class="fas fa-user-circle"></i>
+                        <span>Đăng nhập</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div id="userDropdown" class="user-dropdown" style="display: none; position: absolute; right: 0; top: 100%; background: white; border: 1px solid #ddd; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); min-width: 200px; z-index: 1000; margin-top: 5px;">
+                        <a href="09-user-orders.html" style="display: block; padding: 12px 16px; color: #333; text-decoration: none; border-bottom: 1px solid #eee;">
+                            <i class="fas fa-shopping-bag"></i> Đơn hàng của tôi
+                        </a>
+                        <a href="16-user-profile.html" style="display: block; padding: 12px 16px; color: #333; text-decoration: none; border-bottom: 1px solid #eee;">
+                            <i class="fas fa-user"></i> Hồ sơ cá nhân
+                        </a>
+                        <a href="11-partner-management.html" style="display: block; padding: 12px 16px; color: #333; text-decoration: none; border-bottom: 1px solid #eee;">
+                            <i class="fas fa-handshake"></i> Trang đối tác
+                        </a>
+                        <a href="13-admin-dashboard.html" style="display: block; padding: 12px 16px; color: #333; text-decoration: none;">
+                            <i class="fas fa-cog"></i> Quản lý hệ thống
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </header>
 
     <div class="container">
-        <div style="margin: 20px 0;">
-            <a href="01-search-integrated.html" style="color: #667eea; text-decoration: none;">
-                <i class="fas fa-arrow-left"></i> Quay lại kết quả tìm kiếm
+        <!-- Breadcrumb -->
+        <div style="margin: 20px 0; color: #666; font-size: 14px;">
+            <a href="01-search-integrated.html" style="color: #1A365D; text-decoration: none;">Trang chủ</a>
+            <span style="margin: 0 10px;">></span>
+            <a href="01-search-integrated.html" style="color: #1A365D; text-decoration: none;">Tour</a>
+            <span style="margin: 0 10px;">></span>
+            <a href="#" style="color: #1A365D; text-decoration: none;">Miền Nam</a>
+            <span style="margin: 0 10px;">></span>
+            <span style="color: #333;">Phú Quốc</span>
+        </div>
+
+        <!-- Quick Actions Bar -->
+        <div style="margin: 20px 0; display: flex; gap: 15px; flex-wrap: wrap; align-items: center;">
+            <a href="02-tour-results.html" style="display: flex; align-items: center; gap: 8px; padding: 10px 15px; background: #059669; color: white; text-decoration: none; border-radius: 8px; font-size: 14px; transition: all 0.3s;">
+                <i class="fas fa-search"></i> Tìm tour khác
             </a>
+            <a href="05-combo-details.html" style="display: flex; align-items: center; gap: 8px; padding: 10px 15px; background: #7c3aed; color: white; text-decoration: none; border-radius: 8px; font-size: 14px; transition: all 0.3s;">
+                <i class="fas fa-gift"></i> Tour combo
+            </a>
+            <div style="margin-left: auto; display: flex; gap: 10px;">
+                <a href="11-partner-management.html" style="display: flex; align-items: center; gap: 8px; padding: 10px 15px; background: linear-gradient(135deg, #667eea, #764ba2); color: white; text-decoration: none; border-radius: 8px; font-size: 14px; transition: all 0.3s;">
+                    <i class="fas fa-handshake"></i> Đối tác
+                </a>
+                <a href="13-admin-dashboard.html" style="display: flex; align-items: center; gap: 8px; padding: 10px 15px; background: linear-gradient(135deg, #DC2626, #991b1b); color: white; text-decoration: none; border-radius: 8px; font-size: 14px; transition: all 0.3s;">
+                    <i class="fas fa-shield-alt"></i> Admin
+                </a>
+            </div>
         </div>
 
         <!-- Tour Details -->
@@ -45,39 +103,84 @@
             <div class="main-content fade-in">
                 <!-- Tour Header -->
                 <div style="margin-bottom: 30px;">
-                    <h1 style="color: #333; margin-bottom: 10px;">
-                        <i class="fas fa-route"></i> Tour Hạ Long 3N2Đ – Vịnh đẹp nhất miền Bắc
+                    <h1 style="color: #333; margin-bottom: 10px; font-size: 28px;">
+                        <i class="fas fa-route"></i> Tour Phú Quốc 3N2Đ – Vinpearl Safari & Cáp Treo
                     </h1>
-                    <div style="color: #666; margin-bottom: 15px;">
-                        <i class="fas fa-building"></i> Nhà cung cấp: <strong>Công ty ABC Travel</strong>
-                        <span style="margin-left: 20px;">
-                            <i class="fas fa-star" style="color: #f39c12;"></i>
-                            <span style="color: #f39c12;">⭐⭐⭐⭐☆</span>
-                            <span style="margin-left: 5px;">(128 đánh giá)</span>
-                        </span>
+                    <div style="display: flex; align-items: center; gap: 20px; margin-bottom: 15px;">
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <span style="color: #f39c12; font-size: 18px;">⭐⭐⭐⭐☆ 4.2/5</span>
+                            <span style="color: #666;">(124 đánh giá)</span>
+                        </div>
+                        <div style="color: #666;">
+                            <i class="fas fa-map-marker-alt"></i> Phú Quốc, Kiên Giang
+                        </div>
+                    </div>
+                    <div style="color: #666; font-size: 14px;">
+                        <i class="fas fa-building"></i> Nhà cung cấp: <strong style="color: #1A365D;">Saigon Tourist</strong>
+                    </div>
+                    
+                    <!-- Quick Info -->
+                    <div style="display: flex; gap: 30px; margin-top: 15px; padding: 15px; background: #f8f9fa; border-radius: 10px;">
+                        <div style="text-align: center;">
+                            <div style="font-weight: bold; color: #1A365D;">Thời gian</div>
+                            <div style="color: #666; font-size: 14px;">3 ngày 2 đêm</div>
+                        </div>
+                        <div style="text-align: center;">
+                            <div style="font-weight: bold; color: #1A365D;">Khởi hành</div>
+                            <div style="color: #666; font-size: 14px;">TP.HCM</div>
+                        </div>
+                        <div style="text-align: center;">
+                            <div style="font-weight: bold; color: #1A365D;">Giá từ</div>
+                            <div style="color: #DC2626; font-size: 18px; font-weight: bold;">2.890.000đ</div>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Image Gallery -->
                 <div style="margin-bottom: 30px;">
-                    <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 15px; height: 400px;">
-                        <div class="card-image" style="border-radius: 15px;">
-                            <i class="fas fa-camera" style="font-size: 48px;"></i>
-                            <div style="margin-top: 10px;">Ảnh chính</div>
+                    <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 15px; height: 380px; max-height: 380px;">
+                        <div style="border-radius: 15px; overflow: hidden; position: relative; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); max-height: 380px;">
+                            <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" 
+                                 alt="Phú Quốc - Vinpearl Safari" 
+                                 style="width: 100%; height: 100%; object-fit: cover; max-width: 100%; max-height: 100%;">
+                            <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.7)); color: white; padding: 20px;">
+                                <h3 style="margin: 0; font-size: 18px;">Vinpearl Safari Phú Quốc</h3>
+                                <p style="margin: 5px 0 0 0; opacity: 0.9; font-size: 14px;">Vườn thú bán hoang dã lớn nhất Việt Nam</p>
+                            </div>
                         </div>
-                        <div style="display: grid; grid-template-rows: repeat(4, 1fr); gap: 10px;">
-                            <div class="card-image" style="border-radius: 10px; height: auto;">
-                                <i class="fas fa-image"></i>
+                        <div style="display: grid; grid-template-rows: repeat(4, 1fr); gap: 10px; max-height: 380px;">
+                            <div style="border-radius: 10px; overflow: hidden; position: relative;">
+                                <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" 
+                                     alt="Cáp treo Hòn Thơm" 
+                                     style="width: 100%; height: 100%; object-fit: cover; max-width: 100%; max-height: 100%;">
+                                <div style="position: absolute; bottom: 5px; left: 5px; background: rgba(0,0,0,0.7); color: white; padding: 3px 8px; border-radius: 8px; font-size: 11px;">
+                                    Cáp treo
+                                </div>
                             </div>
-                            <div class="card-image" style="border-radius: 10px; height: auto;">
-                                <i class="fas fa-image"></i>
+                            <div style="border-radius: 10px; overflow: hidden; position: relative;">
+                                <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2073&q=80" 
+                                     alt="Bãi Sao Phú Quốc" 
+                                     style="width: 100%; height: 100%; object-fit: cover; max-width: 100%; max-height: 100%;">
+                                <div style="position: absolute; bottom: 5px; left: 5px; background: rgba(0,0,0,0.7); color: white; padding: 3px 8px; border-radius: 8px; font-size: 11px;">
+                                    Bãi Sao
+                                </div>
                             </div>
-                            <div class="card-image" style="border-radius: 10px; height: auto;">
-                                <i class="fas fa-image"></i>
+                            <div style="border-radius: 10px; overflow: hidden; position: relative;">
+                                <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" 
+                                     alt="Hải sản Phú Quốc" 
+                                     style="width: 100%; height: 100%; object-fit: cover; max-width: 100%; max-height: 100%;">
+                                <div style="position: absolute; bottom: 5px; left: 5px; background: rgba(0,0,0,0.7); color: white; padding: 3px 8px; border-radius: 8px; font-size: 11px;">
+                                    Hải sản
+                                </div>
                             </div>
-                            <div class="card-image" style="border-radius: 10px; height: auto; position: relative;">
-                                <i class="fas fa-image"></i>
-                                <div style="position: absolute; bottom: 10px; right: 10px; background: rgba(0,0,0,0.7); color: white; padding: 5px 10px; border-radius: 15px; font-size: 12px;">
+                            <div style="border-radius: 10px; overflow: hidden; position: relative;">
+                                <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" 
+                                     alt="Hoàng hôn Phú Quốc" 
+                                     style="width: 100%; height: 100%; object-fit: cover; max-width: 100%; max-height: 100%;">
+                                <div style="position: absolute; bottom: 5px; left: 5px; background: rgba(0,0,0,0.7); color: white; padding: 3px 8px; border-radius: 8px; font-size: 11px;">
+                                    Hoàng hôn
+                                </div>
+                                <div style="position: absolute; bottom: 10px; right: 10px; background: rgba(0,0,0,0.8); color: white; padding: 5px 10px; border-radius: 15px; font-size: 12px;">
                                     +15 ảnh
                                 </div>
                             </div>
@@ -87,17 +190,75 @@
 
                 <!-- Tour Description -->
                 <div style="margin-bottom: 30px;">
-                    <h2 style="color: #333; margin-bottom: 15px;">
-                        <i class="fas fa-info-circle"></i> Mô tả Tour
-                    </h2>
-                    <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; line-height: 1.8;">
-                        <p>Khám phá vẻ đẹp tuyệt vời của Vịnh Hạ Long - Di sản Thiên nhiên Thế giới được UNESCO công nhận. Tour 3 ngày 2 đêm mang đến trải nghiệm đầy đủ với du thuyền sang trọng, các hoạt động thú vị và ẩm thực đặc sắc.</p>
-                        <p style="margin-top: 15px;">Bạn sẽ được tham quan các danh lam thắng cảnh nổi tiếng như Hang Sửng Sốt, Đảo Titop, Làng chài Cửa Vạn cùng nhiều hoạt động hấp dẫn khác.</p>
+                    <!-- Tab Navigation -->
+                    <div style="display: flex; border-bottom: 2px solid #eee; margin-bottom: 20px; overflow-x: auto;">
+                        <button class="tab-btn active" onclick="showTab('highlights-tab')" style="padding: 12px 20px; border: none; background: linear-gradient(135deg, #1A365D 0%, #DC2626 100%); color: white; cursor: pointer; border-radius: 5px 5px 0 0; margin-right: 5px; white-space: nowrap;">
+                            <i class="fas fa-star"></i> Điểm nổi bật
+                        </button>
+                        <button class="tab-btn" onclick="showTab('itinerary-tab')" style="padding: 12px 20px; border: none; background: #f8f9fa; color: #333; cursor: pointer; margin-right: 5px; white-space: nowrap;">
+                            <i class="fas fa-calendar-alt"></i> Lịch trình chi tiết
+                        </button>
+                        <button class="tab-btn" onclick="showTab('pricing-tab')" style="padding: 12px 20px; border: none; background: #f8f9fa; color: #333; cursor: pointer; margin-right: 5px; white-space: nowrap;">
+                            <i class="fas fa-money-bill-wave"></i> Giá & Dịch vụ
+                        </button>
+                        <button class="tab-btn" onclick="showTab('policies-tab')" style="padding: 12px 20px; border: none; background: #f8f9fa; color: #333; cursor: pointer; margin-right: 5px; white-space: nowrap;">
+                            <i class="fas fa-file-contract"></i> Chính sách
+                        </button>
+                        <button class="tab-btn" onclick="showTab('reviews-tab')" style="padding: 12px 20px; border: none; background: #f8f9fa; color: #333; cursor: pointer; white-space: nowrap;">
+                            <i class="fas fa-comments"></i> Đánh giá (128)
+                        </button>
                     </div>
-                </div>
 
-                <!-- Itinerary -->
-                <div style="margin-bottom: 30px;">
+                    <!-- Tab Contents -->
+                    
+                    <!-- Highlights Tab -->
+                    <div id="highlights-tab" class="tab-content" style="display: block;">
+                        <div style="background: linear-gradient(135deg, #1A365D 0%, #DC2626 100%); color: white; padding: 25px; border-radius: 15px; margin-bottom: 20px;">
+                            <h3 style="margin-bottom: 15px; font-size: 24px;">
+                                <i class="fas fa-gem"></i> Điểm nổi bật Tour Phú Quốc
+                            </h3>
+                            <ul style="list-style: none; padding: 0; line-height: 2;">
+                                <li><i class="fas fa-check-circle" style="color: #4caf50; margin-right: 10px;"></i> Khám phá Vinpearl Safari - vườn thú bán hoang dã lớn nhất Việt Nam</li>
+                                <li><i class="fas fa-check-circle" style="color: #4caf50; margin-right: 10px;"></i> Trải nghiệm cáp treo Hòn Thơm dài nhất thế giới</li>
+                                <li><i class="fas fa-check-circle" style="color: #4caf50; margin-right: 10px;"></i> Tắm biển tại bãi Sao - bãi biển đẹp nhất Phú Quốc</li>
+                                <li><i class="fas fa-check-circle" style="color: #4caf50; margin-right: 10px;"></i> Thăm quan nhà thùng sản xuất nước mắm truyền thống</li>
+                                <li><i class="fas fa-check-circle" style="color: #4caf50; margin-right: 10px;"></i> Thưởng thức hải sản tươi sống tại chợ đêm Dinh Cậu</li>
+                                <li><i class="fas fa-check-circle" style="color: #4caf50; margin-right: 10px;"></i> Ngắm hoàng hôn tuyệt đẹp tại đình Vàng</li>
+                            </ul>
+                        </div>
+                        
+                        <!-- Availability Status -->
+                        <div style="background: #fff3cd; border: 2px solid #ffc107; padding: 15px; border-radius: 10px; text-align: center;">
+                            <div style="font-size: 18px; font-weight: bold; color: #856404; margin-bottom: 10px;">
+                                <i class="fas fa-users"></i> Trạng thái tour
+                            </div>
+                            <div style="background: #fff; padding: 15px; border-radius: 8px; margin-bottom: 10px;">
+                                <div style="display: flex; justify-content: space-between; align-items: center;">
+                                    <span>Đã đăng ký:</span>
+                                    <strong style="color: #4caf50;">12 người</strong>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 5px;">
+                                    <span>Tối thiểu:</span>
+                                    <strong style="color: #ff9800;">15 người</strong>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 5px;">
+                                    <span>Tối đa:</span>
+                                    <strong style="color: #2196f3;">25 người</strong>
+                                </div>
+                            </div>
+                            <div style="width: 100%; background: #f5f5f5; border-radius: 15px; height: 20px; overflow: hidden; margin-bottom: 10px;">
+                                <div style="width: 80%; height: 100%; background: linear-gradient(90deg, #ff9800, #4caf50); position: relative;">
+                                    <span style="position: absolute; right: 10px; top: 2px; color: white; font-size: 12px; font-weight: bold;">80%</span>
+                                </div>
+                            </div>
+                            <div style="color: #856404; font-weight: bold;">
+                                <i class="fas fa-info-circle"></i> Cần thêm 3 người nữa để đảm bảo khởi hành
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Itinerary Tab -->
+                    <div id="itinerary-tab" class="tab-content" style="display: none;">
                     <h2 style="color: #333; margin-bottom: 15px;">
                         <i class="fas fa-calendar-alt"></i> Lịch trình Chi tiết
                     </h2>
@@ -130,8 +291,350 @@
                             </ul>
                         </div>
                     </div>
+                    
+                    <!-- Meal Information -->
+                    <div style="background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%); padding: 20px; border-radius: 15px; margin-top: 20px;">
+                        <h3 style="color: #333; margin-bottom: 15px;">
+                            <i class="fas fa-utensils"></i> Thông tin bữa ăn
+                        </h3>
+                        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
+                            <div style="background: rgba(255,255,255,0.8); padding: 10px; border-radius: 8px; text-align: center;">
+                                <i class="fas fa-coffee" style="color: #8B4513; font-size: 20px;"></i>
+                                <div style="font-weight: bold; margin-top: 5px;">2 Bữa sáng</div>
+                                <small>Buffet tại du thuyền</small>
+                            </div>
+                            <div style="background: rgba(255,255,255,0.8); padding: 10px; border-radius: 8px; text-align: center;">
+                                <i class="fas fa-pizza-slice" style="color: #ff6b6b; font-size: 20px;"></i>
+                                <div style="font-weight: bold; margin-top: 5px;">2 Bữa trưa</div>
+                                <small>Hải sản tươi sống</small>
+                            </div>
+                            <div style="background: rgba(255,255,255,0.8); padding: 10px; border-radius: 8px; text-align: center;">
+                                <i class="fas fa-glass-cheers" style="color: #4ecdc4; font-size: 20px;"></i>
+                                <div style="font-weight: bold; margin-top: 5px;">1 Bữa tối</div>
+                                <small>BBQ trên boong du thuyền</small>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
+                <!-- Pricing & Services Tab -->
+                <div id="pricing-tab" class="tab-content" style="display: none;">
+                    <h2 style="color: #333; margin-bottom: 20px;">
+                        <i class="fas fa-money-bill-wave"></i> Bảng giá Chi tiết
+                    </h2>
+                    
+                    <!-- Pricing Table -->
+                    <div style="background: white; border: 2px solid #28a745; border-radius: 15px; overflow: hidden; margin-bottom: 25px;">
+                        <div style="background: #28a745; color: white; padding: 15px; text-align: center;">
+                            <h3 style="margin: 0;">GIÁ TOUR THEO SỐ NGƯỜI</h3>
+                        </div>
+                        <table style="width: 100%; border-collapse: collapse;">
+                            <thead>
+                                <tr style="background: #f8f9fa;">
+                                    <th style="padding: 12px; border: 1px solid #dee2e6;">Số người</th>
+                                    <th style="padding: 12px; border: 1px solid #dee2e6;">Người lớn</th>
+                                    <th style="padding: 12px; border: 1px solid #dee2e6;">Trẻ em (5-11 tuổi)</th>
+                                    <th style="padding: 12px; border: 1px solid #dee2e6;">Trẻ nhỏ (2-4 tuổi)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td style="padding: 12px; border: 1px solid #dee2e6; text-align: center; font-weight: bold;">15-20 người</td>
+                                    <td style="padding: 12px; border: 1px solid #dee2e6; text-align: center; color: #e74c3c; font-weight: bold;">1.899.000 VNĐ</td>
+                                    <td style="padding: 12px; border: 1px solid #dee2e6; text-align: center;">1.424.250 VNĐ</td>
+                                    <td style="padding: 12px; border: 1px solid #dee2e6; text-align: center;">949.500 VNĐ</td>
+                                </tr>
+                                <tr style="background: #f8f9fa;">
+                                    <td style="padding: 12px; border: 1px solid #dee2e6; text-align: center; font-weight: bold;">21-25 người</td>
+                                    <td style="padding: 12px; border: 1px solid #dee2e6; text-align: center; color: #e74c3c; font-weight: bold;">1.799.000 VNĐ</td>
+                                    <td style="padding: 12px; border: 1px solid #dee2e6; text-align: center;">1.349.250 VNĐ</td>
+                                    <td style="padding: 12px; border: 1px solid #dee2e6; text-align: center;">899.500 VNĐ</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Included Services -->
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 25px; margin-bottom: 25px;">
+                        <div>
+                            <h3 style="color: #28a745; margin-bottom: 15px;">
+                                <i class="fas fa-check-circle"></i> Dịch vụ Bao gồm
+                            </h3>
+                            <div style="background: #d4edda; padding: 20px; border-radius: 15px;">
+                                <ul style="margin: 0; padding-left: 20px; line-height: 1.8;">
+                                    <li><i class="fas fa-check" style="color: #28a745; margin-right: 8px;"></i> Xe du lịch đời mới có điều hòa</li>
+                                    <li><i class="fas fa-check" style="color: #28a745; margin-right: 8px;"></i> Du thuyền 4 sao ngủ đêm trên vịnh</li>
+                                    <li><i class="fas fa-check" style="color: #28a745; margin-right: 8px;"></i> Hướng dẫn viên kinh nghiệm 2 ngôn ngữ</li>
+                                    <li><i class="fas fa-check" style="color: #28a745; margin-right: 8px;"></i> Bảo hiểm du lịch 24/24</li>
+                                    <li><i class="fas fa-check" style="color: #28a745; margin-right: 8px;"></i> Các bữa ăn theo chương trình</li>
+                                    <li><i class="fas fa-check" style="color: #28a745; margin-right: 8px;"></i> Vé tham quan các điểm du lịch</li>
+                                    <li><i class="fas fa-check" style="color: #28a745; margin-right: 8px;"></i> Nước suối, khăn lạnh suốt tour</li>
+                                    <li><i class="fas fa-check" style="color: #28a745; margin-right: 8px;"></i> Kayaking và các hoạt động ngoài trời</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 style="color: #dc3545; margin-bottom: 15px;">
+                                <i class="fas fa-times-circle"></i> Dịch vụ Không bao gồm
+                            </h3>
+                            <div style="background: #f8d7da; padding: 20px; border-radius: 15px;">
+                                <ul style="margin: 0; padding-left: 20px; line-height: 1.8;">
+                                    <li><i class="fas fa-times" style="color: #dc3545; margin-right: 8px;"></i> Chi phí cá nhân (điện thoại, giặt ủi)</li>
+                                    <li><i class="fas fa-times" style="color: #dc3545; margin-right: 8px;"></i> Tiền tip cho hướng dẫn viên</li>
+                                    <li><i class="fas fa-times" style="color: #dc3545; margin-right: 8px;"></i> Đồ uống có cồn</li>
+                                    <li><i class="fas fa-times" style="color: #dc3545; margin-right: 8px;"></i> Phụ phí phòng đơn</li>
+                                    <li><i class="fas fa-times" style="color: #dc3545; margin-right: 8px;"></i> Chi phí không có trong chương trình</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Additional Services -->
+                    <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 25px; border-radius: 15px;">
+                        <h3 style="margin-bottom: 20px;">
+                            <i class="fas fa-plus-circle"></i> Dịch vụ Tùy chọn
+                        </h3>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                            <div style="background: rgba(255,255,255,0.15); padding: 15px; border-radius: 10px;">
+                                <h4 style="margin-bottom: 10px;"><i class="fas fa-bed"></i> Phòng đơn</h4>
+                                <p style="margin: 0; opacity: 0.9;">Phụ phí: +300.000 VNĐ/đêm</p>
+                            </div>
+                            <div style="background: rgba(255,255,255,0.15); padding: 15px; border-radius: 10px;">
+                                <h4 style="margin-bottom: 10px;"><i class="fas fa-utensils"></i> Bữa ăn thêm</h4>
+                                <p style="margin: 0; opacity: 0.9;">Giá: 150.000 VNĐ/suất</p>
+                            </div>
+                            <div style="background: rgba(255,255,255,0.15); padding: 15px; border-radius: 10px;">
+                                <h4 style="margin-bottom: 10px;"><i class="fas fa-spa"></i> Massage trên du thuyền</h4>
+                                <p style="margin: 0; opacity: 0.9;">Giá: 200.000 VNĐ/60 phút</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Policies Tab -->
+                <div id="policies-tab" class="tab-content" style="display: none;">
+                    <h2 style="color: #333; margin-bottom: 20px;">
+                        <i class="fas fa-shield-alt"></i> Chính sách & Điều khoản
+                    </h2>
+                    
+                    <!-- Cancellation Policy -->
+                    <div style="background: #fff3cd; border: 2px solid #ffc107; border-radius: 15px; padding: 25px; margin-bottom: 25px;">
+                        <h3 style="color: #856404; margin-bottom: 20px;">
+                            <i class="fas fa-calendar-times"></i> Chính sách Hủy tour
+                        </h3>
+                        <div style="display: grid; gap: 15px;">
+                            <div style="display: flex; align-items: center; background: rgba(255,255,255,0.7); padding: 15px; border-radius: 10px;">
+                                <div style="width: 60px; height: 60px; background: #28a745; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 15px;">
+                                    <i class="fas fa-check" style="color: white; font-size: 20px;"></i>
+                                </div>
+                                <div>
+                                    <strong>Trước 15 ngày:</strong>
+                                    <div style="color: #666;">Hoàn 100% giá tour (trừ phí chuyển khoản)</div>
+                                </div>
+                            </div>
+                            <div style="display: flex; align-items: center; background: rgba(255,255,255,0.7); padding: 15px; border-radius: 10px;">
+                                <div style="width: 60px; height: 60px; background: #ffc107; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 15px;">
+                                    <i class="fas fa-exclamation" style="color: white; font-size: 20px;"></i>
+                                </div>
+                                <div>
+                                    <strong>7-14 ngày:</strong>
+                                    <div style="color: #666;">Hoàn 70% giá tour</div>
+                                </div>
+                            </div>
+                            <div style="display: flex; align-items: center; background: rgba(255,255,255,0.7); padding: 15px; border-radius: 10px;">
+                                <div style="width: 60px; height: 60px; background: #dc3545; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 15px;">
+                                    <i class="fas fa-times" style="color: white; font-size: 20px;"></i>
+                                </div>
+                                <div>
+                                    <strong>Dưới 7 ngày:</strong>
+                                    <div style="color: #666;">Không hoàn tiền</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Booking Conditions -->
+                    <div style="background: #e7f3ff; border: 2px solid #2196f3; border-radius: 15px; padding: 25px; margin-bottom: 25px;">
+                        <h3 style="color: #1565c0; margin-bottom: 20px;">
+                            <i class="fas fa-clipboard-list"></i> Điều kiện Đặt tour
+                        </h3>
+                        <ul style="margin: 0; padding-left: 25px; line-height: 2;">
+                            <li><strong>Đặt cọc:</strong> Tối thiểu 30% giá tour để giữ chỗ</li>
+                            <li><strong>Thanh toán:</strong> Toàn bộ số tiền còn lại trước khởi hành 3 ngày</li>
+                            <li><strong>Giấy tờ:</strong> CMND/CCCD còn hạn, trẻ em mang giấy khai sinh</li>
+                            <li><strong>Sức khỏe:</strong> Khách tự chịu trách nhiệm về sức khỏe của mình</li>
+                            <li><strong>Hành lý:</strong> Tối đa 20kg/người, không mang đồ dễ cháy nổ</li>
+                        </ul>
+                    </div>
+
+                    <!-- Weather Policy -->
+                    <div style="background: #f0f8ff; border: 2px solid #87ceeb; border-radius: 15px; padding: 25px;">
+                        <h3 style="color: #4682b4; margin-bottom: 20px;">
+                            <i class="fas fa-cloud-rain"></i> Chính sách Thời tiết
+                        </h3>
+                        <div style="background: rgba(255,255,255,0.8); padding: 20px; border-radius: 10px;">
+                            <p style="margin-bottom: 15px; line-height: 1.6;">
+                                <strong>Thời tiết xấu:</strong> Nếu có bão, mưa to hoặc sương mù dày đặc ảnh hưởng đến an toàn, 
+                                BigKey Tour có quyền điều chỉnh lịch trình hoặc hoãn tour. Khách hàng sẽ được thông báo trước 24h.
+                            </p>
+                            <p style="margin: 0; line-height: 1.6;">
+                                <strong>Bồi thường:</strong> Nếu tour bị hủy do thời tiết, khách được hoàn 100% tiền hoặc đổi lịch khác miễn phí.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Reviews Tab -->
+                <div id="reviews-tab" class="tab-content" style="display: none;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px;">
+                        <h2 style="color: #333; margin: 0;">
+                            <i class="fas fa-star"></i> Đánh giá từ khách hàng
+                        </h2>
+                        <div style="display: flex; align-items: center; background: #fff3cd; padding: 10px 20px; border-radius: 25px;">
+                            <div style="color: #f39c12; font-size: 24px; margin-right: 10px;">4.7</div>
+                            <div>
+                                <div style="color: #f39c12;">⭐⭐⭐⭐⭐</div>
+                                <small style="color: #666;">128 đánh giá</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Rating Breakdown -->
+                    <div style="background: #f8f9fa; padding: 20px; border-radius: 15px; margin-bottom: 25px;">
+                        <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 15px; text-align: center;">
+                            <div>
+                                <div style="font-weight: bold; color: #333;">Dịch vụ</div>
+                                <div style="color: #f39c12; font-size: 18px; margin: 5px 0;">4.8</div>
+                                <div style="color: #f39c12;">⭐⭐⭐⭐⭐</div>
+                            </div>
+                            <div>
+                                <div style="font-weight: bold; color: #333;">Hướng dẫn</div>
+                                <div style="color: #f39c12; font-size: 18px; margin: 5px 0;">4.9</div>
+                                <div style="color: #f39c12;">⭐⭐⭐⭐⭐</div>
+                            </div>
+                            <div>
+                                <div style="font-weight: bold; color: #333;">Lịch trình</div>
+                                <div style="color: #f39c12; font-size: 18px; margin: 5px 0;">4.6</div>
+                                <div style="color: #f39c12;">⭐⭐⭐⭐⭐</div>
+                            </div>
+                            <div>
+                                <div style="font-weight: bold; color: #333;">Ẩm thực</div>
+                                <div style="color: #f39c12; font-size: 18px; margin: 5px 0;">4.7</div>
+                                <div style="color: #f39c12;">⭐⭐⭐⭐⭐</div>
+                            </div>
+                            <div>
+                                <div style="font-weight: bold; color: #333;">Giá trị</div>
+                                <div style="color: #f39c12; font-size: 18px; margin: 5px 0;">4.5</div>
+                                <div style="color: #f39c12;">⭐⭐⭐⭐⭐</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recent Reviews -->
+                    <div style="display: grid; gap: 20px;">
+                        <div style="background: white; border: 1px solid #eee; border-radius: 15px; padding: 20px;">
+                            <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 15px;">
+                                <div style="display: flex; align-items: center;">
+                                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80" 
+                                         alt="Nguyễn Văn A" 
+                                         style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover; margin-right: 15px;">
+                                    <div>
+                                        <strong>Nguyễn Văn A</strong>
+                                        <div style="color: #666; font-size: 14px;">Đã đi tour: 18/07/2025</div>
+                                    </div>
+                                </div>
+                                <div style="text-align: right;">
+                                    <div style="color: #f39c12; margin-bottom: 5px;">⭐⭐⭐⭐⭐</div>
+                                    <small style="color: #666;">2 ngày trước</small>
+                                </div>
+                            </div>
+                            <p style="line-height: 1.6; color: #333; margin-bottom: 15px;">
+                                "Tour tuyệt vời! Hướng dẫn viên rất nhiệt tình và am hiểu. Cảnh đẹp như mơ, đặc biệt là cảnh bình minh trên vịnh. 
+                                Du thuyền sạch sẽ, ăn uống ngon. Chắc chắn sẽ giới thiệu cho bạn bè!"
+                            </p>
+                            <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+                                <span style="background: #e3f2fd; color: #1976d2; padding: 5px 10px; border-radius: 15px; font-size: 12px;">
+                                    <i class="fas fa-thumbs-up"></i> Hướng dẫn viên tốt
+                                </span>
+                                <span style="background: #e8f5e8; color: #2e7d32; padding: 5px 10px; border-radius: 15px; font-size: 12px;">
+                                    <i class="fas fa-star"></i> Cảnh đẹp
+                                </span>
+                                <span style="background: #fff3e0; color: #f57c00; padding: 5px 10px; border-radius: 15px; font-size: 12px;">
+                                    <i class="fas fa-utensils"></i> Ẩm thực ngon
+                                </span>
+                            </div>
+                        </div>
+
+                        <div style="background: white; border: 1px solid #eee; border-radius: 15px; padding: 20px;">
+                            <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 15px;">
+                                <div style="display: flex; align-items: center;">
+                                    <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80" 
+                                         alt="Trần Thị B" 
+                                         style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover; margin-right: 15px;">
+                                    <div>
+                                        <strong>Trần Thị B</strong>
+                                        <div style="color: #666; font-size: 14px;">Đã đi tour: 15/07/2025</div>
+                                    </div>
+                                </div>
+                                <div style="text-align: right;">
+                                    <div style="color: #f39c12; margin-bottom: 5px;">⭐⭐⭐⭐☆</div>
+                                    <small style="color: #666;">4 ngày trước</small>
+                                </div>
+                            </div>
+                            <p style="line-height: 1.6; color: #333; margin-bottom: 15px;">
+                                "Tour nhìn chung ổn, du thuyền đẹp và sạch sẽ. Tuy nhiên hôm đó thời tiết không được tốt nên không chụp được ảnh đẹp. 
+                                Ăn uống ngon, đặc biệt là hải sản tươi. Sẽ đi lại khi thời tiết đẹp hơn."
+                            </p>
+                            <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+                                <span style="background: #e8f5e8; color: #2e7d32; padding: 5px 10px; border-radius: 15px; font-size: 12px;">
+                                    <i class="fas fa-utensils"></i> Ẩm thực tốt
+                                </span>
+                                <span style="background: #ffebee; color: #c62828; padding: 5px 10px; border-radius: 15px; font-size: 12px;">
+                                    <i class="fas fa-cloud-rain"></i> Thời tiết xấu
+                                </span>
+                            </div>
+                        </div>
+
+                        <div style="background: white; border: 1px solid #eee; border-radius: 15px; padding: 20px;">
+                            <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 15px;">
+                                <div style="display: flex; align-items: center;">
+                                    <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80" 
+                                         alt="Lê Minh C" 
+                                         style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover; margin-right: 15px;">
+                                    <div>
+                                        <strong>Lê Minh C</strong>
+                                        <div style="color: #666; font-size: 14px;">Đã đi tour: 12/07/2025</div>
+                                    </div>
+                                </div>
+                                <div style="text-align: right;">
+                                    <div style="color: #f39c12; margin-bottom: 5px;">⭐⭐⭐⭐⭐</div>
+                                    <small style="color: #666;">1 tuần trước</small>
+                                </div>
+                            </div>
+                            <p style="line-height: 1.6; color: #333; margin-bottom: 15px;">
+                                "Lần đầu đi Hạ Long, cảm thấy rất hài lòng! Thời gian 2 ngày 1 đêm vừa đủ để thư giãn. 
+                                Hoạt động kayaking rất thú vị, tắm biển ở Titop siêu đẹp. Sẽ recommend cho mọi người!"
+                            </p>
+                            <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+                                <span style="background: #e3f2fd; color: #1976d2; padding: 5px 10px; border-radius: 15px; font-size: 12px;">
+                                    <i class="fas fa-swimmer"></i> Hoạt động thú vị
+                                </span>
+                                <span style="background: #e8f5e8; color: #2e7d32; padding: 5px 10px; border-radius: 15px; font-size: 12px;">
+                                    <i class="fas fa-heart"></i> Đáng tiền
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Load More Reviews -->
+                    <div style="text-align: center; margin-top: 25px;">
+                        <button style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; padding: 12px 30px; border-radius: 25px; cursor: pointer; font-weight: bold;">
+                            <i class="fas fa-plus"></i> Xem thêm 125 đánh giá
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Old sections that need to be removed -->
                 <!-- Included Services -->
                 <div style="margin-bottom: 30px;">
                     <h2 style="color: #333; margin-bottom: 15px;">
@@ -190,15 +693,16 @@
 
             <!-- Booking Sidebar -->
             <div class="sidebar fade-in" style="animation-delay: 0.2s;">
-                <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; border-radius: 10px; margin-bottom: 20px;">
-                    <h3 style="margin-bottom: 15px; text-align: center;">
-                        <i class="fas fa-tag"></i> Giá Tour
+                <div style="background: linear-gradient(135deg, #1A365D 0%, #DC2626 100%); color: white; padding: 20px; border-radius: 15px; margin-bottom: 20px; box-shadow: 0 5px 20px rgba(0,0,0,0.2);">
+                    <h3 style="margin-bottom: 15px; text-align: center; font-size: 20px;">
+                        <i class="fas fa-calendar-check"></i> ĐẶT TOUR NGAY
                     </h3>
-                    <div style="text-align: center;">
-                        <div style="font-size: 28px; font-weight: bold; margin-bottom: 5px;">
-                            3.500.000 VNĐ
+                    
+                    <div style="text-align: center; margin-bottom: 15px;">
+                        <div style="font-size: 24px; font-weight: bold; margin-bottom: 5px;">
+                            Từ: 2.890.000đ
                         </div>
-                        <div style="opacity: 0.9;">/ người</div>
+                        <div style="opacity: 0.9; font-size: 14px;">/ khách (giá người lớn)</div>
                     </div>
                 </div>
 
@@ -247,9 +751,9 @@
                         </div>
                     </div>
 
-                    <button class="btn btn-primary" style="width: 100%; padding: 15px; font-size: 16px; margin-bottom: 10px;" onclick="bookTour()">
+                    <a href="04-booking-payment.html" class="btn btn-primary" style="width: 100%; padding: 15px; font-size: 16px; margin-bottom: 10px; text-decoration: none; display: block; text-align: center;">
                         <i class="fas fa-shopping-cart"></i> Đặt ngay
-                    </button>
+                    </a>
                     
                     <button class="btn btn-secondary" style="width: 100%; padding: 15px; font-size: 16px;" onclick="addToWishlist()">
                         <i class="fas fa-heart"></i> Yêu thích
@@ -316,78 +820,37 @@
 
         // Initialize display
         updateGuestDisplay();
-    </script>
 
-    <!-- Navigation Menu -->
-    <div id="wireframeMenu" style="position: fixed; bottom: 20px; right: 20px; background: white; padding: 20px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.2); max-height: 80vh; overflow-y: auto; z-index: 1000; transition: all 0.3s ease;">
-        <button onclick="toggleMenu()" style="position: absolute; top: 10px; right: 10px; background: #ff6b6b; color: white; border: none; border-radius: 50%; width: 25px; height: 25px; cursor: pointer; font-size: 14px;">×</button>
+        // User dropdown menu
+        function toggleUserMenu() {
+            const dropdown = document.getElementById('userDropdown');
+            dropdown.style.display = dropdown.style.display === 'none' ? 'block' : 'none';
+        }
         
-        <h3 style="margin: 0 0 15px 0; color: #333; font-size: 16px; border-bottom: 2px solid #eee; padding-bottom: 8px;">🗺️ Wireframe Menu</h3>
-        
-        <div style="margin-bottom: 15px;">
-            <h4 style="margin: 0 0 8px 0; color: #2196F3; font-size: 13px; font-weight: bold;">📱 User Interface</h4>
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 5px; margin-bottom: 10px;">
-                <a href="01-search-integrated.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">01-Search</a>
-                <a href="02-filter-advanced.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">02-Filter</a>
-                <a href="03-tour-details.html" style="text-decoration: none; color: white; background: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">03-Tour</a>
-                <a href="04-booking-payment.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">04-Booking</a>
-                <a href="05-combo-details.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">05-Combo</a>
-                <a href="06-flight-details.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">06-Flight</a>
-                <a href="07-hotel-details.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">07-Hotel</a>
-                <a href="08-booking-success.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">08-Success</a>
-                <a href="09-user-orders.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">09-Orders</a>
-                <a href="10-order-details.html" style="text-decoration: none; color: #2196F3; font-size: 11px; padding: 4px 8px; border: 1px solid #2196F3; border-radius: 4px; text-align: center; transition: all 0.2s;">10-Details</a>
-            </div>
-        </div>
-
-        <div style="margin-bottom: 15px;">
-            <h4 style="margin: 0 0 8px 0; color: #f44336; font-size: 13px; font-weight: bold;">🤝 Partner Panel</h4>
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 5px; margin-bottom: 10px;">
-                <a href="11-partner-management.html" style="text-decoration: none; color: #f44336; font-size: 11px; padding: 4px 8px; border: 1px solid #f44336; border-radius: 4px; text-align: center; transition: all 0.2s;">11-Mgmt</a>
-                <a href="12-partner-analytics.html" style="text-decoration: none; color: #f44336; font-size: 11px; padding: 4px 8px; border: 1px solid #f44336; border-radius: 4px; text-align: center; transition: all 0.2s;">12-Analytics</a>
-            </div>
-        </div>
-
-        <div style="margin-bottom: 15px;">
-            <h4 style="margin: 0 0 8px 0; color: #4CAF50; font-size: 13px; font-weight: bold;">🛠️ Admin Panel</h4>
-            <div style="display: grid; grid-template-columns: 1fr; gap: 5px; margin-bottom: 10px;">
-                <a href="13-admin-dashboard.html" style="text-decoration: none; color: #4CAF50; font-size: 11px; padding: 4px 8px; border: 1px solid #4CAF50; border-radius: 4px; text-align: center; transition: all 0.2s;">13-Dashboard</a>
-            </div>
-        </div>
-
-        <div>
-            <h4 style="margin: 0 0 8px 0; color: #9C27B0; font-size: 13px; font-weight: bold;">⚙️ System Features</h4>
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 5px;">
-                <a href="14-notification-center.html" style="text-decoration: none; color: #9C27B0; font-size: 11px; padding: 4px 8px; border: 1px solid #9C27B0; border-radius: 4px; text-align: center; transition: all 0.2s;">14-Notify</a>
-                <a href="15-help-support.html" style="text-decoration: none; color: #9C27B0; font-size: 11px; padding: 4px 8px; border: 1px solid #9C27B0; border-radius: 4px; text-align: center; transition: all 0.2s;">15-Support</a>
-                <a href="16-user-profile.html" style="text-decoration: none; color: #9C27B0; font-size: 11px; padding: 4px 8px; border: 1px solid #9C27B0; border-radius: 4px; text-align: center; transition: all 0.2s;">16-Profile</a>
-                <a href="17-reviews-ratings.html" style="text-decoration: none; color: #9C27B0; font-size: 11px; padding: 4px 8px; border: 1px solid #9C27B0; border-radius: 4px; text-align: center; transition: all 0.2s;">17-Reviews</a>
-                <a href="18-error-pages.html" style="text-decoration: none; color: #9C27B0; font-size: 11px; padding: 4px 8px; border: 1px solid #9C27B0; border-radius: 4px; text-align: center; transition: all 0.2s;">18-Errors</a>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        function toggleMenu() {
-            const menu = document.getElementById('wireframeMenu');
-            menu.style.display = menu.style.display === 'none' ? 'block' : 'none';
+        // System dropdown menu
+        function toggleSystemMenu() {
+            const dropdown = document.getElementById('systemDropdown');
+            dropdown.style.display = dropdown.style.display === 'none' ? 'block' : 'none';
         }
 
-        // Add hover effects
-        document.querySelectorAll('#wireframeMenu a').forEach(link => {
-            link.addEventListener('mouseenter', function() {
-                if (this.style.background !== 'rgb(33, 150, 243)' && this.style.background !== 'rgb(244, 67, 54)' && this.style.background !== 'rgb(76, 175, 80)' && this.style.background !== 'rgb(156, 39, 176)') {
-                    this.style.background = this.style.borderColor;
-                    this.style.color = 'white';
-                }
-            });
-            link.addEventListener('mouseleave', function() {
-                if (this.style.background !== 'rgb(33, 150, 243)' && this.style.background !== 'rgb(244, 67, 54)' && this.style.background !== 'rgb(76, 175, 80)' && this.style.background !== 'rgb(156, 39, 176)') {
-                    this.style.background = 'transparent';
-                    this.style.color = this.style.borderColor;
-                }
-            });
+        // Close dropdowns when clicking outside
+        document.addEventListener('click', function(event) {
+            const userMenu = document.querySelector('.user-menu');
+            const userDropdown = document.getElementById('userDropdown');
+            const systemMenu = document.querySelector('.nav-dropdown');
+            const systemDropdown = document.getElementById('systemDropdown');
+            
+            // Close user dropdown
+            if (userMenu && userDropdown && !userMenu.contains(event.target)) {
+                userDropdown.style.display = 'none';
+            }
+            
+            // Close system dropdown
+            if (systemMenu && systemDropdown && !systemMenu.contains(event.target)) {
+                systemDropdown.style.display = 'none';
+            }
         });
     </script>
 </body>
 </html>
+
