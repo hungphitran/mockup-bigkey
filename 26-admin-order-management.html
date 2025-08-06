@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý Đơn hàng - BigKey Tour Admin</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="admin-header.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Header size adjustments for this page */
+        .management-header-content {
+            max-width: 100% !important;
+            height: 56px !important;
+            padding: 0 10px !important;
+        }
+        .management-logo {
+            font-size: 16px !important;
+            gap: 6px !important;
+        }
+        .management-logo i {
+            font-size: 18px !important;
+        }
+        .management-badge {
+            font-size: 9px !important;
+            padding: 2px 5px !important;
+        }
+        .management-nav-menu {
+            gap: 16px !important;
+        }
+        .management-nav-menu a {
+            padding: 6px 10px !important;
+            font-size: 13px !important;
+        }
+        .management-auth-section {
+            gap: 10px !important;
+        }
+        .management-user-avatar {
+            width: 28px !important;
+            height: 28px !important;
+            font-size: 13px !important;
+        }
+        .management-user-name {
+            font-size: 12px !important;
+        }
+        .management-user-role {
+            font-size: 10px !important;
+        }
+        .management-logout-btn {
+            padding: 6px 10px !important;
+            font-size: 12px !important;
+        }
+        
+        .management-notification {
+            position: relative;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 6px;
+            transition: background 0.3s;
+        }
+        
+        .management-notification:hover {
+            background: rgba(255,255,255,0.1);
+        }
+        
+        .notification-badge {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: #DC2626;
+            color: white;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            font-size: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f5f7fa;
+        }
+
+        .order-management-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .page-header {
+            background: linear-gradient(135deg, #1A365D 0%, #2D5A87 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .page-header h1 {
+            margin: 0 0 10px 0;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .page-header p {
+            margin: 0;
+            opacity: 0.9;
+            font-size: 16px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            border-left: 4px solid #1A365D;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+
+        .stat-card h3 {
+            margin: 0 0 10px 0;
+            color: #1A365D;
+            font-size: 14px;
+            text-transform: uppercase;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .stat-number {
+            font-size: 36px;
+            font-weight: bold;
+            color: #1A365D;
+            margin: 10px 0;
+        }
+
+        .stat-change {
+            font-size: 14px;
+            padding: 4px 8px;
+            border-radius: 20px;
+            font-weight: 500;
+        }
+
+        .stat-change.positive {
+            background: #e6ffe6;
+            color: #059669;
+        }
+
+        .stat-change.negative {
+            background: #ffe6e6;
+            color: #DC2626;
+        }
+
+        .filters-section {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            margin-bottom: 30px;
+        }
+
+        .filters-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .filter-group label {
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #1A365D;
+        }
+
+        .filter-group select,
+        .filter-group input {
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        .filter-actions {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: #1A365D;
+            color: white;
+        }
+
+        .btn-secondary {
+            background: #f8f9fa;
+            color: #1A365D;
+            border: 1px solid #ddd;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .orders-table-container {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            overflow: hidden;
+        }
+
+        .table-header {
+            padding: 25px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .table-header h2 {
+            margin: 0;
+            color: #1A365D;
+            font-size: 20px;
+        }
+
+        .orders-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .orders-table th {
+            background: #f8f9fa;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+            color: #1A365D;
+            border-bottom: 2px solid #eee;
+        }
+
+        .orders-table td {
+            padding: 15px;
+            border-bottom: 1px solid #f0f0f0;
+            vertical-align: top;
+        }
+
+        .orders-table tr:hover {
+            background: #f8f9fa;
+        }
+
+        .order-id {
+            font-weight: 600;
+            color: #1A365D;
+        }
+
+        .customer-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .customer-avatar {
+            width: 40px;
+            height: 40px;
+            background: #1A365D;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .customer-details h4 {
+            margin: 0 0 4px 0;
+            font-size: 14px;
+            color: #1A365D;
+        }
+
+        .customer-details p {
+            margin: 0;
+            font-size: 12px;
+            color: #666;
+        }
+
+        .product-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .product-image {
+            width: 50px;
+            height: 40px;
+            border-radius: 6px;
+            object-fit: cover;
+        }
+
+        .product-details h4 {
+            margin: 0 0 4px 0;
+            font-size: 14px;
+            color: #1A365D;
+        }
+
+        .product-details p {
+            margin: 0;
+            font-size: 12px;
+            color: #666;
+        }
+
+        .status-badge {
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .status-pending {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .status-confirmed {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .status-cancelled {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .status-completed {
+            background: #d1ecf1;
+            color: #0c5460;
+        }
+
+        .price {
+            font-weight: 600;
+            color: #1A365D;
+            font-size: 16px;
+        }
+
+        .order-actions {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .action-btn {
+            padding: 6px 12px;
+            border: none;
+            border-radius: 6px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .action-view {
+            background: #e3f2fd;
+            color: #1976d2;
+        }
+
+        .action-edit {
+            background: #fff3e0;
+            color: #f57c00;
+        }
+
+        .action-delete {
+            background: #ffebee;
+            color: #d32f2f;
+        }
+
+        .action-btn:hover {
+            transform: translateY(-1px);
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 25px;
+            gap: 10px;
+        }
+
+        .pagination button {
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            background: white;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .pagination button:hover {
+            background: #1A365D;
+            color: white;
+        }
+
+        .pagination button.active {
+            background: #1A365D;
+            color: white;
+            border-color: #1A365D;
+        }
+
+        .order-detail-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+        }
+
+        .modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            max-width: 800px;
+            max-height: 80vh;
+            overflow-y: auto;
+            width: 90%;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .modal-header h2 {
+            margin: 0;
+            color: #1A365D;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #666;
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .orders-table-container {
+                overflow-x: auto;
+            }
+            
+            .orders-table {
+                min-width: 800px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .order-management-container {
+                padding: 15px;
+            }
+
+            .page-header {
+                padding: 20px;
+            }
+
+            .page-header h1 {
+                font-size: 24px;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+
+            .filters-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .filter-actions {
+                justify-content: center;
+            }
+
+            .modal-content {
+                width: 95%;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Include Management Header -->
+    <header class="management-header">
+        <div class="management-header-content">
+            <!-- Logo Section -->
+            <div class="management-logo">
+                <i class="fas fa-key"></i>
+                <span>BigKey Tour</span>
+                <span class="management-badge">ADMIN</span>
+            </div>
+            
+            <!-- Navigation Menu -->
+            <nav class="management-nav-menu">
+                <a href="13-admin-dashboard.html">
+                    <i class="fas fa-tachometer-alt"></i>
+                    Dashboard
+                </a>
+                <a href="11-partner-management.html">
+                    <i class="fas fa-handshake"></i>
+                    Đối tác
+                </a>
+                <a href="20-admin-tour-approval.html">
+                    <i class="fas fa-check-circle"></i>
+                    Duyệt tour
+                </a>
+                <a href="21-admin-flash-sale.html">
+                    <i class="fas fa-bolt"></i>
+                    Flash Sale
+                </a>
+                <a href="25-admin-tour-management.html">
+                    <i class="fas fa-map-marked-alt"></i>
+                    Quản lý tour
+                </a>
+                <a href="26-admin-order-management.html" class="active">
+                    <i class="fas fa-shopping-cart"></i>
+                    Đơn hàng
+                </a>
+                <a href="partner-settings.html">
+                    <i class="fas fa-cog"></i>
+                    Cài đặt
+                </a>
+            </nav>
+            
+            <!-- Auth Section -->
+            <div class="management-auth-section">
+                <!-- Notifications -->
+                <div class="management-notification">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge">3</span>
+                </div>
+                
+                <!-- User Info -->
+                <div class="management-user-info">
+                    <div class="management-user-avatar">A</div>
+                    <div class="management-user-details">
+                        <div class="management-user-name">Admin User</div>
+                        <div class="management-user-role">Administrator</div>
+                    </div>
+                </div>
+                
+                <!-- Logout Button -->
+                <button class="management-logout-btn" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Đăng xuất
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div class="order-management-container">
+        <!-- Page Header -->
+        <div class="page-header">
+            <h1><i class="fas fa-shopping-cart"></i> Quản lý Đơn hàng</h1>
+            <p>Theo dõi và quản lý tất cả đơn hàng trong hệ thống</p>
+        </div>
+
+        <!-- Statistics Cards -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <h3>Tổng đơn hàng</h3>
+                <div class="stat-number">1,247</div>
+                <div class="stat-change positive">+12.5% từ tháng trước</div>
+            </div>
+            <div class="stat-card">
+                <h3>Chờ xác nhận</h3>
+                <div class="stat-number">23</div>
+                <div class="stat-change negative">-5.2% từ tuần trước</div>
+            </div>
+            <div class="stat-card">
+                <h3>Đã xác nhận</h3>
+                <div class="stat-number">156</div>
+                <div class="stat-change positive">+8.3% từ tuần trước</div>
+            </div>
+            <div class="stat-card">
+                <h3>Doanh thu tháng</h3>
+                <div class="stat-number">2.4B</div>
+                <div class="stat-change positive">+15.7% từ tháng trước</div>
+            </div>
+        </div>
+
+        <!-- Filters Section -->
+        <div class="filters-section">
+            <div class="filters-grid">
+                <div class="filter-group">
+                    <label>Trạng thái đơn hàng</label>
+                    <select id="status-filter">
+                        <option value="">Tất cả trạng thái</option>
+                        <option value="pending">Chờ xác nhận</option>
+                        <option value="confirmed">Đã xác nhận</option>
+                        <option value="cancelled">Đã hủy</option>
+                        <option value="completed">Hoàn thành</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>Loại sản phẩm</label>
+                    <select id="product-filter">
+                        <option value="">Tất cả sản phẩm</option>
+                        <option value="tour">Tour du lịch</option>
+                        <option value="hotel">Khách sạn</option>
+                        <option value="flight">Vé máy bay</option>
+                        <option value="combo">Combo</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>Đối tác</label>
+                    <select id="partner-filter">
+                        <option value="">Tất cả đối tác</option>
+                        <option value="saigon-tourist">Saigon Tourist</option>
+                        <option value="viet-travel">Viet Travel</option>
+                        <option value="asia-tour">Asia Tour</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>Từ ngày</label>
+                    <input type="date" id="date-from">
+                </div>
+                <div class="filter-group">
+                    <label>Đến ngày</label>
+                    <input type="date" id="date-to">
+                </div>
+                <div class="filter-group">
+                    <label>Tìm kiếm</label>
+                    <input type="text" placeholder="Mã đơn, tên khách hàng..." id="search-input">
+                </div>
+            </div>
+            <div class="filter-actions">
+                <button class="btn btn-primary" onclick="applyFilters()">
+                    <i class="fas fa-search"></i> Tìm kiếm
+                </button>
+                <button class="btn btn-secondary" onclick="clearFilters()">
+                    <i class="fas fa-times"></i> Xóa bộ lọc
+                </button>
+                <button class="btn btn-secondary" onclick="exportOrders()">
+                    <i class="fas fa-download"></i> Xuất Excel
+                </button>
+            </div>
+        </div>
+
+        <!-- Orders Table -->
+        <div class="orders-table-container">
+            <div class="table-header">
+                <h2>Danh sách đơn hàng</h2>
+                <div style="display: flex; align-items: center; gap: 15px;">
+                    <span style="color: #666;">Hiển thị 1-20 trong 1,247 đơn hàng</span>
+                </div>
+            </div>
+
+            <table class="orders-table">
+                <thead>
+                    <tr>
+                        <th>Mã đơn hàng</th>
+                        <th>Khách hàng</th>
+                        <th>Sản phẩm</th>
+                        <th>Đối tác</th>
+                        <th>Ngày đặt</th>
+                        <th>Trạng thái</th>
+                        <th>Tổng tiền</th>
+                        <th>Thao tác</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="order-id">#BKT-2025-0001</td>
+                        <td>
+                            <div class="customer-info">
+                                <div class="customer-avatar">N</div>
+                                <div class="customer-details">
+                                    <h4>Nguyễn Văn A</h4>
+                                    <p>nguyenvana@email.com</p>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="product-info">
+                                <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=50&h=40&fit=crop" alt="Tour" class="product-image">
+                                <div class="product-details">
+                                    <h4>Tour Hạ Long 3N2Đ</h4>
+                                    <p>2 người lớn • 1 trẻ em</p>
+                                </div>
+                            </div>
+                        </td>
+                        <td>Saigon Tourist</td>
+                        <td>08/01/2025<br><small style="color: #666;">14:30</small></td>
+                        <td><span class="status-badge status-pending">Chờ xác nhận</span></td>
+                        <td class="price">4,500,000đ</td>
+                        <td>
+                            <div class="order-actions">
+                                <button class="action-btn action-view" onclick="viewOrder('BKT-2025-0001')">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="action-btn action-edit" onclick="editOrder('BKT-2025-0001')">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="action-btn action-delete" onclick="deleteOrder('BKT-2025-0001')">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="order-id">#BKT-2025-0002</td>
+                        <td>
+                            <div class="customer-info">
+                                <div class="customer-avatar">T</div>
+                                <div class="customer-details">
+                                    <h4>Trần Thị B</h4>
+                                    <p>tranthib@email.com</p>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="product-info">
+                                <img src="https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=50&h=40&fit=crop" alt="Hotel" class="product-image">
+                                <div class="product-details">
+                                    <h4>Khách sạn Sheraton Hà Nội</h4>
+                                    <p>2 đêm • Phòng Deluxe</p>
+                                </div>
+                            </div>
+                        </td>
+                        <td>Viet Travel</td>
+                        <td>07/01/2025<br><small style="color: #666;">10:15</small></td>
+                        <td><span class="status-badge status-confirmed">Đã xác nhận</span></td>
+                        <td class="price">2,800,000đ</td>
+                        <td>
+                            <div class="order-actions">
+                                <button class="action-btn action-view" onclick="viewOrder('BKT-2025-0002')">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="action-btn action-edit" onclick="editOrder('BKT-2025-0002')">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="action-btn action-delete" onclick="deleteOrder('BKT-2025-0002')">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="order-id">#BKT-2025-0003</td>
+                        <td>
+                            <div class="customer-info">
+                                <div class="customer-avatar">L</div>
+                                <div class="customer-details">
+                                    <h4>Lê Văn C</h4>
+                                    <p>levanc@email.com</p>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="product-info">
+                                <img src="https://images.unsplash.com/photo-1556388158-158ea5ccacbd?w=50&h=40&fit=crop" alt="Flight" class="product-image">
+                                <div class="product-details">
+                                    <h4>Vé máy bay HCM - Bangkok</h4>
+                                    <p>Khứ hồi • Vietnam Airlines</p>
+                                </div>
+                            </div>
+                        </td>
+                        <td>Asia Tour</td>
+                        <td>06/01/2025<br><small style="color: #666;">16:45</small></td>
+                        <td><span class="status-badge status-completed">Hoàn thành</span></td>
+                        <td class="price">8,900,000đ</td>
+                        <td>
+                            <div class="order-actions">
+                                <button class="action-btn action-view" onclick="viewOrder('BKT-2025-0003')">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="action-btn action-edit" onclick="editOrder('BKT-2025-0003')">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="action-btn action-delete" onclick="deleteOrder('BKT-2025-0003')">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="order-id">#BKT-2025-0004</td>
+                        <td>
+                            <div class="customer-info">
+                                <div class="customer-avatar">P</div>
+                                <div class="customer-details">
+                                    <h4>Phạm Thị D</h4>
+                                    <p>phamthid@email.com</p>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="product-info">
+                                <img src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=50&h=40&fit=crop" alt="Combo" class="product-image">
+                                <div class="product-details">
+                                    <h4>Combo Đà Nẵng 4N3Đ</h4>
+                                    <p>Tour + Hotel + Flight</p>
+                                </div>
+                            </div>
+                        </td>
+                        <td>Saigon Tourist</td>
+                        <td>05/01/2025<br><small style="color: #666;">09:20</small></td>
+                        <td><span class="status-badge status-cancelled">Đã hủy</span></td>
+                        <td class="price">12,500,000đ</td>
+                        <td>
+                            <div class="order-actions">
+                                <button class="action-btn action-view" onclick="viewOrder('BKT-2025-0004')">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="action-btn action-edit" onclick="editOrder('BKT-2025-0004')">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="action-btn action-delete" onclick="deleteOrder('BKT-2025-0004')">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="order-id">#BKT-2025-0005</td>
+                        <td>
+                            <div class="customer-info">
+                                <div class="customer-avatar">H</div>
+                                <div class="customer-details">
+                                    <h4>Hoàng Văn E</h4>
+                                    <p>hoangvane@email.com</p>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="product-info">
+                                <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=50&h=40&fit=crop" alt="Tour" class="product-image">
+                                <div class="product-details">
+                                    <h4>Tour Phú Quốc 5N4Đ</h4>
+                                    <p>4 người lớn</p>
+                                </div>
+                            </div>
+                        </td>
+                        <td>Viet Travel</td>
+                        <td>04/01/2025<br><small style="color: #666;">11:30</small></td>
+                        <td><span class="status-badge status-confirmed">Đã xác nhận</span></td>
+                        <td class="price">18,000,000đ</td>
+                        <td>
+                            <div class="order-actions">
+                                <button class="action-btn action-view" onclick="viewOrder('BKT-2025-0005')">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="action-btn action-edit" onclick="editOrder('BKT-2025-0005')">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="action-btn action-delete" onclick="deleteOrder('BKT-2025-0005')">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- Pagination -->
+            <div class="pagination">
+                <button>← Trước</button>
+                <button class="active">1</button>
+                <button>2</button>
+                <button>3</button>
+                <button>...</button>
+                <button>63</button>
+                <button>Sau →</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Order Detail Modal -->
+    <div class="order-detail-modal" id="orderDetailModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Chi tiết đơn hàng #<span id="modalOrderId"></span></h2>
+                <button class="close-btn" onclick="closeOrderDetail()">&times;</button>
+            </div>
+            <div class="modal-body" id="modalOrderContent">
+                <!-- Order details will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Filter functionality
+        function applyFilters() {
+            const status = document.getElementById('status-filter').value;
+            const product = document.getElementById('product-filter').value;
+            const partner = document.getElementById('partner-filter').value;
+            const dateFrom = document.getElementById('date-from').value;
+            const dateTo = document.getElementById('date-to').value;
+            const search = document.getElementById('search-input').value;
+            
+            console.log('Applying filters:', { status, product, partner, dateFrom, dateTo, search });
+            // Here you would implement the actual filtering logic
+            alert('Bộ lọc đã được áp dụng!');
+        }
+
+        function clearFilters() {
+            document.getElementById('status-filter').value = '';
+            document.getElementById('product-filter').value = '';
+            document.getElementById('partner-filter').value = '';
+            document.getElementById('date-from').value = '';
+            document.getElementById('date-to').value = '';
+            document.getElementById('search-input').value = '';
+            alert('Đã xóa tất cả bộ lọc!');
+        }
+
+        function exportOrders() {
+            alert('Đang xuất file Excel...');
+        }
+
+        // Order actions
+        function viewOrder(orderId) {
+            document.getElementById('modalOrderId').textContent = orderId;
+            document.getElementById('modalOrderContent').innerHTML = `
+                <div style="display: grid; gap: 20px;">
+                    <div style="background: #f8f9fa; padding: 20px; border-radius: 10px;">
+                        <h3 style="margin: 0 0 15px 0; color: #1A365D;">Thông tin khách hàng</h3>
+                        <p><strong>Tên:</strong> Nguyễn Văn A</p>
+                        <p><strong>Email:</strong> nguyenvana@email.com</p>
+                        <p><strong>Số điện thoại:</strong> 0123456789</p>
+                        <p><strong>Địa chỉ:</strong> 123 Nguyễn Huệ, Quận 1, TP.HCM</p>
+                    </div>
+                    <div style="background: #f8f9fa; padding: 20px; border-radius: 10px;">
+                        <h3 style="margin: 0 0 15px 0; color: #1A365D;">Chi tiết sản phẩm</h3>
+                        <p><strong>Tên tour:</strong> Tour Hạ Long 3N2Đ</p>
+                        <p><strong>Ngày khởi hành:</strong> 15/01/2025</p>
+                        <p><strong>Số người:</strong> 2 người lớn, 1 trẻ em</p>
+                        <p><strong>Giá:</strong> 4,500,000đ</p>
+                    </div>
+                    <div style="background: #f8f9fa; padding: 20px; border-radius: 10px;">
+                        <h3 style="margin: 0 0 15px 0; color: #1A365D;">Trạng thái thanh toán</h3>
+                        <p><strong>Tổng tiền:</strong> 4,500,000đ</p>
+                        <p><strong>Đã thanh toán:</strong> 0đ</p>
+                        <p><strong>Còn lại:</strong> 4,500,000đ</p>
+                    </div>
+                </div>
+            `;
+            document.getElementById('orderDetailModal').style.display = 'block';
+        }
+
+        function editOrder(orderId) {
+            alert(`Chỉnh sửa đơn hàng ${orderId}`);
+        }
+
+        function deleteOrder(orderId) {
+            if (confirm(`Bạn có chắc chắn muốn xóa đơn hàng ${orderId}?`)) {
+                alert(`Đã xóa đơn hàng ${orderId}`);
+            }
+        }
+
+        function closeOrderDetail() {
+            document.getElementById('orderDetailModal').style.display = 'none';
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('orderDetailModal');
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        }
+
+        // Auto-refresh every 30 seconds
+        setInterval(() => {
+            console.log('Auto-refreshing order data...');
+        }, 30000);
+
+        // Logout function
+        function logout() {
+            if (confirm('Bạn có chắc chắn muốn đăng xuất?')) {
+                alert('Đã đăng xuất thành công!');
+                // Redirect to login page
+            }
+        }
+
+        // Initialize filters with current date
+        document.addEventListener('DOMContentLoaded', function() {
+            const today = new Date().toISOString().split('T')[0];
+            const thirtyDaysAgo = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString().split('T')[0];
+            
+            document.getElementById('date-from').value = thirtyDaysAgo;
+            document.getElementById('date-to').value = today;
+        });
+    </script>
+</body>
+</html>

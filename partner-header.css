@@ -1,5 +1,5 @@
 /* Partner Header Styles - Distinctive from Admin */
-.partner-header {
+.management-header, .partner-header {
     background: linear-gradient(135deg, #059669 0%, #047857 100%);
     color: white;
     padding: 0;
@@ -10,7 +10,7 @@
     border-bottom: 3px solid #10B981;
 }
 
-.partner-header-content {
+.management-header-content, .partner-header-content {
     max-width: 1400px;
     margin: 0 auto;
     padding: 0 20px;
@@ -20,7 +20,7 @@
     height: 70px;
 }
 
-.partner-logo {
+.management-logo, .partner-logo {
     display: flex;
     align-items: center;
     gap: 12px;
@@ -28,13 +28,13 @@
     font-weight: bold;
 }
 
-.partner-logo i {
+.management-logo i, .partner-logo i {
     color: #F59E0B;
     font-size: 24px;
     filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
 }
 
-.partner-badge {
+.management-badge, .partner-badge {
     background: linear-gradient(135deg, #F59E0B, #EAB308);
     color: white;
     padding: 4px 8px;
@@ -46,13 +46,13 @@
     box-shadow: 0 2px 4px rgba(245, 158, 11, 0.3);
 }
 
-.partner-nav-menu {
+.management-nav-menu, .partner-nav-menu {
     display: flex;
     gap: 25px;
     align-items: center;
 }
 
-.partner-nav-menu a {
+.management-nav-menu a, .partner-nav-menu a {
     color: white;
     text-decoration: none;
     padding: 10px 15px;
@@ -63,30 +63,30 @@
     border: 1px solid transparent;
 }
 
-.partner-nav-menu a:hover {
+.management-nav-menu a:hover, .partner-nav-menu a:hover {
     background: rgba(255,255,255,0.15);
     transform: translateY(-1px);
     border-color: rgba(255,255,255,0.2);
 }
 
-.partner-nav-menu a.active {
+.management-nav-menu a.active, .partner-nav-menu a.active {
     background: #F59E0B;
     color: white;
     box-shadow: 0 2px 8px rgba(245, 158, 11, 0.4);
 }
 
-.partner-nav-menu a i {
+.management-nav-menu a i, .partner-nav-menu a i {
     margin-right: 6px;
     font-size: 14px;
 }
 
-.partner-auth-section {
+.management-auth-section, .partner-auth-section {
     display: flex;
     align-items: center;
     gap: 20px;
 }
 
-.partner-auth-section select {
+.management-auth-section select, .partner-auth-section select {
     padding: 8px 12px;
     border: 1px solid rgba(255,255,255,0.2);
     border-radius: 6px;
@@ -96,18 +96,18 @@
     backdrop-filter: blur(10px);
 }
 
-.partner-auth-section select option {
+.management-auth-section select option, .partner-auth-section select option {
     background: #047857;
     color: white;
 }
 
-.partner-user-info {
+.management-user-info, .partner-user-info {
     display: flex;
     align-items: center;
     gap: 10px;
 }
 
-.partner-user-avatar {
+.management-user-avatar, .partner-user-avatar {
     width: 35px;
     height: 35px;
     border-radius: 50%;
@@ -120,18 +120,18 @@
     border: 2px solid rgba(255,255,255,0.2);
 }
 
-.partner-user-details {
+.management-user-details, .partner-user-details {
     display: flex;
     flex-direction: column;
     gap: 2px;
 }
 
-.partner-user-name {
+.management-user-name, .partner-user-name {
     font-weight: 600;
     font-size: 14px;
 }
 
-.partner-user-role {
+.management-user-role, .partner-user-role {
     font-size: 11px;
     opacity: 0.8;
     text-transform: uppercase;
@@ -139,7 +139,7 @@
     color: #A7F3D0;
 }
 
-.partner-logout-btn {
+.management-logout-btn, .partner-logout-btn {
     background: linear-gradient(135deg, #EF4444, #DC2626);
     color: white;
     border: none;
@@ -152,13 +152,13 @@
     box-shadow: 0 2px 4px rgba(239, 68, 68, 0.3);
 }
 
-.partner-logout-btn:hover {
+.management-logout-btn:hover, .partner-logout-btn:hover {
     background: linear-gradient(135deg, #DC2626, #B91C1C);
     transform: translateY(-1px);
     box-shadow: 0 4px 8px rgba(239, 68, 68, 0.4);
 }
 
-.partner-logout-btn i {
+.management-logout-btn i, .partner-logout-btn i {
     margin-right: 6px;
 }
 
@@ -241,55 +241,72 @@
 }
 
 /* Responsive Design */
-@media (max-width: 768px) {
-    .partner-header-content {
-        padding: 0 15px;
-        height: 60px;
-    }
-    
-    .partner-logo {
-        font-size: 18px;
-    }
-    
-    .partner-nav-menu {
+@media (max-width: 1024px) {
+    .management-nav-menu, .partner-nav-menu {
         gap: 15px;
     }
     
-    .partner-nav-menu a {
+    .management-nav-menu a, .partner-nav-menu a {
+        padding: 8px 12px;
+        font-size: 13px;
+    }
+    
+    .management-auth-section, .partner-auth-section {
+        gap: 15px;
+    }
+}
+
+@media (max-width: 768px) {
+    .management-header-content, .partner-header-content {
+        flex-direction: column;
+        height: auto;
+        padding: 15px 10px;
+        gap: 15px;
+    }
+    
+    .management-logo, .partner-logo {
+        font-size: 18px;
+    }
+    
+    .management-nav-menu, .partner-nav-menu {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+    }
+    
+    .management-nav-menu a, .partner-nav-menu a {
         padding: 8px 12px;
         font-size: 14px;
     }
     
-    .partner-auth-section {
-        gap: 15px;
-    }
-    
-    .partner-quick-actions {
-        display: none;
+    .management-auth-section, .partner-auth-section {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
     }
 }
 
 @media (max-width: 480px) {
-    .partner-nav-menu {
+    .management-nav-menu, .partner-nav-menu {
         display: none;
     }
     
-    .partner-logo {
+    .management-logo, .partner-logo {
         font-size: 16px;
     }
     
-    .partner-badge {
+    .management-badge, .partner-badge {
         font-size: 9px;
         padding: 3px 6px;
     }
     
-    .partner-header-content {
+    .management-header-content, .partner-header-content {
         height: 55px;
     }
 }
 
-/* Mobile Menu Toggle for Partners */
-.partner-mobile-menu-toggle {
+/* Mobile Menu Toggle */
+.management-mobile-menu-toggle, .partner-mobile-menu-toggle {
     display: none;
     background: none;
     border: none;
@@ -300,13 +317,13 @@
 }
 
 @media (max-width: 480px) {
-    .partner-mobile-menu-toggle {
+    .management-mobile-menu-toggle, .partner-mobile-menu-toggle {
         display: block;
     }
 }
 
-/* Enhanced hover effects for partner navigation */
-.partner-nav-menu a::before {
+/* Enhanced hover effects for navigation */
+.management-nav-menu a::before, .partner-nav-menu a::before {
     content: '';
     position: absolute;
     bottom: -2px;
@@ -318,7 +335,7 @@
     transform: translateX(-50%);
 }
 
-.partner-nav-menu a:hover::before,
-.partner-nav-menu a.active::before {
+.management-nav-menu a:hover::before, .partner-nav-menu a:hover::before,
+.management-nav-menu a.active::before, .partner-nav-menu a.active::before {
     width: 80%;
 }

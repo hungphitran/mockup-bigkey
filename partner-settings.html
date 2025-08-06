@@ -9,47 +9,150 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         /* Header size adjustments for this page */
-        .management-header-content {
+        .partner-header-content {
             max-width: 100% !important;
             height: 56px !important;
             padding: 0 10px !important;
         }
-        .management-logo {
+        .partner-logo {
             font-size: 16px !important;
             gap: 6px !important;
         }
-        .management-logo i {
+        .partner-logo i {
             font-size: 18px !important;
         }
-        .management-badge {
+        .partner-badge {
             font-size: 9px !important;
             padding: 2px 5px !important;
         }
-        .management-nav-menu {
+        .partner-nav-menu {
             gap: 16px !important;
         }
-        .management-nav-menu a {
+        .partner-nav-menu a {
             padding: 6px 10px !important;
             font-size: 13px !important;
         }
-        .management-auth-section {
+        .partner-auth-section {
             gap: 10px !important;
         }
-        .management-user-avatar {
+        .partner-user-avatar {
             width: 28px !important;
             height: 28px !important;
             font-size: 13px !important;
         }
-        .management-user-name {
+        .partner-user-name {
             font-size: 12px !important;
         }
-        .management-user-role {
+        .partner-user-role {
             font-size: 10px !important;
         }
-        .management-logout-btn {
+        .partner-logout-btn {
             padding: 6px 10px !important;
             font-size: 12px !important;
         }
+        
+        .partner-notification {
+            position: relative;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 6px;
+            transition: background 0.3s;
+        }
+        
+        .partner-notification:hover {
+            background: rgba(255,255,255,0.1);
+        }
+        
+        .partner-notification-badge {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: #DC2626;
+            color: white;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            font-size: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        
+        .admin-status {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+        }
+        
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: #059669;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+        
+        .admin-user-info {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        .admin-logout-btn {
+            background: #DC2626;
+            color: white;
+            border: none;
+            padding: 10px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .admin-logout-btn:hover {
+            background: #B91C1C;
+            transform: translateY(-1px);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .admin-header-content {
+                flex-direction: column;
+                height: auto;
+                padding: 15px 20px;
+                gap: 15px;
+            }
+            
+            .admin-nav-menu {
+                flex-wrap: wrap;
+                gap: 15px;
+            }
+            
+            .admin-auth-section {
+                flex-wrap: wrap;
+                gap: 15px;
+            }
+        }
+        
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f5f7fa;
+        }
+        
         .settings-container {
             max-width: 1000px;
             margin: 0 auto;
@@ -326,33 +429,21 @@
     </style>
 </head>
 <body>
-    <!-- Unified Management Header -->
-    <header class="management-header">
-        <div class="management-header-content">
+    <!-- Partner Tour Management Header -->
+    <header class="partner-header">
+        <div class="partner-header-content">
             <!-- Logo Section -->
-            <div class="management-logo">
+            <div class="partner-logo">
                 <i class="fas fa-key"></i>
                 <span>BigKey Tour</span>
-                <span class="management-badge" id="role-badge">PARTNER</span>
+                <span class="partner-badge" id="role-badge">PARTNER</span>
             </div>
             
             <!-- Navigation Menu -->
-            <nav class="management-nav-menu">
+            <nav class="partner-nav-menu">
                 <a href="13-admin-dashboard.html" id="nav-dashboard">
                     <i class="fas fa-tachometer-alt"></i>
                     Dashboard
-                </a>
-                <a href="11-partner-management.html" id="nav-partners">
-                    <i class="fas fa-handshake"></i>
-                    Đối tác
-                </a>
-                <a href="20-admin-tour-approval.html" id="nav-approval">
-                    <i class="fas fa-check-circle"></i>
-                    Duyệt tour
-                </a>
-                <a href="21-admin-flash-sale.html" id="nav-flashsale">
-                    <i class="fas fa-bolt"></i>
-                    Flash Sale
                 </a>
                 <a href="23-tour-management.html" id="nav-tours">
                     <i class="fas fa-map-marked-alt"></i>
@@ -366,34 +457,51 @@
                     <i class="fas fa-chart-bar"></i>
                     Thống kê
                 </a>
-                <a href="partner-settings.html" id="nav-settings" class="active">
+                <a href="24-tour-cancellation.html" id="nav-cancellation">
+                    <i class="fas fa-times-circle"></i>
+                    Hủy tour
+                </a>
+                <a href="partner-settings.html" class="active" id="nav-settings">
                     <i class="fas fa-cog"></i>
                     Cài đặt
                 </a>
             </nav>
             
             <!-- Auth Section -->
-            <div class="management-auth-section">
+            <div class="partner-auth-section">
+                <!-- Partner Status -->
+                <div class="partner-status">
+                    <div class="partner-status-dot"></div>
+                    <span>Hoạt động</span>
+                </div>
+                
+                <!-- Notification -->
+                <div class="partner-notification">
+                    <i class="fas fa-bell"></i>
+                    <span class="partner-notification-badge">2</span>
+                </div>
+                
                 <!-- Language Selector -->
                 <select id="language-selector">
                     <option value="vi">Tiếng Việt</option>
                     <option value="en">English</option>
-                    <option value="zh">中文</option>
+                    <option value="ru">Русский</option>
+                    <option value="kz">Қазақша</option>
                 </select>
                 
                 <!-- User Info -->
-                <div class="management-user-info">
-                    <div class="management-user-avatar" id="user-avatar">
+                <div class="partner-user-info">
+                    <div class="partner-user-avatar" id="user-avatar">
                         S
                     </div>
-                    <div class="management-user-details">
-                        <div class="management-user-name" id="user-name">Saigon Tourist</div>
-                        <div class="management-user-role" id="user-role">Đối tác</div>
+                    <div class="partner-user-details">
+                        <div class="partner-user-name" id="user-name">Saigon Tourist</div>
+                        <div class="partner-user-role" id="user-role">Đối tác Du lịch</div>
                     </div>
                 </div>
                 
                 <!-- Logout Button -->
-                <button class="management-logout-btn" onclick="logout()">
+                <button class="partner-logout-btn" onclick="logout()">
                     <i class="fas fa-sign-out-alt"></i>
                     Đăng xuất
                 </button>
@@ -401,7 +509,7 @@
         </div>
     </header>
 
-    <div class="container">
+    <div class="container" style="margin-top: 20px;">
         <div class="settings-container">
             <!-- Settings Navigation -->
             <div class="settings-nav">

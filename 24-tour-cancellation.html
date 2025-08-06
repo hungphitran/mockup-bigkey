@@ -7,9 +7,149 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="partner-header.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Header size adjustments for this page */
+        .partner-header-content {
+            max-width: 100% !important;
+            height: 56px !important;
+            padding: 0 10px !important;
+        }
+        .partner-logo {
+            font-size: 16px !important;
+            gap: 6px !important;
+        }
+        .partner-logo i {
+            font-size: 18px !important;
+        }
+        .partner-badge {
+            font-size: 9px !important;
+            padding: 2px 5px !important;
+        }
+        .partner-nav-menu {
+            gap: 16px !important;
+        }
+        .partner-nav-menu a {
+            padding: 6px 10px !important;
+            font-size: 13px !important;
+        }
+        .partner-auth-section {
+            gap: 10px !important;
+        }
+        .partner-user-avatar {
+            width: 28px !important;
+            height: 28px !important;
+            font-size: 13px !important;
+        }
+        .partner-user-name {
+            font-size: 12px !important;
+        }
+        .partner-user-role {
+            font-size: 10px !important;
+        }
+        .partner-logout-btn {
+            padding: 6px 10px !important;
+            font-size: 12px !important;
+        }
+        
+        .partner-notification {
+            position: relative;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 6px;
+            transition: background 0.3s;
+        }
+        
+        .partner-notification:hover {
+            background: rgba(255,255,255,0.1);
+        }
+        
+        .partner-notification-badge {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: #DC2626;
+            color: white;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            font-size: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        
+        .admin-status {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+        }
+        
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: #059669;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+        
+        .admin-user-info {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        .admin-logout-btn {
+            background: #DC2626;
+            color: white;
+            border: none;
+            padding: 10px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .admin-logout-btn:hover {
+            background: #B91C1C;
+            transform: translateY(-1px);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .admin-header-content {
+                flex-direction: column;
+                height: auto;
+                padding: 15px 20px;
+                gap: 15px;
+            }
+            
+            .admin-nav-menu {
+                flex-wrap: wrap;
+                gap: 15px;
+            }
+            
+            .admin-auth-section {
+                flex-wrap: wrap;
+                gap: 15px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- Partner Tour Cancellation Header -->
+    <!-- Partner Tour Management Header -->
     <header class="partner-header">
         <div class="partner-header-content">
             <!-- Logo Section -->
@@ -21,11 +161,11 @@
             
             <!-- Navigation Menu -->
             <nav class="partner-nav-menu">
-                <a href="11-partner-management.html" id="nav-dashboard">
+                <a href="13-admin-dashboard.html" id="nav-dashboard">
                     <i class="fas fa-tachometer-alt"></i>
                     Dashboard
                 </a>
-                <a href="23-tour-management.html" id="nav-tours">
+                <a href="25-admin-tour-management.html" id="nav-tours">
                     <i class="fas fa-map-marked-alt"></i>
                     Quản lý tour
                 </a>
@@ -58,7 +198,7 @@
                 <!-- Notification -->
                 <div class="partner-notification">
                     <i class="fas fa-bell"></i>
-                    <span class="partner-notification-badge">4</span>
+                    <span class="partner-notification-badge">2</span>
                 </div>
                 
                 <!-- Language Selector -->
@@ -66,7 +206,7 @@
                     <option value="vi">Tiếng Việt</option>
                     <option value="en">English</option>
                     <option value="ru">Русский</option>
-                    <option value="kz">Қазақша</option>
+                    <option value="kz">Қазақsha</option>
                 </select>
                 
                 <!-- User Info -->
@@ -91,7 +231,7 @@
 
     <div class="container">
         <div style="margin: 20px 0;">
-            <a href="23-tour-management.html" style="color: #667eea; text-decoration: none;">
+            <a href="25-admin-tour-management.html" style="color: #667eea; text-decoration: none;">
                 <i class="fas fa-arrow-left"></i> Quay lại quản lý tour
             </a>
         </div>

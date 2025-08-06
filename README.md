@@ -118,6 +118,7 @@ Tour Details (03-tour-details.html)
 - `13-admin-dashboard.html` - Bảng điều khiển admin
 - `20-admin-tour-approval.html` - Phê duyệt tour
 - `21-admin-flash-sale.html` - Quản lý flash sale
+- `25-admin-tour-management.html` - **[MỚI]** Quản lý tour tổng quan cho admin
 
 ### 🔧 HỖ TRỢ & TIỆN ÍCH
 - `14-notification-center.html` - Trung tâm thông báo
