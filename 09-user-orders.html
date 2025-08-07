@@ -36,7 +36,7 @@
                     <option>🇻🇳 Tiếng Việt</option>
                     <option>🇺🇸 English</option>
                     <option>🇷🇺 Русский</option>
-                    <option>🇰🇿 Қазақша</option>
+                    <option>🇰🇿 Қazақша</option>
                 </select>
                 <div class="user-menu" style="position: relative; display: inline-block;">
                     <button class="btn btn-primary" onclick="toggleUserMenu()" style="display: flex; align-items: center; gap: 8px;">
@@ -446,13 +446,25 @@
             dropdown.style.display = dropdown.style.display === 'none' ? 'block' : 'none';
         }
 
+        // System dropdown menu
+        function toggleSystemMenu() {
+            const dropdown = document.getElementById('systemDropdown');
+            dropdown.style.display = dropdown.style.display === 'none' ? 'block' : 'none';
+        }
+
         // Close dropdown when clicking outside
         document.addEventListener('click', function(event) {
             const userMenu = document.querySelector('.user-menu');
-            const dropdown = document.getElementById('userDropdown');
+            const userDropdown = document.getElementById('userDropdown');
+            const systemMenu = document.querySelector('.nav-dropdown');
+            const systemDropdown = document.getElementById('systemDropdown');
             
             if (!userMenu.contains(event.target)) {
-                dropdown.style.display = 'none';
+                userDropdown.style.display = 'none';
+            }
+            
+            if (!systemMenu.contains(event.target)) {
+                systemDropdown.style.display = 'none';
             }
         });
     </script>
