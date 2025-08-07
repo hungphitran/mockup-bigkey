@@ -13,15 +13,23 @@
         <div class="header-content">
             <div class="logo">
                 <i class="fas fa-key" style="color: #DC2626;"></i> 
-                <span style="color: #1A365D; font-weight: bold;">BigKey Tour</span>
+                <span style="color: white; font-weight: bold;">BigKey Tour</span>
             </div>
             <nav class="nav-menu">
-                <a href="01-search-integrated.html">Trang chủ</a>
-                <a href="03-tour-details.html">Tours</a>
-                <a href="06-flight-details.html">Vé máy bay</a>
-                <a href="07-hotel-details.html">Khách sạn</a>
-                <a href="05-combo-details.html">Combo</a>
-                <a href="09-user-orders.html" style="background-color: rgba(255,255,255,0.2);">Đơn hàng</a>
+                <a href="01-search-integrated.html" style="background-color: rgba(255,255,255,0.2);">Trang chủ</a>
+                <div class="nav-dropdown" style="position: relative; display: inline-block;">
+                    <a href="#" onclick="toggleSystemMenu()" style="display: flex; align-items: center; gap: 5px;">
+                        Hệ thống <i class="fas fa-chevron-down" style="font-size: 12px;"></i>
+                    </a>
+                    <div id="systemDropdown" class="system-dropdown" style="display: none; position: absolute; top: 100%; left: 0; background: white; border: 1px solid #ddd; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); min-width: 180px; z-index: 1000; margin-top: 5px;">
+                        <a href="12-partner-analytics.html" style="display: block; padding: 12px 16px; color: #333; text-decoration: none; border-bottom: 1px solid #eee;">
+                            <i class="fas fa-handshake" style="color: #2563EB;"></i> Quản lý Đối tác
+                        </a>
+                        <a href="13-admin-dashboard.html" style="display: block; padding: 12px 16px; color: #333; text-decoration: none;">
+                            <i class="fas fa-cog" style="color: #DC2626;"></i> Quản trị viên
+                        </a>
+                    </div>
+                </div>
             </nav>
             <div class="auth-section">
                 <select style="padding: 8px; border-radius: 5px; border: 1px solid #ddd; background: white;">
@@ -33,17 +41,17 @@
                 <div class="user-menu" style="position: relative; display: inline-block;">
                     <button class="btn btn-primary" onclick="toggleUserMenu()" style="display: flex; align-items: center; gap: 8px;">
                         <i class="fas fa-user-circle"></i>
-                        <span>Nguyễn Văn A</span>
+                        <span>Đăng nhập</span>
                         <i class="fas fa-chevron-down"></i>
                     </button>
                     <div id="userDropdown" class="user-dropdown" style="display: none; position: absolute; right: 0; top: 100%; background: white; border: 1px solid #ddd; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); min-width: 200px; z-index: 1000; margin-top: 5px;">
-                        <a href="09-user-orders.html" style="display: block; padding: 12px 16px; color: #333; text-decoration: none; border-bottom: 1px solid #eee; background-color: #f8f9fa;">
+                        <a href="09-user-orders.html" style="display: block; padding: 12px 16px; color: #333; text-decoration: none; border-bottom: 1px solid #eee;">
                             <i class="fas fa-shopping-bag"></i> Đơn hàng của tôi
                         </a>
                         <a href="16-user-profile.html" style="display: block; padding: 12px 16px; color: #333; text-decoration: none; border-bottom: 1px solid #eee;">
                             <i class="fas fa-user"></i> Hồ sơ cá nhân
                         </a>
-                        <a href="11-partner-management.html" style="display: block; padding: 12px 16px; color: #333; text-decoration: none; border-bottom: 1px solid #eee;">
+                        <a href="12-partner-analytics.html" style="display: block; padding: 12px 16px; color: #333; text-decoration: none; border-bottom: 1px solid #eee;">
                             <i class="fas fa-cogs"></i> Quản lý hệ thống
                         </a>
                         <a href="13-admin-dashboard.html" style="display: block; padding: 12px 16px; color: #333; text-decoration: none;">
@@ -79,8 +87,8 @@
                 <i class="fas fa-headset"></i> Hỗ trợ
             </a>
             <div style="margin-left: auto; display: flex; gap: 10px;">
-                <a href="11-partner-management.html" style="display: flex; align-items: center; gap: 8px; padding: 10px 15px; background: linear-gradient(135deg, #667eea, #764ba2); color: white; text-decoration: none; border-radius: 8px; font-size: 14px; transition: all 0.3s;">
-                    <i class="fas fa-cogs"></i> Quản lý hệ thống
+                <a href="12-partner-analytics.html" style="display: flex; align-items: center; gap: 8px; padding: 10px 15px; background: linear-gradient(135deg, #667eea, #764ba2); color: white; text-decoration: none; border-radius: 8px; font-size: 14px; transition: all 0.3s;">
+                    <i class="fas fa-cogs"></i> Đối tác
                 </a>
                 <a href="13-admin-dashboard.html" style="display: flex; align-items: center; gap: 8px; padding: 10px 15px; background: linear-gradient(135deg, #DC2626, #991b1b); color: white; text-decoration: none; border-radius: 8px; font-size: 14px; transition: all 0.3s;">
                     <i class="fas fa-shield-alt"></i> Quản trị
