@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin - Sản phẩm & Quy tắc Ngân hàng</title>
+  <link rel="stylesheet" href="styles.css"/>
+  <link rel="stylesheet" href="admin-header.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
+  <style>
+    .grid{display:grid;grid-template-columns:2fr 1fr;gap:20px}
+    .card{background:#fff;border-radius:12px;box-shadow:0 5px 18px rgba(0,0,0,.08);padding:18px}
+    .form-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+    label{font-weight:600;color:#1A365D;margin-bottom:6px;display:block}
+    input,select,textarea{width:100%;padding:10px;border:2px solid #e1e5e9;border-radius:8px}
+    table{width:100%;border-collapse:collapse}
+    th,td{padding:10px;border-bottom:1px solid #e5e7eb;text-align:left}
+  </style>
+</head>
+<body>
+  <header class="management-header">
+    <div class="management-header-content">
+      <div class="management-logo"><i class="fas fa-key"></i><span>bigkey4booking Tour</span><span class="management-badge">ADMIN</span></div>
+      <nav class="management-nav-menu">
+        <a href="13-admin-dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+        <a href="36-admin-bank-partners.html"><i class="fas fa-university"></i> Đối tác Ngân hàng</a>
+        <a href="37-admin-bank-products.html" class="active"><i class="fas fa-box"></i> Sản phẩm & Quy tắc</a>
+        <a href="38-admin-bank-applications.html"><i class="fas fa-folder-open"></i> Ứng dụng</a>
+        <a href="39-admin-bank-risk.html"><i class="fas fa-shield-alt"></i> Rủi ro & AML</a>
+        <a href="40-admin-bank-templates.html"><i class="fas fa-file-signature"></i> Hợp đồng/Consent</a>
+      </nav>
+      <div class="management-auth-section"><select><option>VI</option><option>EN</option></select><div class="management-user-info"><div class="management-user-avatar">A</div><div class="management-user-details"><div class="management-user-name">Admin User</div><div class="management-user-role">Administrator</div></div></div></div>
+    </div>
+  </header>
+
+  <div class="container" style="margin-top:20px">
+    <div class="grid">
+      <main class="card">
+        <h2>Cấu hình sản phẩm & Quy tắc</h2>
+        <div class="form-row" style="margin-top:10px">
+          <div><label>Ngân hàng</label><select><option>Bank A</option><option>Bank B</option></select></div>
+          <div><label>Loại</label><select><option>account</option><option>debit</option><option>credit</option></select></div>
+          <div><label>Mã sản phẩm</label><input placeholder="CREDIT_PLATINUM"/></div>
+          <div><label>Điều kiện</label><input placeholder="Min score 650; Income >= 10tr"/></div>
+          <div><label>Ưu đãi</label><input placeholder="Hoàn 5% du lịch, 2% chi tiêu"/></div>
+        </div>
+        <div style="margin-top:10px"><label>Mô tả</label><textarea rows="4" placeholder="Mô tả sản phẩm"></textarea></div>
+        <div style="margin-top:12px" class="actions"><button class="btn btn-primary">Lưu</button><button class="btn btn-secondary">Áp dụng</button></div>
+      </main>
+      <aside class="card">
+        <h3>Danh mục hiện tại</h3>
+        <table style="margin-top:10px">
+          <thead><tr><th>Mã</th><th>Loại</th><th>Trạng thái</th></tr></thead>
+          <tbody>
+            <tr><td>ACC_STANDARD</td><td>account</td><td><span class="status-badge status-success">active</span></td></tr>
+            <tr><td>DEBIT_VISA</td><td>debit</td><td><span class="status-badge status-success">active</span></td></tr>
+            <tr><td>CREDIT_PLATINUM</td><td>credit</td><td><span class="status-badge status-warning">draft</span></td></tr>
+          </tbody>
+        </table>
+      </aside>
+    </div>
+  </div>
+</body>
+</html>

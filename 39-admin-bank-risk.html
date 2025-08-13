@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin - Rủi ro & AML</title>
+  <link rel="stylesheet" href="styles.css"/>
+  <link rel="stylesheet" href="admin-header.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
+  <style>
+    .grid{display:grid;grid-template-columns:2fr 1fr;gap:20px}
+    .card{background:#fff;border-radius:12px;box-shadow:0 5px 18px rgba(0,0,0,.08);padding:18px}
+    .kpi{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+    .kpi .item{background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:12px}
+    @media(max-width:1200px){.grid{grid-template-columns:1fr}.kpi{grid-template-columns:repeat(2,1fr)}}
+  </style>
+</head>
+<body>
+  <header class="management-header">
+    <div class="management-header-content">
+      <div class="management-logo"><i class="fas fa-key"></i><span>bigkey4booking Tour</span><span class="management-badge">ADMIN</span></div>
+      <nav class="management-nav-menu">
+        <a href="13-admin-dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+        <a href="36-admin-bank-partners.html"><i class="fas fa-university"></i> Đối tác Ngân hàng</a>
+        <a href="37-admin-bank-products.html"><i class="fas fa-box"></i> Sản phẩm & Quy tắc</a>
+        <a href="38-admin-bank-applications.html"><i class="fas fa-folder-open"></i> Ứng dụng</a>
+        <a href="39-admin-bank-risk.html" class="active"><i class="fas fa-shield-alt"></i> Rủi ro & AML</a>
+        <a href="40-admin-bank-templates.html"><i class="fas fa-file-signature"></i> Hợp đồng/Consent</a>
+      </nav>
+      <div class="management-auth-section"><select><option>VI</option><option>EN</option></select><div class="management-user-info"><div class="management-user-avatar">A</div><div class="management-user-details"><div class="management-user-name">Admin User</div><div class="management-user-role">Administrator</div></div></div></div>
+    </div>
+  </header>
+
+  <div class="container" style="margin-top:20px">
+    <div class="kpi">
+      <div class="item"><div class="text-muted">KYC thất bại</div><div class="h3">3.2%</div></div>
+      <div class="item"><div class="text-muted">PEP/Sanctions hit</div><div class="h3">0.18%</div></div>
+      <div class="item"><div class="text-muted">Fraud score > 80</div><div class="h3">24</div></div>
+      <div class="item"><div class="text-muted">Bị từ chối</div><div class="h3">112</div></div>
+    </div>
+
+    <div class="grid" style="margin-top:16px">
+      <div>
+        <div class="card">
+          <h3>Luồng cảnh báo</h3>
+          <table style="width:100%;border-collapse:collapse">
+            <thead><tr><th>Thời gian</th><th>Mức</th><th>Nguồn</th><th>Mô tả</th><th>Hành động</th></tr></thead>
+            <tbody>
+              <tr><td>10:12</td><td><span class="status-badge status-danger">HIGH</span></td><td>PEP Screening</td><td>Match score 96% - APP50002</td><td><button class="btn btn-secondary">Điều tra</button></td></tr>
+              <tr><td>09:55</td><td><span class="status-badge status-warning">MED</span></td><td>Liveness</td><td>Threshold drift ↑ - cohort KR</td><td><button class="btn btn-secondary">Xem</button></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card" style="margin-top:16px">
+          <h3>Quy tắc rủi ro</h3>
+          <div class="grid" style="grid-template-columns:1fr 1fr;gap:12px">
+            <div>
+              <label class="label">Tự động từ chối khi PEP hit</label>
+              <select class="input"><option>Bật</option><option>Tắt</option></select>
+            </div>
+            <div>
+              <label class="label">Giới hạn Fraud score</label>
+              <input type="number" class="input" value="80"/>
+            </div>
+          </div>
+          <div style="margin-top:12px"><button class="btn btn-primary">Lưu quy tắc</button></div>
+        </div>
+      </div>
+      <aside>
+        <div class="card">
+          <h3>Screening Providers</h3>
+          <ul style="line-height:1.7">
+            <li>PEP/Sanctions: Provider X</li>
+            <li>Fraud: Fortress</li>
+            <li>Liveness: FaceTech</li>
+          </ul>
+        </div>
+        <div class="card" style="margin-top:16px">
+          <h3>Nhật ký hệ thống</h3>
+          <pre style="background:#0f172a;color:#e2e8f0;border-radius:8px;padding:12px;overflow:auto;max-height:220px">[09:10] webhook.received APP50001 status=under_review
+[09:10] aml.screen pep=clear score=12
+[09:11] rule.apply out=approve_auto
+[09:11] notify.partner webhook.sent 204</pre>
+        </div>
+      </aside>
+    </div>
+  </div>
+</body>
+</html>

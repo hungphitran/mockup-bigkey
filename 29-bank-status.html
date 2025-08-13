@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hồ sơ ngân hàng của tôi - bigkey4booking</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <style>
+    .layout{display:grid;grid-template-columns:1fr 300px;gap:24px}
+    .card{background:#fff;border-radius:12px;box-shadow:0 5px 20px rgba(0,0,0,.08);padding:18px}
+    .status{display:inline-flex;align-items:center;gap:8px;padding:6px 10px;border-radius:20px;background:#eef2ff;color:#1A365D;font-weight:600}
+    .timeline{display:grid;gap:12px;margin-top:10px}
+    .t-item{display:flex;gap:10px}
+    .dot{width:12px;height:12px;border-radius:50%;background:#1A365D;margin-top:6px}
+    table{width:100%;border-collapse:collapse}
+    th,td{padding:10px;border-bottom:1px solid #e5e7eb;text-align:left}
+    .actions{display:flex;gap:8px;flex-wrap:wrap}
+    @media(max-width:900px){.layout{grid-template-columns:1fr}}
+  </style>
+  <script>
+    function qs(n){return new URLSearchParams(location.search).get(n)||''}
+    document.addEventListener('DOMContentLoaded',()=>{
+      document.getElementById('app-id').textContent = qs('id')||'APP12345';
+      const st = qs('status')||'under_review';
+      document.getElementById('status-badge').textContent = st;
+      document.getElementById('status-badge').className = 'status';
+    });
+  </script>
+</head>
+<body>
+  <header class="header">
+    <div class="header-content">
+      <div class="logo"><i class="fas fa-key" style="color:#DC2626"></i> <span style="color:#fff;font-weight:700">bigkey4booking Tour</span></div>
+      <nav class="nav-menu">
+        <a href="01-search-integrated.html">Trang chủ</a>
+        <a href="27-bank-landing.html">Ngân hàng</a>
+      </nav>
+      <div class="auth-section">
+        <select><option>🇻🇳 Tiếng Việt</option><option>🇺🇸 English</option><option>🇷🇺 Русский</option><option>🇰🇿 Қазақша</option></select>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="layout" style="margin-top:20px">
+      <main>
+        <div class="card">
+          <h1><i class="fas fa-credit-card" style="color:#DC2626"></i> Hồ sơ ngân hàng của tôi</h1>
+          <div style="margin-top:6px;color:#555">Mã hồ sơ: <b id="app-id">-</b> • Trạng thái: <span id="status-badge" class="status">-</span></div>
+          <div class="timeline">
+            <div class="t-item"><div class="dot"></div><div><b>draft</b><br>Khởi tạo hồ sơ</div></div>
+            <div class="t-item"><div class="dot"></div><div><b>kyc_in_progress</b><br>Đang thực hiện eKYC</div></div>
+            <div class="t-item"><div class="dot"></div><div><b>under_review</b><br>Chờ thẩm định</div></div>
+            <div class="t-item"><div class="dot"></div><div><b>approved</b><br>Đã phê duyệt</div></div>
+            <div class="t-item"><div class="dot"></div><div><b>issued</b><br>Đã phát hành</div></div>
+            <div class="t-item"><div class="dot"></div><div><b>activated</b><br>Đã kích hoạt</div></div>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:16px">
+          <h2>Tài khoản/Thẻ đã đăng ký</h2>
+          <table>
+            <thead><tr><th>Ngân hàng</th><th>Sản phẩm</th><th>Trạng thái</th><th>Hành động</th></tr></thead>
+            <tbody>
+              <tr>
+                <td>Bank A</td>
+                <td>Tài khoản số đẹp</td>
+                <td><span class="status-badge status-success">issued</span></td>
+                <td class="actions">
+                  <button class="btn btn-secondary">Xem chi tiết</button>
+                  <button class="btn btn-primary">Kết nối ví</button>
+                </td>
+              </tr>
+              <tr>
+                <td>Bank B</td>
+                <td>Thẻ ghi nợ Visa</td>
+                <td><span class="status-badge status-warning">under_review</span></td>
+                <td class="actions">
+                  <button class="btn btn-secondary">Bổ sung tài liệu</button>
+                  <button class="btn btn-secondary">Hủy hồ sơ</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </main>
+
+      <aside>
+        <div class="card">
+          <h3>Hỗ trợ & FAQ</h3>
+          <ul style="color:#555;line-height:1.6; padding-left: 16px;">
+            <li>Lỗi liveness? Đảm bảo đủ sáng, mặt trong khung.</li>
+            <li>Không OCR được? Ảnh rõ nét, không lóa.</li>
+            <li>Phát hành thẻ ảo: realtime sau khi approved.</li>
+          </ul>
+          <a class="btn btn-secondary" href="15-help-support.html" style="margin-top:10px;display:inline-block">Trung tâm hỗ trợ</a>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-bottom">
+        <div class="footer-bottom-content">
+          <div><p>&copy; 2025 bigkey4booking Tour.</p></div>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

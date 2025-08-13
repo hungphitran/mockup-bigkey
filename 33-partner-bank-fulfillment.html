@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Đối tác Ngân hàng - Fulfillment</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="partner-header.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <style>
+    .card{background:#fff;border-radius:12px;box-shadow:0 5px 18px rgba(0,0,0,.08);padding:18px}
+    .grid{display:grid;grid-template-columns:1fr 320px;gap:20px}
+    table{width:100%;border-collapse:collapse}
+    th,td{padding:10px;border-bottom:1px solid #e5e7eb;text-align:left}
+    .filters{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:12px}
+    .filters select,.filters input{padding:10px;border:2px solid #e1e5e9;border-radius:8px}
+    @media(max-width:1200px){.filters{grid-template-columns:repeat(2,1fr)}.grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <header class="partner-header">
+    <div class="partner-header-content">
+      <div class="partner-logo"><i class="fas fa-key"></i><span>bigkey4booking Tour</span><span class="partner-badge">PARTNER</span></div>
+      <nav class="partner-nav-menu">
+        <a href="30-partner-bank-dashboard.html"><i class="fas fa-chart-line"></i> Tổng quan</a>
+        <a href="31-partner-bank-products.html"><i class="fas fa-box"></i> Sản phẩm & Ưu đãi</a>
+        <a href="32-partner-bank-applications.html"><i class="fas fa-folder-open"></i> Ứng dụng/Hồ sơ</a>
+        <a href="33-partner-bank-fulfillment.html" class="active"><i class="fas fa-truck"></i> Fulfillment</a>
+        <a href="34-partner-bank-reports.html"><i class="fas fa-chart-bar"></i> Báo cáo</a>
+        <a href="35-partner-bank-api-keys.html"><i class="fas fa-key"></i> API Keys</a>
+      </nav>
+      <div class="partner-auth-section"><select><option>VI</option><option>EN</option></select><div class="partner-user-info"><div class="partner-user-avatar">B</div><div class="partner-user-details"><div class="partner-user-name">Bank Partner</div><div class="partner-user-role">Ngân hàng</div></div></div></div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="grid" style="margin-top:20px">
+      <main>
+        <div class="card">
+          <h2>Danh sách giao thẻ</h2>
+          <div class="filters" style="margin-top:8px">
+            <select><option>Trạng thái giao: Tất cả</option><option>pending</option><option>in_transit</option><option>delivered</option><option>failed</option></select>
+            <select><option>Thực thể: Thẻ/Tài khoản</option><option>card</option><option>account</option></select>
+            <input placeholder="Tìm theo ID/khách hàng" />
+            <select><option>Thời gian: 30 ngày</option><option>7 ngày</option><option>90 ngày</option></select>
+          </div>
+          <table>
+            <thead><tr><th>ID</th><th>Loại</th><th>Khách hàng</th><th>Trạng thái</th><th>HVC</th><th>Ngày</th><th>Thao tác</th></tr></thead>
+            <tbody>
+              <tr><td>FUL-50012</td><td>Thẻ</td><td>Nguyễn Văn A</td><td><span class="status-badge status-warning">in_transit</span></td><td>VNPost</td><td>2025-08-12</td><td><button class="btn btn-secondary">Chi tiết</button></td></tr>
+              <tr><td>FUL-50013</td><td>Tài khoản</td><td>Trần Thị B</td><td><span class="status-badge status-success">delivered</span></td><td>-</td><td>2025-08-11</td><td><button class="btn btn-secondary">Chi tiết</button></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </main>
+      <aside>
+        <div class="card"><h3>Cấu hình fulfillment</h3><ul style="padding-left:16px;color:#065f46"><li>Thẻ ảo: tức thì</li><li>Thẻ vật lý: 3-5 ngày</li><li>Retry giao thất bại: 3 lần</li></ul><button class="btn btn-secondary">Cập nhật</button></div>
+      </aside>
+    </div>
+  </div>
+</body>
+</html>

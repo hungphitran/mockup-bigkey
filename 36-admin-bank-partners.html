@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin - Đối tác Ngân hàng</title>
+  <link rel="stylesheet" href="styles.css"/>
+  <link rel="stylesheet" href="admin-header.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
+  <style>
+    .grid{display:grid;grid-template-columns:2fr 1fr;gap:20px}
+    .card{background:#fff;border-radius:12px;box-shadow:0 5px 18px rgba(0,0,0,.08);padding:18px}
+    table{width:100%;border-collapse:collapse}
+    th,td{padding:10px;border-bottom:1px solid #e5e7eb;text-align:left}
+    .filters{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:12px}
+    .filters select,.filters input{padding:10px;border:2px solid #e1e5e9;border-radius:8px}
+    @media(max-width:1200px){.grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <header class="management-header">
+    <div class="management-header-content">
+      <div class="management-logo"><i class="fas fa-key"></i><span>bigkey4booking Tour</span><span class="management-badge">ADMIN</span></div>
+      <nav class="management-nav-menu">
+        <a href="13-admin-dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+        <a href="36-admin-bank-partners.html" class="active"><i class="fas fa-university"></i> Đối tác Ngân hàng</a>
+        <a href="37-admin-bank-products.html"><i class="fas fa-box"></i> Sản phẩm & Quy tắc</a>
+        <a href="38-admin-bank-applications.html"><i class="fas fa-folder-open"></i> Ứng dụng</a>
+        <a href="39-admin-bank-risk.html"><i class="fas fa-shield-alt"></i> Rủi ro & AML</a>
+        <a href="40-admin-bank-templates.html"><i class="fas fa-file-signature"></i> Hợp đồng/Consent</a>
+      </nav>
+      <div class="management-auth-section"><select><option>VI</option><option>EN</option></select><div class="management-user-info"><div class="management-user-avatar">A</div><div class="management-user-details"><div class="management-user-name">Admin User</div><div class="management-user-role">Administrator</div></div></div></div>
+    </div>
+  </header>
+
+  <div class="container" style="margin-top:20px">
+    <div class="grid">
+      <main class="card">
+        <h2>Danh sách đối tác ngân hàng</h2>
+        <div class="filters" style="margin-top:8px">
+          <input placeholder="Tìm theo tên/mã"/>
+          <select><option>Trạng thái: Tất cả</option><option>pending</option><option>approved</option><option>suspended</option></select>
+          <select><option>Quốc gia: Tất cả</option><option>VN</option><option>KZ</option><option>RU</option></select>
+          <select><option>Sắp xếp: Mới nhất</option><option>A→Z</option></select>
+        </div>
+        <table>
+          <thead><tr><th>Mã</th><th>Tên</th><th>Trạng thái</th><th>API</th><th>Hành động</th></tr></thead>
+          <tbody>
+            <tr><td>BANK_A</td><td>Bank A</td><td><span class="status-badge status-success">approved</span></td><td>OAuth2</td><td><button class="btn btn-secondary" onclick="location.href='37-admin-bank-products.html'">Cấu hình</button></td></tr>
+            <tr><td>BANK_B</td><td>Bank B</td><td><span class="status-badge status-warning">pending</span></td><td>JWT</td><td><button class="btn btn-primary">Phê duyệt</button></td></tr>
+          </tbody>
+        </table>
+      </main>
+      <aside class="card">
+        <h3>Onboarding đối tác</h3>
+        <ol style="color:#333;line-height:1.6">
+          <li>Thẩm định hồ sơ pháp lý</li>
+          <li>Ký thỏa thuận hợp tác</li>
+          <li>Cấp API key/Sandbox</li>
+          <li>Cấu hình webhook</li>
+        </ol>
+        <button class="btn btn-secondary">Tạo đối tác mới</button>
+      </aside>
+    </div>
+  </div>
+</body>
+</html>

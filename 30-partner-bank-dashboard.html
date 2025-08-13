@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Đối tác Ngân hàng - Tổng quan</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="partner-header.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <style>
+    .grid{display:grid;gap:20px}
+    .kpi{display:grid;grid-template-columns:repeat(6,1fr);gap:16px}
+    .card{background:#fff;border-radius:12px;box-shadow:0 5px 18px rgba(0,0,0,.08);padding:18px}
+    .stat{background:linear-gradient(135deg,#059669,#10B981);color:#fff;border-radius:10px;padding:16px}
+    .stat .val{font-size:24px;font-weight:800}
+    .stat .lbl{opacity:.9}
+    .quick{display:flex;gap:10px;flex-wrap:wrap}
+    .quick .btn{background:#047857;color:#fff;border:none;border-radius:8px;padding:10px 12px;cursor:pointer}
+    @media(max-width:1100px){.kpi{grid-template-columns:repeat(3,1fr)}}
+    @media(max-width:600px){.kpi{grid-template-columns:repeat(2,1fr)}}
+    .subnav{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0}
+    .subnav a{padding:8px 12px;border-radius:8px;background:#ecfeff;border:1px solid #a7f3d0;color:#065f46;text-decoration:none}
+    .subnav a.active{background:#10B981;color:#fff;border-color:transparent}
+  </style>
+</head>
+<body>
+  <header class="partner-header">
+    <div class="partner-header-content">
+      <div class="partner-logo"><i class="fas fa-key"></i><span>bigkey4booking Tour</span><span class="partner-badge">PARTNER</span></div>
+      <nav class="partner-nav-menu">
+        <a href="30-partner-bank-dashboard.html" class="active"><i class="fas fa-chart-line"></i> Tổng quan</a>
+        <a href="31-partner-bank-products.html"><i class="fas fa-box"></i> Sản phẩm & Ưu đãi</a>
+        <a href="32-partner-bank-applications.html"><i class="fas fa-folder-open"></i> Ứng dụng/Hồ sơ</a>
+        <a href="33-partner-bank-fulfillment.html"><i class="fas fa-truck"></i> Fulfillment</a>
+        <a href="34-partner-bank-reports.html"><i class="fas fa-chart-bar"></i> Báo cáo</a>
+        <a href="35-partner-bank-api-keys.html"><i class="fas fa-key"></i> API Keys</a>
+      </nav>
+      <div class="partner-auth-section">
+        <div class="partner-status"><span class="partner-status-dot"></span> Online</div>
+        <select><option>VI</option><option>EN</option></select>
+        <div class="partner-user-info"><div class="partner-user-avatar">B</div><div class="partner-user-details"><div class="partner-user-name">Bank Partner</div><div class="partner-user-role">Ngân hàng</div></div></div>
+        <button class="partner-logout-btn"><i class="fas fa-sign-out-alt"></i> Đăng xuất</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="subnav">
+      <a href="30-partner-bank-dashboard.html" class="active">Funnel</a>
+      <a href="34-partner-bank-reports.html">Đối soát</a>
+      <a href="35-partner-bank-api-keys.html">Tích hợp</a>
+    </div>
+
+    <div class="grid">
+      <section class="kpi">
+        <div class="stat"><div class="lbl">Views</div><div class="val">82,430</div></div>
+        <div class="stat" style="background:linear-gradient(135deg,#06b6d4,#0891b2)"><div class="lbl">Applications</div><div class="val">12,540</div></div>
+        <div class="stat" style="background:linear-gradient(135deg,#2563eb,#1d4ed8)"><div class="lbl">KYC Passed</div><div class="val">9,830</div></div>
+        <div class="stat" style="background:linear-gradient(135deg,#f59e0b,#d97706)"><div class="lbl">Approved</div><div class="val">7,420</div></div>
+        <div class="stat" style="background:linear-gradient(135deg,#dc2626,#b91c1c)"><div class="lbl">Issued</div><div class="val">6,980</div></div>
+        <div class="stat" style="background:linear-gradient(135deg,#16a34a,#15803d)"><div class="lbl">Activated</div><div class="val">6,210</div></div>
+      </section>
+
+      <section class="card">
+        <h3>Hành động nhanh</h3>
+        <div class="quick" style="margin-top:10px">
+          <button class="btn" onclick="location.href='31-partner-bank-products.html'">Tạo sản phẩm</button>
+          <button class="btn" onclick="location.href='35-partner-bank-api-keys.html'">Cấu hình webhook</button>
+          <button class="btn" onclick="location.href='34-partner-bank-reports.html'">Xuất báo cáo</button>
+          <button class="btn" onclick="location.href='32-partner-bank-applications.html'">Duyệt hồ sơ</button>
+        </div>
+      </section>
+
+      <section class="card">
+        <h3>Xu hướng 7 ngày</h3>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:10px">
+          <div class="booking-details"><b>KYC pass rate</b><br><span style="color:#065f46">+2.1% • 82.6%</span></div>
+          <div class="booking-details"><b>Approval</b><br><span style="color:#065f46">+1.5% • 75.5%</span></div>
+          <div class="booking-details"><b>Issue time (P95)</b><br><span style="color:#991b1b">+12% • 6m 20s</span></div>
+        </div>
+      </section>
+    </div>
+  </div>
+</body>
+</html>

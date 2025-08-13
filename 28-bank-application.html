@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Đăng ký mở tài khoản/Thẻ - bigkey4booking</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <style>
+    .stepper{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0}
+    .stepper .step{display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:20px;border:1px solid #e5e7eb;background:#fff}
+    .stepper .step.active{background:#1A365D;color:#fff;border-color:transparent}
+    .app-layout{display:grid;grid-template-columns:2fr 1fr;gap:24px}
+    .card{background:#fff;border-radius:12px;box-shadow:0 5px 20px rgba(0,0,0,.08);padding:18px}
+    .inline{display:flex;gap:10px;flex-wrap:wrap}
+    .inline>.item{flex:1 1 180px}
+    label{font-weight:600;color:#1A365D;margin-bottom:6px;display:block}
+    input,select,textarea{width:100%;padding:12px;border:2px solid #e1e5e9;border-radius:8px}
+    .actions{display:flex;justify-content:space-between;margin-top:16px}
+    .consent{background:#f8fafc;border:1px dashed #cbd5e1;padding:12px;border-radius:8px}
+    .status-box{background:#f8f9fa;border-radius:8px;padding:12px}
+    .doc-uploader{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    @media(max-width:900px){.app-layout{grid-template-columns:1fr}}
+  </style>
+  <script>
+    function qs(n){return new URLSearchParams(location.search).get(n)||''}
+    document.addEventListener('DOMContentLoaded',()=>{
+      const bank=qs('bank')||'bankA';
+      const product=qs('product')||'ACC_STANDARD';
+      document.getElementById('bank-name').textContent = bank;
+      document.getElementById('product-code').textContent = product;
+    });
+    function toStep(id){document.querySelectorAll('.stepper .step').forEach(s=>s.classList.remove('active'));document.querySelector(`[data-step="${id}"]`).classList.add('active');document.querySelectorAll('.form-step').forEach(p=>p.style.display='none');document.getElementById(id).style.display='block'}
+    function next(current,nextId){toStep(nextId);window.scrollTo({top:0,behavior:'smooth'});}
+    function submitApp(){
+      // Mock submit -> redirect to status with id
+      const appId = 'APP'+Math.floor(Math.random()*100000);
+      const url = new URL('29-bank-status.html', window.location.href);
+      url.searchParams.set('id', appId);
+      url.searchParams.set('status', 'kyc_in_progress');
+      window.location.href = url.toString();
+    }
+  </script>
+</head>
+<body>
+  <header class="header">
+    <div class="header-content">
+      <div class="logo"><i class="fas fa-key" style="color:#DC2626"></i> <span style="color:#fff;font-weight:700">bigkey4booking Tour</span></div>
+      <nav class="nav-menu">
+        <a href="01-search-integrated.html">Trang chủ</a>
+        <a href="27-bank-landing.html" style="background-color:rgba(255,255,255,0.18)">Ngân hàng</a>
+      </nav>
+      <div class="auth-section">
+        <select><option>🇻🇳 Tiếng Việt</option><option>🇺🇸 English</option><option>🇷🇺 Русский</option><option>🇰🇿 Қазақша</option></select>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="card" style="margin-top:20px">
+      <h1 style="margin-bottom:6px"><i class="fas fa-file-signature" style="color:#DC2626"></i> Đăng ký mở tài khoản/Thẻ</h1>
+      <div style="color:#555">Ngân hàng: <b id="bank-name">-</b> • Sản phẩm: <b id="product-code">-</b></div>
+
+      <div class="stepper">
+        <div class="step active" data-step="step-1"><span class="num">1</span> Điều kiện</div>
+        <div class="step" data-step="step-2"><span class="num">2</span> Consent</div>
+        <div class="step" data-step="step-3"><span class="num">3</span> eKYC</div>
+        <div class="step" data-step="step-4"><span class="num">4</span> Thông tin</div>
+        <div class="step" data-step="step-5"><span class="num">5</span> Ký số & Gửi</div>
+      </div>
+    </div>
+
+    <div class="app-layout">
+      <main>
+        <!-- Step 1: Eligibility -->
+        <section id="step-1" class="card form-step">
+          <h2>Kiểm tra điều kiện sơ bộ</h2>
+          <div class="inline">
+            <div class="item"><label>Quốc tịch</label><select><option>Việt Nam</option><option>Nước ngoài</option></select></div>
+            <div class="item"><label>Độ tuổi</label><select><option>18-22</option><option>23-60</option><option>60+</option></select></div>
+            <div class="item"><label>Loại sản phẩm</label><select><option>Tài khoản</option><option>Thẻ ghi nợ</option><option>Thẻ tín dụng</option></select></div>
+            <div class="item"><label>Thu nhập (thẻ tín dụng)</label><select><option>&lt; 7 triệu</option><option>7-15 triệu</option><option>&gt; 15 triệu</option></select></div>
+          </div>
+          <div class="status-box" style="margin-top:12px">
+            <i class="fas fa-info-circle" style="color:#2563eb"></i> Kết quả sơ bộ: Đủ điều kiện đăng ký. Tiếp tục bước tiếp theo.
+          </div>
+          <div class="actions"><span></span><button class="btn btn-primary" onclick="next('step-1','step-2')">Tiếp tục</button></div>
+        </section>
+
+        <!-- Step 2: Consent -->
+        <section id="step-2" class="card form-step" style="display:none">
+          <h2>Đồng ý điều khoản & Cho phép xử lý dữ liệu</h2>
+          <div class="consent">
+            <label style="display:flex;gap:8px;align-items:flex-start">
+              <input type="checkbox" />
+              <span>Tôi đồng ý cho Bigkey và ngân hàng đối tác xử lý dữ liệu cá nhân cho mục đích mở tài khoản/thẻ; chấp thuận ký số và chia sẻ thông tin cần thiết theo chính sách bảo mật.</span>
+            </label>
+          </div>
+          <div class="actions"><button class="btn btn-secondary" onclick="toStep('step-1')">Quay lại</button><button class="btn btn-primary" onclick="next('step-2','step-3')">Tiếp tục</button></div>
+        </section>
+
+        <!-- Step 3: eKYC -->
+        <section id="step-3" class="card form-step" style="display:none">
+          <h2>eKYC: Xác thực danh tính</h2>
+          <div class="doc-uploader">
+            <div>
+              <label>Tải ảnh mặt trước CCCD/Hộ chiếu</label>
+              <input type="file" accept="image/*" />
+            </div>
+            <div>
+              <label>Tải ảnh mặt sau CCCD</label>
+              <input type="file" accept="image/*" />
+            </div>
+          </div>
+          <div style="margin-top:12px">
+            <label>Video/Selfie liveness</label>
+            <input type="file" accept="video/*,image/*" />
+          </div>
+          <div class="status-box" style="margin-top:12px">
+            <span class="loading"></span> Đang xử lý OCR & liveness (mô phỏng)...
+          </div>
+          <div class="actions"><button class="btn btn-secondary" onclick="toStep('step-2')">Quay lại</button><button class="btn btn-primary" onclick="next('step-3','step-4')">Tiếp tục</button></div>
+        </section>
+
+        <!-- Step 4: Additional Info -->
+        <section id="step-4" class="card form-step" style="display:none">
+          <h2>Thông tin bổ sung</h2>
+          <div class="inline">
+            <div class="item"><label>Họ và tên</label><input placeholder="Nguyễn Văn A" /></div>
+            <div class="item"><label>Ngày sinh</label><input type="date" /></div>
+            <div class="item"><label>Số ĐT</label><input placeholder="09xxxxxxxx" /></div>
+            <div class="item"><label>Email</label><input type="email" placeholder="you@example.com" /></div>
+          </div>
+          <div class="inline">
+            <div class="item"><label>Nghề nghiệp</label><input placeholder="Nhân viên văn phòng" /></div>
+            <div class="item"><label>Thu nhập/tháng</label><select><option>&lt; 7 triệu</option><option>7-15 triệu</option><option>15-30 triệu</option><option>&gt; 30 triệu</option></select></div>
+            <div class="item"><label>Địa chỉ cư trú</label><input placeholder="Số nhà, đường, phường/xã, quận/huyện, tỉnh" /></div>
+          </div>
+          <div class="inline">
+            <div class="item"><label>Địa chỉ nhận thẻ (nếu có)</label><input placeholder="Có thể giống địa chỉ cư trú" /></div>
+            <div class="item"><label>Người tham chiếu (thẻ tín dụng)</label><input placeholder="Họ tên & SĐT" /></div>
+          </div>
+          <div class="actions"><button class="btn btn-secondary" onclick="toStep('step-3')">Quay lại</button><button class="btn btn-primary" onclick="next('step-4','step-5')">Tiếp tục</button></div>
+        </section>
+
+        <!-- Step 5: Sign & Submit -->
+        <section id="step-5" class="card form-step" style="display:none">
+          <h2>Ký hợp đồng điện tử & Gửi hồ sơ</h2>
+          <div class="consent">
+            <p>Bằng việc bấm "Gửi hồ sơ", tôi xác nhận thông tin là chính xác và chấp thuận ký hợp đồng điện tử theo mẫu của ngân hàng đối tác.</p>
+          </div>
+          <div class="actions"><button class="btn btn-secondary" onclick="toStep('step-4')">Quay lại</button><button class="btn btn-primary" onclick="submitApp()">Gửi hồ sơ</button></div>
+        </section>
+      </main>
+
+      <aside>
+        <div class="card">
+          <h3>Tiến độ hồ sơ</h3>
+          <ul style="list-style:none;padding:0;margin:0;display:grid;gap:8px">
+            <li><span class="status-badge status-info">draft</span> Đang khởi tạo</li>
+            <li><span class="status-badge status-info">kyc_in_progress</span> Đang eKYC</li>
+            <li><span class="status-badge status-warning">under_review</span> Chờ thẩm định</li>
+            <li><span class="status-badge status-success">approved</span> Phê duyệt</li>
+            <li><span class="status-badge status-success">issued</span> Phát hành</li>
+          </ul>
+        </div>
+        <div class="card" style="margin-top:16px">
+          <h3>Hỗ trợ nhanh</h3>
+          <p style="color:#555">• Gặp lỗi eKYC? Tải lại giấy tờ, kiểm tra ánh sáng. <br/>• Cần hỗ trợ? Gọi 1900 1234.</p>
+          <a class="btn btn-secondary" href="29-bank-status.html">Theo dõi hồ sơ</a>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-bottom">
+        <div class="footer-bottom-content">
+          <div><p>&copy; 2025 bigkey4booking Tour.</p></div>
+          <div class="footer-links">
+            <a href="#">Điều khoản</a><a href="#">Bảo mật</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

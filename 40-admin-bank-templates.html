@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin - Mẫu hợp đồng & Consent</title>
+  <link rel="stylesheet" href="styles.css"/>
+  <link rel="stylesheet" href="admin-header.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
+  <style>
+    .grid{display:grid;grid-template-columns:1.2fr 1fr;gap:20px}
+    .card{background:#fff;border-radius:12px;box-shadow:0 5px 18px rgba(0,0,0,.08);padding:18px}
+    .list{width:100%;border-collapse:collapse}
+    .list th,.list td{padding:10px;border-bottom:1px solid #e5e7eb;text-align:left}
+    @media(max-width:1200px){.grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <header class="management-header">
+    <div class="management-header-content">
+      <div class="management-logo"><i class="fas fa-key"></i><span>bigkey4booking Tour</span><span class="management-badge">ADMIN</span></div>
+      <nav class="management-nav-menu">
+        <a href="13-admin-dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+        <a href="36-admin-bank-partners.html"><i class="fas fa-university"></i> Đối tác Ngân hàng</a>
+        <a href="37-admin-bank-products.html"><i class="fas fa-box"></i> Sản phẩm & Quy tắc</a>
+        <a href="38-admin-bank-applications.html"><i class="fas fa-folder-open"></i> Ứng dụng</a>
+        <a href="39-admin-bank-risk.html"><i class="fas fa-shield-alt"></i> Rủi ro & AML</a>
+        <a href="40-admin-bank-templates.html" class="active"><i class="fas fa-file-signature"></i> Hợp đồng/Consent</a>
+      </nav>
+      <div class="management-auth-section"><select><option>VI</option><option>EN</option></select><div class="management-user-info"><div class="management-user-avatar">A</div><div class="management-user-details"><div class="management-user-name">Admin User</div><div class="management-user-role">Administrator</div></div></div></div>
+    </div>
+  </header>
+
+  <div class="container" style="margin-top:20px">
+    <div class="grid">
+      <div>
+        <div class="card">
+          <h3>Danh sách mẫu</h3>
+          <table class="list">
+            <thead><tr><th>Tên mẫu</th><th>Loại</th><th>Ngôn ngữ</th><th>Phiên bản</th><th>Áp dụng</th><th>Thao tác</th></tr></thead>
+            <tbody>
+              <tr><td>Hợp đồng mở thẻ tín dụng</td><td>contract</td><td>VI</td><td>v3</td><td>Bank A - Credit</td><td><button class="btn btn-secondary">Xem</button></td></tr>
+              <tr><td>Điều khoản consent eKYC</td><td>consent</td><td>VI</td><td>v1</td><td>All partners</td><td><button class="btn btn-secondary">Sửa</button></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card" style="margin-top:16px">
+          <h3>Tạo/Sửa mẫu</h3>
+          <div class="grid" style="grid-template-columns:1fr 1fr;gap:12px">
+            <div>
+              <label class="label">Tên mẫu</label>
+              <input class="input" placeholder="Ví dụ: Hợp đồng mở tài khoản"/>
+            </div>
+            <div>
+              <label class="label">Loại</label>
+              <select class="input"><option>contract</option><option>consent</option><option>privacy</option></select>
+            </div>
+            <div>
+              <label class="label">Ngôn ngữ</label>
+              <select class="input"><option>VI</option><option>EN</option></select>
+            </div>
+            <div>
+              <label class="label">Áp dụng cho</label>
+              <input class="input" placeholder="Bank/Partner/Product/Locale"/>
+            </div>
+          </div>
+          <label class="label" style="margin-top:12px">Nội dung</label>
+          <textarea class="input" rows="8" placeholder="Markdown/HTML…"></textarea>
+          <div style="margin-top:12px">
+            <button class="btn btn-secondary">Xem trước</button>
+            <button class="btn btn-primary">Lưu phiên bản mới</button>
+          </div>
+        </div>
+      </div>
+      <aside>
+        <div class="card">
+          <h3>Phiên bản gần đây</h3>
+          <ul style="line-height:1.7">
+            <li>contract_credit_vi v3 - 2025-08-10</li>
+            <li>consent_ekyc_vi v1 - 2025-08-01</li>
+          </ul>
+        </div>
+        <div class="card" style="margin-top:16px">
+          <h3>Chính sách lưu trữ</h3>
+          <label class="label">Retention (ngày)</label>
+          <input type="number" class="input" value="365"/>
+          <div style="margin-top:10px"><button class="btn btn-primary">Lưu</button></div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Đối tác Ngân hàng - Báo cáo & Đối soát</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="partner-header.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <style>
+    .card{background:#fff;border-radius:12px;box-shadow:0 5px 18px rgba(0,0,0,.08);padding:18px}
+    .grid{display:grid;grid-template-columns:2fr 1fr;gap:20px}
+    table{width:100%;border-collapse:collapse}
+    th,td{padding:10px;border-bottom:1px solid #e5e7eb;text-align:left}
+    .filters{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:12px}
+    .filters select,.filters input{padding:10px;border:2px solid #e1e5e9;border-radius:8px}
+    @media(max-width:1200px){.filters{grid-template-columns:repeat(2,1fr)}.grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <header class="partner-header">
+    <div class="partner-header-content">
+      <div class="partner-logo"><i class="fas fa-key"></i><span>bigkey4booking Tour</span><span class="partner-badge">PARTNER</span></div>
+      <nav class="partner-nav-menu">
+        <a href="30-partner-bank-dashboard.html"><i class="fas fa-chart-line"></i> Tổng quan</a>
+        <a href="31-partner-bank-products.html"><i class="fas fa-box"></i> Sản phẩm & Ưu đãi</a>
+        <a href="32-partner-bank-applications.html"><i class="fas fa-folder-open"></i> Ứng dụng/Hồ sơ</a>
+        <a href="33-partner-bank-fulfillment.html"><i class="fas fa-truck"></i> Fulfillment</a>
+        <a href="34-partner-bank-reports.html" class="active"><i class="fas fa-chart-bar"></i> Báo cáo</a>
+        <a href="35-partner-bank-api-keys.html"><i class="fas fa-key"></i> API Keys</a>
+      </nav>
+      <div class="partner-auth-section"><select><option>VI</option><option>EN</option></select><div class="partner-user-info"><div class="partner-user-avatar">B</div><div class="partner-user-details"><div class="partner-user-name">Bank Partner</div><div class="partner-user-role">Ngân hàng</div></div></div></div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="grid" style="margin-top:20px">
+      <main>
+        <div class="card">
+          <h2>Đối soát hoa hồng</h2>
+          <div class="filters" style="margin-top:8px">
+            <select><option>Kỳ: T-1</option><option>T-2</option></select>
+            <select><option>Loại phí: CPA</option><option>CPS</option></select>
+            <input placeholder="Ngân sách chiến dịch (tuỳ chọn)" />
+            <select><option>Định dạng: CSV</option><option>XLSX</option></select>
+          </div>
+          <table>
+            <thead><tr><th>Mốc</th><th>Số lượng</th><th>Đơn giá</th><th>Thành tiền</th></tr></thead>
+            <tbody>
+              <tr><td>approved</td><td>7,420</td><td>50,000</td><td>371,000,000</td></tr>
+              <tr><td>activated</td><td>6,210</td><td>90,000</td><td>558,900,000</td></tr>
+              <tr><td><b>Tổng</b></td><td></td><td></td><td><b>929,900,000</b></td></tr>
+            </tbody>
+          </table>
+          <div style="margin-top:12px" class="actions"><button class="btn btn-primary">Xuất báo cáo</button><button class="btn btn-secondary">Gửi email</button></div>
+        </div>
+      </main>
+      <aside>
+        <div class="card"><h3>Ghi chú</h3><p style="color:#065f46">Đối soát dựa trên dữ liệu xác nhận từ hệ thống Bigkey và webhook đối tác trong kỳ.</p></div>
+      </aside>
+    </div>
+  </div>
+</body>
+</html>

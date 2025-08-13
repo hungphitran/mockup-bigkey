@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Đối tác Ngân hàng - API Keys & Webhooks</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="partner-header.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <style>
+    .card{background:#fff;border-radius:12px;box-shadow:0 5px 18px rgba(0,0,0,.08);padding:18px}
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+    label{font-weight:600;color:#065f46;margin-bottom:6px;display:block}
+    input,select,textarea{width:100%;padding:10px;border:2px solid #e1e5e9;border-radius:8px}
+    .key{display:flex;gap:8px;align-items:center}
+    @media(max-width:1000px){.grid{grid-template-columns:1fr}}
+  </style>
+  <script>
+    function regenerate(){alert('Đã tạo API Key mới (mô phỏng).');}
+  </script>
+</head>
+<body>
+  <header class="partner-header">
+    <div class="partner-header-content">
+      <div class="partner-logo"><i class="fas fa-key"></i><span>bigkey4booking Tour</span><span class="partner-badge">PARTNER</span></div>
+      <nav class="partner-nav-menu">
+        <a href="30-partner-bank-dashboard.html"><i class="fas fa-chart-line"></i> Tổng quan</a>
+        <a href="31-partner-bank-products.html"><i class="fas fa-box"></i> Sản phẩm & Ưu đãi</a>
+        <a href="32-partner-bank-applications.html"><i class="fas fa-folder-open"></i> Ứng dụng/Hồ sơ</a>
+        <a href="33-partner-bank-fulfillment.html"><i class="fas fa-truck"></i> Fulfillment</a>
+        <a href="34-partner-bank-reports.html"><i class="fas fa-chart-bar"></i> Báo cáo</a>
+        <a href="35-partner-bank-api-keys.html" class="active"><i class="fas fa-key"></i> API Keys</a>
+      </nav>
+      <div class="partner-auth-section"><select><option>VI</option><option>EN</option></select><div class="partner-user-info"><div class="partner-user-avatar">B</div><div class="partner-user-details"><div class="partner-user-name">Bank Partner</div><div class="partner-user-role">Ngân hàng</div></div></div></div>
+    </div>
+  </header>
+
+  <div class="container" style="margin-top:20px">
+    <div class="grid">
+      <section class="card">
+        <h2>API Keys</h2>
+        <div style="margin-top:10px">
+          <label>Environment</label>
+          <select><option>Sandbox</option><option>Production</option></select>
+        </div>
+        <div style="margin-top:10px">
+          <label>Public Key</label>
+          <div class="key"><input value="pub_********abcd" readonly/><button class="btn btn-secondary">Copy</button></div>
+        </div>
+        <div style="margin-top:10px">
+          <label>Secret Key</label>
+          <div class="key"><input value="sec_********wxyz" readonly/><button class="btn btn-secondary" onclick="regenerate()">Regenerate</button></div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Webhooks</h2>
+        <div style="margin-top:10px"><label>Endpoint URL</label><input placeholder="https://bank.example.com/webhooks/bigkey"/></div>
+        <div style="margin-top:10px"><label>Sự kiện</label>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+            <label><input type="checkbox"/> application.created</label>
+            <label><input type="checkbox"/> kyc.completed</label>
+            <label><input type="checkbox"/> application.approved</label>
+            <label><input type="checkbox"/> application.rejected</label>
+            <label><input type="checkbox"/> account.opened</label>
+            <label><input type="checkbox"/> card.issued</label>
+            <label><input type="checkbox"/> card.activated</label>
+            <label><input type="checkbox"/> fulfillment.failed</label>
+          </div>
+        </div>
+        <div style="margin-top:12px" class="actions"><button class="btn btn-primary">Lưu</button><button class="btn btn-secondary">Gửi thử</button></div>
+      </section>
+    </div>
+  </div>
+</body>
+</html>
